@@ -2,8 +2,20 @@
   font-family: STKaiti;
 }
 
-#slogan {
+#slogan, #three {
   color: #FFCC66;
   font-family: STXihei;
   font-size: 20px;
 }
+
+#three {
+  position: relative;
+  color: #3366FF;
+  top: 40px;
+}
+p.download {
+  position: relative;
+  top: 40px;
+}
+
+
