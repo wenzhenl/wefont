@@ -25,6 +25,10 @@ cell_size = 20
 # set the margin of the inner cell
 inner = 3
 
+# set the position of the sub #
+subx = 6
+suby = 2
+
 # limit of total num of char
 limit_total_num = 2500
 
@@ -33,6 +37,9 @@ per_page = 0
 
 # count the num of char in total
 total_num = 0
+
+# page num
+page = 0
 
 while total_num < limit_total_num:
     per_page = 0
@@ -62,6 +69,16 @@ while total_num < limit_total_num:
         pdf.line(x1, y1, x1, y2)
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
+
+        # draw the sub #
+        # reset font size to smaller
+        pdf.set_font('fireflysung','',8)
+        sx = x2 - subx
+        sy = y2 - suby
+        pdf.text(sx, sy, str(total_num))
+        # restore font size
+        pdf.set_font('fireflysung','',14)
+
         cnt = cnt + 1
         if(cnt == 6):
             pdf.ln()
@@ -84,6 +101,16 @@ while total_num < limit_total_num:
             pdf.line(x1, y1, x1, y2)
             pdf.line(x1, y2, x2, y2)
             pdf.line(x2, y1, x2, y2)
+
+            # draw the sub #
+            # reset font size to smaller
+            pdf.set_font('fireflysung','',8)
+            sx = x2 - subx
+            sy = y2 - suby
+            pdf.text(sx, sy, str(total_num))
+            # restore font size
+            pdf.set_font('fireflysung','',14)
+
             cnt = cnt + 1
             if(cnt == 7):
                 pdf.ln()
@@ -106,6 +133,16 @@ while total_num < limit_total_num:
         pdf.line(x1, y1, x1, y2)
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
+
+        # draw the sub #
+        # reset font size to smaller
+        pdf.set_font('fireflysung','',8)
+        sx = x2 - subx
+        sy = y2 - suby
+        pdf.text(sx, sy, str(total_num))
+        # restore font size
+        pdf.set_font('fireflysung','',14)
+
         cnt = cnt + 1
         if(cnt == 9):
             cnt = 0
@@ -124,10 +161,20 @@ while total_num < limit_total_num:
             if(cnt == 9):
                 cnt = 0
                 pdf.ln()
+        page = page + 1
+        # draw page num
+        pdf.set_font('fireflysung','',10)
+        px = x2 + inner + cell_size - 5
+        py = y2 + inner + 4
+        pdf.text(px, py, str(page))
+        pdf.set_font('fireflysung','',14)
+
+        # draw end of page location indicator
         pdf.set_fill_color(0,0,0)
         pdf.cell(cell_size,cell_size,"",1,0,'C',1)
         pdf.ln()
         print "last char of page"
+
 
 print total_num
 print per_page
