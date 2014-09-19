@@ -47,7 +47,7 @@ while total_num < limit_total_num:
 
     # first cell is solid black location indicator
     pdf.set_fill_color(0,0,0)
-    pdf.cell(cell_size,cell_size,"",1,0,'C',1)
+    pdf.cell(cell_size,cell_size,"",0,0,'C',1)
 
     # draw a qrcode graph on each page
     pdf.image('qrcode.png',165,10,30)
@@ -58,7 +58,7 @@ while total_num < limit_total_num:
         total_num = total_num + 1
         per_page = per_page + 1
         line = line.rstrip()
-        pdf.cell(cell_size,cell_size,line,1,0,'C')
+        pdf.cell(cell_size,cell_size,line,0,0,'C')
         # left margin is 15 
         # top margin is 10
         x1 = 15 + cell_size * (cnt + 1) + inner
@@ -90,7 +90,7 @@ while total_num < limit_total_num:
             total_num = total_num + 1
             per_page = per_page + 1
             line = line.rstrip()
-            pdf.cell(cell_size,cell_size,line,1,0,'C')
+            pdf.cell(cell_size,cell_size,line,0,0,'C')
             # left margin is 15 
             # top margin is 10
             x1 = 15 + cell_size * cnt + inner
@@ -122,7 +122,7 @@ while total_num < limit_total_num:
         per_page = per_page + 1
         print per_page
         line = line.rstrip()
-        pdf.cell(cell_size,cell_size,line,1,0,'C')
+        pdf.cell(cell_size,cell_size,line,0,0,'C')
         # left margin is 15 
         # top margin is 10
         x1 = 15 + cell_size * cnt + inner
@@ -156,7 +156,7 @@ while total_num < limit_total_num:
     if(next_page == 1 or per_page < 111):
         while(per_page < 111):
             per_page = per_page + 1
-            pdf.cell(cell_size,cell_size,"",1,0,'C')
+            pdf.cell(cell_size,cell_size,"",0,0,'C')
             cnt = cnt + 1
             if(cnt == 9):
                 cnt = 0
@@ -171,7 +171,7 @@ while total_num < limit_total_num:
 
         # draw end of page location indicator
         pdf.set_fill_color(0,0,0)
-        pdf.cell(cell_size,cell_size,"",1,0,'C',1)
+        pdf.cell(cell_size,cell_size,"",0,0,'C',1)
         pdf.ln()
         print "last char of page"
 
