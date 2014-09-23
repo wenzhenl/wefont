@@ -103,7 +103,7 @@
 
         <p id="three">只需三步</p>
         <p class="lead download">
-            <a href="template/20_20_2500_template.pdf" download class="btn btn-outline-inverse btn-lg" id="download">下载字库模板</a>
+            <a href="huge_document.php" class="btn btn-outline-inverse btn-lg" id="download">下载字库模板</a>
         </p>
 
         <p class="lead download">
