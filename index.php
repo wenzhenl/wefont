@@ -95,7 +95,6 @@
       </div>
     </header>
 
-
     <!-- Page content of course! -->
     <main class="bs-docs-masthead" id="content" role="main">
       <div class="container">
@@ -104,7 +103,7 @@
 
         <p id="three">只需三步</p>
         <p class="lead download">
-            <a href="tutorial#download_template" class="btn btn-outline-inverse btn-lg" id="download">下载字库模板</a>
+            <a href="template/20_20_2500_template.pdf" download class="btn btn-outline-inverse btn-lg" id="download">下载字库模板</a>
         </p>
 
         <p class="lead download">
