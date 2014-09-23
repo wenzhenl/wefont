@@ -99,7 +99,7 @@
     <main class="bs-docs-masthead" id="content" role="main">
       <div class="container">
         <span class="bs-docs-booticon bs-docs-booticon-lg bs-docs-booticon-outline" id="logo">漢</span>
-        <p id="slogan">yourFont 一心只想让你拥有你自己的字体</p>
+        <p id="slogan">一心只想让你拥有你自己的字体</p>
 
         <p id="three">只需三步</p>
         <p class="lead download">
