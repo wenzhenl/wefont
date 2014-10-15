@@ -10,12 +10,12 @@ pix = im.load()
 print im.size
 
 if len(sys.argv) > 2:
-    isDebug = sys.argv[1]
+    isDebug = 1
 else:
-    isDebug = "notDebug"
+    isDebug = 0
 
-ratio = 0.9 
-thres = 130 # the threshold of grey level for white
+ratio = 0.8 
+thres = 110 # the threshold of grey level for white
 
 
 # transfer a graph to its grey version
@@ -76,15 +76,17 @@ print '*****************column statistics***************'
 for x in white_bar_cols:
     print x
 
-if(isDebug == "debug"):
-    for wy in white_rows:
-        for x in range(im.size[0]):
-            pix[x,wy] = (255, 102 ,102)
+# if(isDebug == 1):
+#     for wy in white_rows:
+#         for x in range(im.size[0]):
+#             pix[x,wy] = (255, 102 ,102)
+#
+#     for wx in white_cols:
+#         for y in range(im.size[1]):
+#             pix[wx, y] = (102, 255, 255)
+#     im.show()
+#
 
-    for wx in white_cols:
-        for y in range(im.size[1]):
-            pix[wx, y] = (102, 255, 255)
-    im.show()
 
 # two standard for black bars
 # the white bar length > white_len = 8
@@ -187,7 +189,7 @@ print '*****************SECOND TIME column statistics***************'
 for x in white_bar_cols:
     print x
 
-if(isDebug == "debug"):
+if(isDebug == 1):
     for wy in white_rows:
         for x in range(im.size[0]):
             pix[x,wy] = (255, 102 ,102)
