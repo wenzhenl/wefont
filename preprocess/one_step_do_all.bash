@@ -1,11 +1,11 @@
 #!/bin/bash
 
-for i in *.jpg
-do
-  python read_jpg.py $i 
-done
-
-cd pngs
+# for i in *.jpg
+# do
+#   python read_jpg.py $i 
+# done
+#
+# cd pngs
 
 for i in *.png
 do
