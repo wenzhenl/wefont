@@ -17,14 +17,13 @@ else:
 ratio = 0.8 
 thres = 110 # the threshold of grey level for white
 
+grey_level = lambda x: (x[0] + x[1] + x[2])/3
 
-# transfer a graph to its grey version
 total = 0
 for y in range(im.size[1]):
     for x in range(im.size[0]):
-        g = (pix[x,y][0] + pix[x,y][1] + pix[x,y][2])/3
+        g = grey_level(pix[x,y])
         total = total + g
-        pix[x,y] = (g,g,g)
 
 print 'ave grey level', total/(im.size[0] * im.size[1])
 
@@ -32,7 +31,7 @@ white_rows = []
 for y in range(im.size[1]):
     count = 0
     for x in range(im.size[0]):
-        if(pix[x,y][0] < thres):
+        if(grey_level(pix[x,y]) < thres):
             break;
         else:
             count = count + 1
@@ -43,7 +42,7 @@ white_cols = []
 for x in range(im.size[0]):
     count = 0
     for y in range(im.size[1]):
-        if(pix[x,y][0] < thres):
+        if(grey_level(pix[x,y]) < thres):
             break;
         else:
             count = count + 1
@@ -145,7 +144,7 @@ white_rows = []
 for y in range(im.size[1]):
     count = 0
     for x in range(im.size[0]):
-        if(pix[x,y][0] < thres):
+        if(grey_level(pix[x,y]) < thres):
             break;
         else:
             count = count + 1
@@ -156,7 +155,7 @@ white_cols = []
 for x in range(im.size[0]):
     count = 0
     for y in range(im.size[1]):
-        if(pix[x,y][0] < thres):
+        if(grey_level(pix[x,y]) < thres):
             break;
         else:
             count = count + 1
