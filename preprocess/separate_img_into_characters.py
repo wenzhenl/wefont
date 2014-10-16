@@ -238,11 +238,15 @@ im.show()
 # /////////////////////END OF SECOND TIME
 # ///////////////////////////////////////////////
 
+border = 4
+notZero = lambda x: x if x >= 0 else 0
+notEnd = lambda x, y: x if x <= y else y
+
 n = 0
 for y in black_rows:
     for x in black_cols:
         n = n + 1
-        box = (x[0], y[0], x[1], y[1])
+        box = (notZero(x[0]-border), notZero(y[0]-border), notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
         region = im.crop(box)
         region.save('%s_%s.png' % (f, n), 'png')
 
