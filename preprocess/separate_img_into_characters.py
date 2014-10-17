@@ -87,8 +87,8 @@ if isDebug:
 # the white bar length > white_len = 8
 # the black bar length > black_len = 30
 
-white_len = 8
-black_len = 30
+white_len = 4
+black_len = 40
 #  select those valid white row bar
 valid_white_bar_rows = []
 for x in white_bar_rows:
@@ -138,7 +138,7 @@ if isDebug:
 # REPROCESS THE IMG AFTER REMOVING QRCODE IMG
 
 
-White_rows = []
+white_rows = []
 for y in range(im.size[1]):
     count = 0
     for x in range(im.size[0]):
