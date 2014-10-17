@@ -16,8 +16,8 @@ else:
 if isDebug:
     print im.size
 
-
-ratio = 0.9 # the percentage of white points to be regarded as white line
+# PARAMETERS SECTION 1
+ratio = 0.85 # the percentage of white points to be regarded as white line
 thres = 130 # the threshold of grey level for white
 
 grey_level = lambda x: (x[0] + x[1] + x[2])/3
@@ -87,8 +87,9 @@ if isDebug:
 # the white bar length > white_len = 8
 # the black bar length > black_len = 30
 
-white_len = 4
-black_len = 40
+# PARAMETERS SECTION 2
+white_len = 0
+black_len = 60
 #  select those valid white row bar
 valid_white_bar_rows = []
 for x in white_bar_rows:
@@ -241,6 +242,7 @@ for y in black_rows:
         region.save('%s_%s.png' % (f, n), 'png')
 
 if n != 117:
+    print '-----', f
     print 'n=', n
     print 'ERROR: UNEXPECTED RESULTS'
 
