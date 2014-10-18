@@ -17,7 +17,8 @@ if isDebug:
     print im.size
 
 # PARAMETERS SECTION 1
-ratio = 0.85 # the percentage of white points to be regarded as white line
+# ratio = 0.85
+ratio = 0.8 # the percentage of white points to be regarded as white line
 thres = 130 # the threshold of grey level for white
 
 grey_level = lambda x: (x[0] + x[1] + x[2])/3
@@ -89,7 +90,7 @@ if isDebug:
 
 # PARAMETERS SECTION 2
 white_len = 0
-black_len = 60
+black_len = 50
 #  select those valid white row bar
 valid_white_bar_rows = []
 for x in white_bar_rows:
