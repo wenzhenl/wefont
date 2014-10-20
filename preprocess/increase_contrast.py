@@ -11,5 +11,5 @@ pix = im.load()
 # print im.size
 enh = ImageEnhance.Contrast(im)
 con = enh.enhance(enhtor)
-con.save(f+'.bmp')
+con.save(f+'_aic.bmp')
 # con.show("30% more contrast")
