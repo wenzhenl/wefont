@@ -47,7 +47,13 @@ while total_num < limit_total_num:
 
     # first cell is solid black location indicator
     pdf.set_fill_color(0,0,0)
-    pdf.cell(cell_size,cell_size,"",0,0,'C',1)
+    pdf.cell(cell_size,cell_size,"",0,0,'C')
+
+    # draw a black square at the first cell
+    pdf.image('black.png',15 + inner, 10 + inner, cell_size-2*inner, cell_size-2*inner)
+
+    # draw a black square at the first cell
+    pdf.image('black.png',15 + 8 * cell_size + inner, 10 + 12 * cell_size + inner, cell_size-2*inner, cell_size-2*inner)
 
     # draw a qrcode graph on each page
     pdf.image('qrcode.png',165,10,30)
@@ -171,7 +177,7 @@ while total_num < limit_total_num:
 
         # draw end of page location indicator
         pdf.set_fill_color(0,0,0)
-        pdf.cell(cell_size,cell_size,"",0,0,'C',1)
+        pdf.cell(cell_size,cell_size,"",0,0,'C')
         pdf.ln()
         print "last char of page"
 
