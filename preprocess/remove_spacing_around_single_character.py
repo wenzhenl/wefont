@@ -135,11 +135,25 @@ border = 4
 notZero = lambda x: x if x >= 0 else 0
 notEnd = lambda x, y: x if x <= y else y
 
-for y in black_rows:
-    for x in black_cols:
-        box = (notZero(x[0]-border), notZero(y[0]-border), notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
-        region = im.crop(box)
-        region.save('%s_ars.png' % f, 'png')
+x_0 = black_cols[0][0]
+x_1 = black_cols[0][1]
+
+y_0 = black_rows[0][0]
+y_1 = black_rows[0][1]
+
+if y_1 - y_0 > x_1 - x_0:
+    diff = y_1 - y_0 - (x_1 - x_0)
+    x_0 = notZero(x_0 - diff/2)
+    x_1 = notEnd(x_1 + diff/2, im.size[0]-1)
+
+else:
+    diff = x_1 - x_0 - (y_1 - y_0)
+    y_0 = notZero(y_0 - diff/2)
+    y_1 = notEnd(y_1 + diff/2, im.size[1]-1)
+
+box = (notZero(x_0-border), notZero(y_0-border), notEnd(x_1+border,im.size[0]-1), notEnd(y_1+border, im.size[1]-1))
+region = im.crop(box)
+region.save('%s_ars.png' % f, 'png')
 
 if isDebug:
     print f
