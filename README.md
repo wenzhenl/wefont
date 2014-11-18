@@ -1,4 +1,4 @@
 yourFont
 ========
 
-It is your fault! 都是你的错！
+Personal Chinese font generator
