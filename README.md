@@ -1,4 +1,4 @@
-ZIMO
+ZIMO (FontMagic)
 ========
 
 Personal Chinese font generator
