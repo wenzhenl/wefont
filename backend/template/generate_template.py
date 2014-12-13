@@ -81,7 +81,8 @@ def fill_one_page(pdf, chars, total_num, page_num):
               cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a qrcode graph on each page
-    pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + 2 * inner, margin_top,
+    pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + inner, 
+              margin_top + inner,
               2 * cell_size - 2 * inner, 2 * cell_size - 2 * inner)
     
     os.remove(qrname)
