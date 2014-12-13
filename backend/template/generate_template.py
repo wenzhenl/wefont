@@ -162,6 +162,13 @@ args = parser.parse_args()
 
 if args.cellsize:
     cell_size = args.cellsize
+    num_of_cols = length / cell_size
+    num_of_rows = width / cell_size
+    cols_of_first_row = num_of_cols - 3
+    cols_of_second_row = num_of_cols -2
+    cols_of_last_row = num_of_cols -1
+    num_of_chars_per_page = num_of_cols * num_of_rows - 6
+
 
 if args.font:
     font_name = args.font[:args.font.find(".")]
@@ -175,6 +182,10 @@ else:
     output_file = str(cell_size) + "_" + str(cell_size) + "_template.pdf"
 if args.verbose:
     print ">>>Begin processing file ", args.filename 
+    print  "cell_size: ", cell_size
+    print "num_of_cols: ", num_of_cols
+    print "num_of_rows: ", num_of_rows
+    print "chars_per_page: ", num_of_chars_per_page
 #******************** END COMMAND LINE OPTIONS **************************#
 
 # open the input file
