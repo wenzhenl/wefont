@@ -5,6 +5,7 @@ __author__ = "Wenzheng Li"
 from fpdf import FPDF
 import argparse
 from qrcode import *
+import os
 
 # GLOBAL VARIABLES
 cell_size = 20
@@ -80,8 +81,10 @@ def fill_one_page(pdf, chars, total_num, page_num):
               cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a qrcode graph on each page
-    pdf.image(qrname, (num_of_rows - 1) * cell_size + 2 * inner, margin_top,
-              2 * cell_size - 2 * inner)
+    pdf.image(qrname, (num_of_cols - 1) * cell_size + 2 * inner, margin_top,
+              2 * cell_size - 2 * inner, 2 * cell_size - 2 * inner)
+    
+    os.remove(qrname)
 
     pdf.set_fill_color(255,255,255)
 
@@ -198,13 +201,13 @@ page_num = 0
 for line in f:
     char = line.rstrip()
 
+    cnt += 1
     # collect chars from input file until a page is full
-    if cnt < num_of_chars_per_page:
+    if cnt <= num_of_chars_per_page:
         chars_of_this_page.append(char)
-        cnt += 1
 
     # page is full now
-    else:
+    if cnt == num_of_chars_per_page:
         fill_one_page(pdf, chars_of_this_page, total_num, page_num)
         
         if args.verbose:
