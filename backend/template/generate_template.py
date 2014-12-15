@@ -9,8 +9,8 @@ import os
 
 # GLOBAL VARIABLES
 cell_size = 20
-font_name = "Songti"
-font_filename = "Songti.ttc"
+font_name = "fireflysung"
+font_filename = "fireflysung.ttf"
 
 # set margins
 margin_left = 15
