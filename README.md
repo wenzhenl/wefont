@@ -101,4 +101,43 @@ To create a font via website, please follow the specified steps:
    
    will separate L00-0.jpg into pngs which contains only one character. Note: because the image also contains two
    black boxes as locators and one qrcode image, we need to remove them before we further process the single characters.
+   The parameter d here is to print out debugging information. TODO: rewrite the command line options.
+   
+4. remove space around single character using preprocess/remove_spacing_around_single_character.py
+   ```
+      python remove_spacing_around_single_character.py L00-0_0.png d
+   ```
+   
+   will remove the spacing around the character and use a square to contain the character.
+  
+5. increase contrast of each png using preprocess/increase_contrast.py
+   ```
+      python increase_contrast.py L00-0_0.png 5
+   ```
+   
+   will enhance the contrast of the png by factor 5.
+
+6. convert images to scale images using potrace, because potrace only accept bmps, so
+   ```
+      sips -s format bmp input.png --out output.bmp
+   ```
+   
+   if you are using Mac, then
+   ```
+      potrace -s input.bmp
+   ```
+   
+   will generate input.svg
+
+7. rename svgs using their glyph names using extra/map_char_to_glyphname.py
+   ```
+      python map_char_to_glyphname.py
+   ```
+
+7. generate font from svgs using zimo/generate_font.py
+   ```
+      python generate_font.py unicode_to_gb2312.txt 6763_unicode.txt
+   ```
+   
+   will generate the final font file. Note: the unicode of characters are not the same as the code used in gb2312, so we need to transfer unicode to gb2312 code.
       
