@@ -1,25 +1,50 @@
-#!/usr/bin/python
+# -*- coding: utf8 -*-
+__author__ = "Wenzheng Li"
+
 
 from PIL import Image
 from PIL import ImageEnhance
+import argparse
 import sys, os
-
-f, e = os.path.splitext(sys.argv[1])
-im = Image.open(sys.argv[1])
-pix = im.load()
-
-if len(sys.argv) > 2:
-    isDebug = 1
-else:
-    isDebug = 0
-
-if isDebug:
-    print im.size
 
 # PARAMETERS SECTION 1
 # ratio = 0.85
 ratio = 0.8 # the percentage of white points to be regarded as white line
 thres = 130 # the threshold of grey level for white
+
+# two standard for black bars
+# the white bar length > white_len = 8
+# the black bar length > black_len = 30
+
+# PARAMETERS SECTION 2
+white_len = 0
+black_len = 50
+
+#******************* COMMAND LINE OPTIONS *******************************#
+parser = argparse.ArgumentParser(description="separate image into single " 
+                                              "characters")
+parser.add_argument("imgname", help="input scanned image of the template")
+parser.add_argument("-r", "--ratio", type=float, 
+                    help="the percentage of white points to be regarded as "
+                         "white line")
+parser.add_argument("-t", "--thres", 
+                    help="the threshold of grey level for white")
+parser.add_argument("-v", "--verbose", action="store_true",
+                    help="print more info")
+args = parser.parse_args()
+
+if args.ratio:
+    ratio = args.ratio
+
+if args.thres:
+    thres = args.thres
+
+f, e = os.path.splitext(args.imgname)
+im = Image.open(args.imgname)
+pix = im.load()
+
+if args.verbose:
+    print im.size
 
 grey_level = lambda x: (x[0] + x[1] + x[2])/3
 
@@ -29,7 +54,7 @@ for y in range(im.size[1]):
         g = grey_level(pix[x,y])
         total = total + g
 
-if isDebug:
+if args.verbose:
     print 'ave grey level', total/(im.size[0] * im.size[1])
 
 white_rows = []
@@ -74,7 +99,7 @@ if len(white_rows) > 0:
     last_row = white_rows[-1]
     white_bar_rows.append((start, last_row, last_row-start+1))
 
-if isDebug:
+if args.verbose:
     print '*****************row statistics***************'
     for x in white_bar_rows:
         print x
@@ -84,13 +109,6 @@ if isDebug:
         print x
 
 
-# two standard for black bars
-# the white bar length > white_len = 8
-# the black bar length > black_len = 30
-
-# PARAMETERS SECTION 2
-white_len = 0
-black_len = 50
 #  select those valid white row bar
 valid_white_bar_rows = []
 for x in white_bar_rows:
@@ -113,7 +131,7 @@ for x in range(len(valid_white_bar_cols)-1):
     if(valid_white_bar_cols[x+1][0] - valid_white_bar_cols[x][1] > black_len):
         black_cols.append((valid_white_bar_cols[x][1]+1, valid_white_bar_cols[x+1][0]-1))
 
-if isDebug:
+if args.verbose:
     print '*****************row cooridinates***************'
     for x in black_rows:
         print x
@@ -132,7 +150,7 @@ for x in range(black_cols[-1][0], black_cols[-1][1]+1):
     for y in range(black_rows[0][0], black_rows[0][1]+1):
         pix[x,y] = (255, 255, 255)
 
-if isDebug:
+if args.verbose:
     im.show()
 
 # /////////////////////////////////////////////////////////////////////////////
@@ -182,7 +200,7 @@ if len(white_rows) > 0:
     last_row = white_rows[-1]
     white_bar_rows.append((start, last_row, last_row-start+1))
 
-if isDebug:
+if args.verbose:
     print '*****************SECOND TIME row statistics***************'
     for x in white_bar_rows:
         print x
@@ -217,7 +235,7 @@ for x in range(len(valid_white_bar_cols)-1):
     if(valid_white_bar_cols[x+1][0] - valid_white_bar_cols[x][1] > black_len):
         black_cols.append((valid_white_bar_cols[x][1]+1, valid_white_bar_cols[x+1][0]-1))
 
-if isDebug:
+if args.verbose:
     print '*****************SECOND TIME row cooridinates***************'
     for x in black_rows:
         print x
@@ -238,7 +256,8 @@ n = 0
 for y in black_rows:
     for x in black_cols:
         n = n + 1
-        box = (notZero(x[0]-border), notZero(y[0]-border), notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
+        box = (notZero(x[0]-border), notZero(y[0]-border), 
+               notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
         region = im.crop(box)
         region.save('%s_%s.png' % (f, n), 'png')
 
@@ -247,12 +266,12 @@ if n != 117:
     print 'n=', n
     print 'ERROR: UNEXPECTED RESULTS'
 
-if isDebug and n == 117:
+if args.verbose and n == 117:
     print 'n=', n
     print 'SUCCESS'
 
 
-if(isDebug == 1):
+if args.verbose:
     for y in white_rows:
         for x in range(im.size[0]):
             pix[x,y] = (255, 102 ,102)
@@ -261,5 +280,3 @@ if(isDebug == 1):
         for y in range(im.size[1]):
             pix[x, y] = (102, 255, 255)
     im.show()
-
-
