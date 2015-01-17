@@ -94,18 +94,18 @@ To create a font via website, please follow the specified steps:
    
    Required tool: ImageMagic
 
-3. separate scanned image into characters using preprocess/separate_img_into_characters.py
+3. separate scanned image into characters using preprocess/separate_characters.py
    ```
-      python separate_img_into_characters.py L00-0.jpg d
+      python separate_characters.py L00-0.jpg d
    ```
    
    will separate L00-0.jpg into pngs which contains only one character. Note: because the image also contains two
    black boxes as locators and one qrcode image, we need to remove them before we further process the single characters.
    The parameter d here is to print out debugging information. TODO: rewrite the command line options.
    
-4. remove space around single character using preprocess/remove_spacing_around_single_character.py
+4. remove space around single character using preprocess/remove_spacing.py
    ```
-      python remove_spacing_around_single_character.py L00-0_0.png d
+      python remove_spacing.py L00-0_0.png d
    ```
    
    will remove the spacing around the character and use a square to contain the character.
