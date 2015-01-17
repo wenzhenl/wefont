@@ -66,3 +66,13 @@ others to use their fonts.
 
 Fourth function of this APP is to enjoy the art of calligraph from other people or show your own special
 calligraph to the public.
+
+USAGE
+================
+To create a font via website, please follow the specified steps:
+
+1. generate a template using backend/template/generate_template.py
+  ```
+  python generate_template.py -h
+  ```
+  will tell you the information about the input and options
