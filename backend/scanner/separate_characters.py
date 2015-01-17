@@ -47,6 +47,23 @@ def decode_qrcode(filename):
     # clean up
     del(image)
     return qrdata
+
+def get_glyph_name(char):
+    d = {} # dict unicode => glyph name
+    with open("glyphlist.txt", 'r') as glyphlist:
+        for line in glyphlist:
+            li = line.rstrip()
+            if not li.startswith("#"):
+                name, unicd = li.split(';')
+                d[unicd] = name
+                # print name, unicd
+
+    unicd = "{:04x}".format(ord(char))
+    if(unicd in d):
+        return d[unicd]
+    else:
+        return "uni" + unicd
+
     
 #******************* COMMAND LINE OPTIONS *******************************#
 parser = argparse.ArgumentParser(description="separate image into single " 
@@ -300,7 +317,7 @@ border = 4
 notZero = lambda x: x if x >= 0 else 0
 notEnd = lambda x, y: x if x <= y else y
 
-n = len(black_rows) * len(black_cols)
+n = len(black_rows) * len(black_cols) - 6
 if n != n_chars:
     print '-----', f
     print 'n=', n
@@ -312,12 +329,30 @@ if args.verbose and n == n_chars:
 
 
 if n == n_chars:
-    for y in black_rows:
-        for x in black_cols:
-            box = (notZero(x[0]-border), notZero(y[0]-border), 
-                notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
-            region = im.crop(box)
-            # region.save('%s_%s.png' % (f, n), 'png')
+    count = 0
+    for j in range(len(black_rows)):
+        for i in range(len(black_cols)):
+            if j == 0 and i == 0:
+                continue
+            elif j == len(black_rows) - 1 and i == len(black_cols) - 1:
+                continue
+            elif i == len(black_cols) - 1 and j == 0:
+                continue
+            elif i == len(black_cols) - 1 and j == 1:
+                continue
+            elif i == len(black_cols) - 2 and j == 0:
+                continue
+            elif i == len(black_cols) - 2 and j == 1:
+                continue
+            else:
+                x = black_cols[i]
+                y = black_rows[j]
+                box = (notZero(x[0]-border), notZero(y[0]-border), 
+                    notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
+                region = im.crop(box)
+                glyname = get_glyph_name(chars[count])
+                count += 1
+                region.save(glyname + '.png', 'png')
 
 if args.verbose:
     for y in white_rows:
