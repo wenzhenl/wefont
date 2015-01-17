@@ -3,8 +3,8 @@ __author__ = "Wenzheng Li"
 
 
 from fpdf import FPDF
-import argparse
 from qrcode import *
+import argparse
 import os
 
 # GLOBAL VARIABLES
@@ -29,8 +29,8 @@ width = 260
 num_of_cols = length / cell_size
 num_of_rows = width / cell_size
 cols_of_first_row = num_of_cols - 3
-cols_of_second_row = num_of_cols -2
-cols_of_last_row = num_of_cols -1
+cols_of_second_row = num_of_cols - 2
+cols_of_last_row = num_of_cols - 1
 num_of_chars_per_page = num_of_cols * num_of_rows - 6
 
 
@@ -43,7 +43,6 @@ def id_generator(size):
 
 
 def draw_qrcode(qrstr, qrname):
-    from qrcode import *
 
     qr = QRCode(version=20, error_correction=ERROR_CORRECT_L)
     qr.add_data(qrstr)
@@ -155,10 +154,11 @@ parser.add_argument("filename", help="input file containing the characters")
 parser.add_argument("-s", "--cellsize", type=int, 
                     help="the size of cell, default is 20")
 parser.add_argument("-f", "--font", 
-                    help="the Chinese font used, default is Songti")
+                    help="the Chinese font used, default is fireflysung")
 parser.add_argument("-o", "--output",
                     help="output pdf file name")
-parser.add_argument("-v", "--verbose", action="store_true")
+parser.add_argument("-v", "--verbose", action="store_true",
+                    help="print more info")
 args = parser.parse_args()
 
 if args.cellsize:
