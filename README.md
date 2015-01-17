@@ -85,4 +85,11 @@ To create a font via website, please follow the specified steps:
   
   Required Python modules: fpdf, qrcode
 
-2.
+2. use ImageMagic to convert pdf file to multiple jpg files
+   ```
+      convert -verbose -density 150 -quality 100 image.pdf input-%02d.jpg
+   ```
+   
+   will output image-0.jpg image-1.jpg image-2.jpg and so on.
+   
+   Required tool: ImageMagic
