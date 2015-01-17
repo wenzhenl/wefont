@@ -73,6 +73,6 @@ To create a font via website, please follow the specified steps:
 
 1. generate a template using backend/template/generate_template.py
   ```
-  python generate_template.py -h
+    python generate_template.py -h
   ```
   will tell you the information about the input and options
