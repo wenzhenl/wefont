@@ -82,3 +82,7 @@ To create a font via website, please follow the specified steps:
   ```
   
   will use the default parameters to generate a comlete template for 6763 characters with cell size=20. The files black.png and fireflysung.ttf are required.
+  
+  Required Python modules: fpdf, qrcode
+
+2.
