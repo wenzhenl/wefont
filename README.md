@@ -76,4 +76,9 @@ To create a font via website, please follow the specified steps:
     python generate_template.py -h
   ```
   
-  will tell you the information about the input and options
+  will tell you the information about the input and options.
+  ```
+    python generate_template.py gb2312.txt
+  ```
+  
+  will use the default parameters to generate a comlete template for 6763 characters with cell size=20. The files black.png and fireflysung.ttf are required.
