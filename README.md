@@ -75,4 +75,5 @@ To create a font via website, please follow the specified steps:
   ```
     python generate_template.py -h
   ```
+  
   will tell you the information about the input and options
