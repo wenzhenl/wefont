@@ -1,6 +1,5 @@
 ZIMO (FontMagic)
-========
-
+================
 Personal Chinese font generator
 This system can convert user's hand writing of Chinese characters into a font
 (typically a ttf file) which implements the GB2312 codec.
