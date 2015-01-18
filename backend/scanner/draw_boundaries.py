@@ -1,6 +1,12 @@
 # -*- coding: utf8 -*-
 __author__ = "Wenzheng Li"
 
+#/////////////////////////////////////////////////////////////////////////
+#/////////////////////////////////////////////////////////////////////////
+# DRAW BOUNDARIES AROUND CHARACTERS USING ADAPTIVE PARAMETERS
+# TO MAKE SURE AT LEAST THE NUMBER OF CHARACTERS IS CORRECT
+# AND RETURN THE IMAGE WITH BORDERS TO THE USER TO ASK WHETHER 
+# IT IS CORRECT
 
 from PIL import Image
 from PIL import ImageEnhance
@@ -22,8 +28,8 @@ white_len = 0
 black_len = 50
 
 #******************* COMMAND LINE OPTIONS *******************************#
-parser = argparse.ArgumentParser(description="separate image into single " 
-                                              "characters")
+parser = argparse.ArgumentParser(description="draw boundaries around characters "
+                                             "from a scanned template")
 parser.add_argument("imgname", help="input scanned image of the template")
 parser.add_argument("-r", "--ratio", type=float, 
                     help="the percentage of white points to be regarded as "
@@ -39,13 +45,14 @@ if args.ratio:
 
 if args.thres:
     thres = args.thres
+#******************** END COMMAND LINE OPTIONS **************************#
 
 f, e = os.path.splitext(args.imgname)
 im = Image.open(args.imgname)
 pix = im.load()
 
 if args.verbose:
-    print im.size
+    print "size: ", im.size[0], 'X', im.size[1]
 
 grey_level = lambda x: (x[0] + x[1] + x[2])/3
 
@@ -174,101 +181,6 @@ for x in range(black_cols[-1][0], black_cols[-1][1]+1):
 if args.verbose:
     im.show()
 
-# /////////////////////////////////////////////////////////////////////////////
-# ////////////////////////////////////////////////////////////////////////////
-# REPROCESS THE IMG AFTER REMOVING QRCODE IMG
-
-
-white_rows = []
-for y in range(im.size[1]):
-    count = 0
-    for x in range(im.size[0]):
-        if(grey_level(pix[x,y]) < thres):
-            break;
-        else:
-            count = count + 1
-    if(count > ratio * im.size[0]):
-        white_rows.append(y)
-
-white_cols = []
-for x in range(im.size[0]):
-    count = 0
-    for y in range(im.size[1]):
-        if(grey_level(pix[x,y]) < thres):
-            break;
-        else:
-            count = count + 1
-    if(count > ratio * im.size[1]):
-        white_cols.append(x)
-
-white_bar_cols = []
-if len(white_cols) > 0:
-    start = white_cols[0]
-    for x in range(len(white_cols)-1):
-        if white_cols[x+1] - white_cols[x] > 1:
-            white_bar_cols.append((start, white_cols[x], white_cols[x]-start+1))
-            start = white_cols[x+1]
-    last_col = white_cols[-1]
-    white_bar_cols.append((start, last_col, last_col-start+1))
-
-white_bar_rows = []
-if len(white_rows) > 0:
-    start = white_rows[0]
-    for x in range(len(white_rows)-1):
-        if white_rows[x+1] - white_rows[x] > 1:
-            white_bar_rows.append((start, white_rows[x], white_rows[x]-start+1))
-            start = white_rows[x+1]
-    last_row = white_rows[-1]
-    white_bar_rows.append((start, last_row, last_row-start+1))
-
-if args.verbose:
-    print '*****************SECOND TIME row statistics***************'
-    for x in white_bar_rows:
-        print x
-
-    print '*****************SECOND TIME column statistics***************'
-    for x in white_bar_cols:
-        print x
-
-# two standard for black bars
-# the white bar length > white_len = 8
-# the black bar length > black_len = 30
-
-#  select those valid white row bar
-valid_white_bar_rows = []
-for x in white_bar_rows:
-    if(x[2] > white_len): # length of white bar 
-        valid_white_bar_rows.append(x)
-
-black_rows = []
-for x in range(len(valid_white_bar_rows)-1):
-    if(valid_white_bar_rows[x+1][0] - valid_white_bar_rows[x][1] > black_len):
-        black_rows.append((valid_white_bar_rows[x][1]+1, valid_white_bar_rows[x+1][0]-1))
-
-#  select those valid white col bar
-valid_white_bar_cols = []
-for x in white_bar_cols:
-    if(x[2] > white_len): # length of white bar 
-        valid_white_bar_cols.append(x)
-
-black_cols = []
-for x in range(len(valid_white_bar_cols)-1):
-    if(valid_white_bar_cols[x+1][0] - valid_white_bar_cols[x][1] > black_len):
-        black_cols.append((valid_white_bar_cols[x][1]+1, valid_white_bar_cols[x+1][0]-1))
-
-if args.verbose:
-    print '*****************SECOND TIME row cooridinates***************'
-    for x in black_rows:
-        print x
-
-    print '*****************SECOND TIME col cooridinates***************'
-    for x in black_cols:
-        print x
-
-# //////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////END OF SECOND TIME
-# ///////////////////////////////////////////////
-
 border = 4
 notZero = lambda x: x if x >= 0 else 0
 notEnd = lambda x, y: x if x <= y else y
@@ -282,33 +194,6 @@ if n != n_chars:
 if args.verbose and n == n_chars:
     print 'n=', n
     print 'SUCCESS'
-
-
-if n == n_chars:
-    count = 0
-    for j in range(len(black_rows)):
-        for i in range(len(black_cols)):
-            if j == 0 and i == 0:
-                continue
-            elif j == len(black_rows) - 1 and i == len(black_cols) - 1:
-                continue
-            elif i == len(black_cols) - 1 and j == 0:
-                continue
-            elif i == len(black_cols) - 1 and j == 1:
-                continue
-            elif i == len(black_cols) - 2 and j == 0:
-                continue
-            elif i == len(black_cols) - 2 and j == 1:
-                continue
-            else:
-                x = black_cols[i]
-                y = black_rows[j]
-                box = (notZero(x[0]-border), notZero(y[0]-border), 
-                    notEnd(x[1]+border,im.size[0]-1), notEnd(y[1]+border, im.size[1]-1))
-                region = im.crop(box)
-                glyname = get_glyph_name(chars[count])
-                count += 1
-                region.save(glyname + '.png', 'png')
 
 if args.verbose:
     for y in white_rows:
