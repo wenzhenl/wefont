@@ -44,7 +44,7 @@ def id_generator(size):
 
 def draw_qrcode(qrstr, qrname):
 
-    qr = QRCode(version=20, error_correction=ERROR_CORRECT_L)
+    qr = QRCode(version=10, error_correction=ERROR_CORRECT_L)
     qr.add_data(qrstr)
 
     # Generate the QRCode itself
@@ -231,7 +231,8 @@ for line in f:
         chars_of_this_page = []
 
 # handle those chars not enough for entire page
-fill_one_page(pdf, chars_of_this_page, total_num, page_num)
+if len(chars_of_this_page):
+    fill_one_page(pdf, chars_of_this_page, total_num, page_num)
 
 pdf.output(output_file, 'F')
 
