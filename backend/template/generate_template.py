@@ -71,11 +71,11 @@ def fill_one_page(pdf, chars, total_num, page_num):
     pdf.set_fill_color(0,0,0)
     pdf.cell(cell_size,cell_size,"",0,0,'C')
 
-    pdf.image('black.png', margin_left + inner, 
+    pdf.image('finder.png', margin_left + inner, 
               margin_top + inner, cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a black square at the first cell
-    pdf.image('black.png', margin_left + (num_of_cols -1) * cell_size + inner, 
+    pdf.image('finder.png', margin_left + (num_of_cols -1) * cell_size + inner, 
               margin_top + (num_of_rows - 1) * cell_size + inner, 
               cell_size - 2 * inner, cell_size - 2 * inner)
 
