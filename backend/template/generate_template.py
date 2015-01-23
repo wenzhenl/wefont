@@ -19,6 +19,9 @@ margin_top = 10
 # set the margin of the inner cell
 inner = 3
 
+# set the margin of small qrcode of each char
+qr_space = 2
+
 # set the position of the sub #
 subx = 6
 suby = 2
@@ -30,8 +33,8 @@ num_of_cols = length / cell_size
 num_of_rows = width / cell_size
 cols_of_first_row = num_of_cols - 3
 cols_of_second_row = num_of_cols - 2
-cols_of_last_row = num_of_cols - 1
-num_of_chars_per_page = num_of_cols * num_of_rows - 6
+cols_of_last_row = num_of_cols - 2
+num_of_chars_per_page = num_of_cols * num_of_rows - 7
 
 
 def id_generator(size):
@@ -71,15 +74,22 @@ def fill_one_page(pdf, chars, total_num, page_num):
     pdf.set_fill_color(0,0,0)
     pdf.cell(cell_size,cell_size,"",0,0,'C')
 
+    # draw a finder pattern on the top left
     pdf.image('finder.png', margin_left + inner, 
               margin_top + inner, cell_size - 2 * inner, cell_size - 2 * inner)
 
-    # draw a black square at the first cell
+    # draw a finder pattern on the bottom right
     pdf.image('finder.png', margin_left + (num_of_cols -1) * cell_size + inner, 
               margin_top + (num_of_rows - 1) * cell_size + inner, 
               cell_size - 2 * inner, cell_size - 2 * inner)
 
-    # draw a qrcode graph on each page
+    # draw a black square at the bottom left
+    pdf.image('finder.png', margin_left + inner, 
+              margin_top + (num_of_rows - 1) * cell_size + inner, 
+              cell_size - 2 * inner, cell_size - 2 * inner)
+
+
+    # draw a qrcode graph on the top right
     pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + inner, 
               margin_top + inner,
               2 * cell_size - 2 * inner, 2 * cell_size - 2 * inner)
@@ -110,6 +120,10 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
 
+        if line_num > 1 and processed_chars_num > 0:
+            # draw a finder at the top left of each cell
+            pdf.image('finder.png', x1 - 2 * inner, y1 - 2 * inner,
+                      2 * inner - qr_space, 2 * inner - qr_space)
         # draw the sub #
         # reset font size to smaller
         pdf.set_font(font_name,'',8)
@@ -129,6 +143,11 @@ def fill_one_page(pdf, chars, total_num, page_num):
             pdf.ln()
             line_num = line_num + 1
             processed_chars_num = 0
+        elif line_num == num_of_rows - 1 and processed_chars_num == num_of_cols:
+            pdf.ln()
+            line_num = line_num + 1
+            processed_chars_num = 1
+            pdf.cell(cell_size,cell_size,'',0,0,'C')
         elif processed_chars_num == num_of_cols:
             pdf.ln()
             line_num = line_num + 1
@@ -167,8 +186,8 @@ if args.cellsize:
     num_of_rows = width / cell_size
     cols_of_first_row = num_of_cols - 3
     cols_of_second_row = num_of_cols -2
-    cols_of_last_row = num_of_cols -1
-    num_of_chars_per_page = num_of_cols * num_of_rows - 6
+    cols_of_last_row = num_of_cols -2
+    num_of_chars_per_page = num_of_cols * num_of_rows - 7
 
 
 if args.font:
