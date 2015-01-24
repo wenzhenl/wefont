@@ -7,7 +7,7 @@ __author__ = "Wenzheng Li"
 # THIS VERSION IS PERFECT TO GENERATE TEMPLATE WITH FINDER PATTERN 
 # JUST FOR PAGES
 
-From fpdf import FPDF
+from fpdf import FPDF
 from qrcode import *
 import argparse
 import os
@@ -125,10 +125,10 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
 
-        # if line_num > 1 and processed_chars_num > 0:
-        #     # draw a finder at the top left of each cell
-        #     pdf.image('finder.png', x1 - 2 * inner, y1 - 2 * inner,
-        #               2 * inner - qr_space, 2 * inner - qr_space)
+        if processed_chars_num > 0:
+            # draw a finder at the top left of each cell
+            pdf.image('finder.png', x2 + 2 * inner, y2 + 2 * inner,
+                      2 * inner - qr_space, 2 * inner - qr_space)
         # draw the sub #
         # reset font size to smaller
         pdf.set_font(font_name,'',8)
