@@ -7,7 +7,7 @@ __author__ = "Wenzheng Li"
 # THIS VERSION IS PERFECT TO GENERATE TEMPLATE WITH FINDER PATTERN 
 # FOR PAGES AND ALSO FOR EACH CELL
 
-From fpdf import FPDF
+from fpdf import FPDF
 from qrcode import *
 import argparse
 import os
