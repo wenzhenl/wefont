@@ -156,8 +156,8 @@ def fill_one_page(pdf, chars, total_num, page_num):
     page_num = page_num + 1
     # draw page_num num
     pdf.set_font(font_name,'',10)
-    px = x2 + inner + cell_size - 5
-    py = y2 + inner + 4
+    px = margin_left + num_of_cols * cell_size
+    py = margin_top + num_of_rows * cell_size  + 4
     pdf.text(px, py, str(page_num))
     pdf.set_font(font_name,'',14)
 
