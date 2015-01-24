@@ -2,7 +2,12 @@
 __author__ = "Wenzheng Li"
 
 
-from fpdf import FPDF
+#///////////////////////////////////////////////
+#///////////////////////////////////////////////
+# THIS VERSION IS PERFECT TO GENERATE TEMPLATE WITH FINDER PATTERN 
+# JUST FOR PAGES
+
+From fpdf import FPDF
 from qrcode import *
 import argparse
 import os
