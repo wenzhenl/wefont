@@ -7,6 +7,9 @@ from matplotlib import pyplot as plt
 import math
 import sys
 
+# global parameters
+thres = 128
+
 def check_ratio( state_count ):
     total_finder_size = 0
     for i in range(5):
@@ -32,21 +35,54 @@ def check_ratio( state_count ):
 
 def detect_qr_finder( filename ):
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    ret, img = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)
-    # plt.imshow(img, cmap='gray', interpolation = 'bicubic')
-    # plt.xticks([]), plt.yticks([])
-    # plt.show()
+    # old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
+    ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
+    # print old_img.shape[:2]
+    # print img.shape[:2]
+    state_count = [0] * 5
+    current_state = 0
+    rows, cols = img.shape[:2]
+    fb = 0 #
+    for i in range(rows):
+        state_count = [0] * 5
+        current_state = 0
+        for j in range(cols):
+            if img[i,j] < thres:
+                if current_state & 0x1 == 1:
+                    current_state += 1
+                if current_state == 0: #
+                    fb = j #
+                state_count[current_state] += 1
+            else:
+                if current_state & 0x1 == 1:
+                    state_count[current_state] += 1
+                else:
+                    if current_state == 4:
+                        if check_ratio(state_count) == True:
+                            if fb: #
+                                for k in range(fb, j): #
+                                    img[i,k] = 255 #
+                        else:
+                            current_state = 3
+                            state_count[0] = state_count[2]
+                            state_count[1] = state_count[3]
+                            state_count[2] = state_count[4]
+                            state_count[3] = 1
+                            state_count[4] = 0
+                            continue
+                        state_count = [0] * 5
+                        current_state = 0
+                    else:
+                        current_state += 1
+                        state_count[current_state] += 1
+
+    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+    plt.xticks([]), plt.yticks([])
+    plt.show()
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
-    state_count = [0] * 5
-    state_count[0] = 1
-    state_count[1] = 1
-    state_count[2] = 3
-    state_count[3] = 1
-    state_count[4] = 1
-    print check_ratio(state_count)
 
 
 
