@@ -218,10 +218,10 @@ def detect_qr_finder( filename ):
     else:
         print 'ERROR: unexpected situation'
 
-    for i in xrange(len(possible_centers)):
-        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                         possible_centers[i][2] * 7.0, old_img)
-
+    # for i in xrange(len(possible_centers)):
+    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+    #                      possible_centers[i][2] * 7.0, old_img)
+    #
     page_finders = [top_left, bottom_left, bottom_right]
     for x in page_finders:
         print x
@@ -239,13 +239,14 @@ def detect_qr_finder( filename ):
     print "# of centers:", len(possible_centers)
     # for i in possible_centers:
         # print i
-    # for i in xrange(6):
+    for i in xrange(6):
     # for i in xrange(len(possible_centers)):
-    #     x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
-    #     y = M * x
-    #     possible_centers[i] = (y[1], y[0], possible_centers[i][2])
-    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-    #                      possible_centers[i][2] * 7.0, old_img)
+        x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
+        y = np.dot(M, x)
+        print y
+        possible_centers[i] = (y[1], y[0], possible_centers[i][2])
+        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+                         possible_centers[i][2] * 7.0, old_img)
     plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
