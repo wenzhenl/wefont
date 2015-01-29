@@ -114,6 +114,10 @@ def draw_color_lines( i, j, total, img ):
     end_i = int(math.ceil(i + total * 0.5))
     start_j = int(math.ceil(j - total * 0.5))
     end_j = int(math.ceil(j + total * 0.5))
+    if end_i >= img.shape[0] - 1:
+        end_i = img.shape[0] - 1
+    if end_j >= img.shape[1] - 1:
+        end_j = img.shape[1] - 1
     for x in xrange(start_i, end_i):
         for y in xrange(start_j, end_j):
             img[x,y] = [255, 0, 0]
@@ -166,27 +170,83 @@ def detect_qr_finder( filename ):
 
     # rotate img
     page_finders = possible_centers[:3]
-    page_finders = sorted(page_finders, key=lambda tup: tup[0])
-    page_finders = [page_finders[0]] + sorted(page_finders[1:], key=lambda tup: tup[1])
+    pts = np.float32([[page_finders[0][1],page_finders[0][0]],\
+                       [page_finders[1][1],page_finders[1][0]],\
+                       [page_finders[2][1],page_finders[2][0]]])
+
+    p1_p2 = np.linalg.norm(pts[0] - pts[1])
+    p1_p3 = np.linalg.norm(pts[0] - pts[2])
+    p2_p3 = np.linalg.norm(pts[1] - pts[2])
+    new_rows = 0
+    new_cols = 0
+    if p1_p2 > p1_p3 and p1_p2 > p2_p3:
+        bottom_left = page_finders[2]
+        if p1_p3 > p2_p3:
+            new_rows = p1_p3
+            new_cols = p2_p3
+            top_left = page_finders[0]
+            bottom_right = page_finders[1]
+        else:
+            new_rows = p2_p3
+            new_cols = p1_p3
+            top_left = page_finders[1]
+            bottom_right = page_finders[0]
+    elif p1_p3 > p1_p2 and p1_p3 > p2_p3:
+        bottom_left = page_finders[1]
+        if p1_p2 > p2_p3:
+            new_rows = p1_p2
+            new_cols = p2_p3
+            top_left = page_finders[0]
+            bottom_right = page_finders[2]
+        else:
+            new_rows = p2_p3
+            new_cols = p1_p2
+            top_left = page_finders[2]
+            bottom_right = page_finders[0]
+    elif p2_p3 > p1_p2 and p2_p3 > p1_p3:
+        bottom_left = page_finders[0]
+        if p1_p2 > p1_p3:
+            new_rows = p1_p2
+            new_cols = p1_p3
+            top_left = page_finders[1]
+            bottom_right = page_finders[2]
+        else:
+            new_rows = p1_p3
+            new_cols = p1_p2
+            top_left = page_finders[2]
+            bottom_right = page_finders[1]
+    else:
+        print 'ERROR: unexpected situation'
+
+    for i in xrange(len(possible_centers)):
+        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+                         possible_centers[i][2] * 7.0, old_img)
+
+    page_finders = [top_left, bottom_left, bottom_right]
     for x in page_finders:
         print x
     # new_rows = page_finders[1][0] - page_finders[0][0] + 7.0 * page_finders[0][2]
     # new_cols = page_finders[2][1] - page_finders[1][1] + 7.0 * page_finders[1][2]
     ms = page_finders[0][2] * 7
+    # new_rows += ms
+    # new_cols += ms
     pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
                        [page_finders[2][1],page_finders[2][0]]])
-    pts2 = np.float32([[ms,ms],[ms,rows - ms],[cols - ms, rows - ms]])
+    pts2 = np.float32([[ms,ms],[ms, new_rows - ms],[new_cols - ms, new_rows - ms]])
     M = cv2.getAffineTransform(pts1, pts2)
-    img = cv2.warpAffine(img, M, (cols, rows))
-    # print "# of centers:", len(possible_centers)
+    old_img = cv2.warpAffine(old_img, M, (new_cols, new_rows))
+    print "# of centers:", len(possible_centers)
     # for i in possible_centers:
         # print i
     # for i in xrange(6):
     # for i in xrange(len(possible_centers)):
+    #     x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
+    #     y = M * x
+    #     possible_centers[i] = (y[1], y[0], possible_centers[i][2])
     #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
     #                      possible_centers[i][2] * 7.0, old_img)
-    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+    plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
