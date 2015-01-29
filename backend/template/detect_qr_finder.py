@@ -125,7 +125,59 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
         return float('nan')
 
 
-def cross_check_diagonal( center_i, start_j, max_count, ori_state_count_total, img ) :
+def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, img ) :
+    state_count = [0] * 5
+    i = 0
+    while start_i >= i and center_j >= i and img[start_i-i, center_j-i] < thres:
+        state_count[2] += 1
+        i += 1
+    if start_i < i or center_j < i:
+        return False
+    while start_i >= i and center_j >= i and img[start_i - i, center_j - i] >= \
+          thres and state_count[1] <= max_count:
+        state_count[1] += 1
+        i += 1
+    if start_i < i or center_j < i or state_count[1] > max_count:
+        return False
+    while start_i >= i and center_j >= i and img[start_i - i, center_j - i] < \
+          thres and state_count[0] <= max_count:
+        state_count[0] += 1
+        i += 1
+    if state_count[0] > max_count:
+        return False
+    max_i = img.shape[0]
+    max_j = img.shape[1]
+
+    i = 1
+    while start_i + i < max_i and center_j + i < max_j and \
+            img[start_i + i, center_j + i] < thres:
+        state_count[2] += 1
+        i += 1
+    if start_i + i >= max_i or center_j + i >= max_j:
+        return False
+    while start_i + i < max_i and center_j + i < max_j and \
+            img[start_i + i, center_j + i] >= thres and state_count[3] < max_count:
+        state_count[3] += 1
+        i += 1
+    if start_i + i >= max_i or center_j + i >= max_j or state_count[3] >= max_count:
+        return False
+    while start_i + i < max_i and center_j + i < max_j and \
+            img[start_i + i, center_j + i] < thres and \
+            state_count[4] < max_count:
+        state_count[4] += 1
+        i += 1
+    if state_count[4] >= max_count:
+        return False
+
+    state_count_total = sum(state_count)
+    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
+        return False
+    if check_ratio(state_count) == True:
+        return True
+    else:
+        return False
+
+
 def center_from_end( state_count, end ):
     return end - state_count[4] - state_count[3] - state_count[2] * 0.5
 
@@ -148,15 +200,18 @@ def handle_possible_center( state_count, i, j, centers, img):
         center_j = cross_check_horizontal(int(center_i), int(center_j), state_count[2],
                                            state_count_total, img)
         if not math.isnan(center_j):
-        esitimate_module_size = state_count_total / 7.0
-        found = False
-        y = (center_i, center_j, esitimate_module_size)
-        for x in centers:
-            if about_equals(x, y):
-                found = True
-                break
-        if not found:
-            centers.append(y)
+            if cross_check_diagonal(int(center_i), int(center_j),
+                                    state_count[2], state_count_total, img):
+
+                esitimate_module_size = state_count_total / 7.0
+                found = False
+                y = (center_i, center_j, esitimate_module_size)
+                for x in centers:
+                    if about_equals(x, y):
+                        found = True
+                        break
+                if not found:
+                    centers.append(y)
 
 
 def draw_color_lines( i, j, total, img, cell_size):
