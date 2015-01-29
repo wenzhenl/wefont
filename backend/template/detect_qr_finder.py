@@ -9,6 +9,8 @@ import sys
 
 # global parameters
 thres = 128
+MAX_MODULES = 57
+MIN_SKIP = 3
 
 def check_ratio( state_count ):
     total_finder_size = 0
@@ -32,26 +34,93 @@ def check_ratio( state_count ):
 
     return False
 
+def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, img ):
+    state_count = [0] * 5
+    i = start_i
+    while i >= 0 and img[i, center_j] < thres:
+        state_count[2] += 1
+        i -= 1
+    if i < 0:
+        return float('nan')
+    while i >= 0 and img[i, center_j] >= thres and state_count[1] <= max_count:
+        state_count[1] += 1
+        i -= 1
+    if i < 0 or state_count[1] > max_count:
+        return float('nan')
+    while i >= 0 and img[i, center_j] < thres and state_count[0] <= max_count:
+        state_count[0] += 1
+        i -= 1
+    if state_count[0] > max_count:
+        return float('nan')
+
+    # count down from the center
+    i = start_i + 1
+    while i < img.shape[0] and img[i, center_j] < thres:
+        state_count[2] += 1
+        i += 1
+    if i == img.shape[0]:
+        return float('nan')
+    while i < img.shape[0] and img[i, center_j] >= thres and state_count[3] < max_count:
+        state_count[3] += 1
+        i += 1
+    if i == img.shape[0] or state_count[3] >= max_count:
+        return float('nan')
+    while i < img.shape[0] and img[i, center_j] < thres and state_count[4] < max_count:
+        state_count[4] += 1
+        i += 1
+    if state_count[4] >= max_count:
+        return float('nan')
+
+    state_count_total = sum(state_count)
+    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
+        return float('nan')
+    if check_ratio(state_count) == True:
+        return center_from_end(state_count, i)
+    else:
+        return float('nan')
+
+def center_from_end( state_count, end ):
+    return end - state_count[4] - state_count[3] - state_count[2] * 0.5
+
+def handle_possible_center( state_count, i, j, img):
+    state_count_total = sum(state_count)
+    center_j = center_from_end(state_count, j)
+    center_i = cross_check_vertical(i, center_j, state_count[2],
+                                    state_count_total, img)
+    if not math.isnan(center_i):
+        return ((center_i, center_j, state_count_total))
+
+
+def draw_color_lines( i, j, total, img ):
+    start_i = int(math.ceil(i - total * 0.5))
+    end_i = int(math.ceil(i + total * 0.5))
+    start_j = int(math.ceil(j - total * 0.5))
+    end_j = int(math.ceil(j + total * 0.5))
+    for x in xrange(start_i, end_i):
+        for y in xrange(start_j, end_j):
+            img[x,y] = [255, 0, 0]
+
 
 def detect_qr_finder( filename ):
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    # old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
+    old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
-    # print old_img.shape[:2]
-    # print img.shape[:2]
+
+    iSkip = (3 * img.shape[0]) / (4 * MAX_MODULES)
+    if iSkip < MIN_SKIP:
+        iSkip = MIN_SKIP
+
     state_count = [0] * 5
     current_state = 0
     rows, cols = img.shape[:2]
-    fb = 0 #
-    for i in range(rows):
+    i = iSkip - 1
+    while i < rows:
         state_count = [0] * 5
         current_state = 0
         for j in range(cols):
             if img[i,j] < thres:
                 if current_state & 0x1 == 1:
                     current_state += 1
-                if current_state == 0: #
-                    fb = j #
                 state_count[current_state] += 1
             else:
                 if current_state & 0x1 == 1:
@@ -59,9 +128,10 @@ def detect_qr_finder( filename ):
                 else:
                     if current_state == 4:
                         if check_ratio(state_count) == True:
-                            if fb: #
-                                for k in range(fb, j): #
-                                    img[i,k] = 255 #
+                            confirmed = handle_possible_center(state_count, i, j, img)
+                            if confirmed:
+                                print confirmed
+                                draw_color_lines(confirmed[0], confirmed[1], confirmed[2], old_img)
                         else:
                             current_state = 3
                             state_count[0] = state_count[2]
@@ -75,9 +145,10 @@ def detect_qr_finder( filename ):
                     else:
                         current_state += 1
                         state_count[current_state] += 1
+        i += iSkip
 
-    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
-    plt.xticks([]), plt.yticks([])
+    plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
+    # plt.xticks([]), plt.yticks([])
     plt.show()
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
