@@ -163,14 +163,30 @@ def detect_qr_finder( filename ):
         i += iSkip
 
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
-    print "# of centers:", len(possible_centers)
-    for i in possible_centers:
-        print i
+
+    # rotate img
+    page_finders = possible_centers[:3]
+    page_finders = sorted(page_finders, key=lambda tup: tup[0])
+    page_finders = [page_finders[0]] + sorted(page_finders[1:], key=lambda tup: tup[1])
+    for x in page_finders:
+        print x
+    # new_rows = page_finders[1][0] - page_finders[0][0] + 7.0 * page_finders[0][2]
+    # new_cols = page_finders[2][1] - page_finders[1][1] + 7.0 * page_finders[1][2]
+    ms = page_finders[0][2] * 7
+    pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
+                       [page_finders[1][1],page_finders[1][0]],\
+                       [page_finders[2][1],page_finders[2][0]]])
+    pts2 = np.float32([[ms,ms],[ms,rows - ms],[cols - ms, rows - ms]])
+    M = cv2.getAffineTransform(pts1, pts2)
+    img = cv2.warpAffine(img, M, (cols, rows))
+    # print "# of centers:", len(possible_centers)
+    # for i in possible_centers:
+        # print i
     # for i in xrange(6):
-    for i in xrange(len(possible_centers)):
-        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                         possible_centers[i][2] * 7.0, old_img)
-    plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
+    # for i in xrange(len(possible_centers)):
+    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+    #                      possible_centers[i][2] * 7.0, old_img)
+    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
