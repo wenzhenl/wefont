@@ -82,13 +82,31 @@ def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, i
 def center_from_end( state_count, end ):
     return end - state_count[4] - state_count[3] - state_count[2] * 0.5
 
-def handle_possible_center( state_count, i, j, img):
+# x is already in possible_centers
+def about_equals( x, y ):
+    if abs(x[0] - y[0]) <= x[2] and abs(x[1] - y[1] <= x[2]):
+        if abs(x[2] - y[2]) < 1.0 or abs(x[2] - y[2]) <= x[2]:
+            return True
+        else:
+            return False
+    return False
+
+
+def handle_possible_center( state_count, i, j, centers, img):
     state_count_total = sum(state_count)
     center_j = center_from_end(state_count, j)
     center_i = cross_check_vertical(i, center_j, state_count[2],
                                     state_count_total, img)
     if not math.isnan(center_i):
-        return ((center_i, center_j, state_count_total))
+        esitimate_module_size = state_count_total / 7.0
+        found = False
+        y = (center_i, center_j, esitimate_module_size)
+        for x in centers:
+            if about_equals(x, y):
+                found = True
+                break
+        if not found:
+            centers.append(y)
 
 
 def draw_color_lines( i, j, total, img ):
@@ -106,10 +124,9 @@ def detect_qr_finder( filename ):
     old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
 
-    iSkip = (3 * img.shape[0]) / (4 * MAX_MODULES)
-    if iSkip < MIN_SKIP:
-        iSkip = MIN_SKIP
+    possible_centers = []
 
+    iSkip = MIN_SKIP
     state_count = [0] * 5
     current_state = 0
     rows, cols = img.shape[:2]
@@ -128,10 +145,8 @@ def detect_qr_finder( filename ):
                 else:
                     if current_state == 4:
                         if check_ratio(state_count) == True:
-                            confirmed = handle_possible_center(state_count, i, j, img)
-                            if confirmed:
-                                print confirmed
-                                draw_color_lines(confirmed[0], confirmed[1], confirmed[2], old_img)
+                            handle_possible_center(state_count, i, j,
+                                                   possible_centers, img)
                         else:
                             current_state = 3
                             state_count[0] = state_count[2]
@@ -147,6 +162,14 @@ def detect_qr_finder( filename ):
                         state_count[current_state] += 1
         i += iSkip
 
+    possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
+    print "# of centers:", len(possible_centers)
+    for i in possible_centers:
+        print i
+    # for i in xrange(6):
+    for i in xrange(len(possible_centers)):
+        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+                         possible_centers[i][2] * 7.0, old_img)
     plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
