@@ -109,7 +109,7 @@ def handle_possible_center( state_count, i, j, centers, img):
             centers.append(y)
 
 
-def draw_color_lines( i, j, total, img ):
+def draw_color_lines( i, j, total, img, cell_size):
     start_i = int(math.ceil(i - total * 0.5))
     end_i = int(math.ceil(i + total * 0.5))
     start_j = int(math.ceil(j - total * 0.5))
@@ -121,6 +121,32 @@ def draw_color_lines( i, j, total, img ):
     for x in xrange(start_i, end_i):
         for y in xrange(start_j, end_j):
             img[x,y] = [255, 0, 0]
+
+    # draw a square around the cell
+    top_left_i = int(math.ceil(i - cell_size))
+    top_left_j = int(math.ceil(j - cell_size))
+    if top_left_i < 0:
+        top_left_i = 0
+    if top_left_j < 0:
+        top_left_j = 0
+    i = int(math.ceil(i))
+    j = int(math.ceil(j))
+
+    for x in xrange(top_left_i, i):
+        img[x, top_left_j] = [255, 0, 0]
+        img[x, top_left_j+1] = [255, 0, 0]
+        img[x, top_left_j-1] = [255, 0, 0]
+        img[x, j] = [255, 0, 0]
+        img[x, j+1] = [255, 0, 0]
+        img[x, j-1] = [255, 0, 0]
+    for x in xrange(top_left_j, j):
+        img[top_left_i, x] = [255, 0, 0]
+        img[top_left_i+1, x] = [255, 0, 0]
+        img[top_left_i-1, x] = [255, 0, 0]
+        img[i+1, x] = [255, 0, 0]
+        img[i-1, x] = [255, 0, 0]
+        img[i, x] = [255, 0, 0]
+
 
 
 def detect_qr_finder( filename ):
@@ -239,14 +265,15 @@ def detect_qr_finder( filename ):
     print "# of centers:", len(possible_centers)
     # for i in possible_centers:
         # print i
-    for i in xrange(6):
-    # for i in xrange(len(possible_centers)):
+    # for i in xrange(6):
+    for i in xrange(6,len(possible_centers)):
         x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
         y = np.dot(M, x)
         print y
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
         draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                         possible_centers[i][2] * 7.0, old_img)
+                         possible_centers[i][2] * 7.0, old_img,
+                         ms)
     plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
