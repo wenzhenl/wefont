@@ -10,7 +10,7 @@ import sys
 # global parameters
 thres = 128
 MAX_MODULES = 57
-MIN_SKIP = 3
+MIN_SKIP = 1
 
 def check_ratio( state_count ):
     total_finder_size = 0
@@ -79,6 +79,53 @@ def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, i
     else:
         return float('nan')
 
+def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, img ) :
+    state_count = [0] * 5
+    cols = img.shape[1]
+    j = start_j
+    while j >= 0 and img[center_i, j] < thres:
+        state_count[2] += 1
+        j -= 1
+    if j < 0:
+        return float('nan')
+    while j >= 0 and img[center_i, j] >= thres and state_count[1] <= max_count:
+        state_count[1] += 1
+        j -= 1
+    if j < 0 or state_count[1] > max_count:
+        return float('nan')
+    while j >= 0 and img[center_i, j] < thres and state_count[0] <= max_count:
+        state_count[0] += 1
+        j -= 1
+    if state_count[0] > max_count:
+        return float('nan')
+
+    j = start_j + 1
+    while j < cols and img[center_i, j] < thres:
+        state_count[2] += 1
+        j += 1
+    if j == cols:
+        return float('nan')
+    while j < cols and img[center_i, j] >= thres and state_count[3] < max_count:
+        state_count[3] += 1
+        j += 1
+    if j == cols or state_count[3] >= max_count:
+        return float('nan')
+    while j < cols and img[center_i, j] < thres and state_count[4] < max_count:
+        state_count[4] += 1
+        j += 1
+    if state_count[4] >= max_count:
+        return float('nan')
+
+    state_count_total = sum(state_count)
+    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
+        return float('nan')
+    if check_ratio(state_count) == True:
+        return center_from_end(state_count, j)
+    else:
+        return float('nan')
+
+
+def cross_check_diagonal( center_i, start_j, max_count, ori_state_count_total, img ) :
 def center_from_end( state_count, end ):
     return end - state_count[4] - state_count[3] - state_count[2] * 0.5
 
@@ -95,9 +142,12 @@ def about_equals( x, y ):
 def handle_possible_center( state_count, i, j, centers, img):
     state_count_total = sum(state_count)
     center_j = center_from_end(state_count, j)
-    center_i = cross_check_vertical(i, center_j, state_count[2],
+    center_i = cross_check_vertical(i, int(center_j), state_count[2],
                                     state_count_total, img)
     if not math.isnan(center_i):
+        center_j = cross_check_horizontal(int(center_i), int(center_j), state_count[2],
+                                           state_count_total, img)
+        if not math.isnan(center_j):
         esitimate_module_size = state_count_total / 7.0
         found = False
         y = (center_i, center_j, esitimate_module_size)
@@ -132,21 +182,21 @@ def draw_color_lines( i, j, total, img, cell_size):
     i = int(math.ceil(i))
     j = int(math.ceil(j))
 
-    for x in xrange(top_left_i, i):
-        img[x, top_left_j] = [255, 0, 0]
-        img[x, top_left_j+1] = [255, 0, 0]
-        img[x, top_left_j-1] = [255, 0, 0]
-        img[x, j] = [255, 0, 0]
-        img[x, j+1] = [255, 0, 0]
-        img[x, j-1] = [255, 0, 0]
-    for x in xrange(top_left_j, j):
-        img[top_left_i, x] = [255, 0, 0]
-        img[top_left_i+1, x] = [255, 0, 0]
-        img[top_left_i-1, x] = [255, 0, 0]
-        img[i+1, x] = [255, 0, 0]
-        img[i-1, x] = [255, 0, 0]
-        img[i, x] = [255, 0, 0]
-
+    # for x in xrange(top_left_i, i):
+    #     img[x, top_left_j] = [255, 0, 0]
+    #     img[x, top_left_j+1] = [255, 0, 0]
+    #     img[x, top_left_j-1] = [255, 0, 0]
+    #     img[x, j] = [255, 0, 0]
+    #     img[x, j+1] = [255, 0, 0]
+    #     img[x, j-1] = [255, 0, 0]
+    # for x in xrange(top_left_j, j):
+    #     img[top_left_i, x] = [255, 0, 0]
+    #     img[top_left_i+1, x] = [255, 0, 0]
+    #     img[top_left_i-1, x] = [255, 0, 0]
+    #     img[i+1, x] = [255, 0, 0]
+    #     img[i-1, x] = [255, 0, 0]
+    #     img[i, x] = [255, 0, 0]
+    #
 
 
 def detect_qr_finder( filename ):
@@ -266,7 +316,7 @@ def detect_qr_finder( filename ):
     # for i in possible_centers:
         # print i
     # for i in xrange(6):
-    for i in xrange(6,len(possible_centers)):
+    for i in xrange(len(possible_centers)):
         x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
         y = np.dot(M, x)
         print y
