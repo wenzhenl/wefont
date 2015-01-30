@@ -9,7 +9,6 @@ import sys
 
 # global parameters
 thres = 128
-MAX_MODULES = 57
 MIN_SKIP = 3
 
 def check_ratio( state_count ):
