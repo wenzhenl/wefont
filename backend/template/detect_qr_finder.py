@@ -10,7 +10,7 @@ import sys
 # global parameters
 thres = 128
 MAX_MODULES = 57
-MIN_SKIP = 1
+MIN_SKIP = 3
 
 def check_ratio( state_count ):
     total_finder_size = 0
@@ -237,21 +237,21 @@ def draw_color_lines( i, j, total, img, cell_size):
     i = int(math.ceil(i))
     j = int(math.ceil(j))
 
-    # for x in xrange(top_left_i, i):
-    #     img[x, top_left_j] = [255, 0, 0]
-    #     img[x, top_left_j+1] = [255, 0, 0]
-    #     img[x, top_left_j-1] = [255, 0, 0]
-    #     img[x, j] = [255, 0, 0]
-    #     img[x, j+1] = [255, 0, 0]
-    #     img[x, j-1] = [255, 0, 0]
-    # for x in xrange(top_left_j, j):
-    #     img[top_left_i, x] = [255, 0, 0]
-    #     img[top_left_i+1, x] = [255, 0, 0]
-    #     img[top_left_i-1, x] = [255, 0, 0]
-    #     img[i+1, x] = [255, 0, 0]
-    #     img[i-1, x] = [255, 0, 0]
-    #     img[i, x] = [255, 0, 0]
-    #
+    for x in xrange(top_left_i, i):
+        img[x, top_left_j] = [255, 0, 0]
+        img[x, top_left_j+1] = [255, 0, 0]
+        img[x, top_left_j-1] = [255, 0, 0]
+        img[x, j] = [255, 0, 0]
+        img[x, j+1] = [255, 0, 0]
+        img[x, j-1] = [255, 0, 0]
+    for x in xrange(top_left_j, j):
+        img[top_left_i, x] = [255, 0, 0]
+        img[top_left_i+1, x] = [255, 0, 0]
+        img[top_left_i-1, x] = [255, 0, 0]
+        img[i+1, x] = [255, 0, 0]
+        img[i-1, x] = [255, 0, 0]
+        img[i, x] = [255, 0, 0]
+
 
 
 def detect_qr_finder( filename ):
@@ -371,7 +371,7 @@ def detect_qr_finder( filename ):
     # for i in possible_centers:
         # print i
     # for i in xrange(6):
-    for i in xrange(len(possible_centers)):
+    for i in xrange(6,len(possible_centers)):
         x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
         y = np.dot(M, x)
         print y
@@ -382,6 +382,7 @@ def detect_qr_finder( filename ):
     plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
+    cv2.imwrite('test.png', old_img)
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
