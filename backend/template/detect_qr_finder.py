@@ -7,11 +7,15 @@ from matplotlib import pyplot as plt
 import math
 import sys
 
-# global parameters
+# GLOBAL PARAMETERS
 thres = 128
 MIN_SKIP = 3
 
+#//////////////////////////////////////////////
+#////// CHECK RATIO IS 1:1:3:1:1 //////////////
+#//////////////////////////////////////////////
 def check_ratio( state_count ):
+
     total_finder_size = 0
     for i in range(5):
         count = state_count[i]
@@ -33,7 +37,12 @@ def check_ratio( state_count ):
 
     return False
 
+
+# ////////////////////////////////////////////////
+# ////////// CHECK VERTICAL MEETS 1:1:3:1:1 /////
+# //////////////////////////////////////////////
 def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, img ):
+
     state_count = [0] * 5
     i = start_i
     while i >= 0 and img[i, center_j] < thres:
@@ -77,6 +86,11 @@ def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, i
         return center_from_end(state_count, i)
     else:
         return float('nan')
+
+
+# ////////////////////////////////////////////////
+# ////////// CHECK HORIZONTAL MEETS 1:1:3:1:1 /////
+# //////////////////////////////////////////////
 
 def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, img ) :
     state_count = [0] * 5
@@ -124,7 +138,11 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
         return float('nan')
 
 
+# ////////////////////////////////////////////////
+# ////////// CHECK DIAGONAL MEETS 1:1:3:1:1 /////
+# //////////////////////////////////////////////
 def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, img ) :
+
     state_count = [0] * 5
     i = 0
     while start_i >= i and center_j >= i and img[start_i-i, center_j-i] < thres:
@@ -177,9 +195,16 @@ def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, i
         return False
 
 
+# ////////////////////////////////////////////////
+# ////////// FIND THE CENTER POSITION /////
+# //////////////////////////////////////////////
 def center_from_end( state_count, end ):
     return end - state_count[4] - state_count[3] - state_count[2] * 0.5
 
+
+# ////////////////////////////////////////////////
+# ////////// CHECK WHETHER TWO FINDER ARE ABOUT EQUAL /////
+# //////////////////////////////////////////////
 # x is already in possible_centers
 def about_equals( x, y ):
     if abs(x[0] - y[0]) <= x[2] and abs(x[1] - y[1] <= x[2]):
@@ -190,6 +215,9 @@ def about_equals( x, y ):
     return False
 
 
+# ////////////////////////////////////////////////
+# ////////// HANDLE A POSSIBLE CENTER /////
+# //////////////////////////////////////////////
 def handle_possible_center( state_count, i, j, centers, img):
     state_count_total = sum(state_count)
     center_j = center_from_end(state_count, j)
@@ -213,6 +241,9 @@ def handle_possible_center( state_count, i, j, centers, img):
                     centers.append(y)
 
 
+# ////////////////////////////////////////////////
+# ////////// VISUALIZE THE RESULTS /////
+# //////////////////////////////////////////////
 def draw_color_lines( i, j, total, img, cell_size):
     start_i = int(math.ceil(i - total * 0.5))
     end_i = int(math.ceil(i + total * 0.5))
@@ -258,6 +289,9 @@ def detect_qr_finder( filename ):
     old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
 
+    # enlarge img
+    # img = cv2.resize(img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+    # old_img = cv2.resize(old_img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
     possible_centers = []
 
     iSkip = MIN_SKIP
