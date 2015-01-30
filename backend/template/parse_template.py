@@ -516,7 +516,7 @@ def parse_template( filename ):
     # plt.imshow(img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     # plt.show()
-    cv2.imwrite('qrcode.png', qrcode)
+    # cv2.imwrite('qrcode.png', qrcode)
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
