@@ -12,6 +12,57 @@ import zbar
 thres = 128
 MIN_SKIP = 3
 
+
+# //////////////////////////////////////////////
+# ////// GET GLYPH NAME //////////////
+# //////////////////////////////////////////////
+def get_glyph_name(char):
+    d = {} # dict unicode => glyph name
+    with open("glyphlist.txt", 'r') as glyphlist:
+        for line in glyphlist:
+            li = line.rstrip()
+            if not li.startswith("#"):
+                name, unicd = li.split(';')
+                d[unicd] = name
+                # print name, unicd
+
+    unicd = "{:04x}".format(ord(char))
+    if(unicd in d):
+        return d[unicd]
+    else:
+        return "uni" + unicd
+
+
+# //////////////////////////////////////////////
+# ////// DECODE A QRCODE //////////////
+# //////////////////////////////////////////////
+def decode_qrcode( qrcode ):
+    # create a reader
+    scanner = zbar.ImageScanner()
+
+    # configure the reader
+    scanner.parse_config('enable')
+
+    # obtain image data
+    height, width = qrcode.shape
+    raw = qrcode.tostring()
+
+    # wrap image data
+    image = zbar.Image(width, height, 'Y800', raw)
+
+    # scan the image for barcodes
+    scanner.scan(image)
+
+    # extract results
+    for symbol in image:
+        qrdata = symbol.data
+    qrdata = qrdata.decode("utf-8")
+
+    # clean up
+    del(image)
+
+    return qrdata
+
 #//////////////////////////////////////////////
 #////// CHECK RATIO IS 1:1:3:1:1 //////////////
 #//////////////////////////////////////////////
@@ -285,6 +336,28 @@ def draw_color_lines( i, j, total, img, cell_size):
 
 
 # ////////////////////////////////////////////////
+# ////////// CLEAR THE FINDERS /////
+# //////////////////////////////////////////////
+def clear_finder( i, j, ms, img ):
+    start_i = int(i - ms * 4)
+    end_i = int(i + ms * 4)
+    start_j = int(j - ms * 4)
+    end_j = int(j + ms * 4)
+    for x in xrange(start_i, end_i):
+        for y in xrange(start_j, end_j):
+            img[x,y] = 255
+
+
+# ////////////////////////////////////////////////
+# ////////// COMPARE TWO POINTS /////
+# //////////////////////////////////////////////
+def points_cmp (p1, p2):
+    if abs(p1[0] -p2[0]) < 5 * p1[2]:
+        return cmp(p1[1], p2[1])
+    else:
+        return cmp(p1[0], p2[0])
+
+# ////////////////////////////////////////////////
 # ////////// ROTATE IMAGE and TRANSFORM THE COORDINATES/////
 # //////////////////////////////////////////////
 def rotate_image( possible_centers, img ):
@@ -409,41 +482,39 @@ def parse_template( filename ):
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
     ms = possible_centers[0][2] * 7
     img = rotate_image(possible_centers, img)
+    possible_centers = possible_centers[:6] + sorted(possible_centers[6:], cmp=points_cmp)
     # qrcode area
     x1 = int(possible_centers[2][1] - 2 * ms)
     y1 = int(possible_centers[0][0] - ms)
     x2 = int(possible_centers[2][1] + ms)
     y2 = int(possible_centers[0][0] + 2 * ms)
     qrcode = img[y1:y2, x1:x2]
-    # create a reader
-    scanner = zbar.ImageScanner()
+    qrdata = decode_qrcode(qrcode)
+    cell_size = int(qrdata[:qrdata.find(" ")])
+    print "cell size: ", cell_size
+    qrdata = qrdata[qrdata.find(" ") + 1:]
+    chars = []
+    for char in qrdata:
+        chars.append(char)
 
-    # configure the reader
-    scanner.parse_config('enable')
+    for i in xrange(6,len(possible_centers)):
+        clear_finder(possible_centers[i][0], possible_centers[i][1],
+                     possible_centers[i][2], img)
+        x1 = int(possible_centers[i][1] - ms)
+        y1 = int(possible_centers[i][0] - ms)
+        x2 = int(possible_centers[i][1])
+        y2 = int(possible_centers[i][0])
+        char = img[y1:y2, x1:x2]
+        glyname = get_glyph_name(chars[i-6])
+        print glyname,'(',chars[i-6],')'
+        cv2.imwrite(glyname + '.png', char)
 
-    # obtain image data
-    height, width = qrcode.shape
-    raw = qrcode.tostring()
-
-    # wrap image data
-    image = zbar.Image(width, height, 'Y800', raw)
-
-    # scan the image for barcodes
-    scanner.scan(image)
-
-    # extract results
-    for symbol in image:
-        # do something useful with results
-        print 'decoded', symbol.type, 'symbol', '"%s"' % symbol.data
-    # clean up
-    del(image)
-    # for i in xrange(6,len(possible_centers)):
     #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
     #                      possible_centers[i][2] * 7.0, old_img,
     #                      ms)
-    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+    # plt.imshow(img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
-    plt.show()
+    # plt.show()
     cv2.imwrite('qrcode.png', qrcode)
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
