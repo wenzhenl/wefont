@@ -1,9 +1,7 @@
 #!/bin/bash
 
-for i in zimo*.jpg
-do
-  python parse_template.py $i
-done
+INPUT=$1
+python parse_template.py $INPUT
 
 for i in uni*.png
 do
