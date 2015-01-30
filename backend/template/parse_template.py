@@ -6,6 +6,7 @@ import cv2
 from matplotlib import pyplot as plt
 import math
 import sys
+import zbar
 
 # GLOBAL PARAMETERS
 thres = 128
@@ -338,6 +339,9 @@ def rotate_image( possible_centers, img ):
         # return False
 
     page_finders = [top_left, bottom_left, bottom_right]
+    for i in xrange(3):
+        possible_centers[i] = page_finders[i]
+
     ms = page_finders[0][2] * 7
     pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
@@ -352,6 +356,10 @@ def rotate_image( possible_centers, img ):
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
     return img
 
+
+# ////////////////////////////////////////////////
+# ////////// PARSE TEMPLATE /////
+# //////////////////////////////////////////////
 def parse_template( filename ):
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
     old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
@@ -400,15 +408,43 @@ def parse_template( filename ):
 
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
     ms = possible_centers[0][2] * 7
-    old_img = rotate_image(possible_centers, old_img)
-    for i in xrange(6,len(possible_centers)):
-        draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                         possible_centers[i][2] * 7.0, old_img,
-                         ms)
-    plt.imshow(old_img, cmap='gray', interpolation = 'bicubic')
+    img = rotate_image(possible_centers, img)
+    # qrcode area
+    x1 = int(possible_centers[2][1] - 2 * ms)
+    y1 = int(possible_centers[0][0] - ms)
+    x2 = int(possible_centers[2][1] + ms)
+    y2 = int(possible_centers[0][0] + 2 * ms)
+    qrcode = img[y1:y2, x1:x2]
+    # create a reader
+    scanner = zbar.ImageScanner()
+
+    # configure the reader
+    scanner.parse_config('enable')
+
+    # obtain image data
+    height, width = qrcode.shape
+    raw = qrcode.tostring()
+
+    # wrap image data
+    image = zbar.Image(width, height, 'Y800', raw)
+
+    # scan the image for barcodes
+    scanner.scan(image)
+
+    # extract results
+    for symbol in image:
+        # do something useful with results
+        print 'decoded', symbol.type, 'symbol', '"%s"' % symbol.data
+    # clean up
+    del(image)
+    # for i in xrange(6,len(possible_centers)):
+    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+    #                      possible_centers[i][2] * 7.0, old_img,
+    #                      ms)
+    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
     # plt.xticks([]), plt.yticks([])
     plt.show()
-    cv2.imwrite('test.png', old_img)
+    cv2.imwrite('qrcode.png', qrcode)
     # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     # cv2.imshow('image', img)
     # cv2.waitKey(0)
