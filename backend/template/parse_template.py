@@ -507,6 +507,7 @@ def parse_template( filename ):
         char = img[y1:y2, x1:x2]
         glyname = get_glyph_name(chars[i-6])
         print glyname,'(',chars[i-6],')'
+        char = cv2.equalizeHist(char)
         cv2.imwrite(glyname + '.png', char)
 
     #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
