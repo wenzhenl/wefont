@@ -15,7 +15,7 @@ import os
 # GLOBAL VARIABLES
 cell_size = 20
 font_name = "fireflysung"
-font_filename = "fireflysung.ttf"
+font_filename = "config/fireflysung.ttf"
 
 # set margins
 margin_left = 15
@@ -81,16 +81,16 @@ def fill_one_page(pdf, chars, total_num, page_num):
     pdf.cell(cell_size,cell_size,"",0,0,'C')
 
     # draw a finder pattern on the top left
-    pdf.image('finder.png', margin_left + inner, 
+    pdf.image('config/finder.png', margin_left + inner, 
               margin_top + inner, cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a finder pattern on the bottom right
-    pdf.image('finder.png', margin_left + (num_of_cols -1) * cell_size + inner, 
+    pdf.image('config/finder.png', margin_left + (num_of_cols -1) * cell_size + inner, 
               margin_top + (num_of_rows - 1) * cell_size + inner, 
               cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a black square at the bottom left
-    pdf.image('finder.png', margin_left + inner, 
+    pdf.image('config/finder.png', margin_left + inner, 
               margin_top + (num_of_rows - 1) * cell_size + inner, 
               cell_size - 2 * inner, cell_size - 2 * inner)
 
@@ -127,7 +127,7 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.line(x2, y1, x2, y2)
 
         # draw a finder at the bottom right of each cell
-        pdf.image('finder.png', x2 + qr_space, y2 + qr_space,
+        pdf.image('config/finder.png', x2 + qr_space, y2 + qr_space,
                   qr_width, qr_width)
         # draw the sub #
         # reset font size to smaller

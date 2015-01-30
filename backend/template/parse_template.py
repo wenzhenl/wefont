@@ -18,7 +18,7 @@ MIN_SKIP = 3
 # //////////////////////////////////////////////
 def get_glyph_name(char):
     d = {} # dict unicode => glyph name
-    with open("glyphlist.txt", 'r') as glyphlist:
+    with open("config/glyphlist.txt", 'r') as glyphlist:
         for line in glyphlist:
             li = line.rstrip()
             if not li.startswith("#"):

@@ -4,7 +4,7 @@ import sys
 import fontforge
 import string
 
-f= open("unicode_to_gb2312.txt", 'r')
+f= open("config/unicode_to_gb2312.txt", 'r')
 
 dic = {}
 for line in f:
