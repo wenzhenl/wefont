@@ -3,7 +3,7 @@
 
 from qrcode import *
 
-qr = QRCode(version=20, error_correction=ERROR_CORRECT_L)
+qr = QRCode(version=5, error_correction=ERROR_CORRECT_L)
 qr.add_data("Haha I am happy")
 qr.make() # Generate the QRCode itself
 
