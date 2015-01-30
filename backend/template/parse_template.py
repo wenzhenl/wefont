@@ -283,56 +283,11 @@ def draw_color_lines( i, j, total, img, cell_size):
         img[i, x] = [255, 0, 0]
 
 
+# ////////////////////////////////////////////////
+# ////////// ROTATE IMAGE and TRANSFORM THE COORDINATES/////
+# //////////////////////////////////////////////
+def rotate_image( possible_centers, img ):
 
-def detect_qr_finder( filename ):
-    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
-    ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
-
-    # enlarge img
-    # img = cv2.resize(img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
-    # old_img = cv2.resize(old_img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
-    possible_centers = []
-
-    iSkip = MIN_SKIP
-    state_count = [0] * 5
-    current_state = 0
-    rows, cols = img.shape[:2]
-    i = iSkip - 1
-    while i < rows:
-        state_count = [0] * 5
-        current_state = 0
-        for j in range(cols):
-            if img[i,j] < thres:
-                if current_state & 0x1 == 1:
-                    current_state += 1
-                state_count[current_state] += 1
-            else:
-                if current_state & 0x1 == 1:
-                    state_count[current_state] += 1
-                else:
-                    if current_state == 4:
-                        if check_ratio(state_count) == True:
-                            handle_possible_center(state_count, i, j,
-                                                   possible_centers, img)
-                        else:
-                            current_state = 3
-                            state_count[0] = state_count[2]
-                            state_count[1] = state_count[3]
-                            state_count[2] = state_count[4]
-                            state_count[3] = 1
-                            state_count[4] = 0
-                            continue
-                        state_count = [0] * 5
-                        current_state = 0
-                    else:
-                        current_state += 1
-                        state_count[current_state] += 1
-        i += iSkip
-
-    possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
-
-    # rotate img
     page_finders = possible_centers[:3]
     pts = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
@@ -379,36 +334,74 @@ def detect_qr_finder( filename ):
             new_cols = p1_p2
             top_left = page_finders[2]
             bottom_right = page_finders[1]
-    else:
-        print 'ERROR: unexpected situation'
+    # else:
+        # return False
 
-    # for i in xrange(len(possible_centers)):
-    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-    #                      possible_centers[i][2] * 7.0, old_img)
-    #
     page_finders = [top_left, bottom_left, bottom_right]
-    for x in page_finders:
-        print x
-    # new_rows = page_finders[1][0] - page_finders[0][0] + 7.0 * page_finders[0][2]
-    # new_cols = page_finders[2][1] - page_finders[1][1] + 7.0 * page_finders[1][2]
     ms = page_finders[0][2] * 7
-    # new_rows += ms
-    # new_cols += ms
     pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
                        [page_finders[2][1],page_finders[2][0]]])
     pts2 = np.float32([[ms,ms],[ms, new_rows - ms],[new_cols - ms, new_rows - ms]])
     M = cv2.getAffineTransform(pts1, pts2)
-    old_img = cv2.warpAffine(old_img, M, (new_cols, new_rows))
-    print "# of centers:", len(possible_centers)
-    # for i in possible_centers:
-        # print i
-    # for i in xrange(6):
-    for i in xrange(6,len(possible_centers)):
+    img = cv2.warpAffine(img, M, (new_cols, new_rows))
+
+    for i in xrange(len(possible_centers)):
         x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
         y = np.dot(M, x)
-        print y
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
+    return img
+
+def parse_template( filename ):
+    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
+    ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
+
+    # enlarge img
+    # img = cv2.resize(img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+    # old_img = cv2.resize(old_img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+    possible_centers = []
+
+    iSkip = MIN_SKIP
+    state_count = [0] * 5
+    current_state = 0
+    rows, cols = img.shape[:2]
+    i = iSkip - 1
+    while i < rows:
+        state_count = [0] * 5
+        current_state = 0
+        for j in range(cols):
+            if img[i,j] < thres:
+                if current_state & 0x1 == 1:
+                    current_state += 1
+                state_count[current_state] += 1
+            else:
+                if current_state & 0x1 == 1:
+                    state_count[current_state] += 1
+                else:
+                    if current_state == 4:
+                        if check_ratio(state_count) == True:
+                            handle_possible_center(state_count, i, j,
+                                                   possible_centers, img)
+                        else:
+                            current_state = 3
+                            state_count[0] = state_count[2]
+                            state_count[1] = state_count[3]
+                            state_count[2] = state_count[4]
+                            state_count[3] = 1
+                            state_count[4] = 0
+                            continue
+                        state_count = [0] * 5
+                        current_state = 0
+                    else:
+                        current_state += 1
+                        state_count[current_state] += 1
+        i += iSkip
+
+    possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
+    ms = possible_centers[0][2] * 7
+    old_img = rotate_image(possible_centers, old_img)
+    for i in xrange(6,len(possible_centers)):
         draw_color_lines(possible_centers[i][0], possible_centers[i][1],
                          possible_centers[i][2] * 7.0, old_img,
                          ms)
@@ -424,4 +417,4 @@ def detect_qr_finder( filename ):
 
 
 if __name__ == "__main__":
-    detect_qr_finder(sys.argv[1])
+    parse_template(sys.argv[1])
