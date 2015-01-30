@@ -25,22 +25,11 @@ if isDebug:
 ratio = 0.95 # the percentage of white points to be regarded as white line
 thres = 130 # the threshold of grey level for white
 
-grey_level = lambda x: (x[0] + x[1] + x[2])/3
-
-total = 0
-for y in range(im.size[1]):
-    for x in range(im.size[0]):
-        g = grey_level(pix[x,y])
-        total = total + g
-
-if isDebug:
-    print 'ave grey level', total/(im.size[0] * im.size[1])
-
 white_rows = []
 for y in range(im.size[1]):
     count = 0
     for x in range(im.size[0]):
-        if(grey_level(pix[x,y]) < thres):
+        if((pix[x,y]) < thres):
             break;
         else:
             count = count + 1
@@ -51,7 +40,7 @@ white_cols = []
 for x in range(im.size[0]):
     count = 0
     for y in range(im.size[1]):
-        if(grey_level(pix[x,y]) < thres):
+        if((pix[x,y]) < thres):
             break;
         else:
             count = count + 1
@@ -153,7 +142,7 @@ else:
 
 box = (notZero(x_0-border), notZero(y_0-border), notEnd(x_1+border,im.size[0]-1), notEnd(y_1+border, im.size[1]-1))
 region = im.crop(box)
-region.save('%s_ars.png' % f, 'png')
+region.save('%s.bmp' % f, 'bmp')
 
 if isDebug:
     print f
