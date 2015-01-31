@@ -183,7 +183,7 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
         return float('nan')
 
     state_count_total = sum(state_count)
-    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
+    if 5 * abs(state_count_total - ori_state_count_total) >= ori_state_count_total:
         return float('nan')
     if check_ratio(state_count) == True:
         return center_from_end(state_count, j)
@@ -240,9 +240,8 @@ def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, i
         return False
 
     state_count_total = sum(state_count)
-    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
-        return False
-    if check_ratio(state_count) == True:
+    if abs(state_count_total - ori_state_count_total) < 2 * ori_state_count_total and \
+       check_ratio(state_count) == True:
         return True
     else:
         return False
