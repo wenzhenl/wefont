@@ -468,8 +468,7 @@ def detect_all_finders( img, possible_centers ):
 # ////////////////////////////////////////////////
 # ////////// PARSE TEMPLATE /////
 # //////////////////////////////////////////////
-def parse_template( filename, verbose ):
-    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+def parse_template( img, verbose ):
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
 
     
@@ -545,4 +544,10 @@ if __name__ == "__main__":
     parser.add_argument("-v", "--verbose", action="store_true",
                         help="print more info")
     args = parser.parse_args()
-    parse_template(args.filename, args.verbose)
+    img = cv2.imread(args.filename, cv2.IMREAD_GRAYSCALE)
+    try:
+        parse_template(img, args.verbose)
+    except:
+        print 'TRY AGAIN'
+        bigger_img = cv2.resize(img, None, fx=1.5, fy=1.5, interpolation = cv2.INTER_CUBIC)
+        parse_template(bigger_img, args.verbose)
