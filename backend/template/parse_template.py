@@ -433,13 +433,13 @@ def detect_all_finders( img, possible_centers ):
     for i in xrange(i_skip - 1, rows, i_skip):
         state_count = [0] * 5
         current_state = 0
-        for j in range(cols):
+        for j in xrange(cols):
             if img[i,j] < thres:
-                if current_state & 0x1 == 1:
+                if current_state & 1 == 1:
                     current_state += 1
                 state_count[current_state] += 1
             else:
-                if current_state & 0x1 == 1:
+                if current_state & 1 == 1:
                     state_count[current_state] += 1
                 else:
                     if current_state == 4:
@@ -459,6 +459,10 @@ def detect_all_finders( img, possible_centers ):
                     else:
                         current_state += 1
                         state_count[current_state] += 1
+
+        if check_ratio(state_count) == True:
+            handle_possible_center(state_count, i, cols,
+                                   possible_centers, img)
 
 
 # ////////////////////////////////////////////////
@@ -489,7 +493,7 @@ def parse_template( filename, verbose ):
     qrdata = decode_qrcode(qrcode)
     if not qrdata:
         bigger_qrcode = cv2.resize(qrcode, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
-        qrdata = decode_qrcode(qrcode)
+        qrdata = decode_qrcode(bigger_qrcode)
         if not qrdata:
             raise Exception("CANNOT DECODE QRCODE")
     qr_cell_size = int(qrdata[:qrdata.find(" ")])
