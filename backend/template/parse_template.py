@@ -475,6 +475,9 @@ def parse_template( img, verbose ):
     possible_centers = []
     detect_all_finders(img, possible_centers)
 
+    if len(possible_centers) < 6:
+        raise Exception("CANNOT DETECT PAGE FINDERS")
+
     # put three page finders in the begining
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
     cell_size = possible_centers[0][2] * 7
@@ -506,6 +509,8 @@ def parse_template( img, verbose ):
         if verbose:
             print "num of chars: ", len(chars) 
     else:
+        print 'less finders detected ', len(possible_centers)-6, \
+              '(', len(chars), ')'
         raise Exception("INCORRECT NUM OF CHARS DETECTED")
 
     for i in xrange(6,len(possible_centers)):
@@ -545,6 +550,12 @@ if __name__ == "__main__":
                         help="print more info")
     args = parser.parse_args()
     img = cv2.imread(args.filename, cv2.IMREAD_GRAYSCALE)
+    rows, cols = img.shape
+    if rows < cols:
+        pts1 = np.float32([[0,0],[cols-1,0],[0, rows-1]])
+        pts2 = np.float32([[0,cols-1],[0,0],[rows-1, cols-1]])
+        M = cv2.getAffineTransform(pts1, pts2)
+        img = cv2.warpAffine(img, M, (rows, cols))
     try:
         parse_template(img, args.verbose)
     except:
