@@ -422,25 +422,15 @@ def rotate_image( possible_centers, img ):
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
     return img
 
-
 # ////////////////////////////////////////////////
-# ////////// PARSE TEMPLATE /////
+# ////////// DETECT ALL FINDERS IN AN IMAGE /////
 # //////////////////////////////////////////////
-def parse_template( filename, verbose ):
-    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
-
-    # enlarge img
-    # img = cv2.resize(img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
-
-    possible_centers = []
-
-    iSkip = MIN_SKIP
+def detect_all_finders( img, possible_centers ):
+    i_skip = MIN_SKIP
     state_count = [0] * 5
     current_state = 0
     rows, cols = img.shape[:2]
-    i = iSkip - 1
-    while i < rows:
+    for i in xrange(i_skip - 1, rows, i_skip):
         state_count = [0] * 5
         current_state = 0
         for j in range(cols):
@@ -469,11 +459,25 @@ def parse_template( filename, verbose ):
                     else:
                         current_state += 1
                         state_count[current_state] += 1
-        i += iSkip
 
+
+# ////////////////////////////////////////////////
+# ////////// PARSE TEMPLATE /////
+# //////////////////////////////////////////////
+def parse_template( filename, verbose ):
+    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
+
+    
+    possible_centers = []
+    detect_all_finders(img, possible_centers)
+
+    # put three page finders in the begining
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
     cell_size = possible_centers[0][2] * 7
+    # img will transform to correct position, coorinates of centers corrected
     img = rotate_image(possible_centers, img)
+    # sort points based on vertical axis
     possible_centers = possible_centers[:6] + sorted(possible_centers[6:], cmp=points_cmp)
 
     # qrcode area
@@ -483,6 +487,11 @@ def parse_template( filename, verbose ):
     y2 = int(possible_centers[0][0] + 2 * cell_size)
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
+    if not qrdata:
+        bigger_qrcode = cv2.resize(qrcode, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+        qrdata = decode_qrcode(qrcode)
+        if not qrdata:
+            raise Exception("CANNOT DECODE QRCODE")
     qr_cell_size = int(qrdata[:qrdata.find(" ")])
     if verbose:
         print "cell size: ", qr_cell_size
@@ -494,14 +503,14 @@ def parse_template( filename, verbose ):
         if verbose:
             print "num of chars: ", len(chars) 
     else:
-        print "ERROR"
-        return -1
+        raise Exception("INCORRECT NUM OF CHARS DETECTED")
 
     for i in xrange(6,len(possible_centers)):
         clear_finder(possible_centers[i][0], possible_centers[i][1],
                      possible_centers[i][2], img)
-        x1 = int(possible_centers[i][1] - cell_size)
-        y1 = int(possible_centers[i][0] - cell_size)
+        finder_size = possible_centers[i][2] * 7.0
+        x1 = int(possible_centers[i][1] - cell_size - finder_size)
+        y1 = int(possible_centers[i][0] - cell_size - finder_size)
         x2 = int(possible_centers[i][1])
         y2 = int(possible_centers[i][0])
         char = img[y1:y2, x1:x2]
@@ -514,8 +523,10 @@ def parse_template( filename, verbose ):
     if verbose:
         color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
         for i in xrange(6, len(possible_centers)):
+            finder_size = possible_centers[i][2] * 7.0
             draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                             possible_centers[i][2], cell_size, color_img)
+                             possible_centers[i][2], cell_size + finder_size,
+                             color_img)
         plt.imshow(color_img, cmap='gray', interpolation = 'bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
