@@ -7,6 +7,7 @@ from matplotlib import pyplot as plt
 import math
 import sys
 import zbar
+import argparse
 
 # GLOBAL PARAMETERS
 thres = 128
@@ -296,43 +297,35 @@ def handle_possible_center( state_count, i, j, centers, img):
 # ////////////////////////////////////////////////
 # ////////// VISUALIZE THE RESULTS /////
 # //////////////////////////////////////////////
-def draw_color_lines( i, j, total, img, cell_size):
-    start_i = int(math.ceil(i - total * 0.5))
-    end_i = int(math.ceil(i + total * 0.5))
-    start_j = int(math.ceil(j - total * 0.5))
-    end_j = int(math.ceil(j + total * 0.5))
-    if end_i >= img.shape[0] - 1:
-        end_i = img.shape[0] - 1
-    if end_j >= img.shape[1] - 1:
-        end_j = img.shape[1] - 1
+def draw_color_lines( i, j, ms, cell_size, img):
+    start_i = int(i - ms * 4)
+    end_i = int(i + ms * 4)
+    start_j = int(j - ms * 4)
+    end_j = int(j + ms * 4)
     for x in xrange(start_i, end_i):
         for y in xrange(start_j, end_j):
             img[x,y] = [255, 0, 0]
 
     # draw a square around the cell
-    top_left_i = int(math.ceil(i - cell_size))
-    top_left_j = int(math.ceil(j - cell_size))
-    if top_left_i < 0:
-        top_left_i = 0
-    if top_left_j < 0:
-        top_left_j = 0
-    i = int(math.ceil(i))
-    j = int(math.ceil(j))
+    x1 = int(j - cell_size)
+    y1 = int(i - cell_size)
+    x2 = int(j)
+    y2 = int(i)
 
-    for x in xrange(top_left_i, i):
-        img[x, top_left_j] = [255, 0, 0]
-        img[x, top_left_j+1] = [255, 0, 0]
-        img[x, top_left_j-1] = [255, 0, 0]
-        img[x, j] = [255, 0, 0]
-        img[x, j+1] = [255, 0, 0]
-        img[x, j-1] = [255, 0, 0]
-    for x in xrange(top_left_j, j):
-        img[top_left_i, x] = [255, 0, 0]
-        img[top_left_i+1, x] = [255, 0, 0]
-        img[top_left_i-1, x] = [255, 0, 0]
-        img[i+1, x] = [255, 0, 0]
-        img[i-1, x] = [255, 0, 0]
-        img[i, x] = [255, 0, 0]
+    for v in xrange(y1, y2):
+        img[v, x1] = [255, 0, 0]
+        img[v, x1+1] = [255, 0, 0]
+        img[v, x1-1] = [255, 0, 0]
+        img[v, x2] = [255, 0, 0]
+        img[v, x2+1] = [255, 0, 0]
+        img[v, x2-1] = [255, 0, 0]
+    for v in xrange(x1, x2):
+        img[y1, v] = [255, 0, 0]
+        img[y1+1, v] = [255, 0, 0]
+        img[y1-1, v] = [255, 0, 0]
+        img[y2+1, v] = [255, 0, 0]
+        img[y2-1, v] = [255, 0, 0]
+        img[y2, v] = [255, 0, 0]
 
 
 # ////////////////////////////////////////////////
@@ -433,14 +426,13 @@ def rotate_image( possible_centers, img ):
 # ////////////////////////////////////////////////
 # ////////// PARSE TEMPLATE /////
 # //////////////////////////////////////////////
-def parse_template( filename ):
+def parse_template( filename, verbose ):
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
-    old_img = cv2.imread(filename, cv2.IMREAD_COLOR)
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
 
     # enlarge img
     # img = cv2.resize(img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
-    # old_img = cv2.resize(old_img, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+
     possible_centers = []
 
     iSkip = MIN_SKIP
@@ -480,49 +472,62 @@ def parse_template( filename ):
         i += iSkip
 
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
-    ms = possible_centers[0][2] * 7
+    cell_size = possible_centers[0][2] * 7
     img = rotate_image(possible_centers, img)
     possible_centers = possible_centers[:6] + sorted(possible_centers[6:], cmp=points_cmp)
+
     # qrcode area
-    x1 = int(possible_centers[2][1] - 2 * ms)
-    y1 = int(possible_centers[0][0] - ms)
-    x2 = int(possible_centers[2][1] + ms)
-    y2 = int(possible_centers[0][0] + 2 * ms)
+    x1 = int(possible_centers[2][1] - 2 * cell_size)
+    y1 = int(possible_centers[0][0] - cell_size)
+    x2 = int(possible_centers[2][1] + cell_size)
+    y2 = int(possible_centers[0][0] + 2 * cell_size)
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
-    cell_size = int(qrdata[:qrdata.find(" ")])
-    print "cell size: ", cell_size
+    qr_cell_size = int(qrdata[:qrdata.find(" ")])
+    if verbose:
+        print "cell size: ", qr_cell_size
     qrdata = qrdata[qrdata.find(" ") + 1:]
     chars = []
     for char in qrdata:
         chars.append(char)
+    if len(chars) == len(possible_centers) - 6:
+        if verbose:
+            print "num of chars: ", len(chars) 
+    else:
+        print "ERROR"
+        return -1
 
     for i in xrange(6,len(possible_centers)):
         clear_finder(possible_centers[i][0], possible_centers[i][1],
                      possible_centers[i][2], img)
-        x1 = int(possible_centers[i][1] - ms)
-        y1 = int(possible_centers[i][0] - ms)
+        x1 = int(possible_centers[i][1] - cell_size)
+        y1 = int(possible_centers[i][0] - cell_size)
         x2 = int(possible_centers[i][1])
         y2 = int(possible_centers[i][0])
         char = img[y1:y2, x1:x2]
         glyname = get_glyph_name(chars[i-6])
-        print glyname,'(',chars[i-6],')'
+        if verbose:
+            print glyname,'(',chars[i-6],')'
         char = cv2.equalizeHist(char)
         cv2.imwrite(glyname + '.png', char)
 
-    #     draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-    #                      possible_centers[i][2] * 7.0, old_img,
-    #                      ms)
-    # plt.imshow(img, cmap='gray', interpolation = 'bicubic')
-    # plt.xticks([]), plt.yticks([])
-    # plt.show()
-    # cv2.imwrite('qrcode.png', qrcode)
-    # cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
-    # cv2.imshow('image', img)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-
+    if verbose:
+        color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        for i in xrange(6, len(possible_centers)):
+            draw_color_lines(possible_centers[i][0], possible_centers[i][1],
+                             possible_centers[i][2], cell_size, color_img)
+        plt.imshow(color_img, cmap='gray', interpolation = 'bicubic')
+        plt.xticks([]), plt.yticks([])
+        plt.show()
+        cv2.imwrite('result.png', color_img)
 
 
 if __name__ == "__main__":
-    parse_template(sys.argv[1])
+    #******************* COMMAND LINE OPTIONS *******************************#
+    parser = argparse.ArgumentParser(description="parse template and output \
+            single character using unicode name")
+    parser.add_argument("filename", help="input template image")
+    parser.add_argument("-v", "--verbose", action="store_true",
+                        help="print more info")
+    args = parser.parse_args()
+    parse_template(args.filename, args.verbose)
