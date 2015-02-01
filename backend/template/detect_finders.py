@@ -320,9 +320,19 @@ def draw_color_lines( i, j, ms, img):
     end_i = int(i + ms * 4)
     start_j = int(j - ms * 4)
     end_j = int(j + ms * 4)
+    if start_i < 0:
+        start_i = 0
+    if start_j < 0:
+        start_j = 0
+    if end_i > img.shape[0]:
+        end_i = img.shape[0]
+    if end_j > img.shape[1]:
+        end_j = img.shape[1]
+
     for x in xrange(start_i, end_i):
         for y in xrange(start_j, end_j):
             img[x,y] = [255, 0, 0]
+    
 
 # ////////////////////////////////////////////////
 # ////////// CLEAR THE FINDERS /////
@@ -480,7 +490,9 @@ def parse_template( img, verbose ):
     detect_all_finders(img, possible_centers)
 
     if verbose:
+        print '#: ', len(possible_centers)
         color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        print 'size: ', color_img.shape[:2]
         for i in xrange(len(possible_centers)):
             draw_color_lines(possible_centers[i][0], possible_centers[i][1],
                              possible_centers[i][2], color_img)
