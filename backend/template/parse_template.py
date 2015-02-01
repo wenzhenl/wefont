@@ -559,7 +559,7 @@ def parse_template( img, verbose ):
         glyname = get_glyph_name(char)
         if verbose:
             print glyname,'(',char,')'
-        char_img = cv2.equalizeHist(char)
+        char_img = cv2.equalizeHist(char_img)
         cv2.imwrite(glyname + '.png', char_img)
 
         if verbose:
