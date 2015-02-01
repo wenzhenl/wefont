@@ -2,8 +2,8 @@
 __author__ = "Wenzheng Li"
 
 #////////////////////////////////////////////////////////
-#////////////////// VERSION 0.1 /////////////////////////
-#//////////////// WITH PAGE FINDERS AND CELL FINDERS ////
+#////////////////// VERSION 0.2 /////////////////////////
+#//////////////// WITH PAGE FINDERS ONLY ////////////////
 #////////////////////////////////////////////////////////
 
 
@@ -315,21 +315,8 @@ def handle_possible_center( state_count, i, j, centers, img):
 # ////////////////////////////////////////////////
 # ////////// VISUALIZE THE RESULTS /////
 # //////////////////////////////////////////////
-def draw_color_lines( i, j, ms, cell_size, img):
-    start_i = int(i - ms * 4)
-    end_i = int(i + ms * 4)
-    start_j = int(j - ms * 4)
-    end_j = int(j + ms * 4)
-    for x in xrange(start_i, end_i):
-        for y in xrange(start_j, end_j):
-            img[x,y] = [255, 0, 0]
-
+def draw_color_lines( x1, y1, x2, y2, img):
     # draw a square around the cell
-    x1 = int(j - cell_size)
-    y1 = int(i - cell_size)
-    x2 = int(j)
-    y2 = int(i)
-
     for v in xrange(y1, y2):
         img[v, x1] = [255, 0, 0]
         img[v, x1+1] = [255, 0, 0]
@@ -492,7 +479,7 @@ def detect_all_finders( img, possible_centers ):
 
 
 # ////////////////////////////////////////////////
-# ////////// PARSE TEMPLATE /////
+# ////////// PARSE TEMPLATE /////////////////////
 # //////////////////////////////////////////////
 def parse_template( img, verbose ):
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
@@ -501,22 +488,23 @@ def parse_template( img, verbose ):
     possible_centers = []
     detect_all_finders(img, possible_centers)
 
-    if len(possible_centers) < 6:
+    if len(possible_centers) < 3:
         raise Exception("CANNOT DETECT PAGE FINDERS")
 
     # put three page finders in the begining
     possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
-    cell_size = possible_centers[0][2] * 7
-    # img will transform to correct position, coorinates of centers corrected
+    # keep only page finders
+    possible_centers = possible_centers[:3]
+    # img will transform to correct position, possible_centers will be top left,
+    # top right and bottom left
     img = rotate_image(possible_centers, img)
-    # sort points based on vertical axis
-    possible_centers = possible_centers[:6] + sorted(possible_centers[6:], cmp=points_cmp)
 
-    # qrcode area
-    x1 = int(possible_centers[2][1] - 2 * cell_size)
-    y1 = int(possible_centers[0][0] - cell_size)
-    x2 = int(possible_centers[2][1] + cell_size)
-    y2 = int(possible_centers[0][0] + 2 * cell_size)
+    finder_size = possible_centers[0][2] * 7.0
+    # read qrcode to obtain cell size and char information
+    x1 = int(possible_centers[2][1] - 2 * finder_size)
+    y1 = int(possible_centers[0][0] - finder_size)
+    x2 = int(possible_centers[2][1] + finder_size)
+    y2 = int(possible_centers[0][0] + 2 * finder_size)
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
     if not qrdata:
@@ -524,48 +512,79 @@ def parse_template( img, verbose ):
         qrdata = decode_qrcode(bigger_qrcode)
         if not qrdata:
             raise Exception("CANNOT DECODE QRCODE")
-    qr_cell_size = int(qrdata[:qrdata.find(" ")])
+    preset_cell_size = int(qrdata[:qrdata.find(" ")])
     if verbose:
-        print "cell size: ", qr_cell_size
+        print "cell size: ", preset_cell_size
     qrdata = qrdata[qrdata.find(" ") + 1:]
     chars = []
     for char in qrdata:
         chars.append(char)
-    if len(chars) == len(possible_centers) - 6:
-        if verbose:
-            print "num of chars: ", len(chars) 
-    else:
-        print 'less finders detected ', len(possible_centers)-6, \
-              '(', len(chars), ')'
-        raise Exception("INCORRECT NUM OF CHARS DETECTED")
-
-    for i in xrange(6,len(possible_centers)):
-        clear_finder(possible_centers[i][0], possible_centers[i][1],
-                     possible_centers[i][2], img)
-        finder_size = possible_centers[i][2] * 7.0
-        x1 = int(possible_centers[i][1] - cell_size - finder_size)
-        y1 = int(possible_centers[i][0] - cell_size - finder_size)
-        x2 = int(possible_centers[i][1])
-        y2 = int(possible_centers[i][0])
-        char = img[y1:y2, x1:x2]
-        glyname = get_glyph_name(chars[i-6])
-        if verbose:
-            print glyname,'(',chars[i-6],')'
-        char = cv2.equalizeHist(char)
-        cv2.imwrite(glyname + '.png', char)
+    if verbose:
+        print "num of chars: ", len(chars) 
 
     if verbose:
         color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        for i in xrange(6, len(possible_centers)):
-            finder_size = possible_centers[i][2] * 7.0
-            draw_color_lines(possible_centers[i][0], possible_centers[i][1],
-                             possible_centers[i][2], cell_size + finder_size,
-                             color_img)
+
+    # set num of chars each line based on cell size
+    # NOTE THE PARAMETERS SHOULD BE CONSISTENT WITH generate_template.py
+    length = 180
+    width = 260
+    inner = 3
+    num_of_cols = length / preset_cell_size
+    num_of_rows = width / preset_cell_size
+    cols_of_first_row = num_of_cols - 3
+    cols_of_second_row = num_of_cols - 2
+    cols_of_last_row = num_of_cols - 2
+    num_of_chars_per_page = num_of_cols * num_of_rows - 7
+    cell_size = preset_cell_size * 1.0 / (preset_cell_size - 2 * inner) \
+                * finder_size
+    space_size = inner * 1.0 / preset_cell_size * cell_size
+
+    
+    line_num = 1
+    processed_chars_num = 0
+
+    start_x = int(possible_centers[0][1] - 0.5 * cell_size)
+    start_y = int(possible_centers[0][0] - 0.5 * cell_size)
+    for char in chars:
+
+        factor = 0
+        if line_num == 1:
+            factor = 1
+        x1 = int(start_x + cell_size * (processed_chars_num + factor) + space_size)
+        y1 = int(start_y + cell_size * (line_num - 1) + space_size)
+        x2 = int(x1 + cell_size - 2 * space_size)
+        y2 = int(y1 + cell_size - 2 * space_size)
+        char_img = img[y1:y2, x1:x2]
+        glyname = get_glyph_name(char)
+        if verbose:
+            print glyname,'(',char,')'
+        char_img = cv2.equalizeHist(char)
+        cv2.imwrite(glyname + '.png', char_img)
+
+        if verbose:
+            draw_color_lines(x1, y1, x2, y2, color_img)
+
+        processed_chars_num += 1
+
+        if line_num == 1 and  processed_chars_num == cols_of_first_row:
+            line_num = line_num + 1
+            processed_chars_num = 0
+        elif line_num == 2 and processed_chars_num == cols_of_second_row:
+            line_num = line_num + 1
+            processed_chars_num = 0
+        elif line_num == num_of_rows - 1 and processed_chars_num == num_of_cols:
+            line_num = line_num + 1
+            processed_chars_num = 1
+        elif processed_chars_num == num_of_cols:
+            line_num = line_num + 1
+            processed_chars_num = 0
+
+    if verbose:
         plt.imshow(color_img, cmap='gray', interpolation = 'bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
         cv2.imwrite('result.png', color_img)
-
 
 if __name__ == "__main__":
     #******************* COMMAND LINE OPTIONS *******************************#
@@ -576,15 +595,7 @@ if __name__ == "__main__":
                         help="print more info")
     args = parser.parse_args()
     img = cv2.imread(args.filename, cv2.IMREAD_GRAYSCALE)
-    rows, cols = img.shape
-    if rows < cols:
-        pts1 = np.float32([[0,0],[cols-1,0],[0, rows-1]])
-        pts2 = np.float32([[0,cols-1],[0,0],[rows-1, cols-1]])
-        M = cv2.getAffineTransform(pts1, pts2)
-        img = cv2.warpAffine(img, M, (rows, cols))
     try:
         parse_template(img, args.verbose)
     except:
-        print 'TRY AGAIN'
-        bigger_img = cv2.resize(img, None, fx=1.5, fy=1.5, interpolation = cv2.INTER_CUBIC)
-        parse_template(bigger_img, args.verbose)
+        print 'ERROR'
