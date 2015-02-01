@@ -78,7 +78,7 @@ def check_ratio( state_count ):
     if total_finder_size < 7:
         return False
 
-    module_size = math.ceil(total_finder_size / 7.0)
+    module_size = total_finder_size / 7.0
     max_variance = module_size / 2.0
 
     if abs(module_size - state_count[0]) < max_variance and \
