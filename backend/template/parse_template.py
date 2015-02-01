@@ -267,6 +267,16 @@ def about_equals( x, y ):
 
 
 # ////////////////////////////////////////////////
+# ////////// COMBINE NEW CENTER TO POSSIBLE CENTERS ////
+# //////////////////////////////////////////////
+def combine_estimate( x,y ):
+    count = x[3] + 1
+    i = (x[3] * x[0] + y[0]) * 1.0 / count
+    j = (x[3] * x[1] + y[1]) * 1.0 / count
+    ms = (x[3] * x[2] + y[2]) * 1.0 / count
+    return (i,j,ms,count)
+
+# ////////////////////////////////////////////////
 # ////////// HANDLE A POSSIBLE CENTER /////
 # //////////////////////////////////////////////
 def handle_possible_center( state_count, i, j, centers, img):
@@ -283,13 +293,17 @@ def handle_possible_center( state_count, i, j, centers, img):
 
                 esitimate_module_size = state_count_total / 7.0
                 found = False
-                y = (center_i, center_j, esitimate_module_size)
-                for x in centers:
-                    if about_equals(x, y):
+                poss_center = (center_i, center_j, esitimate_module_size,1)
+                for x in xrange(len(centers)):
+                    old_center = centers[x]
+                    if about_equals(old_center, poss_center):
                         found = True
+                        centers[x] = combine_estimate(old_center, poss_center)
                         break
                 if not found:
-                    centers.append(y)
+                    centers.append(poss_center)
+                return True
+    return False
 
 
 # ////////////////////////////////////////////////
@@ -436,27 +450,35 @@ def detect_all_finders( img, possible_centers ):
                 if current_state & 1 == 1:
                     current_state += 1
                 state_count[current_state] += 1
-            else:
-                if current_state & 1 == 1:
-                    state_count[current_state] += 1
-                else:
+            else: # white pixel
+                if current_state & 1 == 0:
                     if current_state == 4:
-                        if check_ratio(state_count) == True:
-                            handle_possible_center(state_count, i, j,
-                                                   possible_centers, img)
+                        if check_ratio(state_count):
+                            confirmed = handle_possible_center(state_count, i, j,
+                                                               possible_centers, img)
+                            if confirmed:
+                                state_count = [0] * 5
+                                current_state = 0
+                            else:
+                                state_count[0] = state_count[2]
+                                state_count[1] = state_count[3]
+                                state_count[2] = state_count[4]
+                                state_count[3] = 1
+                                state_count[4] = 0
+                                current_state = 3
+                                continue
                         else:
-                            current_state = 3
                             state_count[0] = state_count[2]
                             state_count[1] = state_count[3]
                             state_count[2] = state_count[4]
                             state_count[3] = 1
                             state_count[4] = 0
-                            continue
-                        state_count = [0] * 5
-                        current_state = 0
+                            current_state = 3
                     else:
                         current_state += 1
                         state_count[current_state] += 1
+                else:
+                    state_count[current_state] += 1
 
         if check_ratio(state_count) == True:
             handle_possible_center(state_count, i, cols,
