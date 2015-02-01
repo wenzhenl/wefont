@@ -17,7 +17,7 @@ import argparse
 
 # GLOBAL PARAMETERS
 thres = 128
-MIN_SKIP = 3
+MIN_SKIP = 6
 
 
 # //////////////////////////////////////////////
@@ -317,6 +317,10 @@ def handle_possible_center( state_count, i, j, centers, img):
 # //////////////////////////////////////////////
 def draw_color_lines( x1, y1, x2, y2, img):
     # draw a square around the cell
+    if x2 > img.shape[1]:
+        x2 = img.shape[1]
+    if y2 > img.shape[0]:
+        y2 = img.shape[0]
     for v in xrange(y1, y2):
         img[v, x1] = [255, 0, 0]
         img[v, x1+1] = [255, 0, 0]
@@ -529,32 +533,37 @@ def parse_template( img, verbose ):
     # NOTE THE PARAMETERS SHOULD BE CONSISTENT WITH generate_template.py
     length = 180
     width = 260
-    inner = 3
     num_of_cols = length / preset_cell_size
     num_of_rows = width / preset_cell_size
     cols_of_first_row = num_of_cols - 3
     cols_of_second_row = num_of_cols - 2
     cols_of_last_row = num_of_cols - 2
-    num_of_chars_per_page = num_of_cols * num_of_rows - 7
-    cell_size = preset_cell_size * 1.0 / (preset_cell_size - 2 * inner) \
-                * finder_size
-    space_size = inner * 1.0 / preset_cell_size * cell_size
 
-    
+    # detemine cell size in the image
+    pts = np.float32([[possible_centers[0][1],possible_centers[0][0]],\
+                       [possible_centers[1][1],possible_centers[1][0]],\
+                       [possible_centers[2][1],possible_centers[2][0]]])
+
+    p1_p2 = np.linalg.norm(pts[0] - pts[1])
+    p2_p3 = np.linalg.norm(pts[1] - pts[2])
+    cell_height = p1_p2 / (num_of_rows - 1.0)
+    cell_width = p2_p3 / (num_of_cols - 1.0)
+
+
     line_num = 1
     processed_chars_num = 0
 
-    start_x = int(possible_centers[0][1] - 0.5 * cell_size)
-    start_y = int(possible_centers[0][0] - 0.5 * cell_size)
+    start_x = int(possible_centers[0][1] - 0.5 * cell_width)
+    start_y = int(possible_centers[0][0] - 0.5 * cell_height)
     for char in chars:
 
         factor = 0
         if line_num == 1:
             factor = 1
-        x1 = int(start_x + cell_size * (processed_chars_num + factor) + space_size)
-        y1 = int(start_y + cell_size * (line_num - 1) + space_size)
-        x2 = int(x1 + cell_size - 2 * space_size)
-        y2 = int(y1 + cell_size - 2 * space_size)
+        x1 = int(start_x + cell_width * (processed_chars_num + factor))
+        y1 = int(start_y + cell_height * (line_num - 1))
+        x2 = int(x1 + cell_width)
+        y2 = int(y1 + cell_height)
         char_img = img[y1:y2, x1:x2]
         glyname = get_glyph_name(char)
         if verbose:
@@ -595,7 +604,4 @@ if __name__ == "__main__":
                         help="print more info")
     args = parser.parse_args()
     img = cv2.imread(args.filename, cv2.IMREAD_GRAYSCALE)
-    try:
-        parse_template(img, args.verbose)
-    except:
-        print 'ERROR'
+    parse_template(img, args.verbose)
