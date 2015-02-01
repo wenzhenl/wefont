@@ -259,11 +259,10 @@ def center_from_end( state_count, end ):
 # //////////////////////////////////////////////
 # x is already in possible_centers
 def about_equals( x, y ):
-    if abs(x[0] - y[0]) <= x[2] and abs(x[1] - y[1] <= x[2]):
-        if abs(x[2] - y[2]) < 1.0 or abs(x[2] - y[2]) <= x[2]:
+    th = min(x[2], y[2])
+    if abs(x[0] - y[0]) <= th and abs(x[1] - y[1]) <= th:
+        if abs(x[2] - y[2]) < 1.0 or abs(x[2] - y[2]) <= th:
             return True
-        else:
-            return False
     return False
 
 
