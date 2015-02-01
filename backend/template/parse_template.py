@@ -290,8 +290,6 @@ def handle_possible_center( state_count, i, j, centers, img):
                         break
                 if not found:
                     centers.append(y)
-                return True
-    return False
 
 
 # ////////////////////////////////////////////////
@@ -438,35 +436,27 @@ def detect_all_finders( img, possible_centers ):
                 if current_state & 1 == 1:
                     current_state += 1
                 state_count[current_state] += 1
-            else: # white pixel
-                if current_state & 1 == 0:
+            else:
+                if current_state & 1 == 1:
+                    state_count[current_state] += 1
+                else:
                     if current_state == 4:
-                        if check_ratio(state_count):
-                            confirmed = handle_possible_center(state_count, i, j,
-                                                               possible_centers, img)
-                            if confirmed:
-                                state_count = [0] * 5
-                                current_state = 0
-                            else:
-                                state_count[0] = state_count[2]
-                                state_count[1] = state_count[3]
-                                state_count[2] = state_count[4]
-                                state_count[3] = 1
-                                state_count[4] = 0
-                                current_state = 3
-                                continue
+                        if check_ratio(state_count) == True:
+                            handle_possible_center(state_count, i, j,
+                                                   possible_centers, img)
                         else:
+                            current_state = 3
                             state_count[0] = state_count[2]
                             state_count[1] = state_count[3]
                             state_count[2] = state_count[4]
                             state_count[3] = 1
                             state_count[4] = 0
-                            current_state = 3
+                            continue
+                        state_count = [0] * 5
+                        current_state = 0
                     else:
                         current_state += 1
                         state_count[current_state] += 1
-                else:
-                    state_count[current_state] += 1
 
         if check_ratio(state_count) == True:
             handle_possible_center(state_count, i, cols,
