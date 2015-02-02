@@ -2,10 +2,11 @@
 __author__ = "Wenzheng Li"
 
 #////////////////////////////////////////////////////////
-#////////////////// VERSION 0.1 /////////////////////////
-#//////////////// WITH PAGE FINDERS AND CELL FINDERS ////
+#////////////////// VERSION 0.2 /////////////////////////
+#//////////////// WITH PAGE FINDERS ONLY ////////////////
+#//// WORKS WITH SCANNED TEMPLATE, NOT PERFECT WITH /////
+# /// TEMPLATE TAKEN WITH CAMERA ////////////////////////
 #////////////////////////////////////////////////////////
-
 
 from fpdf import FPDF
 from qrcode import *
@@ -126,9 +127,6 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
 
-        # draw a finder at the bottom right of each cell
-        pdf.image('config/finder.png', x2 + qr_space, y2 + qr_space,
-                  qr_width, qr_width)
         # draw the sub #
         # reset font size to smaller
         pdf.set_font(font_name,'',8)

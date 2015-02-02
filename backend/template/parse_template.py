@@ -4,6 +4,8 @@ __author__ = "Wenzheng Li"
 #////////////////////////////////////////////////////////
 #////////////////// VERSION 0.2 /////////////////////////
 #//////////////// WITH PAGE FINDERS ONLY ////////////////
+#//// WORKS WITH SCANNED TEMPLATE, NOT PERFECT WITH /////
+# /// TEMPLATE TAKEN WITH CAMERA ////////////////////////
 #////////////////////////////////////////////////////////
 
 
@@ -504,9 +506,10 @@ def parse_template( img, verbose ):
     # img will transform to correct position, possible_centers will be top left,
     # top right and bottom left
     img = rotate_image(possible_centers, img)
-    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
-    plt.xticks([]), plt.yticks([])
-    plt.show()
+    if verbose:
+        plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+        plt.xticks([]), plt.yticks([])
+        plt.show()
 
     finder_size = possible_centers[0][2] * 7.0
     # read qrcode to obtain cell size and char information
