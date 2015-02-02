@@ -417,12 +417,14 @@ def rotate_image( possible_centers, img ):
     for i in xrange(3):
         possible_centers[i] = page_finders[i]
 
-    ms = page_finders[0][2] * 7
+    ms = sum([page_finders[0][2], page_finders[1][2], page_finders[2][2]]) / 3.0 * 7
     pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
                        [page_finders[2][1],page_finders[2][0]]])
-    pts2 = np.float32([[ms,ms],[ms, new_rows - ms],[new_cols - ms, new_rows - ms]])
+    pts2 = np.float32([[ms,ms],[ms, new_rows + ms],[new_cols + ms, new_rows + ms]])
     M = cv2.getAffineTransform(pts1, pts2)
+    new_rows = int(new_rows + 3 * ms)
+    new_cols = int(new_cols + 3 * ms)
     img = cv2.warpAffine(img, M, (new_cols, new_rows))
 
     for i in xrange(len(possible_centers)):
@@ -502,13 +504,16 @@ def parse_template( img, verbose ):
     # img will transform to correct position, possible_centers will be top left,
     # top right and bottom left
     img = rotate_image(possible_centers, img)
+    plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+    plt.xticks([]), plt.yticks([])
+    plt.show()
 
     finder_size = possible_centers[0][2] * 7.0
     # read qrcode to obtain cell size and char information
-    x1 = int(possible_centers[2][1] - 2 * finder_size)
-    y1 = int(possible_centers[0][0] - finder_size)
-    x2 = int(possible_centers[2][1] + finder_size)
-    y2 = int(possible_centers[0][0] + 2 * finder_size)
+    x1 = int(possible_centers[2][1] - 3 * finder_size)
+    y1 = 0
+    x2 = img.shape[1]
+    y2 = int(possible_centers[0][0] + 3 * finder_size)
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
     if not qrdata:
