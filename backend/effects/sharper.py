@@ -26,8 +26,8 @@ for g in [glyph.glyphname for glyph in font.glyphs()]:
         for point in contour[1:]:
             if point.on_curve:
                 pen.lineTo((point.x, point.y))
-        pen.closePath()
+        pen.endPath()
     old.clear()
     old.addReference("dummytmp")
 font.removeGlyph("dummytmp")
-font.generate("Lee.ttf")
+font.generate("JingleiSharpened.ttf")
