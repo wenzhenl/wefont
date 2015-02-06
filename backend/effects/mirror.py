@@ -20,7 +20,6 @@ for g in [glyph.glyphname for glyph in font.glyphs()]:
     old = font[g]
     new = font.createChar(-1, 'dummytmp')
 
-    pens = []
     pen = new.glyphPen()
     for  contour in old.layers[1]:
         pen.moveTo((contour[0].x, contour[0].y))
@@ -28,9 +27,7 @@ for g in [glyph.glyphname for glyph in font.glyphs()]:
             if point.on_curve:
                 pen.lineTo((point.x, point.y))
         pen.closePath()
-        pens.append(pen)
     old.clear()
-    for pen in pens:
-        old.draw(pen)
+    old.addReference("dummytmp")
 font.removeGlyph("dummytmp")
 font.generate("Lee.ttf")
