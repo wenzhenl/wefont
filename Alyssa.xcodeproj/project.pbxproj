@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
-		0A67F0431C2BF51100526E1B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* ViewController.swift */; };
+		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
 		0A67F0481C2BF51100526E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0471C2BF51100526E1B /* Assets.xcassets */; };
 		0A67F04B1C2BF51100526E1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */; };
 		0A67F0561C2BF51100526E1B /* AlyssaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0551C2BF51100526E1B /* AlyssaTests.swift */; };
 		0A67F0611C2BF51100526E1B /* AlyssaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0601C2BF51100526E1B /* AlyssaUITests.swift */; };
+		0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */; };
+		0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */; };
+		0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0721C2C1C5800526E1B /* MeViewController.swift */; };
+		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,7 @@
 /* Begin PBXFileReference section */
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0A67F0421C2BF51100526E1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0A67F0451C2BF51100526E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0A67F0471C2BF51100526E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A67F04A1C2BF51100526E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		0A67F05C1C2BF51100526E1B /* AlyssaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlyssaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0601C2BF51100526E1B /* AlyssaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlyssaUITests.swift; sourceTree = "<group>"; };
 		0A67F0621C2BF51100526E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharCaptureViewController.swift; sourceTree = "<group>"; };
+		0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		0A67F0721C2C1C5800526E1B /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		0A67F0741C2C249300526E1B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				0A67F0401C2BF51100526E1B /* AppDelegate.swift */,
-				0A67F0421C2BF51100526E1B /* ViewController.swift */,
+				0A67F0421C2BF51100526E1B /* HomeViewController.swift */,
+				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
+				0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */,
+				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
+				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
 				0A67F0471C2BF51100526E1B /* Assets.xcassets */,
 				0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */,
@@ -256,7 +268,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A67F0431C2BF51100526E1B /* ViewController.swift in Sources */,
+				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
+				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
+				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
+				0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */,
+				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,7 +415,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Alyssa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.Alyssa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,7 +428,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Alyssa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.Alyssa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
