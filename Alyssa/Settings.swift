@@ -25,10 +25,5 @@ class Settings {
     ]
     
     // MARK - color for header
-//    static let ColorOfStamp = UIColor(red: 191.0/255.0, green: 34.0/255.0, blue: 13.0/255.0, alpha: 1.0)
-//*    static let ColorOfStamp = UIColor(red: 196.0/255.0, green: 58.0/255.0, blue: 26.0/255.0, alpha: 1.0)
-//    static let ColorOfStamp = UIColor(red: 208.0/255.0, green: 18.0/255.0, blue: 6.0/255.0, alpha: 1.0)
-//*    static let ColorOfStamp = UIColor(red: 206.0/255.0, green: 54.0/255.0, blue: 17.0/255.0, alpha: 1.0)
-//    static let ColorOfStamp = UIColor(red: 207.0/255.0, green: 22.0/255.0, blue: 16.0/255.0, alpha: 1.0)
     static let ColorOfStamp = UIColor(red: 192.0/255.0, green: 0.0/255.0, blue: 14.0/255.0, alpha: 1.0)
 }
