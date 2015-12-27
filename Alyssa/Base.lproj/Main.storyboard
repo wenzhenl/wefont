@@ -91,7 +91,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="图书" id="5Uv-Mo-6b8">
-                        <barButtonItem key="rightBarButtonItem" title="更新字体" id="u52-d5-E4p"/>
+                        <barButtonItem key="rightBarButtonItem" title="更新字体" id="u52-d5-E4p">
+                            <connections>
+                                <action selector="updateMyFont:" destination="diV-0c-rto" id="6Fq-Bc-oaX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkV-ra-u3R" userLabel="First Responder" sceneMemberID="firstResponder"/>

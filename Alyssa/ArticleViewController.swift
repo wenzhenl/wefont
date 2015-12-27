@@ -18,22 +18,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
     }
     
-    var books: [String] = ["小王子"]
+    var books: [String] = ["小王子", "红楼梦"]
     
-    @IBAction func addBook(sender: UIBarButtonItem) {
-//        let file = "file.txt"
-//        
-//        if let dirs : [String] = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.AllDomainsMask, true) as? [String] {
-//            let dir = dirs[0] //documents directory
-//            let path = dir.stringByAppendingPathComponent(file);
-//            let text = "some text"
-//            
-//            //writing
-//            text.writeToFile(path, atomically: false, encoding: NSUTF8StringEncoding, error: nil);
-//            
-//            //reading
-//            let text2 = String(contentsOfFile: path, encoding: NSUTF8StringEncoding, error: nil)
-//        }
+    @IBAction func updateMyFont(sender: UIBarButtonItem) {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -50,13 +37,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
-//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "图书列表"
-//    }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-       
         return 50
-//        return UITableViewAutomaticDimension
     }
 }
