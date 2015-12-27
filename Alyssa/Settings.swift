@@ -29,4 +29,8 @@ class Settings {
     
     // MARK - color for header
     static let ColorOfStamp = UIColor(red: 192.0/255.0, green: 0.0/255.0, blue: 14.0/255.0, alpha: 1.0)
+    
+    // Server and API names
+    static let ServerIP = "http://52.69.172.155/"
+    static let APIFetchingLatestFont = "fetch_latest_font.php"
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */; };
+		0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */; };
+		0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */; };
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
 		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTitleTableViewCell.swift; sourceTree = "<group>"; };
+		0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
+		0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
 				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
+				0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */,
+				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
 				0A67F0471C2BF51100526E1B /* Assets.xcassets */,
 				0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */,
@@ -276,8 +282,10 @@
 				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
 				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
 				0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */,
+				0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
+				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
