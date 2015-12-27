@@ -142,6 +142,26 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             if !fontData.writeToURL(fontFileURL, atomically: true) {
                 print("Failed to save font", self.fontFileURL.absoluteString)
+            } else {
+                updateFont()
+            }
+        }
+    }
+    
+    func updateFont() {
+        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
+        if fontData == nil {
+            print("Failed to load saved font:", fontFileURL.absoluteString)
+        }
+        else {
+            var error: Unmanaged<CFError>?
+            let provider: CGDataProviderRef = CGDataProviderCreateWithCFData(fontData)!
+            let font: CGFontRef = CGFontCreateWithDataProvider(provider)!
+            
+            if !CTFontManagerRegisterGraphicsFont(font, &error) {
+                print("Failed to register font, error", error)
+            } else {
+                print("Successfully saved and registered font", fontFileURL.absoluteString)
             }
         }
     }

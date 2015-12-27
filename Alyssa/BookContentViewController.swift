@@ -14,26 +14,14 @@ class BookContentViewController: UIViewController {
     
     var bookTitle: String!
     
-    var fontFileURL: NSURL!
+    var fontFileURL: NSURL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
-        if fontData == nil {
-            print("Failed to load saved font:", fontFileURL.absoluteString)
-        }
-        else {
-            var error: Unmanaged<CFError>?
-            let provider: CGDataProviderRef = CGDataProviderCreateWithCFData(fontData)!
-            let font: CGFontRef = CGFontCreateWithDataProvider(provider)!
-            
-            if !CTFontManagerRegisterGraphicsFont(font, &error) {
-                print("Failed to register font, error", error)
-            } else {
-                bookContentView.font = UIFont(name: "FZJingLeiS-R-GB", size: 20)
-                print("Successfully saved and registered font", fontFileURL.absoluteString)
-            }
+        if fontFileURL != nil {
+            bookContentView.font = UIFont(name: "FZJingLeiS-R-GB", size: 20)
+        } else {
+            bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
     }
 }
