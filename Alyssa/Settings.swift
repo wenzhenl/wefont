@@ -14,6 +14,9 @@ class Settings {
     // MARK - Identifiers for table cells
     static let IdentifierForBookTitleCell = "Book Title Table Cell"
     
+    // MARK - Identifiers for segues
+    static let IdentifierForSegueToBookContent = "To Book Content"
+    
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     
@@ -33,4 +36,6 @@ class Settings {
     // Server and API names
     static let ServerIP = "http://52.69.172.155/"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
+    
+    static let FontFileName = "FileNameForTest.ttf"
 }

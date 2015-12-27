@@ -64,7 +64,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bookTitleLabel" destination="WqY-zl-oQZ" id="Xxx-rY-0kN"/>
-                                            <segue destination="2nG-nP-ieh" kind="show" id="7Wc-aw-wzl"/>
+                                            <segue destination="2nG-nP-ieh" kind="show" identifier="To Book Content" id="7Wc-aw-wzl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

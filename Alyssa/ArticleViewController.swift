@@ -18,9 +18,12 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
     }
     
+    var fontFileURL: NSURL!
+    
     var books: [String] = ["小王子", "红楼梦"]
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
+        fetchLatestFont()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -40,4 +43,123 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
     }
+    
+    func fetchLatestFont() {
+        if !Reachability.isConnectedToNetwork() {
+            
+            // Notify users there's error with network
+            let alert = UIAlertController(title: "网络连接错误", message: "无法更新个人字体信息，请检查你的网络连接", preferredStyle: UIAlertControllerStyle.Alert)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+            let delay = 1.5 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue(), {
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            })
+            
+        } else {
+            let url = Settings.ServerIP + Settings.APIFetchingLatestFont
+            print(url)
+            
+            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+            let session = NSURLSession.sharedSession()
+            request.HTTPMethod = "POST"
+            
+            let params = NSMutableDictionary()
+            
+            // TODO
+            params["fontName"] = "haha"
+            
+            do {
+                request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0))
+            }  catch  {
+                print(error)
+            }
+            
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            
+            let task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    var err: NSError?
+                    var json:NSDictionary?
+                    do{
+                        json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+                    }catch{
+                        print(error)
+                        err = error as NSError
+                    }
+                    
+                    // Did the JSONObjectWithData constructor return an error? If so, log the error to the console
+                    if(err != nil) {
+                        print("Response: \(response)")
+                        let strData = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                        print("Body: \(strData!)")
+                        print(err!.localizedDescription)
+                        let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                        print("Error could not parse JSON: '\(jsonStr)'")
+                        
+                    } else {
+                        
+                        // The JSONObjectWithData constructor didn't return an error. But, we should still
+                        // check and make sure that json has a value using optional binding.
+                        if let parseJSON = json {
+                            // Okay, the parsedJSON is here, let's get the value for 'success' out of it
+                            if let fresh = parseJSON["fresh"] as? Bool {
+                                print("Fresh: \(fresh)")
+                                
+                                if !fresh {
+                                    
+                                    if let fontString = parseJSON["font"] as? String {
+                                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                                            self.saveFontDataToFileSystem(fontData)
+                                        } else {
+                                            print("Failed convert base64 string to NSData")
+                                        }
+                                    } else {
+                                        print("cannot convert data to String")
+                                    }
+                                }
+                            }
+                            return
+                        }
+                        else {
+                            // Woa, okay the json object was nil, something went worng. Maybe the server isn't running?
+                            let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                            print("Error could not parse JSON: \(jsonStr)")
+                        }
+                    }
+                }
+            })
+            
+            task.resume()
+        }
+    }
+    
+    func saveFontDataToFileSystem(fontData: NSData) {
+        if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
+            fontFileURL = docsDir.URLByAppendingPathComponent(Settings.FontFileName)
+            
+            if !fontData.writeToURL(fontFileURL, atomically: true) {
+                print("Failed to save font", self.fontFileURL.absoluteString)
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            if identifier == Settings.IdentifierForSegueToBookContent {
+                var destination = segue.destinationViewController
+                // this next if-statement makes sure the segue prepares properly even
+                //   if the MVC we're seguing to is wrapped in a UINavigationController
+                if let navCon = destination as? UINavigationController {
+                    destination = navCon.visibleViewController!
+                }
+                if let bcvc = destination as? BookContentViewController {
+                    bcvc.fontFileURL = self.fontFileURL
+                }
+            }
+        }
+    }
+    
 }
