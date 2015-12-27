@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="695" y="-783"/>
         </scene>
-        <!--图书-->
+        <!--阅读-->
         <scene sceneID="8zf-2x-9bc">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="diV-0c-rto" customClass="ArticleViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
@@ -90,7 +90,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="图书" id="5Uv-Mo-6b8">
+                    <navigationItem key="navigationItem" title="阅读" id="5Uv-Mo-6b8">
                         <barButtonItem key="rightBarButtonItem" title="更新字体" id="u52-d5-E4p">
                             <connections>
                                 <action selector="updateMyFont:" destination="diV-0c-rto" id="6Fq-Bc-oaX"/>
@@ -277,11 +277,11 @@ II
             </objects>
             <point key="canvasLocation" x="273" y="691"/>
         </scene>
-        <!--图书-->
+        <!--阅读-->
         <scene sceneID="1fQ-XS-ZAw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BRi-MB-4Vy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="图书" image="book" selectedImage="book-selected" id="r6y-0c-C5Z"/>
+                    <tabBarItem key="tabBarItem" title="阅读" image="book" selectedImage="book-selected" id="r6y-0c-C5Z"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mg4-zE-6Qv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

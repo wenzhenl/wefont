@@ -19,7 +19,7 @@ class BookContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if fontFileURL != nil {
-            bookContentView.font = UIFont(name: "FZJingLeiS-R-GB", size: 20)
+            bookContentView.font = UIFont(name: "Leeyukuang", size: 20)
         } else {
             bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
