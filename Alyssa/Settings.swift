@@ -11,6 +11,9 @@ import UIKit
 
 class Settings {
     
+    // MARK - Identifiers for table cells
+    static let IdentifierForBookTitleCell = "Book Title Table Cell"
+    
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */; };
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
 		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				0A67F0421C2BF51100526E1B /* HomeViewController.swift */,
 				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
 				0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */,
+				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
 				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
@@ -271,6 +274,7 @@
 				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
 				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
+				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
 				0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
@@ -504,6 +508,7 @@
 				0A67F0671C2BF51100526E1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A67F0681C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +517,7 @@
 				0A67F06A1C2BF51100526E1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0A67F06B1C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +526,7 @@
 				0A67F06D1C2BF51100526E1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
