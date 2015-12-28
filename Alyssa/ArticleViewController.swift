@@ -135,30 +135,34 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     
        
     func saveFontDataToFileSystem(fontData: NSData) {
-        if let fontFilePath = UserProfile.fontFilePath {
+        if let fontFileURL = UserProfile.fontFileURL {
             
             let fileManager = NSFileManager.defaultManager()
-            if fileManager.fileExistsAtPath(fontFilePath) {
+            let fontFilePath = fontFileURL.path
+            if fileManager.fileExistsAtPath(fontFilePath!) {
                 do {
-                    try fileManager.removeItemAtPath(fontFilePath)
+                    try fileManager.removeItemAtPath(fontFilePath!)
+                    print("Successfully deleted existing font file")
                 }
                 catch {
                     print("Cannot delete font file at ", fontFilePath)
                 }
+            } else {
+                print("No existing font file")
             }
             
-            if !fontData.writeToFile(fontFilePath, atomically: true) {
+            if !fontData.writeToURL(fontFileURL, atomically: true) {
                 print("Failed to save font", fontFilePath)
             } else {
-                updateFont(fontFilePath)
+                updateFont(fontFileURL)
             }
         }
     }
     
-    func updateFont(fontFilePath: String) {
-        let fontData: NSData? = NSData(contentsOfFile: fontFilePath)
+    func updateFont(fontFileURL: NSURL) {
+        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
         if fontData == nil {
-            print("Failed to load saved font:", fontFilePath)
+            print("Failed to load saved font:", fontFileURL.absoluteString)
         }
         else {
             var error: Unmanaged<CFError>?
@@ -168,7 +172,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             if !CTFontManagerRegisterGraphicsFont(font, &error) {
                 print("Failed to register font, error", error)
             } else {
-                print("Successfully saved and registered font", fontFilePath)
+                print("Successfully saved and registered font", fontFileURL.absoluteString)
             }
         }
     }
