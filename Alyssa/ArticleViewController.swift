@@ -44,79 +44,77 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func fetchLatestFont() {
         
-        let params = NSMutableDictionary()
-        
-        // TODO
-        params["fontName"] = UserProfile.currentFontName
-        
-        let errInfoForNetwork = "无法更新个人字体信息，请检查你的网络连接"
-        
-        Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params)
-        if let parseJSON = Settings.returnedJSON {
+        if UserProfile.userEmailAddress != nil && UserProfile.userPassword != nil && UserProfile.activeFontName != nil {
             
-            // Okay, the parsedJSON is here, let's get the value for 'success' out of it
-            if let fresh = parseJSON["fresh"] as? Bool {
-                print("Fresh: \(fresh)")
+            let params = NSMutableDictionary()
+            
+            params["userEmailAddress"] = UserProfile.userEmailAddress!
+            params["userPassword"] = UserProfile.userPassword!
+            params["fontName"] = UserProfile.activeFontName!
+            if let lastModifiedTime = getLastModifiedTimeOf(UserProfile.activeFontName!) {
+                 params["lastModifiedTime"] = lastModifiedTime
+            }
+            
+            let errInfoForNetwork = "无法更新个人字体信息，请检查你的网络连接"
+            
+            if let parseJSON = Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params) {
                 
-                if !fresh {
+                // Okay, the parsedJSON is here, let's check if the font is still fresh
+                if let fresh = parseJSON["fresh"] as? Bool {
+                    print("Fresh: \(fresh)")
                     
-                    if let fontString = parseJSON["font"] as? String {
-                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
-                            self.saveFontDataToFileSystem(fontData)
+                    if !fresh {
+                        
+                        if let fontString = parseJSON["font"] as? String {
+                            if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                                if let lastModifiedTime = parseJSON["lastModifiedTime"] as? Double {
+                                    self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                                }
+                            } else {
+                                print("Failed convert base64 string to NSData")
+                            }
                         } else {
-                            print("Failed convert base64 string to NSData")
+                            print("cannot convert data to String")
                         }
-                    } else {
-                        print("cannot convert data to String")
                     }
                 }
+            } else {
+                print("Cannot fetch data")
             }
-        } else {
-            print("Cannot fetch data")
         }
     }
     
-       
-    func saveFontDataToFileSystem(fontData: NSData) {
+    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
         if let fontFileURL = UserProfile.fontFileURL {
             
-            let fileManager = NSFileManager.defaultManager()
-            let fontFilePath = fontFileURL.path
-            if fileManager.fileExistsAtPath(fontFilePath!) {
-                do {
-                    try fileManager.removeItemAtPath(fontFilePath!)
-                    print("Successfully deleted existing font file")
-                }
-                catch {
-                    print("Cannot delete font file at ", fontFilePath)
-                }
-            } else {
-                print("No existing font file")
-            }
-            
             if !fontData.writeToURL(fontFileURL, atomically: true) {
-                print("Failed to save font", fontFilePath)
+                print("Failed to save font", fontFileURL.absoluteString)
             } else {
-                updateFont(fontFileURL)
+                updateLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
+                Settings.updateFont(fontFileURL)
             }
         }
     }
     
-    func updateFont(fontFileURL: NSURL) {
-        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
-        if fontData == nil {
-            print("Failed to load saved font:", fontFileURL.absoluteString)
-        }
-        else {
-            var error: Unmanaged<CFError>?
-            let provider: CGDataProviderRef = CGDataProviderCreateWithCFData(fontData)!
-            let font: CGFontRef = CGFontCreateWithDataProvider(provider)!
-            
-            if !CTFontManagerRegisterGraphicsFont(font, &error) {
-                print("Failed to register font, error", error)
-            } else {
-                print("Successfully saved and registered font", fontFileURL.absoluteString)
+    func getLastModifiedTimeOf(fontName: String) -> Double? {
+        if let lastModifiedTimeOfFonts = NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) {
+            if let modifiedTime = lastModifiedTimeOfFonts[fontName] {
+                return modifiedTime as? Double
             }
+        }
+        return nil
+    }
+    
+    func updateLastModifiedTimeOf(fontName: String, newTime: Double) {
+        
+        if let lastModifiedTimeOfFonts = NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) {
+            let newLastModifiedTimeOfFonts = NSMutableDictionary(dictionary: lastModifiedTimeOfFonts)
+            newLastModifiedTimeOfFonts[fontName] = newTime
+            NSUserDefaults.standardUserDefaults().setObject(newLastModifiedTimeOfFonts, forKey: Settings.keyForFontsLastModifiedTimeInDefaultUser)
+        } else {
+            let newLastModifiedTimeOfFonts = NSMutableDictionary()
+            newLastModifiedTimeOfFonts[fontName] = newTime
+            NSUserDefaults.standardUserDefaults().setObject(newLastModifiedTimeOfFonts, forKey: Settings.keyForFontsLastModifiedTimeInDefaultUser)
         }
     }
     

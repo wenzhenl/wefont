@@ -18,7 +18,7 @@ class BookContentViewController: UIViewController {
         super.viewDidLoad()
     
         if UserProfile.fontFileURL != nil {
-            bookContentView.font = UIFont(name: UserProfile.currentFontName!, size: 30)
+            bookContentView.font = UIFont(name: UserProfile.activeFontName!, size: 30)
         } else {
             bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }

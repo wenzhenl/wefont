@@ -9,12 +9,16 @@
 import Foundation
 
 class UserProfile {
-    static var currentFontName: String?
+    static var userEmailAddress: String?
+    
+    static var userPassword: String?
+    
+    static var activeFontName: String?
     
     static var fontFileURL: NSURL? {
-        if self.currentFontName != nil {
+        if self.activeFontName != nil {
             if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
-                let newFontFileURL = docsDir.URLByAppendingPathComponent(currentFontName! + ".ttf")
+                let newFontFileURL = docsDir.URLByAppendingPathComponent(activeFontName! + ".ttf")
                 return newFontFileURL
             }
         }

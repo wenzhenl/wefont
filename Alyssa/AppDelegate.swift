@@ -13,10 +13,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         application.statusBarStyle = .LightContent
+        
+        if let activeFont = NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForActiveFontInDefaultUser) {
+            UserProfile.activeFontName = activeFont
+            Settings.updateFont(UserProfile.fontFileURL!)
+        }
+        
+        UserProfile.userEmailAddress = "liyukuang@gmail.com"
+        UserProfile.userPassword = "1233"
+        
         return true
     }
 

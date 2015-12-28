@@ -21,13 +21,15 @@ class HomeViewController: UIViewController {
     @IBAction func addNewFont(sender: UIBarButtonItem) {
         // TODO - simulate adding font here
         let newFontName = "FZJingLeiS-R-GB"
-        UserProfile.currentFontName = newFontName
+        
+        NSUserDefaults.standardUserDefaults().setValue(newFontName, forKey: Settings.keyForActiveFontInDefaultUser)
+      
+        UserProfile.activeFontName = newFontName
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

@@ -40,12 +40,14 @@ class Settings {
     static let FontFileName = "FileNameForTest.ttf"
     
     // Keys for UIDefaultUser
-    static let keyForFontPathInDefaultUser = "keyForFontPath"
+    static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
+    static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     
-    static var returnedJSON: NSDictionary?
     // Common functions used by all viewcontroller
-    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary) {
+    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary) -> NSDictionary? {
+        
+        var retrievedJSON: NSDictionary?
         
         if !Reachability.isConnectedToNetwork() {
             
@@ -97,12 +99,34 @@ class Settings {
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
                     } else {
-                        self.returnedJSON = json
+                        retrievedJSON = json
+                        if retrievedJSON != nil {
+                            print("Actually we did get data!")
+                        }
                     }
                 }
             })
             
             task.resume()
+        }
+        return retrievedJSON
+    }
+    
+    static func updateFont(fontFileURL: NSURL) {
+        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
+        if fontData == nil {
+            print("Failed to load saved font:", fontFileURL.absoluteString)
+        }
+        else {
+            var error: Unmanaged<CFError>?
+            let provider: CGDataProviderRef = CGDataProviderCreateWithCFData(fontData)!
+            let font: CGFontRef = CGFontCreateWithDataProvider(provider)!
+            
+            if !CTFontManagerRegisterGraphicsFont(font, &error) {
+                print("Failed to register font, error", error)
+            } else {
+                print("Successfully registered font", fontFileURL.absoluteString)
+            }
         }
     }
 }
