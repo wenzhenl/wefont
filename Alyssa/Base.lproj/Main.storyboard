@@ -19,7 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Alyssa" id="BPt-io-6LU"/>
+                    <navigationItem key="navigationItem" title="Alyssa" id="BPt-io-6LU">
+                        <barButtonItem key="rightBarButtonItem" title="新建" id="rTL-Sh-22l">
+                            <connections>
+                                <action selector="addNewFont:" destination="BYZ-38-t0r" id="uWg-vK-UMR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

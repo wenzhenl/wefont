@@ -16,13 +16,13 @@ class HomeViewController: UIViewController {
         self.navigationController!.navigationBar.barTintColor = Settings.ColorOfStamp
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
-        
+    }
+
+    @IBAction func addNewFont(sender: UIBarButtonItem) {
         // TODO - simulate adding font here
-        
         let newFontName = "FZJingLeiS-R-GB"
         UserProfile.currentFontName = newFontName
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
