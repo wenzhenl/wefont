@@ -18,8 +18,6 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
     }
     
-    var fontFileURL: NSURL!
-    
     var books: [String] = ["小王子", "红楼梦"]
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
@@ -68,7 +66,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             let params = NSMutableDictionary()
             
             // TODO
-            params["fontName"] = "haha"
+            params["fontName"] = UserProfile.currentFontName
             
             do {
                 request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(rawValue: 0))
@@ -137,21 +135,23 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func saveFontDataToFileSystem(fontData: NSData) {
-        if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
-            fontFileURL = docsDir.URLByAppendingPathComponent(Settings.FontFileName)
-            
-            if !fontData.writeToURL(fontFileURL, atomically: true) {
-                print("Failed to save font", self.fontFileURL.absoluteString)
-            } else {
-                updateFont()
+        if let fontURLs = NSUserDefaults.standardUserDefaults().objectForKey(Settings.keyForFontPathInDefaultUser) {
+            if let currentFontName = UserProfile.currentFontName {
+                if let fontFilePath = fontURLs[currentFontName] as? String {
+                    if !fontData.writeToFile(fontFilePath, atomically: true) {
+                        print("Failed to save font", fontFilePath)
+                    } else {
+                        updateFont(fontFilePath)
+                    }
+                }
             }
         }
     }
     
-    func updateFont() {
-        let fontData: NSData? = NSData(contentsOfURL: fontFileURL)
+    func updateFont(fontFilePath: String) {
+        let fontData: NSData? = NSData(contentsOfFile: fontFilePath)
         if fontData == nil {
-            print("Failed to load saved font:", fontFileURL.absoluteString)
+            print("Failed to load saved font:", fontFilePath)
         }
         else {
             var error: Unmanaged<CFError>?
@@ -161,7 +161,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             if !CTFontManagerRegisterGraphicsFont(font, &error) {
                 print("Failed to register font, error", error)
             } else {
-                print("Successfully saved and registered font", fontFileURL.absoluteString)
+                print("Successfully saved and registered font", fontFilePath)
             }
         }
     }
@@ -176,7 +176,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destination = navCon.visibleViewController!
                 }
                 if let bcvc = destination as? BookContentViewController {
-                    bcvc.fontFileURL = self.fontFileURL
+//                    bcvc.fontFileURL = self.fontFileURL
                 }
             }
         }

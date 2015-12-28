@@ -38,4 +38,7 @@ class Settings {
     static let APIFetchingLatestFont = "fetch_latest_font.php"
     
     static let FontFileName = "FileNameForTest.ttf"
+    
+    static let keyForFontPathInDefaultUser = "keyForFontPath"
+    static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
 }
