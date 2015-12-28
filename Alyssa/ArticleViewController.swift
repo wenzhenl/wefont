@@ -19,7 +19,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     var books: [String] {
-        return Array(UserProfile.booksPaths!.keys)
+        return Settings.defaultSampleBooks
     }
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
@@ -60,6 +60,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             let errInfoForNetwork = "无法更新个人字体信息，请检查你的网络连接"
             
            Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: handleRetrivedFontData)
+        } else {
+            Settings.popupAlert(self, title: "无法更新个人字体信息", message: "你还没有创建任何字体")
         }
     }
     
@@ -84,6 +86,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print("cannot convert data to String")
                     }
                 }
+            } else {
+                Settings.popupAlert(self, title: "无需更新字体", message: "当前字体已经是最新版本")
             }
         } else {
             print("Cannot fetch data")
@@ -99,6 +103,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("Successfully saved font ", fontFileURL.absoluteString)
                 updateLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
                 Settings.updateFont(fontFileURL)
+                Settings.popupAlert(self, title: "完成字体更新", message: "成功更新到最新版本")
             }
         }
     }

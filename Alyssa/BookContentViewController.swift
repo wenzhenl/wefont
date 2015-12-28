@@ -25,13 +25,9 @@ class BookContentViewController: UIViewController {
         
         bookContentView.editable = false
         
-        print("Path ", UserProfile.booksPaths![bookTitle]!)
-//        let url = NSURL(fileURLWithPath: UserProfile.booksPaths![bookTitle]!)
-        let url = NSURL(string: UserProfile.booksPaths![bookTitle]!)
-        print("url", url)
+        let url = NSBundle.mainBundle().URLForResource(bookTitle, withExtension: "txt")
         do {
-            let text = try String(contentsOfURL: url!)
-            bookContentView.text = text
+            bookContentView.text = try String(contentsOfURL: url!)
         } catch {
             print(error)
         }

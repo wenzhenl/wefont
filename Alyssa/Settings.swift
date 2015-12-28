@@ -46,20 +46,16 @@ class Settings {
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     
+    // System default books
+    static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
+    
     // Common functions used by all viewcontroller
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
         
         if !Reachability.isConnectedToNetwork() {
             
             // Notify users there's error with network
-            let alert = UIAlertController(title: "网络连接错误", message: errMsgForNetwork, preferredStyle: UIAlertControllerStyle.Alert)
-            viewController.presentViewController(alert, animated: true, completion: nil)
-            
-            let delay = 1.5 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            })
+            popupAlert(viewController, title: "网络连接错误", message: errMsgForNetwork)
             
         } else {
            
@@ -106,6 +102,17 @@ class Settings {
             
             task.resume()
         }
+    }
+    
+    static func popupAlert(viewController: UIViewController, title: String?, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        viewController.presentViewController(alert, animated: true, completion: nil)
+        
+        let delay = 1.5 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     static func updateFont(fontFileURL: NSURL) {
