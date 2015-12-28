@@ -45,9 +45,7 @@ class Settings {
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     
     // Common functions used by all viewcontroller
-    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary) -> NSDictionary? {
-        
-        var retrievedJSON: NSDictionary?
+    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
         
         if !Reachability.isConnectedToNetwork() {
             
@@ -99,17 +97,13 @@ class Settings {
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
                     } else {
-                        retrievedJSON = json
-                        if retrievedJSON != nil {
-                            print("Actually we did get data!")
-                        }
+                        retrivedJSONHandler(json)
                     }
                 }
             })
             
             task.resume()
         }
-        return retrievedJSON
     }
     
     static func updateFont(fontFileURL: NSURL) {

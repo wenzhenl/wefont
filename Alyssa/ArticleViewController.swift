@@ -57,30 +57,34 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             let errInfoForNetwork = "无法更新个人字体信息，请检查你的网络连接"
             
-            if let parseJSON = Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params) {
+           Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: handleRetrivedFontData)
+        }
+    }
+    
+    func handleRetrivedFontData(json: NSDictionary?) {
+        if let parseJSON = json {
+            
+            // Okay, the parsedJSON is here, let's check if the font is still fresh
+            if let fresh = parseJSON["fresh"] as? Bool {
+                print("Fresh: \(fresh)")
                 
-                // Okay, the parsedJSON is here, let's check if the font is still fresh
-                if let fresh = parseJSON["fresh"] as? Bool {
-                    print("Fresh: \(fresh)")
+                if !fresh {
                     
-                    if !fresh {
-                        
-                        if let fontString = parseJSON["font"] as? String {
-                            if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
-                                if let lastModifiedTime = parseJSON["lastModifiedTime"] as? Double {
-                                    self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
-                                }
-                            } else {
-                                print("Failed convert base64 string to NSData")
+                    if let fontString = parseJSON["font"] as? String {
+                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                            if let lastModifiedTime = parseJSON["lastModifiedTime"] as? Double {
+                                self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
                             }
                         } else {
-                            print("cannot convert data to String")
+                            print("Failed convert base64 string to NSData")
                         }
+                    } else {
+                        print("cannot convert data to String")
                     }
                 }
-            } else {
-                print("Cannot fetch data")
             }
+        } else {
+            print("Cannot fetch data")
         }
     }
     
