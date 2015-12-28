@@ -16,15 +16,11 @@ class BookContentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
-        
-        if let fontURLs = NSUserDefaults.standardUserDefaults().objectForKey(Settings.keyForFontPathInDefaultUser) {
-            if let currentFontName = UserProfile.currentFontName {
-                if let _ = fontURLs[currentFontName] as? String {
-                     bookContentView.font = UIFont(name: currentFontName, size: 20)
-                }
-            }
+    
+        if UserProfile.fontFilePath != nil {
+            bookContentView.font = UIFont(name: UserProfile.currentFontName!, size: 30)
+        } else {
+            bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
     }
 }

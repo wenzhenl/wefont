@@ -96,7 +96,6 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                         print(err!.localizedDescription)
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
-                        
                     } else {
                         
                         // The JSONObjectWithData constructor didn't return an error. But, we should still
@@ -134,16 +133,24 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+       
     func saveFontDataToFileSystem(fontData: NSData) {
-        if let fontURLs = NSUserDefaults.standardUserDefaults().objectForKey(Settings.keyForFontPathInDefaultUser) {
-            if let currentFontName = UserProfile.currentFontName {
-                if let fontFilePath = fontURLs[currentFontName] as? String {
-                    if !fontData.writeToFile(fontFilePath, atomically: true) {
-                        print("Failed to save font", fontFilePath)
-                    } else {
-                        updateFont(fontFilePath)
-                    }
+        if let fontFilePath = UserProfile.fontFilePath {
+            
+            let fileManager = NSFileManager.defaultManager()
+            if fileManager.fileExistsAtPath(fontFilePath) {
+                do {
+                    try fileManager.removeItemAtPath(fontFilePath)
                 }
+                catch {
+                    print("Cannot delete font file at ", fontFilePath)
+                }
+            }
+            
+            if !fontData.writeToFile(fontFilePath, atomically: true) {
+                print("Failed to save font", fontFilePath)
+            } else {
+                updateFont(fontFilePath)
             }
         }
     }

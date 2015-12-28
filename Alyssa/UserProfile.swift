@@ -10,4 +10,14 @@ import Foundation
 
 class UserProfile {
     static var currentFontName: String?
+    
+    static var fontFilePath: String? {
+        if self.currentFontName != nil {
+            if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
+                let newFontFileURL = docsDir.URLByAppendingPathComponent(currentFontName! + ".ttf")
+                return newFontFileURL.absoluteString
+            }
+        }
+        return nil
+    }
 }
