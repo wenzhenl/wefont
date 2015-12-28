@@ -17,14 +17,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.statusBarStyle = .LightContent
         
-        if let activeFont = NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForActiveFontInDefaultUser) {
-            UserProfile.activeFontName = activeFont
+        if UserProfile.activeFontName != nil {
             Settings.updateFont(UserProfile.fontFileURL!)
         }
         
         UserProfile.userEmailAddress = "liyukuang@gmail.com"
         UserProfile.userPassword = "1233"
-        
+        if UserProfile.booksPaths != nil {
+            UserProfile.booksPaths!["小王子"] = NSBundle.mainBundle().URLForResource("xiaowangzi", withExtension: "txt")!.absoluteString
+            print("original url ", NSBundle.mainBundle().URLForResource("xiaowangzi", withExtension: "txt")!)
+        } else {
+            UserProfile.booksPaths = ["小王子" :NSBundle.mainBundle().URLForResource("xiaowangzi", withExtension: "txt")!.absoluteString]
+        }
         return true
     }
 

@@ -22,5 +22,18 @@ class BookContentViewController: UIViewController {
         } else {
             bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
+        
+        bookContentView.editable = false
+        
+        print("Path ", UserProfile.booksPaths![bookTitle]!)
+//        let url = NSURL(fileURLWithPath: UserProfile.booksPaths![bookTitle]!)
+        let url = NSURL(string: UserProfile.booksPaths![bookTitle]!)
+        print("url", url)
+        do {
+            let text = try String(contentsOfURL: url!)
+            bookContentView.text = text
+        } catch {
+            print(error)
+        }
     }
 }

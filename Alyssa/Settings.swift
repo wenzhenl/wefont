@@ -40,6 +40,8 @@ class Settings {
     static let FontFileName = "FileNameForTest.ttf"
     
     // Keys for UIDefaultUser
+    static let keyForLaunchedBeforeInDefaultUser = "keyForLaunchedBefore"
+    static let keyForBooksInDefaultUser = "keyForBooks"
     static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"

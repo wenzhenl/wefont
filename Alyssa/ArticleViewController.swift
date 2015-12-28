@@ -18,7 +18,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
     }
     
-    var books: [String] = ["小王子", "红楼梦"]
+    var books: [String] {
+        return Array(UserProfile.booksPaths!.keys)
+    }
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
         fetchLatestFont()
@@ -94,6 +96,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             if !fontData.writeToURL(fontFileURL, atomically: true) {
                 print("Failed to save font", fontFileURL.absoluteString)
             } else {
+                print("Successfully saved font ", fontFileURL.absoluteString)
                 updateLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
                 Settings.updateFont(fontFileURL)
             }
@@ -132,7 +135,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                     destination = navCon.visibleViewController!
                 }
                 if let bcvc = destination as? BookContentViewController {
-//                    bcvc.fontFileURL = self.fontFileURL
+                    if let bookTitleCell = sender as? BookTitleTableViewCell {
+                        bcvc.bookTitle = bookTitleCell.bookTitleLabel.text
+                    }
                 }
             }
         }

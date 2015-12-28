@@ -21,8 +21,6 @@ class HomeViewController: UIViewController {
     @IBAction func addNewFont(sender: UIBarButtonItem) {
         // TODO - simulate adding font here
         let newFontName = "FZJingLeiS-R-GB"
-        
-        NSUserDefaults.standardUserDefaults().setValue(newFontName, forKey: Settings.keyForActiveFontInDefaultUser)
       
         UserProfile.activeFontName = newFontName
     }
