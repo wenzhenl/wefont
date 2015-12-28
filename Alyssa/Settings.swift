@@ -39,13 +39,13 @@ class Settings {
     
     static let FontFileName = "FileNameForTest.ttf"
     
+    // Keys for UIDefaultUser
     static let keyForFontPathInDefaultUser = "keyForFontPath"
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     
-    
-    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, API: String, params: NSDictionary ) -> NSDictionary? {
-        
-        var returnedJSON: NSDictionary?
+    static var returnedJSON: NSDictionary?
+    // Common functions used by all viewcontroller
+    static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary) {
         
         if !Reachability.isConnectedToNetwork() {
             
@@ -61,8 +61,7 @@ class Settings {
             
         } else {
            
-            
-            let url = Settings.ServerIP + API
+            let url = Settings.ServerIP + destinationURL
             print(url)
             
             let request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -98,14 +97,12 @@ class Settings {
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
                     } else {
-                        returnedJSON = json
+                        self.returnedJSON = json
                     }
                 }
             })
             
             task.resume()
         }
-        
-        return returnedJSON
     }
 }
