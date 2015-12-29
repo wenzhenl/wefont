@@ -17,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.statusBarStyle = .LightContent
         
+        let authencatedUser = true
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var initialViewController: UIViewController?
+        if authencatedUser {
+           initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+        } else {
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
+        }
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
+        
         if UserProfile.activeFontName != nil {
             Settings.updateFont(UserProfile.fontFileURL!)
         }

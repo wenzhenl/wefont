@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WG0-6Z-vML">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yg1-Bc-2bf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -262,9 +262,6 @@ II
                                         <state key="normal" title="登录">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <segue destination="yg1-Bc-2bf" kind="show" id="b7g-ZU-gvl"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -384,7 +381,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTz-JR-6lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1359" y="-1313"/>
+            <point key="canvasLocation" x="-2479" y="-1409"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="qCn-0L-JM5">
@@ -479,7 +476,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R3x-pN-VPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="440" y="-1510"/>
+            <point key="canvasLocation" x="-892" y="-1450"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="e2G-UW-pGM">
@@ -603,7 +600,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjM-Dp-IzS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2044" y="-378"/>
+            <point key="canvasLocation" x="-1648" y="-518"/>
         </scene>
         <!--Recover Password View Controller-->
         <scene sceneID="DXV-gF-FTs">
@@ -730,12 +727,12 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrn-vx-IWa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-429" y="-1339"/>
+            <point key="canvasLocation" x="-1733" y="-1443"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6I1-xF-EcD">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yg1-Bc-2bf" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Tab Bar Controller" automaticallyAdjustsScrollViewInsets="NO" id="yg1-Bc-2bf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="bQP-sA-pO3">
                         <autoresizingMask key="autoresizingMask"/>
@@ -836,7 +833,7 @@ II
         <!--Navigation Controller-->
         <scene sceneID="HZA-f4-NII">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WG0-6Z-vML" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Login View Controller" automaticallyAdjustsScrollViewInsets="NO" id="WG0-6Z-vML" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gXk-vw-g68">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -849,7 +846,7 @@ II
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Du-1T-zhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2286" y="-1297"/>
+            <point key="canvasLocation" x="-3318" y="-1409"/>
         </scene>
     </scenes>
     <resources>

@@ -17,6 +17,10 @@ class Settings {
     // MARK - Identifiers for segues
     static let IdentifierForSegueToBookContent = "To Book Content"
     
+    
+    // MARK - Identifiers for storyboards
+    static let IdentifierForTabViewController = "Tab Bar Controller"
+    static let IdentifierForLoginViewController = "Login View Controller"
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     
