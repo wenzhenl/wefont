@@ -262,6 +262,9 @@ II
                                         <state key="normal" title="登录">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="login" destination="fAj-KI-nC3" eventType="touchUpInside" id="mFN-xj-jhd"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -752,7 +755,7 @@ II
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4D-Yo-ync" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-955" y="197"/>
+            <point key="canvasLocation" x="-2399" y="313"/>
         </scene>
         <!--主页-->
         <scene sceneID="Ed6-Vs-qBd">

@@ -31,6 +31,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func login() {
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        
+        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+        appDelegate.window?.rootViewController = initialViewController
+        appDelegate.window?.makeKeyAndVisible()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         application.statusBarStyle = .LightContent
         
-        let authencatedUser = true
+        let authencatedUser = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
