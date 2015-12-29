@@ -1,5 +1,5 @@
 //
-//  RegisterViewController.swift
+//  RecoverPasswordViewController.swift
 //  Alyssa
 //
 //  Created by Wenzheng Li on 12/28/15.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var joinButtonContainerView: UIView!
+    @IBOutlet weak var recoverPasswordButtonContainerView: UIView!
     
     @IBOutlet weak var textFieldContainerView: UIView!
     
@@ -20,21 +20,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBOutlet weak var passwordTextField: UITextField! {
+    @IBOutlet weak var validationCodeTextField: UITextField! {
         didSet {
-            passwordTextField.delegate = self
-        }
-    }
-    
-    @IBOutlet weak var confirmedPasswordTextField: UITextField! {
-        didSet {
-            confirmedPasswordTextField.delegate = self
-        }
-    }
-    
-    @IBOutlet weak var nickNameTextField: UITextField! {
-        didSet {
-            nickNameTextField.delegate = self
+            validationCodeTextField.delegate = self
         }
     }
     
@@ -43,22 +31,25 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        joinButtonContainerView.backgroundColor = Settings.ColorOfStamp
-        joinButtonContainerView.layer.cornerRadius = 4
+        iconImageView.image = UIImage(named: "iTunesArtwork")
+        
+        recoverPasswordButtonContainerView.backgroundColor = Settings.ColorOfStamp
+        recoverPasswordButtonContainerView.layer.cornerRadius = 4
         
         textFieldContainerView.backgroundColor = UIColor.clearColor()
         textFieldContainerView.layer.cornerRadius = 4
         textFieldContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textFieldContainerView.layer.borderWidth = 1
-        
-        iconImageView.image = UIImage(named: "iTunesArtwork")
     }
 
-    @IBAction func joinAlyssa() {
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func requestValidationCode() {
+    }
+
+    @IBAction func recoverPassword() {
     }
 }
