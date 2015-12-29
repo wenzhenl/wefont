@@ -8,30 +8,29 @@
 
 import UIKit
 
-class CharCaptureViewController: UIViewController {
+class CharCaptureViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var toolbar: UIToolbar!
+    
+    @IBOutlet weak var currentCharContainerView: UIView!
+    @IBOutlet weak var currentCharTextField: UITextField! {
+        didSet {
+            currentCharTextField.delegate = self
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController!.navigationBar.barTintColor = Settings.ColorOfStamp
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        self.toolbar.tintColor = Settings.ColorOfStamp
+        self.currentCharContainerView.backgroundColor = UIColor.clearColor()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-
 }

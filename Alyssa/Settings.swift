@@ -52,6 +52,10 @@ class Settings {
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     
+    // UI related parameters
+    static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
+    
+    
     // System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     
