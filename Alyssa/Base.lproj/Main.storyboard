@@ -194,7 +194,7 @@ II
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xlT-YA-gvc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xlT-YA-gvc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -202,11 +202,11 @@ II
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u3i-Ji-PW5" id="ffB-CB-ZxW">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-9Q-Srr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="600" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <state key="normal" title="退出登录">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -330,13 +330,13 @@ II
                                 <rect key="frame" x="20" y="335" width="560" height="30"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3YB-ej-RoM">
-                                        <rect key="frame" x="0.0" y="0.0" width="139" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tc1-Af-IIp">
-                                        <rect key="frame" x="421" y="0.0" width="139" height="30"/>
+                                        <rect key="frame" x="385" y="0.0" width="175" height="30"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAL-i4-WuJ">
-                                        <rect key="frame" x="278" y="0.0" width="80" height="30"/>
+                                        <rect key="frame" x="297" y="0.0" width="80" height="30"/>
                                         <state key="normal" title="找回密码">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -345,7 +345,7 @@ II
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-ts-6IQ">
-                                        <rect key="frame" x="164" y="0.0" width="80" height="30"/>
+                                        <rect key="frame" x="183" y="0.0" width="80" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="N73-Ry-b7U"/>
                                             <constraint firstAttribute="width" constant="80" id="hpb-og-8An"/>
@@ -359,7 +359,7 @@ II
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="BVh-ts-6IQ" firstAttribute="leading" secondItem="3YB-ej-RoM" secondAttribute="trailing" constant="25" id="0Cl-fg-TND"/>
+                                    <constraint firstItem="BVh-ts-6IQ" firstAttribute="leading" secondItem="3YB-ej-RoM" secondAttribute="trailing" constant="8" symbolic="YES" id="0Cl-fg-TND"/>
                                     <constraint firstAttribute="trailing" secondItem="tc1-Af-IIp" secondAttribute="trailing" id="0oG-Nj-hdE"/>
                                     <constraint firstItem="gAL-i4-WuJ" firstAttribute="bottom" secondItem="tc1-Af-IIp" secondAttribute="bottom" id="8Nd-rH-CJp"/>
                                     <constraint firstItem="3YB-ej-RoM" firstAttribute="bottom" secondItem="tc1-Af-IIp" secondAttribute="bottom" id="CvU-1g-TdV"/>
@@ -368,7 +368,7 @@ II
                                     <constraint firstItem="tc1-Af-IIp" firstAttribute="centerY" secondItem="CbN-Ci-YbQ" secondAttribute="centerY" id="MiZ-DQ-XvY"/>
                                     <constraint firstItem="3YB-ej-RoM" firstAttribute="top" secondItem="tc1-Af-IIp" secondAttribute="top" id="NPz-if-0Sk"/>
                                     <constraint firstItem="BVh-ts-6IQ" firstAttribute="bottom" secondItem="3YB-ej-RoM" secondAttribute="bottom" id="Ome-hd-Pb4"/>
-                                    <constraint firstItem="tc1-Af-IIp" firstAttribute="leading" secondItem="gAL-i4-WuJ" secondAttribute="trailing" constant="63" id="SXe-eU-Gex"/>
+                                    <constraint firstItem="tc1-Af-IIp" firstAttribute="leading" secondItem="gAL-i4-WuJ" secondAttribute="trailing" constant="8" symbolic="YES" id="SXe-eU-Gex"/>
                                     <constraint firstItem="3YB-ej-RoM" firstAttribute="width" secondItem="tc1-Af-IIp" secondAttribute="width" id="SpM-hX-eyZ"/>
                                     <constraint firstItem="BVh-ts-6IQ" firstAttribute="top" secondItem="3YB-ej-RoM" secondAttribute="top" id="VTt-9b-Fzd"/>
                                     <constraint firstItem="BVh-ts-6IQ" firstAttribute="baseline" secondItem="gAL-i4-WuJ" secondAttribute="baseline" id="aCW-ef-Bb0"/>
@@ -426,9 +426,11 @@ II
                     <connections>
                         <outlet property="emailTextField" destination="ARn-A7-dtt" id="JA7-6H-AD3"/>
                         <outlet property="iconImageView" destination="Ten-GO-IBT" id="qEg-xN-jlT"/>
+                        <outlet property="joinAlyssaButton" destination="BVh-ts-6IQ" id="lfY-hl-zfW"/>
                         <outlet property="loginButton" destination="O2a-dh-mJ0" id="pkC-ua-bQn"/>
                         <outlet property="loginButtonContainerView" destination="TjY-3X-1Zz" id="VWi-Tc-beI"/>
                         <outlet property="passwordTextField" destination="DkA-IX-mG5" id="290-WD-eeq"/>
+                        <outlet property="recoverPasswordButton" destination="gAL-i4-WuJ" id="3Ja-c0-Lec"/>
                         <outlet property="textFieldContainerView" destination="VC9-es-fz8" id="xNe-Bv-H53"/>
                     </connections>
                 </viewController>

@@ -24,6 +24,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBOutlet weak var joinAlyssaButton: UIButton!
+    @IBOutlet weak var recoverPasswordButton: UIButton!
     
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
@@ -54,6 +56,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textFieldContainerView.layer.cornerRadius = 4
         textFieldContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textFieldContainerView.layer.borderWidth = 1
+        
+        recoverPasswordButton.titleLabel?.textAlignment = .Center
+        joinAlyssaButton.titleLabel?.textAlignment = .Center
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
