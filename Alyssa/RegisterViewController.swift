@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  RegisterViewController.swift
 //  Alyssa
 //
 //  Created by Wenzheng Li on 12/28/15.
@@ -8,13 +8,9 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var iconImageView: UIImageView!
-    
-    @IBOutlet weak var loginButtonContainerView: UIView!
-    
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var joinButtonContainerView: UIView!
     
     @IBOutlet weak var textFieldContainerView: UIView!
     
@@ -24,29 +20,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
     @IBOutlet weak var passwordTextField: UITextField! {
         didSet {
             passwordTextField.delegate = self
         }
     }
     
+    @IBOutlet weak var confirmedPasswordTextField: UITextField! {
+        didSet {
+            confirmedPasswordTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var nickNameTextField: UITextField! {
+        didSet {
+            nickNameTextField.delegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController!.navigationBar.barTintColor = Settings.ColorOfStamp
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
-
-        iconImageView.image = UIImage(named: "iTunesArtwork")
-        
-        loginButtonContainerView.backgroundColor = Settings.ColorOfStamp
-        loginButtonContainerView.layer.cornerRadius = 4
+        joinButtonContainerView.backgroundColor = Settings.ColorOfStamp
+        joinButtonContainerView.layer.cornerRadius = 4
         
         textFieldContainerView.backgroundColor = UIColor.clearColor()
         textFieldContainerView.layer.cornerRadius = 4
         textFieldContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textFieldContainerView.layer.borderWidth = 1
+        // Do any additional setup after loading the view.
+    }
+
+    @IBAction func joinAlyssa() {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -18,6 +18,8 @@
 		0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39E1C3142810057C38E /* gb2312.txt */; };
 		0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */; };
 		0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A21C3210330057C38E /* FieldContainerView.swift */; };
+		0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */; };
+		0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */; };
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
 		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
@@ -60,6 +62,8 @@
 		0A2CF39E1C3142810057C38E /* gb2312.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gb2312.txt; sourceTree = "<group>"; };
 		0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A2CF3A21C3210330057C38E /* FieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldContainerView.swift; sourceTree = "<group>"; };
+		0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTextFieldContainerView.swift; sourceTree = "<group>"; };
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -150,6 +154,8 @@
 				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
+				0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */,
+				0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */,
 				0A2CF3A21C3210330057C38E /* FieldContainerView.swift */,
 				0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */,
 				0A67F0471C2BF51100526E1B /* Assets.xcassets */,
@@ -321,9 +327,11 @@
 				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
 				0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */,
 				0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */,
+				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
 				0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
+				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
 				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
 				0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */,
 			);
