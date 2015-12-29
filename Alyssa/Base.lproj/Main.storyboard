@@ -633,15 +633,25 @@ II
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="centerX" secondItem="2e8-eO-Fjf" secondAttribute="centerX" id="0V2-1K-xat"/>
+                            <constraint firstItem="yIh-Ae-5nw" firstAttribute="top" secondItem="tEI-np-6mE" secondAttribute="bottom" constant="50" id="92W-SP-Fnz"/>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="centerY" secondItem="2e8-eO-Fjf" secondAttribute="centerY" id="CYF-ek-j1p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tEI-np-6mE" secondAttribute="trailing" id="ONO-UB-rGm"/>
                             <constraint firstItem="s2b-Nq-Av5" firstAttribute="width" secondItem="tEI-np-6mE" secondAttribute="width" id="Qaj-Jg-FRB"/>
+                            <constraint firstItem="yIh-Ae-5nw" firstAttribute="top" secondItem="tEI-np-6mE" secondAttribute="bottom" constant="150" id="Qup-k4-K5I"/>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="top" secondItem="s2b-Nq-Av5" secondAttribute="bottom" constant="15" id="b3g-HW-NsJ"/>
                             <constraint firstItem="s2b-Nq-Av5" firstAttribute="centerX" secondItem="2e8-eO-Fjf" secondAttribute="centerX" id="frd-I1-6fo"/>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="leading" secondItem="2e8-eO-Fjf" secondAttribute="leadingMargin" id="ho5-2c-dfa"/>
+                            <constraint firstItem="tEI-np-6mE" firstAttribute="centerY" secondItem="2e8-eO-Fjf" secondAttribute="centerY" id="qOO-ss-Sf5"/>
                             <constraint firstItem="1FM-vb-0FD" firstAttribute="top" secondItem="yIh-Ae-5nw" secondAttribute="bottom" constant="10" id="swq-u5-u2p"/>
                             <constraint firstAttribute="leadingMargin" secondItem="yIh-Ae-5nw" secondAttribute="leading" id="vBb-Ly-3Jy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CYF-ek-j1p"/>
+                                <exclude reference="92W-SP-Fnz"/>
+                                <exclude reference="Qup-k4-K5I"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="confirmedPasswordTextField" destination="7Tl-QG-Y1N" id="zKu-hI-Fyz"/>
