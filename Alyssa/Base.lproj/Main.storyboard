@@ -29,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1507" y="-783"/>
+            <point key="canvasLocation" x="1391" y="-943"/>
         </scene>
         <!--阅读-->
         <scene sceneID="8zf-2x-9bc">
@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkV-ra-u3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="638" y="1466"/>
+            <point key="canvasLocation" x="158" y="1298"/>
         </scene>
         <!--取字-->
         <scene sceneID="9qj-Pk-dpN">
@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664" y="-57"/>
+            <point key="canvasLocation" x="988" y="-161"/>
         </scene>
         <!--Book Content View Controller-->
         <scene sceneID="Bng-NR-byx">
@@ -180,7 +180,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wk-8e-hWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1723" y="1500"/>
+            <point key="canvasLocation" x="1135" y="1336"/>
         </scene>
         <!--我的-->
         <scene sceneID="sn0-GQ-Hwx">
@@ -193,13 +193,63 @@ II
                     <view key="view" contentMode="scaleToFill" id="TL1-0S-GLt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xlT-YA-gvc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Single Button Table Cell" id="u3i-Ji-PW5" customClass="SingleButtonTableViewCell" customModule="Alyssa" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u3i-Ji-PW5" id="ffB-CB-ZxW">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xab-9Q-Srr">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="退出登录">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Xab-9Q-Srr" firstAttribute="width" secondItem="ffB-CB-ZxW" secondAttribute="width" id="8Yu-dK-cFx"/>
+                                                <constraint firstItem="Xab-9Q-Srr" firstAttribute="centerY" secondItem="ffB-CB-ZxW" secondAttribute="centerY" id="Flm-pG-hjW"/>
+                                                <constraint firstItem="Xab-9Q-Srr" firstAttribute="centerX" secondItem="ffB-CB-ZxW" secondAttribute="centerX" id="HYO-B5-D9N"/>
+                                                <constraint firstItem="Xab-9Q-Srr" firstAttribute="height" secondItem="ffB-CB-ZxW" secondAttribute="height" id="Pme-Ha-mW4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="button" destination="Xab-9Q-Srr" id="nRh-Gn-PMY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8vI-Cz-rDa" id="DzA-rN-4ve"/>
+                                    <outlet property="delegate" destination="8vI-Cz-rDa" id="xwv-j6-jb8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xlT-YA-gvc" firstAttribute="height" secondItem="TL1-0S-GLt" secondAttribute="height" id="Efi-fk-54Z"/>
+                            <constraint firstItem="xlT-YA-gvc" firstAttribute="centerX" secondItem="TL1-0S-GLt" secondAttribute="centerX" id="LoE-oc-Xvm"/>
+                            <constraint firstItem="xlT-YA-gvc" firstAttribute="width" secondItem="TL1-0S-GLt" secondAttribute="width" id="cc2-rZ-Xoc"/>
+                            <constraint firstItem="xlT-YA-gvc" firstAttribute="top" secondItem="R5B-LF-b0j" secondAttribute="bottom" constant="189" id="e4L-Bk-Pu1"/>
+                            <constraint firstItem="xlT-YA-gvc" firstAttribute="centerY" secondItem="TL1-0S-GLt" secondAttribute="centerY" id="scy-8f-dYd"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="e4L-Bk-Pu1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="我的" id="OTN-ba-1kZ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fb-5d-ks5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="691"/>
+            <point key="canvasLocation" x="1184" y="619"/>
         </scene>
         <!--登录-->
         <scene sceneID="GzM-xv-N1U">
@@ -603,7 +653,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KjM-Dp-IzS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1648" y="-518"/>
+            <point key="canvasLocation" x="-2448" y="-426"/>
         </scene>
         <!--Recover Password View Controller-->
         <scene sceneID="DXV-gF-FTs">
@@ -755,7 +805,7 @@ II
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4D-Yo-ync" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2399" y="313"/>
+            <point key="canvasLocation" x="-1495" y="-11"/>
         </scene>
         <!--主页-->
         <scene sceneID="Ed6-Vs-qBd">
@@ -774,7 +824,7 @@ II
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9V-Dd-t9Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="-715"/>
+            <point key="canvasLocation" x="263" y="-959"/>
         </scene>
         <!--取字-->
         <scene sceneID="ecA-eM-7lj">
@@ -793,7 +843,7 @@ II
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cxr-iX-eEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="786" y="25"/>
+            <point key="canvasLocation" x="10" y="-231"/>
         </scene>
         <!--我的-->
         <scene sceneID="beP-vP-kwx">
@@ -812,7 +862,7 @@ II
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzM-fz-4zk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="273" y="691"/>
+            <point key="canvasLocation" x="-175" y="451"/>
         </scene>
         <!--阅读-->
         <scene sceneID="1fQ-XS-ZAw">
@@ -831,7 +881,7 @@ II
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwE-mD-mhI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-109" y="1466"/>
+            <point key="canvasLocation" x="-733" y="1102"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HZA-f4-NII">

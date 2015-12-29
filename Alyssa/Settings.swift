@@ -13,6 +13,7 @@ class Settings {
     
     // MARK - Identifiers for table cells
     static let IdentifierForBookTitleCell = "Book Title Table Cell"
+    static let IdentifierForSingleButtonTableCell = "Single Button Table Cell"
     
     // MARK - Identifiers for segues
     static let IdentifierForSegueToBookContent = "To Book Content"
