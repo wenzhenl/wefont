@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var iconImageView: UIImageView!
+    
     @IBOutlet weak var loginButtonContainerView: UIView!
     
     @IBOutlet weak var loginButton: UIButton!
@@ -32,6 +34,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        iconImageView.image = UIImage(named: "iTunesArtwork")
+        
         loginButtonContainerView.backgroundColor = Settings.ColorOfStamp
         loginButtonContainerView.layer.cornerRadius = 4
         

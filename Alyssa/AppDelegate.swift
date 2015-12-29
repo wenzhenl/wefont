@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        application.statusBarStyle = .LightContent
+//        application.statusBarStyle = .LightContent
         
         if UserProfile.activeFontName != nil {
             Settings.updateFont(UserProfile.fontFileURL!)
