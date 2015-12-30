@@ -33,7 +33,11 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegate,
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Settings.IdentifierForSingleCharCollectionCell, forIndexPath: indexPath) as! SingleCharCollectionViewCell
         
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
-        
+        if UserProfile.fontFileURL != nil {
+            cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
+            cell.layer.cornerRadius = cell.layer.frame.height / 2
+            cell.alpha = 0.7
+        }
         return cell
     }
 
