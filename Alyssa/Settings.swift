@@ -15,6 +15,9 @@ class Settings {
     static let IdentifierForBookTitleCell = "Book Title Table Cell"
     static let IdentifierForSingleButtonTableCell = "Single Button Table Cell"
     
+    // MARK - Identifiers for collection view cells
+    static let IdentifierForSingleCharCollectionCell = "Single Char Collection View Cell"
+    
     // MARK - Identifiers for segues
     static let IdentifierForSegueToBookContent = "To Book Content"
     static let IdentifierForSegueFromLoginToTabView = "Successfully Login"
@@ -25,7 +28,7 @@ class Settings {
     static let IdentifierForTutorialViewController = "Tutorial View Controller ID"
     static let IdentifierForPageViewController = "Universal Page View Controller"
     static let IdentifierForContentViewController = "Tutorial Content View Controller"
-    
+    static let IdentifierForHomePageContentViewController = "Home Page Content ID"
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     

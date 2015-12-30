@@ -17,7 +17,23 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一关 最常用一百字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-Wy-Bqz">
+                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="jWe-hb-6O1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="VcU-Wy-Bqz" secondAttribute="trailing" id="DDp-s8-dch"/>
+                            <constraint firstItem="VcU-Wy-Bqz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="OO2-4S-uZN"/>
+                            <constraint firstItem="VcU-Wy-Bqz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="bqe-MY-3Og"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alyssa" id="BPt-io-6LU">
                         <barButtonItem key="rightBarButtonItem" title="新建" id="rTL-Sh-22l">
@@ -26,6 +42,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="titleLabel" destination="VcU-Wy-Bqz" id="f3T-AS-jVF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -1020,6 +1039,94 @@ II
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4D-Yo-ync" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1495" y="-11"/>
+        </scene>
+        <!--Home Page Content View Controller-->
+        <scene sceneID="do7-Ev-t7l">
+            <objects>
+                <viewController storyboardIdentifier="Home Page Content ID" id="JKO-6c-Gdf" customClass="HomePageContentViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bi1-bz-RT2"/>
+                        <viewControllerLayoutGuide type="bottom" id="tKR-dd-CiI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XIK-fk-Lg7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kfe-4N-96D">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jl1-wu-1zj">
+                                    <size key="itemSize" width="81" height="61"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Single Char Collection View Cell" id="fxp-1E-yyf" customClass="SingleCharCollectionViewCell" customModule="Alyssa" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="81" height="61"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="81" height="61"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="汉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42e-Td-3B3">
+                                                    <rect key="frame" x="26" y="16" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="XEe-Hy-jj7"/>
+                                                        <constraint firstAttribute="width" constant="30" id="mjk-l1-UUV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="42e-Td-3B3" firstAttribute="height" secondItem="fxp-1E-yyf" secondAttribute="height" id="aWK-Sz-1EJ"/>
+                                            <constraint firstItem="42e-Td-3B3" firstAttribute="width" secondItem="fxp-1E-yyf" secondAttribute="width" id="ggs-OX-B4a"/>
+                                            <constraint firstItem="42e-Td-3B3" firstAttribute="centerX" secondItem="fxp-1E-yyf" secondAttribute="centerX" id="sCS-LC-svs"/>
+                                            <constraint firstItem="42e-Td-3B3" firstAttribute="centerY" secondItem="fxp-1E-yyf" secondAttribute="centerY" id="vUn-2G-TlU"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="aWK-Sz-1EJ"/>
+                                                <exclude reference="ggs-OX-B4a"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="singleCharLabel" destination="42e-Td-3B3" id="6vJ-gx-cnt"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="JKO-6c-Gdf" id="R3T-Jo-TbG"/>
+                                    <outlet property="delegate" destination="JKO-6c-Gdf" id="5Wn-87-qoa"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kfe-4N-96D" firstAttribute="height" secondItem="XIK-fk-Lg7" secondAttribute="height" id="0wT-2s-dh8"/>
+                            <constraint firstItem="tKR-dd-CiI" firstAttribute="top" secondItem="kfe-4N-96D" secondAttribute="bottom" id="MTz-Mv-XkY"/>
+                            <constraint firstItem="kfe-4N-96D" firstAttribute="width" secondItem="XIK-fk-Lg7" secondAttribute="width" id="btm-ta-FHD"/>
+                            <constraint firstItem="kfe-4N-96D" firstAttribute="centerY" secondItem="XIK-fk-Lg7" secondAttribute="centerY" id="cgH-fB-m69"/>
+                            <constraint firstItem="kfe-4N-96D" firstAttribute="centerX" secondItem="XIK-fk-Lg7" secondAttribute="centerX" id="fmZ-YI-v69"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="MTz-Mv-XkY"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="singleCharsCollectionView" destination="kfe-4N-96D" id="KDi-WU-ecz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xCF-LN-ILl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="-1697"/>
         </scene>
         <!--主页-->
         <scene sceneID="Ed6-Vs-qBd">

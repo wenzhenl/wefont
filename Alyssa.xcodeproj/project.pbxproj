@@ -26,6 +26,8 @@
 		0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */; };
 		0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */; };
 		0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */; };
+		0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */; };
+		0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */; };
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
 		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
@@ -76,6 +78,8 @@
 		0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCharContainerView.swift; sourceTree = "<group>"; };
 		0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
+		0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageContentViewController.swift; sourceTree = "<group>"; };
+		0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCharCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 			children = (
 				0A67F0401C2BF51100526E1B /* AppDelegate.swift */,
 				0A67F0421C2BF51100526E1B /* HomeViewController.swift */,
+				0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */,
+				0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */,
 				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
 				0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */,
 				0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */,
@@ -340,6 +346,7 @@
 			files = (
 				0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */,
 				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
+				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
 				0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */,
 				0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */,
@@ -356,6 +363,7 @@
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
 				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
+				0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */,
 				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
 				0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */,
 			);
