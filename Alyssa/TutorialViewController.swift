@@ -10,6 +10,8 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
 
+    @IBOutlet weak var enterAlyssaButton: UIButton!
+    
     var pageViewController: UIPageViewController!
     
     var pageTitles: [String]!
@@ -21,11 +23,14 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.buttonContainerView.backgroundColor = Settings.ColorOfStamp
+//        self.buttonContainerView.backgroundColor = Settings.ColorOfStamp
         self.buttonContainerView.layer.cornerRadius = 4
+        self.buttonContainerView.layer.borderColor = Settings.ColorOfStamp.CGColor
+        self.buttonContainerView.layer.borderWidth = 1
+        self.enterAlyssaButton.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
 //        self.view.backgroundColor = UIColor.greenColor()
         
-        self.pageTitles = ["page1", "page2", "page3", "page4"]
+        self.pageTitles = ["人类,第一次,制作个人手写字体如此简单", "一心一意呵护你的一笔一划", "最是那一低头的温柔", "永远的Alyssa"]
         self.pageImages = ["page1", "page2", "page3", "page4"]
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self

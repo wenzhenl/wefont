@@ -763,26 +763,25 @@ II
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztG-cq-5hX">
-                                <rect key="frame" x="150" y="542" width="300" height="50"/>
+                                <rect key="frame" x="200" y="540" width="200" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0G8-FL-Mnk">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="进入Alyssa">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="enterAlyssa" destination="jNK-y6-9sF" eventType="touchUpInside" id="ziZ-md-0qH"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="0G8-FL-Mnk" firstAttribute="centerX" secondItem="ztG-cq-5hX" secondAttribute="centerX" id="2kk-wx-lfG"/>
                                     <constraint firstItem="0G8-FL-Mnk" firstAttribute="height" secondItem="ztG-cq-5hX" secondAttribute="height" id="3oy-To-Fb5"/>
-                                    <constraint firstAttribute="height" constant="50" id="MbQ-zT-TT7"/>
+                                    <constraint firstAttribute="height" constant="40" id="MbQ-zT-TT7"/>
                                     <constraint firstItem="0G8-FL-Mnk" firstAttribute="width" secondItem="ztG-cq-5hX" secondAttribute="width" id="Oey-8A-4TG"/>
-                                    <constraint firstAttribute="width" constant="300" id="aHt-eL-xdS"/>
+                                    <constraint firstAttribute="width" constant="200" id="aHt-eL-xdS"/>
                                     <constraint firstItem="0G8-FL-Mnk" firstAttribute="centerY" secondItem="ztG-cq-5hX" secondAttribute="centerY" id="aKT-qT-mkG"/>
                                 </constraints>
                             </view>
@@ -792,7 +791,7 @@ II
                             <constraint firstItem="ztG-cq-5hX" firstAttribute="leading" secondItem="YZf-jQ-5Nm" secondAttribute="leadingMargin" id="MtM-ye-KRs"/>
                             <constraint firstItem="ztG-cq-5hX" firstAttribute="centerX" secondItem="YZf-jQ-5Nm" secondAttribute="centerX" id="Ys0-9R-YGS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ztG-cq-5hX" secondAttribute="trailing" id="kl5-S5-KkJ"/>
-                            <constraint firstItem="oKg-l4-kaL" firstAttribute="top" secondItem="ztG-cq-5hX" secondAttribute="bottom" constant="8" symbolic="YES" id="yUW-8X-2dS"/>
+                            <constraint firstItem="oKg-l4-kaL" firstAttribute="top" secondItem="ztG-cq-5hX" secondAttribute="bottom" constant="20" id="yUW-8X-2dS"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -803,6 +802,7 @@ II
                     </view>
                     <connections>
                         <outlet property="buttonContainerView" destination="ztG-cq-5hX" id="64Q-g0-osz"/>
+                        <outlet property="enterAlyssaButton" destination="0G8-FL-Mnk" id="hct-Xb-le7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBq-AD-yHo" userLabel="First Responder" sceneMemberID="firstResponder"/>

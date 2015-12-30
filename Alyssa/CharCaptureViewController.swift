@@ -27,8 +27,6 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate {
         
         self.toolbar.tintColor = Settings.ColorOfStamp
         self.currentCharContainerView.backgroundColor = UIColor.clearColor()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldEditChanged:", name: "UITextFieldTextDidChangeNotification", object: currentCharTextField)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
