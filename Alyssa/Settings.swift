@@ -64,6 +64,7 @@ class Settings {
     
     // System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
+    static let bookNameOfGB2312 = "gb2312"
     
     // Common functions used by all viewcontroller
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
@@ -147,5 +148,48 @@ class Settings {
                 print("Successfully registered font", fontFileURL.absoluteString)
             }
         }
+    }
+    
+    static let NumOfCharactersPerLevel = 100
+    static let NumOfCharactersPerPage = 20
+    
+    static func getAllCharsSeparatedBy100PerLevelAnd20PerPage() -> [[String]]{
+        var GB2312 : [[String]] = []
+        
+        let url = NSBundle.mainBundle().URLForResource(self.bookNameOfGB2312, withExtension: "txt")
+        do {
+            let contentFromGB2312 = try String(contentsOfURL: url!)
+            let trimmedContent = contentFromGB2312.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            print(trimmedContent.characters.count)
+            
+            // MARK - split into levels first
+            let splitedForLevels = splitStringToEqualLength(trimmedContent, length: NumOfCharactersPerLevel)
+            for s in splitedForLevels {
+                let splitedFurtherForPage = splitStringToEqualLength(s, length: NumOfCharactersPerPage)
+                GB2312.append(splitedFurtherForPage)
+            }
+        } catch {
+            print(error)
+        }
+        
+        return GB2312
+    }
+    
+    static func splitStringToEqualLength(string: String, length: Int) -> [String] {
+        
+        var splitedStrings : [String] = []
+        
+        var index = 0
+        let numOfChars = string.characters.count
+        while index + length <= numOfChars {
+            let stringFromIndexToEnd = string.substringFromIndex(string.startIndex.advancedBy(index))
+            let stringFromIndexWithDesiredLength = stringFromIndexToEnd.substringToIndex(stringFromIndexToEnd.startIndex.advancedBy(length))
+            splitedStrings.append(stringFromIndexWithDesiredLength)
+            index += length
+        }
+        if index > numOfChars {
+            splitedStrings.append(string.substringFromIndex(string.startIndex.advancedBy(index)))
+        }
+        return splitedStrings
     }
 }

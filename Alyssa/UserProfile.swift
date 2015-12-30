@@ -13,6 +13,8 @@ class UserProfile {
     
     static var userPassword: String?
     
+    static var currentLevel: Int = 0
+    
     static var activeFontName: String? {
         get {
             return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForActiveFontInDefaultUser)
