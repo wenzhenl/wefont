@@ -38,7 +38,7 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         }
 //        cell.frame.size.height = 40
 //        cell.frame.size.width = 40
-        print(cell.frame.size.width, cell.frame.size.height)
+//        print(cell.frame.size.width, cell.frame.size.height)
 //        cell.layer.cornerRadius = cell.layer.frame.height / 2
         cell.layer.cornerRadius = 4
         cell.alpha = 0.8
