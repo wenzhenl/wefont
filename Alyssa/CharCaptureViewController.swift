@@ -39,8 +39,19 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate {
         self.currentCharContainerView.backgroundColor = UIColor.clearColor()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if let activeChar = UserProfile.activeChar {
+            currentChar = activeChar
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        UserProfile.activeChar = currentChar
     }
 }

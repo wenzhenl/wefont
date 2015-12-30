@@ -46,39 +46,16 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         return cell
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        UserProfile.activeChar = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
+        self.tabBarController?.selectedIndex = 1
+    }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            print(identifier)
-            if identifier == Settings.IdentifierForSegueFromHomeToCharCapture {
-                print("yes, they are the same")
-                var destination = segue.destinationViewController
-                // this next if-statement makes sure the segue prepares properly even
-                //   if the MVC we're seguing to is wrapped in a UINavigationController
-                if let tabCon = destination as? UITabBarController {
-                    print("it is a tab bar controller")
-                    destination = (tabCon.viewControllers![1] as? UINavigationController)!
-                }
-                if let navCon = destination as? UINavigationController {
-                    print("it is navigation controller")
-                    destination = navCon.visibleViewController!
-                }
-                if let ccvc = destination as? CharCaptureViewController {
-                    print("it is still ok")
-                    if let singleCharCell = sender as? SingleCharCollectionViewCell {
-                        print("still ok?")
-                        ccvc.currentChar = singleCharCell.singleCharLabel.text
-                        print(singleCharCell.singleCharLabel?.text)
-                    }
-                }
-            }
-        }
     }
 }

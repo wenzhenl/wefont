@@ -139,7 +139,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GND-te-Z5n">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-te-Z5n">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6S7-ET-6Ma"/>
@@ -152,7 +152,7 @@
                                     <barButtonItem image="lock-locked" id="Vfh-rg-HAA"/>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-7n-HdJ" customClass="CurrentCharContainerView" customModule="Alyssa" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-7n-HdJ" customClass="CurrentCharContainerView" customModule="Alyssa" customModuleProvider="target">
                                 <rect key="frame" x="20" y="108" width="560" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="汉" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIX-9z-9KA">
@@ -1098,7 +1098,6 @@ II
                                         </variation>
                                         <connections>
                                             <outlet property="singleCharLabel" destination="42e-Td-3B3" id="6vJ-gx-cnt"/>
-                                            <segue destination="6zZ-Ky-MIL" kind="show" identifier="From collection View to Char capture" id="yIF-7D-cQh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1241,7 +1240,4 @@ II
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="yIF-7D-cQh"/>
-    </inferredMetricsTieBreakers>
 </document>
