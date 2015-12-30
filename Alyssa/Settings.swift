@@ -22,6 +22,9 @@ class Settings {
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"
     static let IdentifierForLoginViewController = "Login View Controller"
+    static let IdentifierForTutorialViewController = "Tutorial View Controller ID"
+    static let IdentifierForPageViewController = "Universal Page View Controller"
+    static let IdentifierForContentViewController = "Tutorial Content View Controller"
     
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)

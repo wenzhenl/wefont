@@ -15,21 +15,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        application.statusBarStyle = .LightContent
         
         let authencatedUser = false
+        
+        let hasShownTutorial = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var initialViewController: UIViewController?
-        if authencatedUser {
-           initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
-        } else {
-            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
+        if !hasShownTutorial {
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTutorialViewController)
         }
-        
+        else {
+            application.statusBarStyle = .LightContent
+            if authencatedUser {
+               initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+            } else {
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
+            }
+        }
+    
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
@@ -41,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserProfile.userEmailAddress = "liyukuang@gmail.com"
         UserProfile.userPassword = "1233"
         
+        let pageController = UIPageControl.appearance()
+        pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageController.currentPageIndicatorTintColor = UIColor.blackColor()
+        pageController.backgroundColor = UIColor.whiteColor()
         return true
     }
 
