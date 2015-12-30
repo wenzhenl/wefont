@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomePageContentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class HomePageContentViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     @IBOutlet weak var singleCharsCollectionView: UICollectionView!
     
@@ -35,10 +35,22 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegate,
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
         if UserProfile.fontFileURL != nil {
             cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
-            cell.layer.cornerRadius = cell.layer.frame.height / 2
-            cell.alpha = 0.7
         }
+//        cell.frame.size.height = 40
+//        cell.frame.size.width = 40
+        print(cell.frame.size.width, cell.frame.size.height)
+//        cell.layer.cornerRadius = cell.layer.frame.height / 2
+        cell.layer.cornerRadius = 4
+        cell.alpha = 0.8
+        cell.backgroundColor = Settings.ColorOfStamp
         return cell
     }
-
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
 }

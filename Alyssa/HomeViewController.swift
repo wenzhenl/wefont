@@ -23,8 +23,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
         
-        
-        self.pageStringsConsistingOfChars = ["人类,第一次,制作个人手写字体如此简单", "一心一意呵护你的一笔一划", "最是那一低头的温柔", "永远的Alyssa"]
+        self.pageStringsConsistingOfChars = ["人类,第一次,", "最是那一低头的温柔", "永远的Alyssa"]
        
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
