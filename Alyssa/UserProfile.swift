@@ -13,7 +13,7 @@ class UserProfile {
     
     static var userPassword: String?
     
-    static var currentLevel: Int = 0
+    static var currentLevel: Int = 6
     
     static var activeFontName: String? {
         get {

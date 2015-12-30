@@ -21,6 +21,7 @@ class Settings {
     // MARK - Identifiers for segues
     static let IdentifierForSegueToBookContent = "To Book Content"
     static let IdentifierForSegueFromLoginToTabView = "Successfully Login"
+    static let IdentifierForSegueFromHomeToCharCapture = "From collection View to Char capture"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"

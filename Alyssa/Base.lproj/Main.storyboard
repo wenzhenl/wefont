@@ -48,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1391" y="-943"/>
+            <point key="canvasLocation" x="2315" y="-1867"/>
         </scene>
         <!--阅读-->
         <scene sceneID="8zf-2x-9bc">
@@ -1098,6 +1098,7 @@ II
                                         </variation>
                                         <connections>
                                             <outlet property="singleCharLabel" destination="42e-Td-3B3" id="6vJ-gx-cnt"/>
+                                            <segue destination="6zZ-Ky-MIL" kind="show" identifier="From collection View to Char capture" id="yIF-7D-cQh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1130,7 +1131,7 @@ II
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCF-LN-ILl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="-1697"/>
+            <point key="canvasLocation" x="2663" y="-953"/>
         </scene>
         <!--主页-->
         <scene sceneID="Ed6-Vs-qBd">
@@ -1240,4 +1241,7 @@ II
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="yIF-7D-cQh"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -18,6 +18,16 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate {
             currentCharTextField.delegate = self
         }
     }
+    
+    var currentChar: String? {
+        get {
+            return currentCharTextField.text
+        }
+        set {
+            currentCharTextField.text = newValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
