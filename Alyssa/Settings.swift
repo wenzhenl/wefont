@@ -29,6 +29,7 @@ class Settings {
     static let IdentifierForPageViewController = "Universal Page View Controller"
     static let IdentifierForContentViewController = "Tutorial Content View Controller"
     static let IdentifierForHomePageContentViewController = "Home Page Content ID"
+    
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     
@@ -45,28 +46,28 @@ class Settings {
     // MARK - color for header
     static let ColorOfStamp = UIColor(red: 192.0/255.0, green: 0.0/255.0, blue: 14.0/255.0, alpha: 1.0)
     
-    // Server and API names
+    // MARK - Server and API names
     static let ServerIP = "http://52.69.172.155/"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
     
-    static let FontFileName = "FileNameForTest.ttf"
-    
-    // Keys for UIDefaultUser
+    // MARK - Keys for UIDefaultUser
     static let keyForLaunchedBeforeInDefaultUser = "keyForLaunchedBefore"
     static let keyForBooksInDefaultUser = "keyForBooks"
     static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     
-    // UI related parameters
+    // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
     
-    
-    // System default books
+    // MARK - System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
     
-    // Common functions used by all viewcontroller
+    // MARK - index for tab view controllers
+    static let indexOfCharCaptureViewController = 1
+    
+    // MARK - Common functions used by all viewcontroller
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
         
         if !Reachability.isConnectedToNetwork() {

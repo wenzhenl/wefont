@@ -36,10 +36,6 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         if UserProfile.fontFileURL != nil {
             cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
         }
-//        cell.frame.size.height = 40
-//        cell.frame.size.width = 40
-//        print(cell.frame.size.width, cell.frame.size.height)
-//        cell.layer.cornerRadius = cell.layer.frame.height / 2
         cell.layer.cornerRadius = 4
         cell.alpha = 0.8
         cell.backgroundColor = Settings.ColorOfStamp
@@ -49,8 +45,9 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         UserProfile.activeChar = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = Settings.indexOfCharCaptureViewController
     }
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 5
     }
