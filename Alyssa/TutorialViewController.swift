@@ -30,8 +30,8 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
         self.enterAlyssaButton.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
 //        self.view.backgroundColor = UIColor.greenColor()
         
-        self.pageTitles = ["人类,第一次,制作个人手写字体如此简单", "一心一意呵护你的一笔一划", "最是那一低头的温柔", "永远的Alyssa"]
-        self.pageImages = ["page1", "page2", "page3", "page4"]
+        self.pageTitles = ["Happy New Year", "一心一意呵护你的一笔一划"]
+        self.pageImages = ["page1", "page2"]
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
         

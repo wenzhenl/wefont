@@ -53,7 +53,7 @@
         <!--阅读-->
         <scene sceneID="8zf-2x-9bc">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="diV-0c-rto" customClass="ArticleViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="diV-0c-rto" customClass="BookViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uzp-7r-nW4"/>
                         <viewControllerLayoutGuide type="bottom" id="Vuy-Xb-Lkz"/>
