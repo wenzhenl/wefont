@@ -42,6 +42,7 @@
 		0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB55D71C3654FE00E5CC62 /* opencv2.framework */; };
 		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
 		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
+		0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		0ABB55DA1C36555700E5CC62 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
 		0ABB55DC1C3655E300E5CC62 /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
 		0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPageContentViewController.swift; sourceTree = "<group>"; };
+		0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 				0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */,
 				0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */,
 				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
+				0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */,
 				0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */,
 				0A67F0701C2C1C3600526E1B /* BookViewController.swift */,
 				0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */,
@@ -387,6 +390,7 @@
 				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
 				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
+				0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */,
 				0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */,
 				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
 				0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */,
