@@ -10,8 +10,13 @@ import UIKit
 
 class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var undoBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var uploadBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var toolbar: UIToolbar!
     
+    @IBOutlet weak var imageBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var cameraBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var eraserBarButtonItem: UIBarButtonItem!
     
     @IBOutlet weak var currentCharContainerView: UIView!
@@ -61,6 +66,12 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             pinchGesture.enabled = !eraserDidSelected
             rotationGesture.enabled = !eraserDidSelected
             panGesture.enabled = !eraserDidSelected
+            
+            imageBarButtonItem.enabled = !eraserDidSelected
+            cameraBarButtonItem.enabled = !eraserDidSelected
+            
+            brushSizeSlider.hidden = !eraserDidSelected
+            undoBarButtonItem.enabled = eraserDidSelected
         }
     }
     
@@ -83,9 +94,11 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         self.charImageView.multipleTouchEnabled = true
         self.charImageView.exclusiveTouch = true
         
+        self.eraserDidSelected = false
         self.brushSizeSlider.hidden = true
         self.brushSizeSlider.minimumValue = Settings.minBrushSize
         self.brushSizeSlider.maximumValue = Settings.maxBrushSize
+        self.undoBarButtonItem.title = ""
         
         self.view.bringSubviewToFront(toolbar)
         self.view.bringSubviewToFront(currentCharContainerView)
@@ -160,6 +173,8 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     var charImageViewOldTransform: CGAffineTransform = CGAffineTransformIdentity
+    var footprintsOfCharImage: [UIImage] = []
+    
     @IBAction func changeEraserEnableState(sender: UIBarButtonItem) {
         if charImage != nil {
             eraserDidSelected = !eraserDidSelected
@@ -168,17 +183,27 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                 charImageViewOldTransform = charImageView.transform
                 charImageView.transform = CGAffineTransformIdentity
                 eraserBarButtonItem.image = UIImage(named: "lock-locked-selected")
-                brushSizeSlider.hidden = false
                 brushWidth = CGFloat(brushSizeSlider.value)
-                charImageView.backgroundColor = Settings.ColorOfBackgroundWhenEditing
+                undoBarButtonItem.title = "撤销"
                 self.title = "去污"
             } else {
                 charImageView.transform = charImageViewOldTransform
                 eraserBarButtonItem.image = UIImage(named: "lock-locked")
-                brushSizeSlider.hidden = true
                 brushSizeSlider.value = Settings.minBrushSize
-                charImageView.backgroundColor = UIColor.clearColor()
+                undoBarButtonItem.title = ""
                 self.title = "取字"
+            }
+        }
+    }
+    
+    @IBAction func undoErase(sender: UIBarButtonItem) {
+        if eraserDidSelected {
+            if footprintsOfCharImage.count > 1 {
+                charImage = footprintsOfCharImage.last
+                footprintsOfCharImage.removeLast()
+            }
+            else if footprintsOfCharImage.count == 1 {
+                charImage = footprintsOfCharImage.last
             }
         }
     }
@@ -214,6 +239,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         
         let opencvImage = OpenCV.magicallyExtractChar(image)
         charImage = opencvImage
+        if charImage != nil {
+            footprintsOfCharImage = [charImage!]
+        }
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -264,6 +292,8 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: charImageView.frame.size.width, height: charImageView.frame.size.height), blendMode: .Normal, alpha: opacity)
             charImageView.image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
+            
+            footprintsOfCharImage.append(charImage!)
             
             tempImageView.image = nil
         }

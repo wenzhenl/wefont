@@ -278,13 +278,22 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="取字" id="jrl-ij-09g"/>
+                    <navigationItem key="navigationItem" title="取字" id="jrl-ij-09g">
+                        <barButtonItem key="leftBarButtonItem" title="撤销" id="289-8u-0mh">
+                            <connections>
+                                <action selector="undoErase:" destination="6zZ-Ky-MIL" id="baN-YC-fTe"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="上传" id="GQs-cv-nWX"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="brushSizeSlider" destination="xqf-Xb-9lS" id="xKZ-MM-P67"/>
+                        <outlet property="cameraBarButtonItem" destination="awF-Ga-F5t" id="otS-jh-KAM"/>
                         <outlet property="charImageView" destination="9PR-lB-3Sw" id="D6N-vS-mf7"/>
                         <outlet property="currentCharContainerView" destination="jzM-7n-HdJ" id="j0D-ce-WTe"/>
                         <outlet property="currentCharTextField" destination="uIX-9z-9KA" id="Abs-fT-dHq"/>
                         <outlet property="eraserBarButtonItem" destination="Vfh-rg-HAA" id="0iA-7T-S2c"/>
+                        <outlet property="imageBarButtonItem" destination="kfr-HA-oB7" id="MSw-Gu-9Le"/>
                         <outlet property="imageContainerView" destination="Jh3-rP-hZd" id="kMq-MR-Kts"/>
                         <outlet property="panGesture" destination="49x-U3-USt" id="g3v-YH-nh6"/>
                         <outlet property="pinchGesture" destination="kif-OR-nrS" id="vBF-Cv-Sna"/>
@@ -292,6 +301,8 @@
                         <outlet property="tapGesture" destination="Dkh-X1-Fg2" id="F7B-k8-ude"/>
                         <outlet property="tempImageView" destination="Ih2-1I-keB" id="LeW-xn-iyt"/>
                         <outlet property="toolbar" destination="GND-te-Z5n" id="QtX-Du-xa2"/>
+                        <outlet property="undoBarButtonItem" destination="289-8u-0mh" id="b0G-H8-N4x"/>
+                        <outlet property="uploadBarButtonItem" destination="GQs-cv-nWX" id="azD-11-gwV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>

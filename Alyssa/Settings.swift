@@ -71,7 +71,6 @@ class Settings {
     // MARK - eraser brush size
     static let minBrushSize = Float(10.0)
     static let maxBrushSize = Float(40.0)
-    static let ColorOfBackgroundWhenEditing = UIColor(red: 0, green: 0.4, blue: 0.6, alpha: 1.0)
     
     // MARK - Common functions used by all viewcontroller
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
