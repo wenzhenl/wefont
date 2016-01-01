@@ -139,20 +139,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GND-te-Z5n">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GND-te-Z5n">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6S7-ET-6Ma"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="image" id="kfr-HA-oB7"/>
+                                    <barButtonItem image="image" id="kfr-HA-oB7">
+                                        <connections>
+                                            <action selector="pickImage:" destination="6zZ-Ky-MIL" id="Usj-fZ-v35"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="V75-1H-d7z"/>
-                                    <barButtonItem image="camera-photo" id="awF-Ga-F5t"/>
+                                    <barButtonItem image="camera-photo" id="awF-Ga-F5t">
+                                        <connections>
+                                            <action selector="takePhoto:" destination="6zZ-Ky-MIL" id="eFH-KT-AFk"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="25C-yL-0ph"/>
                                     <barButtonItem image="lock-locked" id="Vfh-rg-HAA"/>
                                 </items>
                             </toolbar>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-7n-HdJ" customClass="CurrentCharContainerView" customModule="Alyssa" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-7n-HdJ" customClass="CurrentCharContainerView" customModule="Alyssa" customModuleProvider="target">
                                 <rect key="frame" x="20" y="108" width="560" height="40"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="汉" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIX-9z-9KA">
@@ -167,6 +175,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前字：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm3-e3-how">
                                         <rect key="frame" x="180" y="12" width="60" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -198,6 +207,35 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jh3-rP-hZd">
+                                <rect key="frame" x="0.0" y="148" width="600" height="403"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9PR-lB-3Sw">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="403"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ih2-1I-keB">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="403"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="9PR-lB-3Sw" firstAttribute="centerX" secondItem="Jh3-rP-hZd" secondAttribute="centerX" id="6Sy-LZ-Ru9"/>
+                                    <constraint firstItem="Ih2-1I-keB" firstAttribute="height" secondItem="Jh3-rP-hZd" secondAttribute="height" id="CG3-ab-V5B"/>
+                                    <constraint firstItem="9PR-lB-3Sw" firstAttribute="width" secondItem="Jh3-rP-hZd" secondAttribute="width" id="DlY-Qa-a8a"/>
+                                    <constraint firstItem="Ih2-1I-keB" firstAttribute="centerX" secondItem="Jh3-rP-hZd" secondAttribute="centerX" id="gCA-jk-FL5"/>
+                                    <constraint firstItem="9PR-lB-3Sw" firstAttribute="height" secondItem="Jh3-rP-hZd" secondAttribute="height" id="jBf-2k-U6a"/>
+                                    <constraint firstItem="9PR-lB-3Sw" firstAttribute="centerY" secondItem="Jh3-rP-hZd" secondAttribute="centerY" id="lnG-2L-xD3"/>
+                                    <constraint firstItem="Ih2-1I-keB" firstAttribute="width" secondItem="Jh3-rP-hZd" secondAttribute="width" id="wmT-zn-F8L"/>
+                                    <constraint firstItem="Ih2-1I-keB" firstAttribute="centerY" secondItem="Jh3-rP-hZd" secondAttribute="centerY" id="woN-mm-LsW"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="kif-OR-nrS" appends="YES" id="02o-MY-AWj"/>
+                                    <outletCollection property="gestureRecognizers" destination="49x-U3-USt" appends="YES" id="VYM-ht-yV5"/>
+                                    <outletCollection property="gestureRecognizers" destination="Dkh-X1-Fg2" appends="YES" id="mcf-Bu-v3v"/>
+                                    <outletCollection property="gestureRecognizers" destination="lG5-h9-fcV" appends="YES" id="YsA-DG-tVx"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -206,9 +244,13 @@
                             <constraint firstItem="GND-te-Z5n" firstAttribute="width" secondItem="4zc-IO-BFy" secondAttribute="width" id="Mxh-ue-cIW"/>
                             <constraint firstItem="jzM-7n-HdJ" firstAttribute="top" secondItem="GND-te-Z5n" secondAttribute="bottom" id="PWd-K8-a43"/>
                             <constraint firstItem="jzM-7n-HdJ" firstAttribute="centerX" secondItem="4zc-IO-BFy" secondAttribute="centerX" id="RE9-Ev-MVw"/>
+                            <constraint firstItem="Jh3-rP-hZd" firstAttribute="top" secondItem="jzM-7n-HdJ" secondAttribute="bottom" id="UKK-bN-8WJ"/>
                             <constraint firstItem="GND-te-Z5n" firstAttribute="top" secondItem="mR7-UN-foZ" secondAttribute="bottom" id="XDN-eM-scZ"/>
                             <constraint firstItem="GND-te-Z5n" firstAttribute="centerX" secondItem="4zc-IO-BFy" secondAttribute="centerX" id="ZeY-Me-Gdr"/>
+                            <constraint firstItem="Jh3-rP-hZd" firstAttribute="centerX" secondItem="4zc-IO-BFy" secondAttribute="centerX" id="cri-P8-CUJ"/>
                             <constraint firstItem="MJn-f1-KIZ" firstAttribute="top" secondItem="GND-te-Z5n" secondAttribute="bottom" id="ed2-54-FZR"/>
+                            <constraint firstItem="Jh3-rP-hZd" firstAttribute="width" secondItem="4zc-IO-BFy" secondAttribute="width" id="el5-Ax-qJU"/>
+                            <constraint firstItem="MJn-f1-KIZ" firstAttribute="top" secondItem="Jh3-rP-hZd" secondAttribute="bottom" id="fei-Iq-8bC"/>
                             <constraint firstItem="jzM-7n-HdJ" firstAttribute="leading" secondItem="4zc-IO-BFy" secondAttribute="leadingMargin" id="jq2-HU-alE"/>
                         </constraints>
                         <variation key="default">
@@ -220,12 +262,35 @@
                     </view>
                     <navigationItem key="navigationItem" title="取字" id="jrl-ij-09g"/>
                     <connections>
+                        <outlet property="charImageView" destination="9PR-lB-3Sw" id="D6N-vS-mf7"/>
                         <outlet property="currentCharContainerView" destination="jzM-7n-HdJ" id="j0D-ce-WTe"/>
                         <outlet property="currentCharTextField" destination="uIX-9z-9KA" id="Abs-fT-dHq"/>
+                        <outlet property="imageContainerView" destination="Jh3-rP-hZd" id="kMq-MR-Kts"/>
+                        <outlet property="tempImageView" destination="Ih2-1I-keB" id="LeW-xn-iyt"/>
                         <outlet property="toolbar" destination="GND-te-Z5n" id="QtX-Du-xa2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="kif-OR-nrS">
+                    <connections>
+                        <action selector="scaleChar:" destination="6zZ-Ky-MIL" id="C7D-Ui-qbQ"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="49x-U3-USt">
+                    <connections>
+                        <action selector="moveChar:" destination="6zZ-Ky-MIL" id="3br-QC-7IM"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="Dkh-X1-Fg2">
+                    <connections>
+                        <action selector="flipCharColor:" destination="6zZ-Ky-MIL" id="iP4-AN-Jse"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <rotationGestureRecognizer id="lG5-h9-fcV">
+                    <connections>
+                        <action selector="rotateChar:" destination="6zZ-Ky-MIL" id="9ka-8v-1FI"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="988" y="-161"/>
         </scene>

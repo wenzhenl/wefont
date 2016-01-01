@@ -39,6 +39,8 @@
 		0A67F0711C2C1C3600526E1B /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */; };
 		0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0721C2C1C5800526E1B /* MeViewController.swift */; };
 		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
+		0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB55D71C3654FE00E5CC62 /* opencv2.framework */; };
+		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,10 @@
 		0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		0A67F0721C2C1C5800526E1B /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0A67F0741C2C249300526E1B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0ABB55D71C3654FE00E5CC62 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alyssa-Bridging-Header.h"; sourceTree = "<group>"; };
+		0ABB55DA1C36555700E5CC62 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
+		0ABB55DC1C3655E300E5CC62 /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +150,7 @@
 				0A67F0541C2BF51100526E1B /* AlyssaTests */,
 				0A67F05F1C2BF51100526E1B /* AlyssaUITests */,
 				0A67F03E1C2BF51100526E1B /* Products */,
+				0ABB55D61C3654B600E5CC62 /* Framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,10 +189,13 @@
 				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
+				0ABB55DC1C3655E300E5CC62 /* OpenCV.h */,
+				0ABB55DA1C36555700E5CC62 /* OpenCV.mm */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
 				0A67F0471C2BF51100526E1B /* Assets.xcassets */,
 				0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */,
 				0A67F04C1C2BF51100526E1B /* Info.plist */,
+				0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */,
 				0A2CF3951C31277C0057C38E /* Resources */,
 			);
 			path = Alyssa;
@@ -206,6 +217,14 @@
 				0A67F0621C2BF51100526E1B /* Info.plist */,
 			);
 			path = AlyssaUITests;
+			sourceTree = "<group>";
+		};
+		0ABB55D61C3654B600E5CC62 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				0ABB55D71C3654FE00E5CC62 /* opencv2.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +380,7 @@
 				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
 				0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
+				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
 				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
 				0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */,
@@ -507,12 +527,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_BITCODE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Alyssa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.Alyssa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Alyssa/Alyssa-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -520,12 +547,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ENABLE_BITCODE = NO;
+				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Alyssa/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.Alyssa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Alyssa/Alyssa-Bridging-Header.h";
 			};
 			name = Release;
 		};
