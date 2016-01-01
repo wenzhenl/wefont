@@ -27,7 +27,7 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
         } catch {
             print(error)
         }
-        
+
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
         
@@ -81,11 +81,11 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
         return self.viewControllerAtIndex(index)
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return self.chapters.count
-    }
-    
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 0
-    }
+//    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+//        return self.chapters.count
+//    }
+//    
+//    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+//        return 0
+//    }
 }

@@ -54,7 +54,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDataSource {
     
     @IBAction func enterAlyssa() {
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
         appDelegate.window?.rootViewController = initialViewController
         appDelegate.window?.makeKeyAndVisible()
