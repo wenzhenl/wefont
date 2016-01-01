@@ -72,6 +72,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             
             brushSizeSlider.hidden = !eraserDidSelected
             undoBarButtonItem.enabled = eraserDidSelected
+            uploadBarButtonItem.enabled = !eraserDidSelected
         }
     }
     
@@ -99,6 +100,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         self.brushSizeSlider.minimumValue = Settings.minBrushSize
         self.brushSizeSlider.maximumValue = Settings.maxBrushSize
         self.undoBarButtonItem.title = ""
+        self.uploadBarButtonItem.enabled = false
         
         self.view.bringSubviewToFront(toolbar)
         self.view.bringSubviewToFront(currentCharContainerView)
@@ -241,6 +243,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         charImage = opencvImage
         if charImage != nil {
             footprintsOfCharImage = [charImage!]
+            uploadBarButtonItem.enabled = true
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
