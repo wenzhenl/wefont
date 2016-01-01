@@ -157,12 +157,22 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="25C-yL-0ph"/>
-                                    <barButtonItem image="lock-locked" id="Vfh-rg-HAA"/>
+                                    <barButtonItem image="lock-locked" id="Vfh-rg-HAA">
+                                        <connections>
+                                            <action selector="changeEraserEnableState:" destination="6zZ-Ky-MIL" id="HiL-dN-4dH"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzM-7n-HdJ" customClass="CurrentCharContainerView" customModule="Alyssa" customModuleProvider="target">
                                 <rect key="frame" x="20" y="108" width="560" height="40"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前字：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm3-e3-how">
+                                        <rect key="frame" x="180" y="11" width="60" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="汉" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIX-9z-9KA">
                                         <rect key="frame" x="260" y="0.0" width="40" height="40"/>
                                         <constraints>
@@ -172,38 +182,46 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前字：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm3-e3-how">
-                                        <rect key="frame" x="180" y="12" width="60" height="18"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="xqf-Xb-9lS">
+                                        <rect key="frame" x="328" y="0.0" width="234" height="41"/>
+                                        <connections>
+                                            <action selector="brushSizeChanged:" destination="6zZ-Ky-MIL" eventType="valueChanged" id="5BD-Rj-wYC"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="xqf-Xb-9lS" firstAttribute="height" secondItem="jzM-7n-HdJ" secondAttribute="height" id="69s-15-pQT"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="width" secondItem="jzM-7n-HdJ" secondAttribute="width" id="Ekb-wd-6Gv"/>
                                     <constraint firstAttribute="bottom" secondItem="gm3-e3-how" secondAttribute="bottom" id="Fv8-7R-jrk"/>
                                     <constraint firstAttribute="bottom" secondItem="uIX-9z-9KA" secondAttribute="bottom" id="Qbn-50-bL6"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="height" secondItem="jzM-7n-HdJ" secondAttribute="height" id="Qcw-Wu-W8b"/>
                                     <constraint firstAttribute="height" constant="40" id="dRe-Kg-Ms6"/>
+                                    <constraint firstAttribute="trailing" secondItem="xqf-Xb-9lS" secondAttribute="trailing" id="dc4-zt-crb"/>
                                     <constraint firstItem="gm3-e3-how" firstAttribute="top" secondItem="jzM-7n-HdJ" secondAttribute="top" id="fHL-na-buw"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="centerX" secondItem="jzM-7n-HdJ" secondAttribute="centerX" id="h8b-IZ-thS"/>
+                                    <constraint firstItem="xqf-Xb-9lS" firstAttribute="centerY" secondItem="jzM-7n-HdJ" secondAttribute="centerY" id="hVH-IY-sRE"/>
+                                    <constraint firstItem="xqf-Xb-9lS" firstAttribute="leading" secondItem="uIX-9z-9KA" secondAttribute="trailing" constant="30" id="lmB-HX-vWy"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="leading" secondItem="gm3-e3-how" secondAttribute="trailing" constant="20" id="lso-7T-upZ"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="centerY" secondItem="jzM-7n-HdJ" secondAttribute="centerY" id="mc3-sd-bYS"/>
                                     <constraint firstAttribute="trailing" secondItem="uIX-9z-9KA" secondAttribute="trailing" constant="20" symbolic="YES" id="o5P-aT-X9b"/>
                                     <constraint firstItem="uIX-9z-9KA" firstAttribute="top" secondItem="jzM-7n-HdJ" secondAttribute="top" id="qmT-8b-LY1"/>
                                     <constraint firstItem="gm3-e3-how" firstAttribute="leading" secondItem="jzM-7n-HdJ" secondAttribute="leading" constant="20" symbolic="YES" id="s6D-be-rj4"/>
+                                    <constraint firstItem="gm3-e3-how" firstAttribute="centerY" secondItem="uIX-9z-9KA" secondAttribute="centerY" id="tD6-Jw-hCr"/>
                                     <constraint firstItem="gm3-e3-how" firstAttribute="baseline" secondItem="uIX-9z-9KA" secondAttribute="baseline" id="vQ3-c2-DWS"/>
+                                    <constraint firstItem="xqf-Xb-9lS" firstAttribute="baseline" secondItem="uIX-9z-9KA" secondAttribute="baseline" id="wD7-35-beG"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Fv8-7R-jrk"/>
                                         <exclude reference="fHL-na-buw"/>
                                         <exclude reference="s6D-be-rj4"/>
+                                        <exclude reference="vQ3-c2-DWS"/>
                                         <exclude reference="Ekb-wd-6Gv"/>
                                         <exclude reference="Qbn-50-bL6"/>
                                         <exclude reference="o5P-aT-X9b"/>
                                         <exclude reference="qmT-8b-LY1"/>
+                                        <exclude reference="wD7-35-beG"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -262,10 +280,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="取字" id="jrl-ij-09g"/>
                     <connections>
+                        <outlet property="brushSizeSlider" destination="xqf-Xb-9lS" id="xKZ-MM-P67"/>
                         <outlet property="charImageView" destination="9PR-lB-3Sw" id="D6N-vS-mf7"/>
                         <outlet property="currentCharContainerView" destination="jzM-7n-HdJ" id="j0D-ce-WTe"/>
                         <outlet property="currentCharTextField" destination="uIX-9z-9KA" id="Abs-fT-dHq"/>
+                        <outlet property="eraserBarButtonItem" destination="Vfh-rg-HAA" id="0iA-7T-S2c"/>
                         <outlet property="imageContainerView" destination="Jh3-rP-hZd" id="kMq-MR-Kts"/>
+                        <outlet property="panGesture" destination="49x-U3-USt" id="g3v-YH-nh6"/>
+                        <outlet property="pinchGesture" destination="kif-OR-nrS" id="vBF-Cv-Sna"/>
+                        <outlet property="rotationGesture" destination="lG5-h9-fcV" id="I8q-rK-GUc"/>
+                        <outlet property="tapGesture" destination="Dkh-X1-Fg2" id="F7B-k8-ude"/>
                         <outlet property="tempImageView" destination="Ih2-1I-keB" id="LeW-xn-iyt"/>
                         <outlet property="toolbar" destination="GND-te-Z5n" id="QtX-Du-xa2"/>
                     </connections>

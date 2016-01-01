@@ -12,6 +12,8 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
 
     @IBOutlet weak var toolbar: UIToolbar!
     
+    @IBOutlet weak var eraserBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var currentCharContainerView: UIView!
     @IBOutlet weak var currentCharTextField: UITextField! {
         didSet {
@@ -37,11 +39,35 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             return charImageView.image
         }
         set {
+            charImageView.transform = CGAffineTransformIdentity
             charImageView.image = newValue
         }
     }
     
     @IBOutlet weak var tempImageView: UIImageView!
+    
+    // MARK - Gestures
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    @IBOutlet var pinchGesture: UIPinchGestureRecognizer!
+    
+    @IBOutlet var rotationGesture: UIRotationGestureRecognizer!
+    
+    @IBOutlet var panGesture: UIPanGestureRecognizer!
+    
+    var eraserDidSelected = false {
+        didSet {
+            tapGesture.enabled = !eraserDidSelected
+            pinchGesture.enabled = !eraserDidSelected
+            rotationGesture.enabled = !eraserDidSelected
+            panGesture.enabled = !eraserDidSelected
+        }
+    }
+    
+    
+    // MARK - erase brush size
+    
+    @IBOutlet weak var brushSizeSlider: UISlider!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +82,10 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         self.imageContainerView.backgroundColor = UIColor.clearColor()
         self.charImageView.multipleTouchEnabled = true
         self.charImageView.exclusiveTouch = true
+        
+        self.brushSizeSlider.hidden = true
+        self.brushSizeSlider.minimumValue = Settings.minBrushSize
+        self.brushSizeSlider.maximumValue = Settings.maxBrushSize
         
         self.view.bringSubviewToFront(toolbar)
         self.view.bringSubviewToFront(currentCharContainerView)
@@ -77,6 +107,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         UserProfile.activeChar = currentChar
     }
     
+    // MARK - handle all kinds of gestures
     @IBAction func rotateChar(sender: UIRotationGestureRecognizer) {
         
         switch(sender.state) {
@@ -122,6 +153,36 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
     }
     
+    // MARK - USE touch handling to remove noise
+    
+    @IBAction func brushSizeChanged(sender: UISlider) {
+        brushWidth = CGFloat(sender.value)
+    }
+    
+    var charImageViewOldTransform: CGAffineTransform = CGAffineTransformIdentity
+    @IBAction func changeEraserEnableState(sender: UIBarButtonItem) {
+        if charImage != nil {
+            eraserDidSelected = !eraserDidSelected
+            
+            if eraserDidSelected {
+                charImageViewOldTransform = charImageView.transform
+                charImageView.transform = CGAffineTransformIdentity
+                eraserBarButtonItem.image = UIImage(named: "lock-locked-selected")
+                brushSizeSlider.hidden = false
+                brushWidth = CGFloat(brushSizeSlider.value)
+                charImageView.backgroundColor = Settings.ColorOfBackgroundWhenEditing
+                self.title = "去污"
+            } else {
+                charImageView.transform = charImageViewOldTransform
+                eraserBarButtonItem.image = UIImage(named: "lock-locked")
+                brushSizeSlider.hidden = true
+                brushSizeSlider.value = Settings.minBrushSize
+                charImageView.backgroundColor = UIColor.clearColor()
+                self.title = "取字"
+            }
+        }
+    }
+    
     @IBAction func pickImage(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
             let picker = UIImagePickerController()
@@ -160,4 +221,97 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    
+    // MARK - implement removing noise function
+    private var lastPoint = CGPoint.zero
+    private var red: CGFloat = 1.0
+    private var green: CGFloat = 1.0
+    private var blue: CGFloat = 1.0
+    private var brushWidth: CGFloat = 9.0
+    private var opacity: CGFloat = 1.0
+    private var swiped = false
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if eraserDidSelected && charImage != nil {
+            swiped = false
+            if let touch = touches.first {
+                lastPoint = touch.locationInView(tempImageView)
+            }
+        }
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if eraserDidSelected && charImage != nil {
+            swiped = true
+            if let touch = touches.first {
+                let currentPoint = touch.locationInView(tempImageView)
+                drawLineFrom(lastPoint, toPoint: currentPoint)
+                
+                lastPoint = currentPoint
+            }
+        }
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if eraserDidSelected && charImage != nil {
+            if !swiped {
+                drawLineFrom(lastPoint, toPoint: lastPoint)
+            }
+            
+            // Merge tempImageView into foregroundImageView
+            UIGraphicsBeginImageContextWithOptions(charImageView.frame.size, false, 0.0)
+            charImageView.image?.drawInRect(getImageRectForImageView(charImageView), blendMode: .Normal, alpha: 1.0)
+            tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: charImageView.frame.size.width, height: charImageView.frame.size.height), blendMode: .Normal, alpha: opacity)
+            charImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            tempImageView.image = nil
+        }
+    }
+    
+    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+        UIGraphicsBeginImageContextWithOptions(tempImageView.frame.size, false, 0.0)
+        let context = UIGraphicsGetCurrentContext()
+        
+        tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: tempImageView.frame.size.width, height: tempImageView.frame.size.height))
+        print(tempImageView.frame.size.width, tempImageView.frame.size.height)
+        // 2
+        CGContextMoveToPoint(context, fromPoint.x, fromPoint.y)
+        CGContextAddLineToPoint(context, toPoint.x, toPoint.y)
+        
+        // 3
+        CGContextSetLineCap(context, .Square)
+        CGContextSetLineWidth(context, brushWidth)
+        CGContextSetRGBStrokeColor(context, red, green, blue, 1.0)
+        CGContextSetBlendMode(context, .Normal)
+        CGContextSetShouldAntialias(context, false)
+        
+        // 4
+        CGContextStrokePath(context)
+        
+        // 5
+        tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        tempImageView.alpha = opacity
+        UIGraphicsEndImageContext()
+    }
+    
+    func getImageRectForImageView(imageView: UIImageView) -> CGRect {
+        let resVi = imageView.image!.size.width / imageView.image!.size.height
+        let resPl = imageView.bounds.size.width / imageView.bounds.size.height
+        
+        if (resPl > resVi) {
+            
+            let imageSize = CGSizeMake(imageView.image!.size.width * imageView.bounds.size.height / imageView.image!.size.height, imageView.bounds.size.height)
+            return CGRectMake((imageView.bounds.size.width - imageSize.width)/2,
+                (imageView.bounds.size.height - imageSize.height)/2,
+                imageSize.width,
+                imageSize.height)
+        } else {
+            let imageSize = CGSizeMake(imageView.bounds.size.width, imageView.image!.size.height * imageView.bounds.size.width / imageView.image!.size.width)
+            return CGRectMake((imageView.bounds.size.width - imageSize.width)/2,
+                (imageView.bounds.size.height - imageSize.height)/2,
+                imageSize.width,
+                imageSize.height);
+        }
+    }
 }
