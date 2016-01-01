@@ -63,7 +63,7 @@ class Settings {
     // MARK - System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
-    static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS"
+    static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS\r\n"
     // MARK - index for tab view controllers
     static let indexOfCharCaptureViewController = 1
     

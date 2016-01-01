@@ -28,4 +28,8 @@ class BookPageContentViewController: UIViewController {
         bookContentView.editable = false
         bookContentView.text = chapterContent
     }
+    
+    override func viewWillLayoutSubviews() {
+        bookContentView.setContentOffset(CGPointZero, animated: false)
+    }
 }
