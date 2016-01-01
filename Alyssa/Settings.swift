@@ -29,7 +29,7 @@ class Settings {
     static let IdentifierForPageViewController = "Universal Page View Controller"
     static let IdentifierForContentViewController = "Tutorial Content View Controller"
     static let IdentifierForHomePageContentViewController = "Home Page Content ID"
-    
+    static let IdentifierForBookPageContentViewController = "This is a book page content view"
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     
@@ -63,7 +63,7 @@ class Settings {
     // MARK - System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
-    
+    static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS"
     // MARK - index for tab view controllers
     static let indexOfCharCaptureViewController = 1
     

@@ -41,6 +41,7 @@
 		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
 		0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB55D71C3654FE00E5CC62 /* opencv2.framework */; };
 		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
+		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alyssa-Bridging-Header.h"; sourceTree = "<group>"; };
 		0ABB55DA1C36555700E5CC62 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
 		0ABB55DC1C3655E300E5CC62 /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
+		0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPageContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */,
 				0A67F0701C2C1C3600526E1B /* ArticleViewController.swift */,
 				0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */,
+				0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */,
 				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
 				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
 				0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */,
@@ -379,6 +382,7 @@
 				0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */,
 				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
 				0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */,
+				0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,

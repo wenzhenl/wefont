@@ -28,6 +28,8 @@
 
 当我遇到一个头脑看来稍微清楚的大人时，我就拿出一直保存着的我那第一号作品来测试测试他。我想知道他是否真的有理解能力。可是，得到的回答总是：“这是顶帽子。”我就不和他谈巨蟒呀，原始森林呀，或者星星之类的事。我只得迁就他们的水平，和他们谈些桥牌呀，高尔夫球呀，政治呀，领带呀这些。于是大人们就十分高兴能认识我这样一个通情达理的人。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第二篇
 
 Ⅱ
@@ -108,6 +110,8 @@
 
 就这样，我认识了小王子。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第三篇
 
 Ⅲ
@@ -172,6 +176,8 @@
 
 “一直朝前走，也不会走出多远……”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第四篇
 
 Ⅳ
@@ -201,6 +207,8 @@
 “从前呀，有一个小王子，他住在一个和他身体差不多大的星球上，他希望有一个朋友……”对懂得生活的人来说，这样说就显得真实。 
 
 我可不喜欢人们轻率地读我的书。我在讲述这些往事时心情是很难过的。我的朋友带着他的小羊已经离去六年了。我之所以在这里尽力把他描写出来，就是为了不要忘记他。忘记一个朋友，这太叫人悲伤了。并不是所有的人都有过一个朋友。再说，我也可能变成那些大人那样，只对数字感兴趣。也正是为了这个缘故，我买了一盒颜料和一些铅笔。象我这样年纪的人，而且除了六岁时画过闭着肚皮的和开着肚皮的巨蟒外，别的什么也没有尝试过，现在，重新再来画画，真费劲啊！当然，我一定要把这些画尽量地画得逼真，但我自己也没有把握。一张画得还可以，另一张就不象了。还有身材大小，我画得有点不准确。在这个地方小王子画得太大了些，另一个地方又画得太小了些。对他衣服的颜色我也拿不准。于是我就摸索着这么试试那么改改，画个大概齐。我很可能在某些重要的细节上画错了。这就得请大家原谅我了。因为我的这个朋友，从来也不加说明解释。他认为我同他一样。可是，很遗憾，我却不能透过盒子看见小羊。我大概有点和大人们差不多。我一定是变老了。
+
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第五篇
 
@@ -248,6 +256,8 @@
 
 于是，根据小王子的说明，我把这个星球画了下来。我从来不大愿意以道学家的口吻来说话，可是猴面包树的危险，大家都不大了解，对迷失在小行星上的人来说，危险性非常之大，因此这一回，我贸然打破了我的这种不喜欢教训人的惯例。我说：“孩子们，要当心那些猴面包树呀！”为了叫我的朋友们警惕这种危险——他们同我一样长期以来和这种危险接触，却没有意识到它的危险性——我花了很大的功夫画了这副画。我提出的这个教训意义是很重大的，花点功夫是很值得的。你们也许要问，为什么这本书中别的画都没有这副画那么壮观呢？回答很简单：别的画我也曾经试图画得好些，却没成功。而当我画猴面包树时，有一种急切的心情在激励着我。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第六篇
 
 Ⅵ
@@ -277,6 +287,8 @@
 “一天四十三次，你怎么会这么苦闷？” 
 
 小王子没有回答。
+
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第七篇
 
@@ -346,6 +358,8 @@
 
 他无法再说下去了，突然泣不成声。夜幕已经降临。我放下手中的工具。我把锤子、螺钉、饥渴、死亡，全都抛在脑后。在一颗星球上，在一颗行星上，在我的行星上，在地球上有一个小王子需要安慰！我把他抱在怀里。我摇着他，对他说：“你爱的那朵花没有危险……我给你的小羊画一个罩子……我给你的花画一副盔甲……我……”我也不太知道该说些什么。我觉得自己太笨拙。我不知道怎样才能达到他的境界，怎样才能再进入他的境界……唉，泪水的世界是多么神秘啊！
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第八篇
 
 小.说。t/x/t天.堂
@@ -413,6 +427,8 @@
 
 “我那时什么也不懂！我应该根据她的行为，而不是根据她的话来判断她。她使我的生活芬芳多彩，我真不该离开她跑出来。我本应该猜出在她那令人爱怜的花招后面所隐藏的温情。花是多么自相矛盾！我当时太年青，还不懂得爱她。”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第九篇
 
 Ⅸ
@@ -452,6 +468,8 @@
 “别这么磨蹭了。真烦人！你既然决定离开这儿，那么，快走吧！” 
 
 她是怕小王子看见她在哭。她是一朵非常骄傲的花……
+
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十篇
 
@@ -575,6 +593,8 @@
 
 小王子在旅途中自言自语地说：“这些大人真奇怪。”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第十一篇
 
 Ⅺ
@@ -621,6 +641,7 @@
 
 小王子在路上自言自语地说了一句：“这些大人，肯定是十分古怪。”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十二篇
 
@@ -650,6 +671,7 @@
 
 在旅途中，他自言自语地说道：“这些大人确实真叫怪。”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十三篇
 
@@ -759,6 +781,8 @@ xiii
 
 在旅途中，小王子只是自言自语地说了一句：“这些大人们真是奇怪极了。”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第十四篇
 
 xiv
@@ -843,6 +867,7 @@ xiv
 
 小王子没有勇气承认的是：他留恋这颗令人赞美的星星，特别是因为在那里每二十四小时就有一千四百四十次日落！
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十五篇
 
@@ -946,6 +971,8 @@ xv
 
 于是小王子就走了，他一边走一边想着他的花。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第十六篇
 
 xvi
@@ -959,6 +986,8 @@ xvi
 从稍远的地方看过去，它给人以一种壮丽辉煌的印象。这支军队的行动就象歌剧院的芭蕾舞动作一样，那么有条不紊。首先出现的是新西兰和澳大利亚的点灯人。点着了灯，随后他们就去睡觉了。于是就轮到中国和西伯利亚的点灯人走上舞台。随后，他们也藏到幕布后面去了。于是就又轮到俄罗斯和印度的点灯人了。然后就是非洲和欧洲的。接着是南美的，再就是北美的。他们从来也不会搞错他们上场的次序。真了不起。 
 
 北极仅有一盏路灯，南极也只有一盏；唯独北极的点灯人和他南极的同行，过着闲逸、懒散的生活：他们每年只工作两次。
+
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十七篇
 
@@ -1028,6 +1057,7 @@ xvii
 
 于是他们又都沉默起来。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第十八篇
 
@@ -1051,6 +1081,8 @@ xviii
 
 “再见。”花说。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第十九篇
 
 xix
@@ -1073,6 +1105,7 @@ xix
 
 小王子想道：“这颗行星真奇怪！它上面全是干巴巴的，而且又尖利又咸涩，人们一点想象力都没有。他们只是重复别人对他们说的话……在我的家乡，我有一朵花。她总是自己先说话……”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第二十篇
 
@@ -1104,6 +1137,7 @@ xx
 
 接着他又说道：“我还以为我有一朵独一无二的花呢，我有的仅是一朵普通的花。这朵花，再加上三座只有我膝盖那么高的火山，而且其中一座还可能是永远熄灭了的，这一切不会使我成为一个了不起的王子……”于是，他躺在草丛中哭泣起来。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第二十一篇
 xxi
@@ -1240,6 +1274,7 @@ xxi
 
 “我要对我的玫瑰负责……”小王子又重复着……
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第二十二篇
 
@@ -1281,6 +1316,8 @@ xxii
 
 “他们真幸运。”扳道工说。  
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
+
 第二十三篇
 
 xxiii
@@ -1301,6 +1338,7 @@ xxiii
 
 小王子自言自语地说：“我如果有五十三分钟可支配，我就悠哉游哉地向水泉走去……”
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第二十四篇
 
@@ -1366,6 +1404,7 @@ xxiv
 
 于是，就这样走着，我在黎明时发现了水井。
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 
 第二十五篇
 
@@ -1467,9 +1506,8 @@ xxv
 
 但是，我放心不下。我想起了狐狸的话。如果被人驯服了，就可能会要哭的……
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 第二十六篇
-
-　小＿说txt天＿堂　
 xxvi
 
 在井旁边有一堵残缺的石墙。第二天晚上我工作回来的时候，我远远地看见了小王子耷拉着双腿坐在墙上。我听见他在说话： 
@@ -1646,7 +1684,7 @@ xxvi
 
 在他的脚踝子骨附近，一道黄光闪了一下。刹那间他一动也不动了。他没有叫喊。他轻轻地象一棵树一样倒在地上，大概由于沙地的缘故，连一点响声都没有。
 
-
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 第二十七篇
 
 xxvii
@@ -1677,9 +1715,9 @@ xxvii
 
 「全文完」
 
+THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS
 录入后记
-
-　小说t-xt天堂　  　
+　
 关于《小王子》的作者
 
 圣·德克旭贝里（antoine de saiot-exupery），1900年出生于法国里昂， 1921-1923年在法国空军中服役，曾是后备飞行员，后来又成为民用航空驾驶员， 参加了开辟 法国——非洲——南美 国际航线的工作，其间他还从事文学写作， 作品有《南线班机》（1930），《夜航》（1931）等等。 

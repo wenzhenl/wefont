@@ -340,49 +340,48 @@
                     <view key="view" contentMode="scaleToFill" id="VRS-t6-DvD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1wk-8e-hWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="1336"/>
+        </scene>
+        <!--Book Page Content View Controller-->
+        <scene sceneID="zVf-t1-UrV">
+            <objects>
+                <viewController storyboardIdentifier="This is a book page content view" id="wFB-i3-I7m" customClass="BookPageContentViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l1Q-8s-f5i"/>
+                        <viewControllerLayoutGuide type="bottom" id="1mY-kJ-NbD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oq8-Np-5BU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LYe-Ae-WgZ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-Ec-sl9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text"> 大人们劝我把这些画着开着肚皮的，或闭上肚皮的蟒蛇的图画放在一边，还 是把兴趣放在地理、历史、算术、语法上。就这样，在六岁的那年，我就放弃了 当画家这一美好的职业。我的第一号、第二号作品的不成功，使我泄了气。这些 大人们，靠他们自己什么也弄不懂，还得老是不断地给他们作解释。这真叫孩子 们腻味。
-
-后来，我只好选择了另外一个职业，我学会了开飞机，世界各地差不多都飞 到过。的确，地理学帮了我很大的忙。我一眼就能分辨出中国和亚里桑那。要是 夜里迷失了航向，这是很有用的。
-
-这样，在我的生活中，我跟许多严肃的人有过很多的接触。我在大人们中间 生活过很长时间。我仔细地观察过他们，但这并没有使我对他们的看法有多大的 改变。
-
-当我遇到一个头脑看来稍微清楚的大人时，我就拿出一直保存着的我那第一 号作品来测试测试他。我想知道他是否真的有理解能力。可是，得到的回答总是： “这是顶帽子。”我就不和他谈巨蟒呀，原始森林呀，或者星星之类的事。我只 得迁就他们的水平，和他们谈些桥牌呀，高尔夫球呀，政治呀，领带呀这些。于 是大人们就十分高兴能认识我这样一个通情达理的人。
-II
-
-我就这样孤独地生活着，没有一个能真正谈得来的人，一直到六年前在撒哈 拉沙漠上发生了那次故障。我的发动机里有个东西损坏了。当时由于我既没有带 机械师也没有带旅客，我就试图独自完成这个困难的维修工作。这对我来说是个 生与死的问题。我随身带的水只够饮用一星期。
-
-第一天晚上我就睡在这远离人间烟火的大沙漠上。我比大海中伏在小木排上 的遇难者还要孤独得多。而在第二天拂晓，当一个奇怪的小声音叫醒我的时候， 你们可以想见我当时是多么吃惊。这小小的声音说道：
-
-“请你给我画一只羊，好吗？”
-
-“啊！”
-
-“给我画一只羊……”
-
-我象是受到惊雷轰击一般，一下子就站立起来。我使劲地揉了揉眼睛，仔细 地看了看。我看见一个十分奇怪的小家伙严肃地朝我凝眸望着。这是后来我给他 画出来的最好的一副画像。可是，我的画当然要比他本人的模样逊色得多。这不 是我的过错。六岁时，大人们使我对我的画家生涯失去了勇气，除了画过开着肚 皮和闭着肚皮的蟒蛇，后来再没有学过画。 </string>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LYe-Ae-WgZ" firstAttribute="width" secondItem="VRS-t6-DvD" secondAttribute="width" id="25X-nH-mkV"/>
-                            <constraint firstItem="LYe-Ae-WgZ" firstAttribute="centerY" secondItem="VRS-t6-DvD" secondAttribute="centerY" id="4kj-BW-lLv"/>
-                            <constraint firstItem="LYe-Ae-WgZ" firstAttribute="centerX" secondItem="VRS-t6-DvD" secondAttribute="centerX" id="IvL-eR-eiL"/>
-                            <constraint firstItem="LYe-Ae-WgZ" firstAttribute="height" secondItem="VRS-t6-DvD" secondAttribute="height" id="L3A-UC-Jii"/>
+                            <constraint firstItem="Agb-Ec-sl9" firstAttribute="centerY" secondItem="Oq8-Np-5BU" secondAttribute="centerY" id="58f-eE-Vel"/>
+                            <constraint firstItem="Agb-Ec-sl9" firstAttribute="height" secondItem="Oq8-Np-5BU" secondAttribute="height" id="5wn-5F-AVL"/>
+                            <constraint firstItem="Agb-Ec-sl9" firstAttribute="centerX" secondItem="Oq8-Np-5BU" secondAttribute="centerX" id="Nmh-Kk-MHs"/>
+                            <constraint firstItem="Agb-Ec-sl9" firstAttribute="width" secondItem="Oq8-Np-5BU" secondAttribute="width" id="mc5-UM-Su4"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bookContentView" destination="LYe-Ae-WgZ" id="gBe-aE-KQr"/>
+                        <outlet property="bookContentView" destination="Agb-Ec-sl9" id="WZU-2U-5OY"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1wk-8e-hWF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LwQ-aD-ckS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1135" y="1336"/>
+            <point key="canvasLocation" x="2000" y="1308"/>
         </scene>
         <!--我的-->
         <scene sceneID="sn0-GQ-Hwx">
