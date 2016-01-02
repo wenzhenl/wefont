@@ -232,7 +232,7 @@ class Settings {
             splitedStrings.append(stringFromIndexWithDesiredLength)
             index += length
         }
-        if index > numOfChars {
+        if index + length > numOfChars && index < numOfChars {
             splitedStrings.append(string.substringFromIndex(string.startIndex.advancedBy(index)))
         }
         return splitedStrings

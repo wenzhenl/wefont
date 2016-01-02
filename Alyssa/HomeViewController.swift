@@ -113,7 +113,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     
     
     @IBAction func goToNextLevel(sender: UIBarButtonItem) {
-        if currentLevel == entireGB2312Chars.count {
+        if currentLevel == entireGB2312Chars.count - 1 {
             Settings.popupCustomizedAlert(self, message: "已经在最后一关")
         } else {
             currentLevel++
