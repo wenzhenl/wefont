@@ -60,13 +60,10 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        
-//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CreateViewControllerDismissed", object: nil)
-    }
-    
     func sendNewFontInfoToServer(notification: NSNotification) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CreateViewControllerDismissed", object: nil)
+        
         if UserProfile.newFontReadyTosend {
             let params = NSMutableDictionary()
 

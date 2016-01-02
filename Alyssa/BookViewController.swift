@@ -23,9 +23,8 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
-        Settings.popupCustomizedAlert(self, message: "请重启APP查看效果")
-
-//        fetchLatestFont()
+        
+        fetchLatestFont()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,7 +62,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             
            Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: handleRetrivedFontData)
         } else {
-            Settings.popupAlert(self, title: "无法更新个人字体信息", message: "你还没有创建任何字体")
+            Settings.popupCustomizedAlert(self, message: "你还没有创建任何字体")
         }
     }
     
@@ -89,7 +88,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                 }
             } else {
-                Settings.popupAlert(self, title: "无需更新字体", message: "当前字体已经是最新版本")
+                Settings.popupCustomizedAlert(self, message: "当前字体已经是最新版本")
             }
         } else {
             print("Cannot fetch data")
@@ -105,7 +104,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("Successfully saved font ", fontFileURL.absoluteString)
                 updateLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
                 Settings.updateFont(fontFileURL)
-                Settings.popupAlert(self, title: "完成字体更新", message: "成功更新到最新版本")
+                Settings.popupCustomizedAlert(self, message: "成功更新到最新版本")
             }
         }
     }

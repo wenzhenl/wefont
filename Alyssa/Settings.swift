@@ -159,17 +159,6 @@ class Settings {
         }
     }
     
-    static func popupAlert(viewController: UIViewController, title: String?, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        viewController.presentViewController(alert, animated: true, completion: nil)
-        
-        let delay = 2.0 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        })
-    }
-    
     static func popupCustomizedAlert(viewController: UIViewController, message: String) {
         let customizedAlert = viewController.storyboard?.instantiateViewControllerWithIdentifier(IdentifierForCustomizedAlertViewController) as! CustomizedAlertViewController
         customizedAlert.message = message
@@ -180,7 +169,7 @@ class Settings {
         let delay = 2.0 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
-            customizedAlert.dismissViewControllerAnimated(true, completion: nil)
+            viewController.dismissViewControllerAnimated(true, completion: nil)
         })
     }
     
