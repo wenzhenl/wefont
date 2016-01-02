@@ -53,12 +53,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {
-        // TODO - simulate adding font here
-        let newFontName = "FZJingLeiS-R-GB"
-      
-        UserProfile.activeFontName = newFontName
-        
-        Settings.popupCustomizedAlert(self, message: "请重启APP查看效果" + newFontName)
+        performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
     }
     
     

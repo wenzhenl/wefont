@@ -44,6 +44,8 @@
 		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
 		0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */; };
 		0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */; };
+		0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */; };
+		0ABB55E61C37CD1300E5CC62 /* ThreeFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPageContentViewController.swift; sourceTree = "<group>"; };
 		0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharGridView.swift; sourceTree = "<group>"; };
 		0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedAlertViewController.swift; sourceTree = "<group>"; };
+		0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFontViewController.swift; sourceTree = "<group>"; };
+		0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeFieldContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +188,8 @@
 				0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */,
 				0A67F0421C2BF51100526E1B /* HomeViewController.swift */,
 				0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */,
+				0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */,
+				0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */,
 				0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */,
 				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
 				0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */,
@@ -374,6 +380,7 @@
 			files = (
 				0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */,
 				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
+				0ABB55E61C37CD1300E5CC62 /* ThreeFieldContainerView.swift in Sources */,
 				0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */,
 				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
@@ -384,6 +391,7 @@
 				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
 				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
 				0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */,
+				0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */,
 				0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */,
 				0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */,
 				0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */,

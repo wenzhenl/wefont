@@ -21,6 +21,7 @@ class Settings {
     // MARK - Identifiers for segues
     static let IdentifierForSegueToBookContent = "To Book Content"
     static let IdentifierForSegueFromLoginToTabView = "Successfully Login"
+    static let IdentifierForSegueToCreateFont = "Present Create Font"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"
@@ -52,6 +53,7 @@ class Settings {
     // MARK - Server and API names
     static let ServerIP = "http://52.69.172.155/"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
+    static let APICreateNewFont = "alyssa_create_font.php"
     
     // MARK - Keys for UIDefaultUser
     // app related
@@ -97,6 +99,9 @@ class Settings {
     // MARK - eraser brush size
     static let minBrushSize = Float(10.0)
     static let maxBrushSize = Float(40.0)
+    
+    
+    static let patternForEmptyString = "^\\s*$"
     
     // MARK - Common functions used by all viewcontroller
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
