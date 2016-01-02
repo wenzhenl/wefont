@@ -44,6 +44,8 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         let newFontName = "FZJingLeiS-R-GB"
       
         UserProfile.activeFontName = newFontName
+        
+        Settings.popupCustomizedAlert(self, message: "Successfully added font " + newFontName)
     }
     
     func viewControllerAtIndex(index: Int) -> HomePageContentViewController {

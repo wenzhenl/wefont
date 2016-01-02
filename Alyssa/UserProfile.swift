@@ -113,4 +113,14 @@ class UserProfile {
         }
         return nil
     }
+    
+    static var currentChapterOfAllBooks: [String: Int]? {
+        get {
+            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForCurrentChapterForBooksInDefault) as! [String: Int]?
+        }
+        
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForCurrentChapterForBooksInDefault)
+        }
+    }
 }

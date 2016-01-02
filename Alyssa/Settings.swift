@@ -30,6 +30,8 @@ class Settings {
     static let IdentifierForContentViewController = "Tutorial Content View Controller"
     static let IdentifierForHomePageContentViewController = "Home Page Content ID"
     static let IdentifierForBookPageContentViewController = "This is a book page content view"
+    static let IdentifierForCustomizedAlertViewController = "Customized Alert View Controller"
+    
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
     
@@ -72,11 +74,14 @@ class Settings {
     
     // book related
     static let keyForUserAddedBooksInDefault = "keyForUserAddedBooks"
+    static let keyForCurrentChapterForBooksInDefault = "keyForCurrentChapterOfAllBooks"
     
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
     static let WidthOfCharGridView = CGFloat(200.0)
     static let AspectRatioOfCharGridView = CGFloat(0.75)
+    static let WidthOfCustomizedAlertView = CGFloat(200.0)
+    static let HeightOfCustomizedAlertView = CGFloat(40.0)
     
     // MARK - System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
@@ -155,6 +160,18 @@ class Settings {
         dispatch_after(time, dispatch_get_main_queue(), {
             alert.dismissViewControllerAnimated(true, completion: nil)
         })
+    }
+    
+    static func popupCustomizedAlert(viewController: UIViewController, message: String) {
+        let customizedAlert = viewController.storyboard?.instantiateViewControllerWithIdentifier(IdentifierForCustomizedAlertViewController) as! CustomizedAlertViewController
+//        customizedAlert.message = "YES"
+        viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+        
+//        let delay = 1.5 * Double(NSEC_PER_SEC)
+//        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+//        dispatch_after(time, dispatch_get_main_queue(), {
+//            customizedAlert.dismissViewControllerAnimated(true, completion: nil)
+//        })
     }
     
     static func updateFont(fontFileURL: NSURL) {

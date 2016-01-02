@@ -8,11 +8,32 @@
 
 import UIKit
 
-class BookContentViewController: UIViewController, UIPageViewControllerDataSource {
+class BookContentViewController: UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     var bookTitle: String!
     
     var chapters: [String]!
+    
+    var currentChapter: Int! {
+        get {
+            if let currentChapterOfBooks = UserProfile.currentChapterOfAllBooks {
+                if let currentChapterRecord = currentChapterOfBooks[bookTitle] {
+                    return currentChapterRecord
+                } else {
+                    return 0
+                }
+            } else {
+                return 0
+            }
+        }
+        set {
+            if UserProfile.currentChapterOfAllBooks != nil {
+                UserProfile.currentChapterOfAllBooks![bookTitle] = newValue
+            } else {
+                UserProfile.currentChapterOfAllBooks = [bookTitle : newValue]
+            }
+        }
+    }
     
     var pageViewController: UIPageViewController!
     
@@ -30,8 +51,9 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
 
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
         
-        let startVC = self.viewControllerAtIndex(0) as BookPageContentViewController
+        let startVC = self.viewControllerAtIndex(currentChapter) as BookPageContentViewController
         let viewControllers = [startVC]
         self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
         
@@ -79,6 +101,14 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
             return nil
         }
         return self.viewControllerAtIndex(index)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            let currentPage = pageViewController.viewControllers!.first as! BookPageContentViewController
+            currentChapter = currentPage.pageIndex
+            print("current page: ", currentChapter)
+        }
     }
     
 //    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {

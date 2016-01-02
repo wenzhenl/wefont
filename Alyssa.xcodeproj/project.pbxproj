@@ -43,6 +43,7 @@
 		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
 		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
 		0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */; };
+		0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		0ABB55DC1C3655E300E5CC62 /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
 		0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPageContentViewController.swift; sourceTree = "<group>"; };
 		0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharGridView.swift; sourceTree = "<group>"; };
+		0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedAlertViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
 				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
 				0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */,
+				0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */,
 				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
@@ -371,6 +374,7 @@
 			files = (
 				0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */,
 				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
+				0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */,
 				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
 				0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */,
