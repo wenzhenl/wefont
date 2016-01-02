@@ -14,23 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-        
-        let authencatedUser = false
-        
-        let hasShownTutorial = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         var initialViewController: UIViewController?
-        if !hasShownTutorial {
+        if !UserProfile.hasSeenTutorial {
             initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTutorialViewController)
         }
         else {
             application.statusBarStyle = .LightContent
-            if authencatedUser {
+            if UserProfile.hasLoggedIn {
                initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
             } else {
                 initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)

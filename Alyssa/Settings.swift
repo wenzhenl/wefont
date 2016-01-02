@@ -55,6 +55,10 @@ class Settings {
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
     static let keyForLaunchedBeforeInDefaultUser = "keyForLaunchedBefore"
     
+    // user app interaction
+    static let keyForHasLoggedInInDefaultUser = "keyForHasLoggedIn"
+    static let keyForHasSeenTutorialInDefaultUser = "keyForHasSeenTutorial"
+    
     // user account related
     static let keyForNicknameInDefaultUser = "keyForUserNickname"
     

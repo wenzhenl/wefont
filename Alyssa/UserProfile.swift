@@ -22,6 +22,25 @@ class UserProfile {
         }
     }
     
+    // MARK - USER APP interaction
+    static var hasLoggedIn: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasLoggedInInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasLoggedInInDefaultUser)
+        }
+    }
+    
+    static var hasSeenTutorial: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTutorialInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTutorialInDefaultUser)
+        }
+    }
+    
     // MARK - user font info
     static var activeFontName: String? {
         get {

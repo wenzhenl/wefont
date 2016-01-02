@@ -34,6 +34,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login() {
+        
+        UserProfile.hasLoggedIn = true
+        
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
         UIApplication.sharedApplication().statusBarStyle = .LightContent
         let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
