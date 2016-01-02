@@ -32,13 +32,20 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(Settings.IdentifierForSingleCharCollectionCell, forIndexPath: indexPath) as! SingleCharCollectionViewCell
         
+        // randomize view color
+        let blueColor = CGFloat(Int(arc4random() % 255)) / 255.0
+        let greenColor = CGFloat(Int(arc4random() % 255)) / 255.0
+        let redColor = CGFloat(Int(arc4random() % 255)) / 255.0
+        
+        cell.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1.0)
+        
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
         if UserProfile.fontFileURL != nil {
             cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
         }
         cell.layer.cornerRadius = 4
         cell.alpha = 0.8
-        cell.backgroundColor = Settings.ColorOfStamp
+//        cell.backgroundColor = Settings.ColorOfStamp
         return cell
     }
     
