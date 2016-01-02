@@ -366,8 +366,6 @@
                                     <constraint firstItem="Ih2-1I-keB" firstAttribute="centerY" secondItem="Jh3-rP-hZd" secondAttribute="centerY" id="woN-mm-LsW"/>
                                 </constraints>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="kif-OR-nrS" appends="YES" id="02o-MY-AWj"/>
-                                    <outletCollection property="gestureRecognizers" destination="49x-U3-USt" appends="YES" id="VYM-ht-yV5"/>
                                     <outletCollection property="gestureRecognizers" destination="Dkh-X1-Fg2" appends="YES" id="mcf-Bu-v3v"/>
                                     <outletCollection property="gestureRecognizers" destination="lG5-h9-fcV" appends="YES" id="YsA-DG-tVx"/>
                                     <outletCollection property="gestureRecognizers" destination="xhU-KS-vfP" appends="YES" id="hE5-9D-xNM"/>
@@ -375,6 +373,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="GND-te-Z5n" firstAttribute="top" secondItem="mR7-UN-foZ" secondAttribute="bottom" id="7oH-1u-60p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jzM-7n-HdJ" secondAttribute="trailing" id="MUW-bu-N89"/>
@@ -396,6 +395,10 @@
                                 <exclude reference="ed2-54-FZR"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kif-OR-nrS" appends="YES" id="Q9k-qg-YYB"/>
+                            <outletCollection property="gestureRecognizers" destination="49x-U3-USt" appends="YES" id="Yxj-nc-sHD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="取字" id="jrl-ij-09g">
                         <barButtonItem key="leftBarButtonItem" title="撤销" id="289-8u-0mh">
@@ -420,7 +423,7 @@
                         <outlet property="imageContainerView" destination="Jh3-rP-hZd" id="kMq-MR-Kts"/>
                         <outlet property="longPressGesture" destination="xhU-KS-vfP" id="wfd-pc-e0S"/>
                         <outlet property="panGesture" destination="49x-U3-USt" id="g3v-YH-nh6"/>
-                        <outlet property="pinchGesture" destination="kif-OR-nrS" id="vBF-Cv-Sna"/>
+                        <outlet property="pinchGesture" destination="kif-OR-nrS" id="76p-2l-5Ch"/>
                         <outlet property="rotationGesture" destination="lG5-h9-fcV" id="I8q-rK-GUc"/>
                         <outlet property="tapGesture" destination="Dkh-X1-Fg2" id="F7B-k8-ude"/>
                         <outlet property="tempImageView" destination="Ih2-1I-keB" id="LeW-xn-iyt"/>
@@ -430,16 +433,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="kif-OR-nrS">
-                    <connections>
-                        <action selector="scaleChar:" destination="6zZ-Ky-MIL" id="C7D-Ui-qbQ"/>
-                    </connections>
-                </pinchGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="49x-U3-USt">
-                    <connections>
-                        <action selector="moveChar:" destination="6zZ-Ky-MIL" id="3br-QC-7IM"/>
-                    </connections>
-                </panGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="Dkh-X1-Fg2">
                     <connections>
                         <action selector="flipCharColor:" destination="6zZ-Ky-MIL" id="iP4-AN-Jse"/>
@@ -455,6 +448,16 @@
                         <action selector="deleteCharImage:" destination="6zZ-Ky-MIL" id="qZu-1K-0id"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <pinchGestureRecognizer id="kif-OR-nrS">
+                    <connections>
+                        <action selector="scaleChar:" destination="6zZ-Ky-MIL" id="C7D-Ui-qbQ"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="49x-U3-USt">
+                    <connections>
+                        <action selector="moveChar:" destination="6zZ-Ky-MIL" id="3br-QC-7IM"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="988" y="-161"/>
         </scene>

@@ -114,9 +114,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         let gridWidth = Settings.WidthOfCharGridView
         let gridAspectRatio = Settings.AspectRatioOfCharGridView
         let gridHeight = gridWidth / gridAspectRatio
-        gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, 0, gridWidth, gridHeight))
-        self.imageContainerView.addSubview(gridView)
-        self.imageContainerView.bringSubviewToFront(gridView)
+        gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, self.view.frame.minY + Settings.VerticalOffsetOfCharGridView, gridWidth, gridHeight))
+        self.view.addSubview(gridView)
+        self.view.bringSubviewToFront(gridView)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -136,16 +136,25 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     @IBAction func uploadChar(sender: UIBarButtonItem) {
+        
+
+        let rect = view.convertRect(gridView.frame, toView: imageContainerView)
+        let imageToSend = clipImageForRect(rect, inView: imageContainerView)
+        if imageToSend != nil {
+            UIImageWriteToSavedPhotosAlbum(imageToSend!, nil, nil, nil)
+            Settings.popupCustomizedAlert(self, message: "成功保存图片")
+        }
     }
     // MARK - handle all kinds of gestures
     @IBAction func rotateChar(sender: UIRotationGestureRecognizer) {
-        
-        switch(sender.state) {
-        case .Ended: fallthrough
-        case .Changed:
-            charImageView.transform = CGAffineTransformRotate(charImageView.transform, sender.rotation)
-            sender.rotation = 0
-        default: break
+        if charImage != nil {
+            switch(sender.state) {
+            case .Ended: fallthrough
+            case .Changed:
+                charImageView.transform = CGAffineTransformRotate(charImageView.transform, sender.rotation)
+                sender.rotation = 0
+            default: break
+            }
         }
     }
     
@@ -169,13 +178,15 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     @IBAction func flipCharColor(sender: UITapGestureRecognizer) {
-        switch sender.state {
-        case .Ended: fallthrough
-        case .Changed:
-            if let image = charImage {
-                charImageView?.image = OpenCV.invertImage(image)
+        if charImage != nil {
+            switch sender.state {
+            case .Ended: fallthrough
+            case .Changed:
+                if let image = charImage {
+                    charImageView?.image = OpenCV.invertImage(image)
+                }
+            default: break
             }
-        default: break
         }
     }
     
@@ -189,9 +200,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                 charImageView.transform = CGAffineTransformTranslate(charImageView.transform, translation.x / Settings.GestureScaleForMovingHandwritting, translation.y / Settings.GestureScaleForMovingHandwritting)
                 sender.setTranslation(CGPointZero, inView: charImageView)
             } else {
-                let translation = sender.translationInView(imageContainerView)
+                let translation = sender.translationInView(view)
                 self.gridView.center = CGPointMake(gridView.center.x, gridView.center.y + translation.y / Settings.GestureScaleForMovingHandwritting)
-                sender.setTranslation(CGPointZero, inView: imageContainerView)
+                sender.setTranslation(CGPointZero, inView: view)
             }
         default: break
         }
@@ -392,5 +403,16 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                 imageSize.width,
                 imageSize.height);
         }
+    }
+    
+    // MARK - clip a region of view into an image
+    func clipImageForRect(clipRect: CGRect, inView: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(clipRect.size, false, CGFloat(0.0))
+        let ctx = UIGraphicsGetCurrentContext()
+        CGContextTranslateCTM(ctx, -clipRect.origin.x, -clipRect.origin.y)
+        inView.layer.renderInContext(ctx!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
     }
 }
