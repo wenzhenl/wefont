@@ -15,6 +15,8 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var copyrightTextField: UITextField! { didSet { copyrightTextField.delegate = self } }
     @IBOutlet weak var versionTextField: UITextField! { didSet { versionTextField.delegate = self } }
 
+    @IBOutlet weak var iconImageView: UIImageView!
+
     var fontName: String? {
         get {
             return fontNameTextField.text
@@ -52,6 +54,9 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
         textFieldContainerView.layer.cornerRadius = 4
         textFieldContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textFieldContainerView.layer.borderWidth = 1
+        
+        iconImageView.image = UIImage(named: "iTunesArtwork")
+
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

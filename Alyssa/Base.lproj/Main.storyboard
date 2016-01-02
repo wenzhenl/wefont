@@ -113,13 +113,22 @@
                                     <constraint firstItem="hPz-M2-nj3" firstAttribute="leading" secondItem="fMP-fs-G56" secondAttribute="leading" constant="20" symbolic="YES" id="u1Z-qQ-zgi"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hP7-sf-OSB">
+                                <rect key="frame" x="20" y="540" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="MLA-TS-jAk"/>
+                                    <constraint firstAttribute="height" constant="50" id="phP-aJ-7Uw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="width" secondItem="jRC-Tl-E7q" secondAttribute="width" id="5Y2-eo-JBb"/>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="top" secondItem="xXa-BZ-OIQ" secondAttribute="bottom" constant="40" id="L51-JL-xB1"/>
+                            <constraint firstItem="09B-g8-Ool" firstAttribute="top" secondItem="hP7-sf-OSB" secondAttribute="bottom" constant="10" id="NTb-Tu-Pef"/>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="centerX" secondItem="jRC-Tl-E7q" secondAttribute="centerX" id="VKX-aT-5oo"/>
                             <constraint firstItem="hPz-M2-nj3" firstAttribute="centerX" secondItem="jRC-Tl-E7q" secondAttribute="centerX" id="Z2X-mf-BNW"/>
+                            <constraint firstItem="hP7-sf-OSB" firstAttribute="leading" secondItem="jRC-Tl-E7q" secondAttribute="leadingMargin" id="fuk-K1-Bmd"/>
                             <constraint firstItem="hPz-M2-nj3" firstAttribute="centerY" secondItem="jRC-Tl-E7q" secondAttribute="centerY" id="lYa-Qs-as7"/>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="leading" secondItem="jRC-Tl-E7q" secondAttribute="leadingMargin" id="laU-be-8Rd"/>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="centerY" secondItem="jRC-Tl-E7q" secondAttribute="centerY" id="lkp-TF-1Qz"/>
@@ -149,6 +158,7 @@
                     <connections>
                         <outlet property="copyrightTextField" destination="hPz-M2-nj3" id="KOe-yj-aAa"/>
                         <outlet property="fontNameTextField" destination="DeV-QN-US9" id="35a-wi-ErF"/>
+                        <outlet property="iconImageView" destination="hP7-sf-OSB" id="yFd-AG-qbn"/>
                         <outlet property="textFieldContainerView" destination="fMP-fs-G56" id="9Ii-Vg-8Jd"/>
                         <outlet property="versionTextField" destination="A8d-h8-yUc" id="iD4-UQ-pzU"/>
                     </connections>
