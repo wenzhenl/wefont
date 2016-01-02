@@ -51,11 +51,23 @@ class Settings {
     static let APIFetchingLatestFont = "fetch_latest_font.php"
     
     // MARK - Keys for UIDefaultUser
-    static let keyForLaunchedBeforeInDefaultUser = "keyForLaunchedBefore"
-    static let keyForBooksInDefaultUser = "keyForBooks"
-    static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
+    // app related
     static let keyForLatestVersionInDefaultUser = "keyForLatestVersion"
+    static let keyForLaunchedBeforeInDefaultUser = "keyForLaunchedBefore"
+    
+    // user account related
+    static let keyForNicknameInDefaultUser = "keyForUserNickname"
+    
+    // font related
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
+    static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
+    static let keyForFontsFinishedCharsInDefaultUser = "keyForFontFinishedChars"
+    
+    // home view related
+    static let keyForCurrentLevelInDefaultUser = "keyForCurrentLevel"
+    
+    // book related
+    static let keyForUserAddedBooksInDefault = "keyForUserAddedBooks"
     
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
@@ -66,6 +78,7 @@ class Settings {
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
     static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS\r\n"
+    
     // MARK - index for tab view controllers
     static let indexOfCharCaptureViewController = 1
     

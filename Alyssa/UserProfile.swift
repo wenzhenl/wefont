@@ -9,14 +9,20 @@
 import Foundation
 
 class UserProfile {
+    
+    // MARK - user account info
     static var userEmailAddress: String?
-    
     static var userPassword: String?
+    static var userNickname: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForNicknameInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForNicknameInDefaultUser)
+        }
+    }
     
-    static var currentLevel: Int = 6
-    
-    static var activeChar: String?
-    
+    // MARK - user font info
     static var activeFontName: String? {
         get {
             return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForActiveFontInDefaultUser)
@@ -24,6 +30,16 @@ class UserProfile {
         set {
             NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForActiveFontInDefaultUser)
         }
+    }
+    
+    static var fontFileURL: NSURL? {
+        if self.activeFontName != nil {
+            if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
+                let newFontFileURL = docsDir.URLByAppendingPathComponent(activeFontName! + ".ttf")
+                return newFontFileURL
+            }
+        }
+        return nil
     }
     
     static var fontsLastModifiedTime: [String: Double]? {
@@ -36,21 +52,44 @@ class UserProfile {
         }
     }
     
-    static var booksPaths: [String: String]? {
+    static var fontsNumOfFinishedChars: [String: Int]? {
         get {
-            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForBooksInDefaultUser) as! [String: String]?
+            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsFinishedCharsInDefaultUser) as! [String: Int]?
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForBooksInDefaultUser)
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForFontsFinishedCharsInDefaultUser)
         }
     }
     
-    static var fontFileURL: NSURL? {
-        if self.activeFontName != nil {
+    // MARK - Home view related
+    static var currentLevel: Int! {
+        get {
+            return NSUserDefaults.standardUserDefaults().integerForKey(Settings.keyForCurrentLevelInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForCurrentLevelInDefaultUser)
+        }
+    }
+    
+    // MARK - char capture view related
+    static var activeChar: String?
+    
+    // MARK - User added books
+    static var userAddedBooks: [String]? {
+        get {
+            return NSUserDefaults.standardUserDefaults().stringArrayForKey(Settings.keyForUserAddedBooksInDefault)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForUserAddedBooksInDefault)
+        }
+    }
+    
+    static func fetchPathOfBook(bookName: String) -> NSURL? {
+        if ((userAddedBooks?.contains(bookName)) != nil) {
             if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
-                let newFontFileURL = docsDir.URLByAppendingPathComponent(activeFontName! + ".ttf")
-                return newFontFileURL
+                let bookFileURL = docsDir.URLByAppendingPathComponent(bookName + ".txt")
+                return bookFileURL
             }
         }
         return nil
