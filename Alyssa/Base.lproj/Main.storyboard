@@ -284,7 +284,7 @@
                                 <action selector="undoErase:" destination="6zZ-Ky-MIL" id="baN-YC-fTe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="上传" id="GQs-cv-nWX"/>
+                        <barButtonItem key="rightBarButtonItem" image="upload" id="GQs-cv-nWX"/>
                     </navigationItem>
                     <connections>
                         <outlet property="brushSizeSlider" destination="xqf-Xb-9lS" id="xKZ-MM-P67"/>
@@ -1336,6 +1336,7 @@
         <image name="home-selected" width="24" height="24"/>
         <image name="image" width="24" height="24"/>
         <image name="lock-locked" width="24" height="24"/>
+        <image name="upload" width="22" height="22"/>
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>
     </resources>
