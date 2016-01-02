@@ -23,13 +23,36 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 6
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleButtonTableCell) as! SingleButtonTableViewCell
-        cell.button.addTarget(self, action: "logout", forControlEvents: .TouchUpInside)
-        return cell
+        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleButtonTableCell) as! SingleButtonTableViewCell
+            if indexPath.row == 0 {
+                cell.button.setTitle("更新字体", forState: .Normal)
+                cell.button.addTarget(self, action: "updateFont", forControlEvents: .TouchUpInside)
+            }
+            else if indexPath.row == 2 {
+                cell.button.setTitle("发送字体到邮箱", forState: .Normal)
+                cell.button.addTarget(self, action: "emailFont", forControlEvents: .TouchUpInside)
+            }
+            else if indexPath.row == 4 {
+                cell.button.setTitle("退出登录", forState: .Normal)
+                cell.button.addTarget(self, action: "logout", forControlEvents: .TouchUpInside)
+            }
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+    
+    func updateFont() {
+        
+    }
+    
+    func emailFont() {
+        
     }
     
     func logout() {
