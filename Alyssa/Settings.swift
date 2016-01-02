@@ -109,8 +109,7 @@ class Settings {
         if !Reachability.isConnectedToNetwork() {
             
             // Notify users there's error with network
-            popupAlert(viewController, title: "网络连接错误", message: errMsgForNetwork)
-            
+            popupCustomizedAlert(viewController, message: errMsgForNetwork)
         } else {
            
             let url = Settings.ServerIP + destinationURL
@@ -148,6 +147,8 @@ class Settings {
                         print(err!.localizedDescription)
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
+                        
+                        popupCustomizedAlert(viewController, message: "不好意思，服务器出错了")
                     } else {
                         retrivedJSONHandler(json)
                     }

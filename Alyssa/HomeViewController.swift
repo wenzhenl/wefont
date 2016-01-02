@@ -53,7 +53,52 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {
+        let center = NSNotificationCenter.defaultCenter()
+        
+        center.addObserver(self, selector: "sendNewFontInfoToServer:", name: "CreateViewControllerDismissed", object: nil )
+        
         performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CreateViewControllerDismissed", object: nil)
+    }
+    
+    func sendNewFontInfoToServer(notification: NSNotification) {
+        if UserProfile.newFontReadyTosend {
+            let params = NSMutableDictionary()
+
+            params["email"] = UserProfile.userEmailAddress!
+            params["password"] = UserProfile.userPassword!
+            params["fontname"] = UserProfile.newFontName!
+            params["copyright"] = UserProfile.copyright!
+            params["version"] = UserProfile.version!
+
+            let errInfoForNetwork = "无网络连接"
+            Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APICreateNewFont, params: params, retrivedJSONHandler: handleResponseFromServer)
+        }
+    }
+    
+    func handleResponseFromServer(json: NSDictionary?) {
+
+        if let parseJSON = json {
+            if let success = parseJSON["success"] as? Bool {
+                print("success: ", success)
+                if success == true {
+                    UserProfile.activeFontName = UserProfile.newFontName
+                    UserProfile.newFontReadyTosend = false
+                    Settings.popupCustomizedAlert(self, message: "成功添加新字体")
+                } else {
+                    Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
+                }
+            }
+
+        } else {
+            print("Cannot fetch Data")
+            Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
+        }
     }
     
     

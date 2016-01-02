@@ -15,9 +15,32 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var copyrightTextField: UITextField! { didSet { copyrightTextField.delegate = self } }
     @IBOutlet weak var versionTextField: UITextField! { didSet { versionTextField.delegate = self } }
 
-    var fontName: String?
-    var copyright: String?
-    var version: String?
+    var fontName: String? {
+        get {
+            return fontNameTextField.text
+        }
+        set {
+            fontNameTextField.text = newValue
+        }
+    }
+    
+    var copyright: String? {
+        get {
+            return copyrightTextField.text
+        }
+        set {
+            copyrightTextField.text = newValue
+        }
+    }
+    
+    var version: String? {
+        get {
+            return versionTextField.text
+        }
+        set {
+            versionTextField.text = newValue
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,56 +56,9 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
         fontNameTextField.becomeFirstResponder()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        startObservingTextFields()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        stopObservingTextFields()
-    }
-    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
-    private var ftfObserver: NSObjectProtocol?
-    private var ctfObserver: NSObjectProtocol?
-    private var vtfObserver: NSObjectProtocol?
-    
-    func startObservingTextFields() {
-        let center = NSNotificationCenter.defaultCenter()
-        let queue = NSOperationQueue.mainQueue()
-        ftfObserver = center.addObserverForName(UITextFieldTextDidChangeNotification, object: fontNameTextField, queue: queue) {
-            notification in
-            self.fontName = self.fontNameTextField.text
-        }
-        
-        ctfObserver = center.addObserverForName(UITextFieldTextDidChangeNotification, object: copyrightTextField, queue: queue) {
-            notification in
-            self.copyright = self.copyrightTextField.text
-        }
-        
-        vtfObserver = center.addObserverForName(UITextFieldTextDidChangeNotification, object: versionTextField, queue: queue) {
-            notification in
-            self.version = self.versionTextField.text
-        }
-    }
-    
-    func stopObservingTextFields() {
-        if let observer = ftfObserver {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-        }
-        
-        if let observer = ctfObserver {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-        }
-        
-        if let observer = vtfObserver {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-        }
     }
     
     func isEmpty(string: String?) -> Bool {
@@ -112,34 +88,12 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     @IBAction func createFont(sender: UIBarButtonItem) {
         
         if checkInputs() {
-            let params = NSMutableDictionary()
-            
-            params["email"] = UserProfile.userEmailAddress!
-            params["password"] = UserProfile.userPassword!
-            params["fontname"] = fontName!
-            params["copyright"] = copyright!
-            params["version"] = version!
-            
-            let errInfoForNetwork = "无网络连接"
-            Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APICreateNewFont, params: params, retrivedJSONHandler: handleResponseFromServer)
+            UserProfile.newFontReadyTosend = true
+            UserProfile.newFontName = fontName
+            UserProfile.copyright = copyright
+            UserProfile.version = version
+            NSNotificationCenter.defaultCenter().postNotificationName("CreateViewControllerDismissed", object: nil, userInfo: nil)
             self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-        }
-    }
-    
-    func handleResponseFromServer(json: NSDictionary?) {
-        if let parseJSON = json {
-            if let success = parseJSON["success"] as? Bool {
-                print("success: ", success)
-                if success == true {
-                    Settings.popupCustomizedAlert(self.presentingViewController!, message: "成功创建新字体")
-                } else {
-                    Settings.popupCustomizedAlert(self.presentingViewController!, message: "不好意思，出错了")
-                }
-            }
-            
-        } else {
-            print("Cannot fetch Data")
-            Settings.popupCustomizedAlert(self.presentingViewController!, message: "不好意思，出错了")
         }
     }
     

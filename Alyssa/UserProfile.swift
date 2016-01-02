@@ -123,4 +123,11 @@ class UserProfile {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForCurrentChapterForBooksInDefault)
         }
     }
+    
+    
+    // MARK - used to transfer temp variable
+    static var newFontReadyTosend : Bool = false
+    static var newFontName : String?
+    static var copyright: String?
+    static var version: String?
 }
