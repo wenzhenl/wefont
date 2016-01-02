@@ -218,6 +218,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                 { (action: UIAlertAction) -> Void in
                     self.charImage = nil
                     self.gridView.userInteractionEnabled = true
+                    self.uploadBarButtonItem.enabled = false
                 }
             )
             presentViewController(alert, animated: true, completion: nil)
