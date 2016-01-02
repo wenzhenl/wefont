@@ -42,6 +42,8 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
         if UserProfile.fontFileURL != nil {
             cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
+        } else {
+            print("Failed to use user font")
         }
         cell.layer.cornerRadius = 4
         cell.alpha = 0.8
