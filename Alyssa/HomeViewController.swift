@@ -12,9 +12,18 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
 
     var pageViewController: UIPageViewController!
     
+    var entireGB2312Chars: [[String]]!
+    
     var pageStringsConsistingOfChars: [String]!
     
-    @IBOutlet weak var titleLabel: UILabel!
+    var currentLevel: Int = 0 {
+        didSet {
+            titleBarButtonItem.title = "第\(currentLevel+1)关 最常用\((currentLevel+1)*Settings.NumOfCharactersPerLevel)字"
+            UserProfile.currentLevel = currentLevel
+        }
+    }
+    
+    @IBOutlet weak var titleBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +32,11 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
         
-        self.pageStringsConsistingOfChars = Settings.getAllCharsSeparatedBy100PerLevelAnd20PerPage()[UserProfile.currentLevel]
+        self.titleBarButtonItem.style = .Plain
+        
+        self.currentLevel = UserProfile.currentLevel
+        self.entireGB2312Chars = Settings.getAllCharsSeparatedBy100PerLevelAnd20PerPage()
+        self.pageStringsConsistingOfChars = entireGB2312Chars[currentLevel]
        
         self.pageViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForPageViewController) as! UIPageViewController
         self.pageViewController.dataSource = self
@@ -32,7 +45,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         let viewControllers = [startVC]
         self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 100, self.view.frame.width, self.view.frame.maxY - 150)
+        self.pageViewController.view.frame = CGRectMake(0, 110, self.view.frame.width, self.view.frame.maxY - 150)
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
@@ -46,6 +59,32 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         UserProfile.activeFontName = newFontName
         
         Settings.popupCustomizedAlert(self, message: "请重启APP查看效果" + newFontName)
+    }
+    
+    
+    @IBAction func goToPreviousLevel(sender: UIBarButtonItem) {
+        if currentLevel == 0 {
+            Settings.popupCustomizedAlert(self, message: "已经在第一关")
+        } else {
+            currentLevel--
+            self.pageStringsConsistingOfChars = entireGB2312Chars[currentLevel]
+            let startVC = self.viewControllerAtIndex(0) as HomePageContentViewController
+            let viewControllers = [startVC]
+            self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        }
+    }
+    
+    
+    @IBAction func goToNextLevel(sender: UIBarButtonItem) {
+        if currentLevel == entireGB2312Chars.count {
+            Settings.popupCustomizedAlert(self, message: "已经在最后一关")
+        } else {
+            currentLevel++
+            self.pageStringsConsistingOfChars = entireGB2312Chars[currentLevel]
+            let startVC = self.viewControllerAtIndex(0) as HomePageContentViewController
+            let viewControllers = [startVC]
+            self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
+        }
     }
     
     func viewControllerAtIndex(index: Int) -> HomePageContentViewController {

@@ -18,21 +18,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一关 最常用一百字" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VcU-Wy-Bqz">
-                                <rect key="frame" x="20" y="72" width="560" height="22"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8g-va-Tc6">
+                                <rect key="frame" x="0.0" y="64" width="600" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="jWe-hb-6O1"/>
+                                    <constraint firstAttribute="height" constant="50" id="umL-Ih-4OU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <items>
+                                    <barButtonItem image="previous" id="ahJ-U8-OJ5">
+                                        <connections>
+                                            <action selector="goToPreviousLevel:" destination="BYZ-38-t0r" id="rLc-Rd-9ez"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="mZq-8S-b7i"/>
+                                    <barButtonItem title="Item" id="Dzq-Ka-Ldl"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="V8d-I3-W4W"/>
+                                    <barButtonItem image="next" id="cRM-Ug-4MO">
+                                        <connections>
+                                            <action selector="goToNextLevel:" destination="BYZ-38-t0r" id="6uY-1e-N8F"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="VcU-Wy-Bqz" secondAttribute="trailing" id="DDp-s8-dch"/>
-                            <constraint firstItem="VcU-Wy-Bqz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="OO2-4S-uZN"/>
-                            <constraint firstItem="VcU-Wy-Bqz" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="bqe-MY-3Og"/>
+                            <constraint firstItem="T8g-va-Tc6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="57v-Sg-OPO"/>
+                            <constraint firstItem="T8g-va-Tc6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="gPw-ER-yj6"/>
+                            <constraint firstItem="T8g-va-Tc6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hpL-YO-MIZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Alyssa" id="BPt-io-6LU">
@@ -43,7 +55,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="titleLabel" destination="VcU-Wy-Bqz" id="f3T-AS-jVF"/>
+                        <outlet property="titleBarButtonItem" destination="Dzq-Ka-Ldl" id="rMd-m2-kfq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -1354,6 +1366,8 @@
         <image name="home-selected" width="24" height="24"/>
         <image name="image" width="24" height="24"/>
         <image name="lock-locked" width="24" height="24"/>
+        <image name="next" width="22" height="22"/>
+        <image name="previous" width="22" height="22"/>
         <image name="upload" width="22" height="22"/>
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>

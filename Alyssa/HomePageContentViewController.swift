@@ -37,7 +37,7 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         let greenColor = CGFloat(Int(arc4random() % 255)) / 255.0
         let redColor = CGFloat(Int(arc4random() % 255)) / 255.0
         
-        cell.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 1.0)
+        cell.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 0.7)
         
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
         if UserProfile.fontFileURL != nil {
