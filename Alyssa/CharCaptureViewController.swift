@@ -81,6 +81,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     @IBOutlet weak var brushSizeSlider: UISlider!
     
+    // MARK - Char Grid View
+    var gridView: CharGridView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -108,7 +111,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         let gridWidth = Settings.WidthOfCharGridView
         let gridAspectRatio = Settings.AspectRatioOfCharGridView
         let gridHeight = gridWidth / gridAspectRatio
-        let gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, 0, gridWidth, gridHeight))
+        gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, 0, gridWidth, gridHeight))
         self.imageContainerView.addSubview(gridView)
         self.imageContainerView.bringSubviewToFront(gridView)
     }
@@ -146,7 +149,15 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         switch sender.state {
         case .Ended: fallthrough
         case .Changed:
-            charImageView.transform = CGAffineTransformScale(charImageView.transform, sender.scale, sender.scale)
+            if charImage != nil {
+                charImageView.transform = CGAffineTransformScale(charImageView.transform, sender.scale, sender.scale)
+            } else {
+                let newGridViewWidth = gridView.frame.size.width * sender.scale
+                let newGridViewHeight = newGridViewWidth / Settings.AspectRatioOfCharGridView
+                let originX = gridView.center.x - newGridViewWidth / 2.0
+                let originY = gridView.center.y - newGridViewHeight / 2.0
+                gridView.frame = CGRectMake(originX, originY, newGridViewWidth, newGridViewHeight)
+            }
             sender.scale = 1
         default: break
         }
@@ -164,13 +175,19 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     @IBAction func moveChar(sender: UIPanGestureRecognizer) {
-     
+        
         switch sender.state {
         case .Ended: fallthrough
         case .Changed:
-            let translation = sender.translationInView(charImageView)
-            charImageView.transform = CGAffineTransformTranslate(charImageView.transform, translation.x / Settings.GestureScaleForMovingHandwritting, translation.y / Settings.GestureScaleForMovingHandwritting)
-            sender.setTranslation(CGPointZero, inView: charImageView)
+            if charImage != nil {
+                let translation = sender.translationInView(charImageView)
+                charImageView.transform = CGAffineTransformTranslate(charImageView.transform, translation.x / Settings.GestureScaleForMovingHandwritting, translation.y / Settings.GestureScaleForMovingHandwritting)
+                sender.setTranslation(CGPointZero, inView: charImageView)
+            } else {
+                let translation = sender.translationInView(imageContainerView)
+                self.gridView.center = CGPointMake(gridView.center.x, gridView.center.y + translation.y / Settings.GestureScaleForMovingHandwritting)
+                sender.setTranslation(CGPointZero, inView: imageContainerView)
+            }
         default: break
         }
     }
@@ -251,6 +268,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if charImage != nil {
             footprintsOfCharImage = [charImage!]
             uploadBarButtonItem.enabled = true
+            gridView.userInteractionEnabled = false
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
