@@ -33,6 +33,9 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func logout() {
+        
+        UserProfile.hasLoggedIn = false
+        
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
         
         let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
