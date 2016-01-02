@@ -23,7 +23,9 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func updateMyFont(sender: UIBarButtonItem) {
-        fetchLatestFont()
+        Settings.popupCustomizedAlert(self, message: "请重启APP查看效果")
+
+//        fetchLatestFont()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

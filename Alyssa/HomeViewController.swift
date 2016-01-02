@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
       
         UserProfile.activeFontName = newFontName
         
-        Settings.popupCustomizedAlert(self, message: "Successfully added font " + newFontName)
+        Settings.popupCustomizedAlert(self, message: "请重启APP查看效果" + newFontName)
     }
     
     func viewControllerAtIndex(index: Int) -> HomePageContentViewController {

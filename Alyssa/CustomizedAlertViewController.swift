@@ -9,33 +9,26 @@
 import UIKit
 
 class CustomizedAlertViewController: UIViewController {
-
-    @IBOutlet weak var alertLabel: UILabel!
     
-    var message: String! {
-        get {
-            return alertLabel.text
-        }
-        set {
-            alertLabel.text = newValue
-        }
-    }
+    var message: String! = "Please haha"
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(red: 0.8, green: 1.0, blue: 0.4, alpha: 0.7)
         let alertWidth = Settings.WidthOfCustomizedAlertView
         let alertHeight = Settings.HeightOfCustomizedAlertView
-        let gridView = UIView(frame: CGRectMake(self.view.frame.midX - alertWidth / 2, self.view.frame.midY - alertHeight / 2, alertWidth, alertHeight))
-        gridView.backgroundColor = Settings.ColorOfStamp
-        gridView.layer.cornerRadius = 8
+        let verticalOffset = Settings.VerticalOffsetOfCustomizedAlertView
+        let gridView = UIView(frame: CGRectMake(self.view.frame.midX - alertWidth / 2, self.view.frame.minY + verticalOffset, alertWidth, alertHeight))
+        gridView.backgroundColor = Settings.ColorOfAlertView
+        gridView.layer.cornerRadius = Settings.HeightOfCustomizedAlertView / 2
+        
+        let messageLabel = UILabel(frame: CGRectMake(0, 0, alertWidth, alertHeight))
+        messageLabel.textAlignment = .Center
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.whiteColor()
+        messageLabel.backgroundColor = UIColor.clearColor()
+        gridView.addSubview(messageLabel)
+        
         self.view.addSubview(gridView)
-        self.view.bringSubviewToFront(alertLabel)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

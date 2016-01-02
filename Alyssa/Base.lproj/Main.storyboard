@@ -340,27 +340,8 @@
                     <view key="view" contentMode="scaleToFill" id="yBX-Yn-Iub">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请重新启动APP查看效果" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="llR-Zk-g6t">
-                                <rect key="frame" x="210" y="290" width="180" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="jJK-f3-hsI"/>
-                                    <constraint firstAttribute="width" constant="180" id="zN3-5T-CY1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="llR-Zk-g6t" firstAttribute="centerY" secondItem="yBX-Yn-Iub" secondAttribute="centerY" id="VXf-bd-TPe"/>
-                            <constraint firstItem="llR-Zk-g6t" firstAttribute="centerX" secondItem="yBX-Yn-Iub" secondAttribute="centerX" id="vZX-a5-qhq"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="alertLabel" destination="llR-Zk-g6t" id="hfI-W9-5cF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kA4-fU-I70" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

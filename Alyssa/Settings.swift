@@ -47,7 +47,8 @@ class Settings {
     
     // MARK - color for header
     static let ColorOfStamp = UIColor(red: 192.0/255.0, green: 0.0/255.0, blue: 14.0/255.0, alpha: 1.0)
-    
+    static let ColorOfAlertView = UIColor(red: 234.0 / 255.0, green: 69.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
+
     // MARK - Server and API names
     static let ServerIP = "http://52.69.172.155/"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
@@ -78,10 +79,11 @@ class Settings {
     
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
-    static let WidthOfCharGridView = CGFloat(200.0)
+    static let WidthOfCharGridView = CGFloat(100.0)
     static let AspectRatioOfCharGridView = CGFloat(0.75)
-    static let WidthOfCustomizedAlertView = CGFloat(200.0)
-    static let HeightOfCustomizedAlertView = CGFloat(40.0)
+    static let WidthOfCustomizedAlertView = CGFloat(230.0)
+    static let HeightOfCustomizedAlertView = CGFloat(50.0)
+    static let VerticalOffsetOfCustomizedAlertView = CGFloat(100.0)
     
     // MARK - System default books
     static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
@@ -155,7 +157,7 @@ class Settings {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         viewController.presentViewController(alert, animated: true, completion: nil)
         
-        let delay = 1.5 * Double(NSEC_PER_SEC)
+        let delay = 2.0 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         dispatch_after(time, dispatch_get_main_queue(), {
             alert.dismissViewControllerAnimated(true, completion: nil)
@@ -164,14 +166,16 @@ class Settings {
     
     static func popupCustomizedAlert(viewController: UIViewController, message: String) {
         let customizedAlert = viewController.storyboard?.instantiateViewControllerWithIdentifier(IdentifierForCustomizedAlertViewController) as! CustomizedAlertViewController
-//        customizedAlert.message = "YES"
+        customizedAlert.message = message
+        customizedAlert.modalTransitionStyle = .FlipHorizontal
+        customizedAlert.modalPresentationStyle = .OverFullScreen
         viewController.presentViewController(customizedAlert, animated: true, completion: nil)
         
-//        let delay = 1.5 * Double(NSEC_PER_SEC)
-//        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-//        dispatch_after(time, dispatch_get_main_queue(), {
-//            customizedAlert.dismissViewControllerAnimated(true, completion: nil)
-//        })
+        let delay = 2.0 * Double(NSEC_PER_SEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            customizedAlert.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     static func updateFont(fontFileURL: NSURL) {
