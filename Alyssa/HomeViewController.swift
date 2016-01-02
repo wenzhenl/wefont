@@ -45,7 +45,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         let viewControllers = [startVC]
         self.pageViewController.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
         
-        self.pageViewController.view.frame = CGRectMake(0, 130, self.view.frame.width, self.view.frame.maxY - 150)
+        self.pageViewController.view.frame = CGRectMake(0, 130, self.view.frame.width, self.view.frame.maxY - 180)
         
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
