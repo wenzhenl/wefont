@@ -52,8 +52,6 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
         textFieldContainerView.layer.cornerRadius = 4
         textFieldContainerView.layer.borderColor = UIColor.lightGrayColor().CGColor
         textFieldContainerView.layer.borderWidth = 1
-        
-        fontNameTextField.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

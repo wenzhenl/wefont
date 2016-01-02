@@ -108,7 +108,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         let gridWidth = Settings.WidthOfCharGridView
         let gridAspectRatio = Settings.AspectRatioOfCharGridView
         let gridHeight = gridWidth / gridAspectRatio
-        let gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, self.view.frame.midY - gridHeight / 2, gridWidth, gridHeight))
+        let gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, self.view.frame.minY + Settings.VerticalOffsetOfCharGridView, gridWidth, gridHeight))
         self.view.addSubview(gridView)
         self.view.bringSubviewToFront(gridView)
     }

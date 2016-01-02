@@ -13,8 +13,8 @@ class CurrentCharContainerView: UIView {
    
     override func drawRect(rect: CGRect) {
          let underScoreLinePath = UIBezierPath()
-        underScoreLinePath.moveToPoint(CGPoint(x: self.bounds.width/2 - CGFloat(Settings.widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged/2), y: self.bounds.height))
-        underScoreLinePath.addLineToPoint(CGPoint(x: self.bounds.width/2 + CGFloat(Settings.widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged/2), y: self.bounds.height))
+        underScoreLinePath.moveToPoint(CGPoint(x: self.bounds.width/2 - CGFloat(Settings.widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged/2), y: self.bounds.height-Settings.VerticalOffsetOfCharUnderscore))
+        underScoreLinePath.addLineToPoint(CGPoint(x: self.bounds.width/2 + CGFloat(Settings.widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged/2), y: self.bounds.height-Settings.VerticalOffsetOfCharUnderscore))
         Settings.ColorOfStamp.set()
         underScoreLinePath.lineWidth = 2
         underScoreLinePath.stroke()

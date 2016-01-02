@@ -76,10 +76,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMP-fs-G56" customClass="ThreeFieldContainerView" customModule="Alyssa" customModuleProvider="target">
-                                <rect key="frame" x="20" y="72" width="560" height="120"/>
+                                <rect key="frame" x="20" y="104" width="560" height="120"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="字体名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DeV-QN-US9">
                                         <rect key="frame" x="20" y="0.0" width="520" height="40"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="版本号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8d-h8-yUc">
+                                        <rect key="frame" x="20" y="80" width="520" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -88,11 +93,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="dF9-LO-OVK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="版本号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A8d-h8-yUc">
-                                        <rect key="frame" x="20" y="80" width="520" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -117,7 +117,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="width" secondItem="jRC-Tl-E7q" secondAttribute="width" id="5Y2-eo-JBb"/>
-                            <constraint firstItem="fMP-fs-G56" firstAttribute="top" secondItem="xXa-BZ-OIQ" secondAttribute="bottom" constant="8" symbolic="YES" id="L51-JL-xB1"/>
+                            <constraint firstItem="fMP-fs-G56" firstAttribute="top" secondItem="xXa-BZ-OIQ" secondAttribute="bottom" constant="40" id="L51-JL-xB1"/>
                             <constraint firstItem="fMP-fs-G56" firstAttribute="centerX" secondItem="jRC-Tl-E7q" secondAttribute="centerX" id="VKX-aT-5oo"/>
                             <constraint firstItem="hPz-M2-nj3" firstAttribute="centerX" secondItem="jRC-Tl-E7q" secondAttribute="centerX" id="Z2X-mf-BNW"/>
                             <constraint firstItem="hPz-M2-nj3" firstAttribute="centerY" secondItem="jRC-Tl-E7q" secondAttribute="centerY" id="lYa-Qs-as7"/>
@@ -871,31 +871,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-np-6mE">
-                                <rect key="frame" x="20" y="275" width="560" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-ci-54w">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="加入Alyssa">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="joinAlyssa" destination="jxL-GO-A8Q" eventType="touchUpInside" id="1pq-Xb-0mv"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="centerY" secondItem="tEI-np-6mE" secondAttribute="centerY" id="Jjc-Uu-Rkb"/>
-                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="width" secondItem="tEI-np-6mE" secondAttribute="width" id="NPV-Av-gyM"/>
-                                    <constraint firstAttribute="height" constant="50" id="X9D-m6-dfu"/>
-                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="height" secondItem="tEI-np-6mE" secondAttribute="height" id="fGV-T6-kSS"/>
-                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="centerX" secondItem="tEI-np-6mE" secondAttribute="centerX" id="vgR-tS-Bag"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-Nq-Av5" customClass="RegisterTextFieldContainerView" customModule="Alyssa" customModuleProvider="target">
-                                <rect key="frame" x="20" y="100" width="560" height="160"/>
+                                <rect key="frame" x="20" y="74" width="560" height="160"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEF-cl-QZp">
                                         <rect key="frame" x="20" y="0.0" width="520" height="40"/>
@@ -948,6 +925,29 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEI-np-6mE">
+                                <rect key="frame" x="20" y="249" width="560" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-ci-54w">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="加入Alyssa">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinAlyssa" destination="jxL-GO-A8Q" eventType="touchUpInside" id="1pq-Xb-0mv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="centerY" secondItem="tEI-np-6mE" secondAttribute="centerY" id="Jjc-Uu-Rkb"/>
+                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="width" secondItem="tEI-np-6mE" secondAttribute="width" id="NPV-Av-gyM"/>
+                                    <constraint firstAttribute="height" constant="50" id="X9D-m6-dfu"/>
+                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="height" secondItem="tEI-np-6mE" secondAttribute="height" id="fGV-T6-kSS"/>
+                                    <constraint firstItem="PYZ-ci-54w" firstAttribute="centerX" secondItem="tEI-np-6mE" secondAttribute="centerX" id="vgR-tS-Bag"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yIh-Ae-5nw">
                                 <rect key="frame" x="20" y="540" width="50" height="50"/>
                                 <constraints>
@@ -964,6 +964,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="tEI-np-6mE" secondAttribute="trailing" id="ONO-UB-rGm"/>
                             <constraint firstItem="s2b-Nq-Av5" firstAttribute="width" secondItem="tEI-np-6mE" secondAttribute="width" id="Qaj-Jg-FRB"/>
                             <constraint firstItem="yIh-Ae-5nw" firstAttribute="top" secondItem="tEI-np-6mE" secondAttribute="bottom" constant="150" id="Qup-k4-K5I"/>
+                            <constraint firstItem="s2b-Nq-Av5" firstAttribute="top" secondItem="rW9-Lb-9mc" secondAttribute="bottom" constant="10" id="SUI-3s-GVR"/>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="top" secondItem="s2b-Nq-Av5" secondAttribute="bottom" constant="15" id="b3g-HW-NsJ"/>
                             <constraint firstItem="s2b-Nq-Av5" firstAttribute="centerX" secondItem="2e8-eO-Fjf" secondAttribute="centerX" id="frd-I1-6fo"/>
                             <constraint firstItem="tEI-np-6mE" firstAttribute="leading" secondItem="2e8-eO-Fjf" secondAttribute="leadingMargin" id="ho5-2c-dfa"/>
@@ -974,6 +975,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="CYF-ek-j1p"/>
+                                <exclude reference="qOO-ss-Sf5"/>
                                 <exclude reference="92W-SP-Fnz"/>
                                 <exclude reference="Qup-k4-K5I"/>
                             </mask>
