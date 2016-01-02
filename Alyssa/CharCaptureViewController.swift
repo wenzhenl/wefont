@@ -60,12 +60,15 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     
+    @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
+    
     var eraserDidSelected = false {
         didSet {
             tapGesture.enabled = !eraserDidSelected
             pinchGesture.enabled = !eraserDidSelected
             rotationGesture.enabled = !eraserDidSelected
             panGesture.enabled = !eraserDidSelected
+            longPressGesture.enabled = !eraserDidSelected
             
             imageBarButtonItem.enabled = !eraserDidSelected
             cameraBarButtonItem.enabled = !eraserDidSelected
@@ -132,6 +135,8 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         UserProfile.activeChar = currentChar
     }
     
+    @IBAction func uploadChar(sender: UIBarButtonItem) {
+    }
     // MARK - handle all kinds of gestures
     @IBAction func rotateChar(sender: UIRotationGestureRecognizer) {
         
@@ -189,6 +194,22 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                 sender.setTranslation(CGPointZero, inView: imageContainerView)
             }
         default: break
+        }
+    }
+    
+    @IBAction func deleteCharImage(sender: UILongPressGestureRecognizer) {
+        if charImage != nil {
+            let alert = UIAlertController(title: nil, message:"确定删除字图", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(
+                title: "删除",
+                style: .Destructive)
+                { (action: UIAlertAction) -> Void in
+                    self.charImage = nil
+                    self.gridView.userInteractionEnabled = true
+                }
+            )
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
     

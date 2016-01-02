@@ -350,6 +350,7 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ih2-1I-keB">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="403"/>
+                                        <gestureRecognizers/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -369,6 +370,7 @@
                                     <outletCollection property="gestureRecognizers" destination="49x-U3-USt" appends="YES" id="VYM-ht-yV5"/>
                                     <outletCollection property="gestureRecognizers" destination="Dkh-X1-Fg2" appends="YES" id="mcf-Bu-v3v"/>
                                     <outletCollection property="gestureRecognizers" destination="lG5-h9-fcV" appends="YES" id="YsA-DG-tVx"/>
+                                    <outletCollection property="gestureRecognizers" destination="xhU-KS-vfP" appends="YES" id="hE5-9D-xNM"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -401,7 +403,11 @@
                                 <action selector="undoErase:" destination="6zZ-Ky-MIL" id="baN-YC-fTe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="upload" id="GQs-cv-nWX"/>
+                        <barButtonItem key="rightBarButtonItem" image="upload" id="GQs-cv-nWX">
+                            <connections>
+                                <action selector="uploadChar:" destination="6zZ-Ky-MIL" id="eqe-nR-KLi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="brushSizeSlider" destination="xqf-Xb-9lS" id="xKZ-MM-P67"/>
@@ -412,6 +418,7 @@
                         <outlet property="eraserBarButtonItem" destination="Vfh-rg-HAA" id="0iA-7T-S2c"/>
                         <outlet property="imageBarButtonItem" destination="kfr-HA-oB7" id="MSw-Gu-9Le"/>
                         <outlet property="imageContainerView" destination="Jh3-rP-hZd" id="kMq-MR-Kts"/>
+                        <outlet property="longPressGesture" destination="xhU-KS-vfP" id="wfd-pc-e0S"/>
                         <outlet property="panGesture" destination="49x-U3-USt" id="g3v-YH-nh6"/>
                         <outlet property="pinchGesture" destination="kif-OR-nrS" id="vBF-Cv-Sna"/>
                         <outlet property="rotationGesture" destination="lG5-h9-fcV" id="I8q-rK-GUc"/>
@@ -443,6 +450,11 @@
                         <action selector="rotateChar:" destination="6zZ-Ky-MIL" id="9ka-8v-1FI"/>
                     </connections>
                 </rotationGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="xhU-KS-vfP">
+                    <connections>
+                        <action selector="deleteCharImage:" destination="6zZ-Ky-MIL" id="qZu-1K-0id"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="988" y="-161"/>
         </scene>
