@@ -107,6 +107,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         self.brushSizeSlider.maximumValue = Settings.maxBrushSize
         self.undoBarButtonItem.title = ""
         self.uploadBarButtonItem.enabled = false
+        self.eraserBarButtonItem.enabled = false
         
         self.view.bringSubviewToFront(toolbar)
         self.view.bringSubviewToFront(currentCharContainerView)
@@ -219,6 +220,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                     self.charImage = nil
                     self.gridView.userInteractionEnabled = true
                     self.uploadBarButtonItem.enabled = false
+                    self.eraserBarButtonItem.enabled = false
                 }
             )
             presentViewController(alert, animated: true, completion: nil)
@@ -301,6 +303,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if charImage != nil {
             footprintsOfCharImage = [charImage!]
             uploadBarButtonItem.enabled = true
+            eraserBarButtonItem.enabled = true
             gridView.userInteractionEnabled = false
         }
         dismissViewControllerAnimated(true, completion: nil)
