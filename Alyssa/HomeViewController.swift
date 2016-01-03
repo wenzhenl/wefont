@@ -50,6 +50,10 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+        
+//        if UserProfile.activeFontName != nil {
+//            self.title = UserProfile.activeFontName!
+//        }
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {

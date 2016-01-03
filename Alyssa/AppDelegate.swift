@@ -26,7 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         else {
             application.statusBarStyle = .LightContent
             if UserProfile.hasLoggedIn {
-               initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+                if UserProfile.activeFontName != nil {
+                    Settings.updateFont(UserProfile.fontFileURL!)
+                }
+                initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
             } else {
                 initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
             }
@@ -34,11 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
-        
-        
-        if UserProfile.activeFontName != nil {
-            Settings.updateFont(UserProfile.fontFileURL!)
-        }
         
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()

@@ -40,8 +40,8 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForUserInfoTableCell) as! UserInfoTableViewCell
-            cell.nickname = "Leeyukuang"
-            cell.email = "example@gmail.com"
+            cell.nickname = UserProfile.userNickname
+            cell.email = UserProfile.userEmailAddress
             cell.selectionStyle = .None
             return cell
         }

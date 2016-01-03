@@ -144,7 +144,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         appDelegate.window?.rootViewController = initialViewController
                         appDelegate.window?.makeKeyAndVisible()
                     } else {
-                        Settings.popupCustomizedAlert(self, message: "囧：服务器开小差了")
+                        Settings.popupCustomizedAlert(self, message: message)
                     }
                 }
             }

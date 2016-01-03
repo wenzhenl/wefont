@@ -92,12 +92,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         UserProfile.userPassword = password!
                         UserProfile.hasLoggedIn = true
                         
-                        if let activeFont = parseJSON["active_font"] as? String {
+                        if let activeFont = parseJSON["active"] as? String {
+                            print("active font ", activeFont)
                             UserProfile.activeFontName = activeFont
+                        } else {
+                            print("no active font")
                         }
                         
                         if let allFontsInfo = parseJSON["all_fonts_info"] as? NSDictionary {
                             UserProfile.fontsNumOfFinishedChars = allFontsInfo as? [String : Int]
+                            print(allFontsInfo)
                         }
                         
                         dismissViewControllerAnimated(true) {
@@ -108,7 +112,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             appDelegate.window?.makeKeyAndVisible()
                         }
                     } else {
-                        Settings.popupCustomizedAlert(self, message: "囧：服务器开小差了")
+                        dismissViewControllerAnimated(true) {
+                            Settings.popupCustomizedAlert(self, message: message)
+                        }
                     }
                 }
             }
