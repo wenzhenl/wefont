@@ -40,9 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Settings.updateFont(UserProfile.fontFileURL!)
         }
         
-        UserProfile.userEmailAddress = "liyukuang@gmail.com"
-        UserProfile.userPassword = "1233"
-        
         let pageController = UIPageControl.appearance()
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = Settings.ColorOfStamp

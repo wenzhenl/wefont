@@ -56,6 +56,7 @@ class Settings {
 
     // MARK - Server and API names
     static let ServerIP = "http://52.69.172.155/"
+    static let APIUserSignup = "alyssa_user_signup.php"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
     
@@ -109,9 +110,32 @@ class Settings {
     static let maxBrushSize = Float(40.0)
     
     
-    static let patternForEmptyString = "^\\s*$"
     
     // MARK - Common functions used by all viewcontroller
+    
+    // MARK - input validation
+    static let patternForEmptyString = "^\\s*$"
+    
+    static func isEmpty(string: String?) -> Bool {
+        if string == nil {
+            return true
+        }
+        if string?.rangeOfString(patternForEmptyString, options: .RegularExpressionSearch) != nil {
+            return true
+        }
+        return false
+    }
+
+    
+    static func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
+    
+    // MARK - interaction with the server
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
         
         if !Reachability.isConnectedToNetwork() {

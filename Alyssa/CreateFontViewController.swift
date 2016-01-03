@@ -64,23 +64,13 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func isEmpty(string: String?) -> Bool {
-        if string == nil {
-            return true
-        }
-        if string?.rangeOfString(Settings.patternForEmptyString, options: .RegularExpressionSearch) != nil {
-            return true
-        }
-        return false
-    }
-    
     func checkInputs() -> Bool  {
         
-        if isEmpty(fontName) {
+        if Settings.isEmpty(fontName) {
             Settings.popupCustomizedAlert(self, message: "字体名不能为空")
-        } else if isEmpty(copyright) {
+        } else if Settings.isEmpty(copyright) {
             Settings.popupCustomizedAlert(self, message: "版权信息不能为空")
-        } else if isEmpty(version) {
+        } else if Settings.isEmpty(version) {
             Settings.popupCustomizedAlert(self, message: "版本号不能为空")
         } else {
             return true
