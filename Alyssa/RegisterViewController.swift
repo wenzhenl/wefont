@@ -94,7 +94,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         if Settings.isEmpty(email) {
             Settings.popupCustomizedAlert(self, message: "邮箱不能为空")
-        } else if Settings.isValidEmail(email!) {
+        } else if !Settings.isValidEmail(email!) {
             Settings.popupCustomizedAlert(self, message: "邮箱地址是无效的")
         } else if Settings.isEmpty(password) {
             Settings.popupCustomizedAlert(self, message: "密码不能为空")

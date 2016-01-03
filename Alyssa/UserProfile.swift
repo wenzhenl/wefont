@@ -11,8 +11,23 @@ import Foundation
 class UserProfile {
     
     // MARK - user account info
-    static var userEmailAddress: String?
-    static var userPassword: String?
+    static var userEmailAddress: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForUserEmailInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForUserEmailInDefaultUser)
+        }
+    }
+    static var userPassword: String? {
+        get {
+            return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForUserPasswordInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForUserPasswordInDefaultUser)
+        }
+    }
+    
     static var userNickname: String? {
         get {
             return NSUserDefaults.standardUserDefaults().stringForKey(Settings.keyForNicknameInDefaultUser)

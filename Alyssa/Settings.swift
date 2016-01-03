@@ -71,6 +71,8 @@ class Settings {
     
     // user account related
     static let keyForNicknameInDefaultUser = "keyForUserNickname"
+    static let keyForUserEmailInDefaultUser = "keyForUserEmail"
+    static let keyForUserPasswordInDefaultUser = "keyForUserPassword"
     
     // font related
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
@@ -180,7 +182,7 @@ class Settings {
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
                         
-                        popupCustomizedAlert(viewController, message: "不好意思，服务器出错了")
+                        popupCustomizedAlert(viewController, message: "囧：服务器开小差了")
                     } else {
                         retrivedJSONHandler(json)
                     }
