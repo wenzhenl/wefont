@@ -93,6 +93,10 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+
+        if section == 3 {
+            return 70
+        }
         return 30
     }
     
@@ -112,7 +116,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         if indexPath.section == 0 {
             return 60
         } else {
-            return 40
+            return 50
         }
     }
     

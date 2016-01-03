@@ -585,48 +585,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leeyukuang" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F81-gm-qJD">
-                                                    <rect key="frame" x="8" y="0.0" width="600" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="150" id="SL9-8F-QvW"/>
-                                                    </constraints>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1a2-vr-QVW">
+                                                    <rect key="frame" x="8" y="8" width="584" height="10"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="SL9-8F-QvW"/>
-                                                        </mask>
-                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="exampleverylong@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Rh-2F-sAg">
-                                                    <rect key="frame" x="8" y="23" width="600" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="227" id="hoD-LN-R6u"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8wv-X6-2jX">
+                                                    <rect key="frame" x="8" y="26" width="584" height="9"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="hoD-LN-R6u"/>
-                                                        </mask>
-                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="F81-gm-qJD" firstAttribute="leading" secondItem="9Rh-2F-sAg" secondAttribute="leading" id="3Vs-iu-Ucj"/>
-                                                <constraint firstItem="9Rh-2F-sAg" firstAttribute="width" secondItem="hDC-Bm-Lz1" secondAttribute="width" id="8ac-a3-Piz"/>
-                                                <constraint firstItem="F81-gm-qJD" firstAttribute="leading" secondItem="hDC-Bm-Lz1" secondAttribute="leadingMargin" id="Neh-KD-D4R"/>
-                                                <constraint firstItem="F81-gm-qJD" firstAttribute="top" secondItem="hDC-Bm-Lz1" secondAttribute="top" id="PGA-3K-Vb9"/>
-                                                <constraint firstAttribute="bottom" secondItem="9Rh-2F-sAg" secondAttribute="bottom" id="u0o-pH-cSj"/>
-                                                <constraint firstItem="F81-gm-qJD" firstAttribute="width" secondItem="hDC-Bm-Lz1" secondAttribute="width" id="yuC-jv-AzF"/>
+                                                <constraint firstItem="1a2-vr-QVW" firstAttribute="leading" secondItem="hDC-Bm-Lz1" secondAttribute="leadingMargin" id="2j5-QC-0XK"/>
+                                                <constraint firstItem="8wv-X6-2jX" firstAttribute="height" secondItem="1a2-vr-QVW" secondAttribute="height" id="37V-dG-c7Z"/>
+                                                <constraint firstItem="8wv-X6-2jX" firstAttribute="top" secondItem="1a2-vr-QVW" secondAttribute="bottom" constant="8" symbolic="YES" id="Iga-FL-B0J"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1a2-vr-QVW" secondAttribute="trailing" id="J0l-Zz-Ao6"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8wv-X6-2jX" secondAttribute="bottom" id="RKX-hG-KUb"/>
+                                                <constraint firstItem="1a2-vr-QVW" firstAttribute="top" secondItem="hDC-Bm-Lz1" secondAttribute="topMargin" id="WZP-XI-eko"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8wv-X6-2jX" secondAttribute="trailing" id="brn-oe-iEz"/>
+                                                <constraint firstItem="8wv-X6-2jX" firstAttribute="width" secondItem="1a2-vr-QVW" secondAttribute="width" id="sge-5K-0Xt"/>
+                                                <constraint firstItem="8wv-X6-2jX" firstAttribute="leading" secondItem="hDC-Bm-Lz1" secondAttribute="leadingMargin" id="zUn-Bt-Lbu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="emailLabel" destination="9Rh-2F-sAg" id="7TT-Em-hVk"/>
-                                            <outlet property="nicknameLabel" destination="F81-gm-qJD" id="RN0-ht-fmr"/>
+                                            <outlet property="emailLabel" destination="8wv-X6-2jX" id="UHq-OS-oXP"/>
+                                            <outlet property="nicknameLabel" destination="1a2-vr-QVW" id="JAk-oA-6UJ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Single Label Table Cell" id="Ih3-Gw-bfh" customClass="SingleLabelTableViewCell" customModule="Alyssa" customModuleProvider="target">
@@ -702,7 +689,18 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="U06-eq-3QS">
                                 <rect key="frame" x="20" y="72" width="560" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">License Agreement
+For Open Source Computer Vision Library
+(3-clause BSD License)
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    Neither the names of the copyright holders nor the names of the contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+This software is provided by the copyright holders and contributors “as is” and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall copyright holders or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of
+the use of this software, even if advised of the possibility of such damage.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
