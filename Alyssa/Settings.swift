@@ -14,6 +14,8 @@ class Settings {
     // MARK - Identifiers for table cells
     static let IdentifierForBookTitleCell = "Book Title Table Cell"
     static let IdentifierForSingleButtonTableCell = "Single Button Table Cell"
+    static let IdentifierForUserInfoTableCell = "User Info Table Cell"
+    static let IdentifierForSingleLabelTableCell = "Single Label Table Cell"
     
     // MARK - Identifiers for collection view cells
     static let IdentifierForSingleCharCollectionCell = "Single Char Collection View Cell"
@@ -22,6 +24,8 @@ class Settings {
     static let IdentifierForSegueToBookContent = "To Book Content"
     static let IdentifierForSegueFromLoginToTabView = "Successfully Login"
     static let IdentifierForSegueToCreateFont = "Present Create Font"
+    static let IdentifierForSegueToAboutAlyssa = "Go To See About Alyssa"
+    static let IdentifierForSegueToAcknowledgePage = "Go to see acknowledge page"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"

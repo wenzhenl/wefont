@@ -39,6 +39,10 @@
 		0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0701C2C1C3600526E1B /* BookViewController.swift */; };
 		0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0721C2C1C5800526E1B /* MeViewController.swift */; };
 		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
+		0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */; };
+		0A9357CD1C38FC16008DCA75 /* SingleLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */; };
+		0A9357CF1C38FDA1008DCA75 /* AboutAlyssaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */; };
+		0A9357D11C391197008DCA75 /* AcknowledgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */; };
 		0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB55D71C3654FE00E5CC62 /* opencv2.framework */; };
 		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
 		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
@@ -104,6 +108,10 @@
 		0A67F0701C2C1C3600526E1B /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		0A67F0721C2C1C5800526E1B /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0A67F0741C2C249300526E1B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
+		0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAlyssaViewController.swift; sourceTree = "<group>"; };
+		0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgeViewController.swift; sourceTree = "<group>"; };
 		0ABB55D71C3654FE00E5CC62 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alyssa-Bridging-Header.h"; sourceTree = "<group>"; };
 		0ABB55DA1C36555700E5CC62 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
@@ -199,7 +207,11 @@
 				0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */,
 				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
 				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
+				0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */,
+				0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */,
 				0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */,
+				0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */,
+				0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */,
 				0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */,
 				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
@@ -392,7 +404,9 @@
 				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
 				0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */,
 				0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */,
+				0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */,
 				0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */,
+				0A9357CD1C38FC16008DCA75 /* SingleLabelTableViewCell.swift in Sources */,
 				0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */,
 				0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */,
 				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
@@ -400,10 +414,12 @@
 				0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,
+				0A9357CF1C38FDA1008DCA75 /* AboutAlyssaViewController.swift in Sources */,
 				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
 				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
 				0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */,
 				0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */,
+				0A9357D11C391197008DCA75 /* AcknowledgeViewController.swift in Sources */,
 				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
 				0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */,
 			);

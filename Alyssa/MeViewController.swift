@@ -10,6 +10,8 @@ import UIKit
 
 class MeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,40 +21,107 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 4
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        if section == 0 {
+            return 1
+        } else if section == 1 {
+            return 2
+        } else if section == 2 {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4 {
+        
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForUserInfoTableCell) as! UserInfoTableViewCell
+            cell.nickname = "Leeyukuang"
+            cell.email = "example@gmail.com"
+            cell.selectionStyle = .None
+            return cell
+        }
+        
+        else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleButtonTableCell) as! SingleButtonTableViewCell
             if indexPath.row == 0 {
                 cell.button.setTitle("更新字体", forState: .Normal)
+                cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
                 cell.button.addTarget(self, action: "updateFont", forControlEvents: .TouchUpInside)
             }
-            else if indexPath.row == 2 {
+            else if indexPath.row == 1 {
                 cell.button.setTitle("发送字体到邮箱", forState: .Normal)
+                cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
                 cell.button.addTarget(self, action: "emailFont", forControlEvents: .TouchUpInside)
             }
-            else if indexPath.row == 4 {
-                cell.button.setTitle("退出登录", forState: .Normal)
-                cell.button.addTarget(self, action: "logout", forControlEvents: .TouchUpInside)
+            
+            return cell
+        }
+        
+        else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleLabelTableCell) as! SingleLabelTableViewCell
+            if indexPath.row == 0 {
+                cell.singleLabel.text = "关于Alyssa"
+                cell.selectionStyle = .None
+            }
+            else if indexPath.row == 1 {
+                cell.singleLabel.text = "致谢"
+                cell.selectionStyle = .None
             }
             return cell
+        }
+        
+        else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleButtonTableCell) as! SingleButtonTableViewCell
+            cell.button.setTitle("退出登录", forState: .Normal)
+            cell.button.addTarget(self, action: "logout", forControlEvents: .TouchUpInside)
+            return cell
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 2 && indexPath.row == 0 {
+            performSegueWithIdentifier(Settings.IdentifierForSegueToAboutAlyssa, sender: self)
+        }
+        else if indexPath.section == 2 && indexPath.row == 1 {
+            performSegueWithIdentifier(Settings.IdentifierForSegueToAcknowledgePage, sender: self)
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 20
+        }
+        else if section == 3 {
+            return 20
+        }
+        else {
+            return 0
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 60
         } else {
-            return UITableViewCell()
+            return 40
         }
     }
     
     func updateFont() {
-        
+        Settings.popupCustomizedAlert(self, message: "已经更新到最新版本")
     }
     
     func emailFont() {
-        
+        Settings.popupCustomizedAlert(self, message: "已经发送到邮箱")
     }
     
     func logout() {
