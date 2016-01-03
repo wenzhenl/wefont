@@ -73,7 +73,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             params["password"] = password!
             
             let message = "登录失败，请检查网络连接"
-            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIUserSignup, params: params, retrivedJSONHandler: handleServerResponse)
+            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIUserLogin, params: params, retrivedJSONHandler: handleServerResponse)
+            
+            Settings.popupCustomizedAlertNotDissmissed(self, message: "正在加载用户信息")
         }
     }
     
@@ -98,11 +100,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             UserProfile.fontsNumOfFinishedChars = allFontsInfo as? [String : Int]
                         }
                         
-                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                        UIApplication.sharedApplication().statusBarStyle = .LightContent
-                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
-                        appDelegate.window?.rootViewController = initialViewController
-                        appDelegate.window?.makeKeyAndVisible()
+                        dismissViewControllerAnimated(true) {
+                            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+                            UIApplication.sharedApplication().statusBarStyle = .LightContent
+                            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+                            appDelegate.window?.rootViewController = initialViewController
+                            appDelegate.window?.makeKeyAndVisible()
+                        }
                     } else {
                         Settings.popupCustomizedAlert(self, message: "囧：服务器开小差了")
                     }

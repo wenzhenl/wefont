@@ -57,6 +57,7 @@ class Settings {
     // MARK - Server and API names
     static let ServerIP = "http://52.69.172.155/"
     static let APIUserSignup = "alyssa_user_signup.php"
+    static let APIUserLogin = "alyssa_user_login.php"
     static let APIFetchingLatestFont = "fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
     
@@ -205,6 +206,14 @@ class Settings {
         dispatch_after(time, dispatch_get_main_queue(), {
             viewController.dismissViewControllerAnimated(true, completion: nil)
         })
+    }
+    
+    static func popupCustomizedAlertNotDissmissed (viewController: UIViewController, message: String) {
+        let customizedAlert = viewController.storyboard?.instantiateViewControllerWithIdentifier(IdentifierForCustomizedAlertViewController) as! CustomizedAlertViewController
+        customizedAlert.message = message
+        customizedAlert.modalTransitionStyle = .FlipHorizontal
+        customizedAlert.modalPresentationStyle = .OverFullScreen
+        viewController.presentViewController(customizedAlert, animated: true, completion: nil)
     }
     
     static func updateFont(fontFileURL: NSURL) {
