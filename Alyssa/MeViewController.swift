@@ -131,6 +131,10 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     func logout() {
         
         UserProfile.hasLoggedIn = false
+        UserProfile.userEmailAddress = nil
+        UserProfile.userNickname = nil
+        UserProfile.userPassword = nil
+        UserProfile.activeFontName = nil
         
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
         
