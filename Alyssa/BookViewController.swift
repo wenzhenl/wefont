@@ -43,7 +43,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "RequestNewBookViewControllerDismissed", object: nil)
         
-        if UserProfile.requestedBookName != nil {
+        if !Settings.isEmpty(UserProfile.requestedBookName) {
             let params = NSMutableDictionary()
             
             params["book_title"] = UserProfile.requestedBookName!
@@ -70,6 +70,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 if let bookTitle = parseJSON["book_title"] as? String {
                                     self.saveBookDataToFileSystem(bookData, bookTitle: bookTitle)
                                     self.bookTitleTableView.reloadData()
+                                    UserProfile.requestedBookName = nil
                                     Settings.popupCustomizedAlert(self, message: "成功保存图书")
                                 }
                             } else {
