@@ -145,7 +145,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
-            if identifier == Settings.IdentifierForSegueToBookContent {
+            if identifier == Settings.IdentifierForSegueToNextStepResetPassword {
                 var destination = segue.destinationViewController
                 // this next if-statement makes sure the segue prepares properly even
                 //   if the MVC we're seguing to is wrapped in a UINavigationController

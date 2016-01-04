@@ -61,6 +61,9 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        if textField == self.versionTextField {
+            createFont()
+        }
         return true
     }
     
@@ -78,7 +81,7 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    @IBAction func createFont(sender: UIBarButtonItem) {
+    @IBAction func createFont() {
         
         if checkInputs() {
             UserProfile.newFontReadyTosend = true
