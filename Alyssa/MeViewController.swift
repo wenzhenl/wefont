@@ -121,9 +121,59 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func updateFont() {
-        Settings.popupCustomizedAlert(self, message: "已经更新到最新版本")
+        if checkInputs() {
+            Settings.fetchLatestFont(self, retrivedJSONHandler: handleRetrivedFontData)
+        }
     }
     
+    func handleRetrivedFontData(json: NSDictionary?) {
+        if let parseJSON = json {
+            // Okay, the parsedJSON is here, let's check if the font is still fresh
+            if let success = parseJSON["success"] as? Bool {
+                print("Success: \(success)")
+                
+                if let message = parseJSON["message"] as? String {
+                    print("load font ", message)
+                    if success {
+                        
+                        if let fontString = parseJSON["font"] as? String {
+                            if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                                print("successfully parsed font data")
+                                
+                                if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
+                                    self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                                    Settings.popupCustomizedAlert(self, message: "字体已更新到最新状态，请重启APP查看效果")
+                                }
+                            } else {
+                                print("Failed convert base64 string to NSData")
+                            }
+                        } else {
+                            print("cannot convert data to String")
+                        }
+                    }
+                } else {
+                    print("already the latest font")
+                }
+            }
+        } else {
+            print("Cannot fetch data")
+        }
+    }
+    
+    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
+        if let fontFileURL = UserProfile.fontFileURL {
+            
+            if !fontData.writeToURL(fontFileURL, atomically: true) {
+                print("Failed to save font", fontFileURL.absoluteString)
+            } else {
+                print("Successfully saved font ", fontFileURL.absoluteString)
+                UserProfile.updateFontLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
+                Settings.updateFont(fontFileURL)
+                print("successfully updated font \(UserProfile.activeFontName)")
+            }
+        }
+    }
+
     func checkInputs() -> Bool  {
         
         if Settings.isEmpty(UserProfile.userEmailAddress) {
