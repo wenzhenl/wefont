@@ -95,24 +95,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         if let activeFont = parseJSON["active_font"] as? String {
                             print("active font ", activeFont)
                             UserProfile.activeFontName = activeFont
-                            
-                            Settings.fetchLatestFont(self, retrivedJSONHandler: handleRetrivedFontData)
+                            dismissViewControllerAnimated(true) {
+                                Settings.fetchLatestFont(self, retrivedJSONHandler: self.handleRetrivedFontData)
+                                Settings.popupCustomizedAlertNotDissmissed(self, message: "正在加载个人字体")
+                            }
                         } else {
                             print("no active font")
+                            dismissViewControllerAnimated(true) {
+                                let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+                                UIApplication.sharedApplication().statusBarStyle = .LightContent
+                                let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+                                appDelegate.window?.rootViewController = initialViewController
+                                appDelegate.window?.makeKeyAndVisible()
+                            }
                         }
-                        
-//                        if let allFontsInfo = parseJSON["all_fonts_info"] as? NSDictionary {
-//                            UserProfile.fontsNumOfFinishedChars = allFontsInfo as? [String : Int]
-//                            print(allFontsInfo)
-//                        }
-                        
-                        dismissViewControllerAnimated(true) {
-                            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                            UIApplication.sharedApplication().statusBarStyle = .LightContent
-                            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
-                            appDelegate.window?.rootViewController = initialViewController
-                            appDelegate.window?.makeKeyAndVisible()
-                        }
+                       
                     } else {
                         dismissViewControllerAnimated(true) {
                             Settings.popupCustomizedAlert(self, message: message)
@@ -144,10 +141,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     }
                 }
             } else {
-                Settings.popupCustomizedAlert(self, message: "当前字体已经是最新版本")
+                print("already the latest font")
             }
         } else {
             print("Cannot fetch data")
+        }
+        
+        dismissViewControllerAnimated(true) {
+            let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+            UIApplication.sharedApplication().statusBarStyle = .LightContent
+            let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
+            appDelegate.window?.rootViewController = initialViewController
+            appDelegate.window?.makeKeyAndVisible()
         }
     }
     
@@ -160,7 +165,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print("Successfully saved font ", fontFileURL.absoluteString)
                 UserProfile.updateFontLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
                 Settings.updateFont(fontFileURL)
-                Settings.popupCustomizedAlert(self, message: "成功更新到最新版本")
+                print("successfully updated font \(UserProfile.activeFontName)")
             }
         }
     }
