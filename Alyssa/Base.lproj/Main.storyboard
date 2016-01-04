@@ -674,10 +674,10 @@
             </objects>
             <point key="canvasLocation" x="1448" y="543"/>
         </scene>
-        <!--Acknowledge View Controller-->
+        <!--致谢-->
         <scene sceneID="SU1-Df-pxu">
             <objects>
-                <viewController id="m5f-6w-CAn" customClass="AcknowledgeViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="致谢" id="m5f-6w-CAn" customClass="AcknowledgeViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KwC-yb-bVm"/>
                         <viewControllerLayoutGuide type="bottom" id="hu5-gj-eSa"/>
@@ -1008,6 +1008,9 @@ the use of this software, even if advised of the possibility of such damage.</st
                                         <state key="normal" title="重置密码">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="resetPassword" destination="7c5-LW-MP4" eventType="touchUpInside" id="8kc-1S-yx8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1033,7 +1036,7 @@ the use of this software, even if advised of the possibility of such damage.</st
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T5c-wd-Gzm">
                                         <rect key="frame" x="20" y="40" width="520" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1360,7 +1363,6 @@ the use of this software, even if advised of the possibility of such damage.</st
                                         </state>
                                         <connections>
                                             <action selector="recoverPassword" destination="vd1-lX-zAv" eventType="touchUpInside" id="euy-W7-0Aw"/>
-                                            <segue destination="7c5-LW-MP4" kind="show" id="s57-sh-phv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1390,7 +1392,7 @@ the use of this software, even if advised of the possibility of such damage.</st
                                             <constraint firstAttribute="height" constant="40" id="fwL-7f-86W"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="fwL-7f-86W"/>
@@ -1458,6 +1460,7 @@ the use of this software, even if advised of the possibility of such damage.</st
                         <outlet property="recoverPasswordButtonContainerView" destination="CRa-RT-zEN" id="jul-0R-g45"/>
                         <outlet property="textFieldContainerView" destination="84k-C2-W27" id="ZDT-bg-BOD"/>
                         <outlet property="validationCodeTextField" destination="6Hu-ZA-vJl" id="8oT-BH-M65"/>
+                        <segue destination="7c5-LW-MP4" kind="show" identifier="Next step to reset password" id="1qC-bF-CRf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrn-vx-IWa" userLabel="First Responder" sceneMemberID="firstResponder"/>

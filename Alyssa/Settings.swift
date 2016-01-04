@@ -26,6 +26,7 @@ class Settings {
     static let IdentifierForSegueToCreateFont = "Present Create Font"
     static let IdentifierForSegueToAboutAlyssa = "Go To See About Alyssa"
     static let IdentifierForSegueToAcknowledgePage = "Go to see acknowledge page"
+    static let IdentifierForSegueToNextStepResetPassword = "Next step to reset password"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"
@@ -58,6 +59,9 @@ class Settings {
     static let ServerIP = "http://52.69.172.155/"
     static let APIUserSignup = "alyssa_user_signup.php"
     static let APIUserLogin = "alyssa_user_login.php"
+    static let APIUserRequestValidationCode = "alyssa_request_validation_code.php"
+    static let APIConfirmValidationCode = "alyssa_confirm_validation_code.php"
+    static let APIUserResetPassword = "alyssa_user_reset_password.php"
     static let APIFetchingLatestFont = "alyssa_fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
     

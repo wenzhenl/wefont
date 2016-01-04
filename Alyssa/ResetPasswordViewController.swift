@@ -27,6 +27,27 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var userEmail : String!
+    var validationCode : String!
+    
+    var newPassword : String? {
+        get {
+            return newPasswordTextField.text
+        }
+        set {
+            newPasswordTextField.text = newValue
+        }
+    }
+    
+    var confirmedNewPassword : String? {
+        get {
+            return confirmedNewPasswordTextField.text
+        }
+        set {
+            confirmedNewPasswordTextField.text = newValue
+        }
+    }
+
     @IBOutlet weak var iconImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -43,24 +64,69 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
         textFieldContainerView.layer.borderWidth = 1
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func checkInputs() -> Bool  {
+        
+        if Settings.isEmpty(userEmail) {
+            Settings.popupCustomizedAlert(self, message: "邮箱不能为空")
+        } else if !Settings.isValidEmail(userEmail!) {
+            Settings.popupCustomizedAlert(self, message: "邮箱地址是无效的")
+        } else if Settings.isEmpty(newPassword) {
+            Settings.popupCustomizedAlert(self, message: "密码不能为空")
+        } else if Settings.isEmpty(confirmedNewPassword) {
+            Settings.popupCustomizedAlert(self, message: "请确认密码")
+        } else if newPassword != confirmedNewPassword {
+            Settings.popupCustomizedAlert(self, message: "确认密码不一致")
+        } else if Settings.isEmpty(validationCode) {
+            Settings.popupCustomizedAlert(self, message: "验证码不能为空")
+        }
+        else {
+            return true
+        }
+        return false
+    }
+
+    @IBAction func resetPassword() {
+        if checkInputs() {
+            let params = NSMutableDictionary()
+            
+            params["email"] = userEmail!
+            params["validation_code"] = validationCode
+            params["new_password"] = newPassword
+            let message = "无网络连接"
+            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIUserResetPassword, params: params, retrivedJSONHandler: handleServerResponse)
+        }
     }
     
+    func handleServerResponse (json: NSDictionary?) {
+        if let parseJSON = json {
+            if let success = parseJSON["success"] as? Bool {
+                print("reset password success ",  success)
+                if let message = parseJSON["message"] as? String {
+                    print("reset password message: ", message)
+                    
+                    if success {
+                        Settings.popupCustomizedAlert(self, message: "密码修改成功")
+                        
+                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+                        UIApplication.sharedApplication().statusBarStyle = .LightContent
+                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
+                        appDelegate.window?.rootViewController = initialViewController
+                        appDelegate.window?.makeKeyAndVisible()
+                    } else {
+                        Settings.popupCustomizedAlert(self, message: message)
+                    }
+                }
+            }
+        }
+    }
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
+        if textField == self.confirmedNewPasswordTextField {
+            resetPassword()
+        }
+        
         return true
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
