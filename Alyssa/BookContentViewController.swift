@@ -40,7 +40,12 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = NSBundle.mainBundle().URLForResource(bookTitle, withExtension: "txt")
+        var url : NSURL?
+        if Settings.defaultSampleBooks.contains(bookTitle) {
+            url = NSBundle.mainBundle().URLForResource(bookTitle, withExtension: "txt")
+        } else {
+            url = UserProfile.fetchPathOfBook(bookTitle)
+        }
         do {
             let entireBookContent = try String(contentsOfURL: url!)
             chapters = entireBookContent.componentsSeparatedByString(Settings.BookContentSeparationString)

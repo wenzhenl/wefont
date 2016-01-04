@@ -10,7 +10,11 @@ import UIKit
 
 class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var inputTextField: UITextField! {
+        didSet {
+            inputTextField.delegate = self
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,9 @@ class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate 
         UserProfile.requestedBookName = inputTextField.text
         
         textField.resignFirstResponder()
+        
+        print("return has been pressed")
+        
         NSNotificationCenter.defaultCenter().postNotificationName("RequestNewBookViewControllerDismissed", object: nil, userInfo: nil)
         self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
         

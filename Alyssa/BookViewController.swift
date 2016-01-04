@@ -35,7 +35,6 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         center.addObserver(self, selector: "requestBookFromServer:", name: "RequestNewBookViewControllerDismissed", object: nil )
         
         let customizedAlertInput = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForAlertInputViewController) as! CustomizedInputAlertViewController
-        customizedAlertInput.modalTransitionStyle = .FlipHorizontal
         customizedAlertInput.modalPresentationStyle = .OverFullScreen
         self.presentViewController(customizedAlertInput, animated: true, completion: nil)
     }
