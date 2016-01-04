@@ -124,10 +124,52 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         Settings.popupCustomizedAlert(self, message: "已经更新到最新版本")
     }
     
+    func checkInputs() -> Bool  {
+        
+        if Settings.isEmpty(UserProfile.userEmailAddress) {
+            Settings.popupCustomizedAlert(self, message: "邮箱不能为空")
+        } else if !Settings.isValidEmail(UserProfile.userEmailAddress!) {
+            Settings.popupCustomizedAlert(self, message: "邮箱地址是无效的")
+        } else if Settings.isEmpty(UserProfile.userPassword) {
+            Settings.popupCustomizedAlert(self, message: "密码不能为空")
+        } else if Settings.isEmpty(UserProfile.activeFontName) {
+            Settings.popupCustomizedAlert(self, message: "字体名不能为空")
+        } else {
+            return true
+        }
+        return false
+    }
+
     func emailFont() {
-        Settings.popupCustomizedAlert(self, message: "已经发送到邮箱")
+        if checkInputs() {
+            let params = NSMutableDictionary()
+            
+            params["email"] = UserProfile.userEmailAddress!
+            params["password"] = UserProfile.userPassword!
+            params["fontname"] = UserProfile.activeFontName!
+            
+            let message = "无网络连接"
+            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIEmailFontToUser, params: params, retrivedJSONHandler: handleEmailFontResponse)
+        }
     }
     
+    func handleEmailFontResponse (json: NSDictionary?) {
+        if let parseJSON = json {
+            if let success = parseJSON["success"] as? Bool {
+                print("Email font success ",  success)
+                if let message = parseJSON["message"] as? String {
+                    print("Email font message: ", message)
+                    
+                    if success {
+                        Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
+                    } else {
+                        Settings.popupCustomizedAlert(self, message: message)
+                    }
+                }
+            }
+        }
+    }
+
     func logout() {
         
         UserProfile.hasLoggedIn = false

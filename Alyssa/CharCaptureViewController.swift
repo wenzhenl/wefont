@@ -181,6 +181,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if imageToSend != nil {
             let imageData = UIImageJPEGRepresentation(imageToSend!, 1.0)
             let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+            print(base64String)
 
             params["image"] = [ "content_type": "image/jpeg", "filename":"test.jpg", "file_data": base64String]
             

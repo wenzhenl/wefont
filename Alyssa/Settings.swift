@@ -65,6 +65,7 @@ class Settings {
     static let APIFetchingLatestFont = "alyssa_fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
     static let APICreateGlyph = "alyssa_create_glyph.php"
+    static let APIEmailFontToUser = "alyssa_email_font.php"
     
     // MARK - Keys for UIDefaultUser
     // app related
