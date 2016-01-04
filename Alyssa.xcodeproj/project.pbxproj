@@ -23,6 +23,7 @@
 		0A2CF3A91C32431B0057C38E /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */; };
 		0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */; };
 		0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */; };
+		0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */; };
 		0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */; };
 		0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */; };
 		0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */; };
@@ -86,6 +87,7 @@
 		0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleButtonTableViewCell.swift; sourceTree = "<group>"; };
+		0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedInputAlertViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCharContainerView.swift; sourceTree = "<group>"; };
 		0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */,
 				0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */,
 				0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */,
+				0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */,
 				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
 				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
@@ -396,6 +399,7 @@
 				0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */,
 				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
+				0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */,
 				0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */,
 				0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */,
 				0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */,

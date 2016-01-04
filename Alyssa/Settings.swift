@@ -37,6 +37,7 @@ class Settings {
     static let IdentifierForHomePageContentViewController = "Home Page Content ID"
     static let IdentifierForBookPageContentViewController = "This is a book page content view"
     static let IdentifierForCustomizedAlertViewController = "Customized Alert View Controller"
+    static let IdentifierForAlertInputViewController = "InputAlertForBookName"
     
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)
@@ -66,6 +67,7 @@ class Settings {
     static let APICreateNewFont = "alyssa_create_font.php"
     static let APICreateGlyph = "alyssa_create_glyph.php"
     static let APIEmailFontToUser = "alyssa_email_font.php"
+    static let APIFetchBook = "alyssa_fetch_book.php"
     
     // MARK - Keys for UIDefaultUser
     // app related

@@ -161,4 +161,6 @@ class UserProfile {
     static var newFontName : String?
     static var copyright: String?
     static var version: String?
+    
+    static var requestedBookName : String?
 }
