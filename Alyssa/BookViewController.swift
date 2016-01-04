@@ -22,9 +22,8 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         return Settings.defaultSampleBooks
     }
     
-    @IBAction func updateMyFont(sender: UIBarButtonItem) {
+    @IBAction func requestNewBook (sender: UIBarButtonItem) {
         
-        fetchLatestFont()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -43,92 +42,6 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50
-    }
-    
-    func fetchLatestFont() {
-        
-        if UserProfile.userEmailAddress != nil && UserProfile.userPassword != nil && UserProfile.activeFontName != nil {
-            
-            let params = NSMutableDictionary()
-            
-            params["userEmailAddress"] = UserProfile.userEmailAddress!
-            params["userPassword"] = UserProfile.userPassword!
-            params["fontName"] = UserProfile.activeFontName!
-            if let lastModifiedTime = getLastModifiedTimeOf(UserProfile.activeFontName!) {
-                 params["lastModifiedTime"] = lastModifiedTime
-            }
-            
-            let errInfoForNetwork = "无法更新个人字体信息，请检查你的网络连接"
-            
-           Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: handleRetrivedFontData)
-        } else {
-            Settings.popupCustomizedAlert(self, message: "你还没有创建任何字体")
-        }
-    }
-    
-    func handleRetrivedFontData(json: NSDictionary?) {
-        if let parseJSON = json {
-            
-            // Okay, the parsedJSON is here, let's check if the font is still fresh
-            if let fresh = parseJSON["fresh"] as? Bool {
-                print("Fresh: \(fresh)")
-                
-                if !fresh {
-                    
-                    if let fontString = parseJSON["font"] as? String {
-                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
-                            if let lastModifiedTime = parseJSON["lastModifiedTime"] as? Double {
-                                self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
-                            }
-                        } else {
-                            print("Failed convert base64 string to NSData")
-                        }
-                    } else {
-                        print("cannot convert data to String")
-                    }
-                }
-            } else {
-                Settings.popupCustomizedAlert(self, message: "当前字体已经是最新版本")
-            }
-        } else {
-            print("Cannot fetch data")
-        }
-    }
-    
-    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
-        if let fontFileURL = UserProfile.fontFileURL {
-            
-            if !fontData.writeToURL(fontFileURL, atomically: true) {
-                print("Failed to save font", fontFileURL.absoluteString)
-            } else {
-                print("Successfully saved font ", fontFileURL.absoluteString)
-                updateLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
-                Settings.updateFont(fontFileURL)
-                Settings.popupCustomizedAlert(self, message: "成功更新到最新版本")
-            }
-        }
-    }
-    
-    func getLastModifiedTimeOf(fontName: String) -> Double? {
-        if let lastModifiedTimeOfFonts = NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) {
-            if let modifiedTime = lastModifiedTimeOfFonts[fontName] {
-                return modifiedTime as? Double
-            }
-        }
-        return nil
-    }
-    
-    func updateLastModifiedTimeOf(fontName: String, newTime: Double) {
-        
-        if let lastModifiedTimeOfFonts = NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) {
-            let newLastModifiedTimeOfFonts = NSMutableDictionary(dictionary: lastModifiedTimeOfFonts)
-            newLastModifiedTimeOfFonts[fontName] = newTime
-            NSUserDefaults.standardUserDefaults().setObject(newLastModifiedTimeOfFonts, forKey: Settings.keyForFontsLastModifiedTimeInDefaultUser)
-        } else {
-            let newLastModifiedTimeOfFonts = NSMutableDictionary()
-            newLastModifiedTimeOfFonts[fontName] = newTime
-            NSUserDefaults.standardUserDefaults().setObject(newLastModifiedTimeOfFonts, forKey: Settings.keyForFontsLastModifiedTimeInDefaultUser)
-        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

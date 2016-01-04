@@ -118,7 +118,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             params["password"] = password!
             params["nickname"] = nickname!
             
-            let message = "注册失败，请检查网络连接"
+            let message = "无网络连接"
             Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIUserSignup, params: params, retrivedJSONHandler: handleServerResponse)
         }
     }
