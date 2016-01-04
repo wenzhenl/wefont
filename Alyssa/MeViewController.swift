@@ -123,6 +123,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     func updateFont() {
         if checkInputs() {
             Settings.fetchLatestFont(self, retrivedJSONHandler: handleRetrivedFontData)
+            Settings.popupCustomizedAlert(self, message: "正在下载你的最新字体")
         }
     }
     
@@ -142,7 +143,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                                 
                                 if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
                                     self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
-                                    Settings.popupCustomizedAlert(self, message: "字体已更新到最新状态，请重启APP查看效果")
+                                    Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
                                 }
                             } else {
                                 print("Failed convert base64 string to NSData")

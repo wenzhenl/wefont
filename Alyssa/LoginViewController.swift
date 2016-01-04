@@ -94,6 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         
                         if let nickname = parseJSON["nickname"] as? String {
                             UserProfile.userNickname = nickname
+                            print("nickname: ", nickname)
                         }
                         
                         if let activeFont = parseJSON["active_font"] as? String {
