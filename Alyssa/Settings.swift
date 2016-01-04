@@ -64,6 +64,7 @@ class Settings {
     static let APIUserResetPassword = "alyssa_user_reset_password.php"
     static let APIFetchingLatestFont = "alyssa_fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
+    static let APICreateGlyph = "alyssa_create_glyph.php"
     
     // MARK - Keys for UIDefaultUser
     // app related

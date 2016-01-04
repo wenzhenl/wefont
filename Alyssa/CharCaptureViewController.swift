@@ -137,15 +137,75 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     @IBAction func uploadChar(sender: UIBarButtonItem) {
-        
+      
+        if UserProfile.userEmailAddress != nil {
+            if UserProfile.activeFontName != nil {
+                if charImage != nil {
+                    if currentChar != nil {
+                        let alert = UIAlertController(title: nil, message:"确定上传 " + currentChar! + " ?", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+                        alert.addAction(UIAlertAction(
+                            title: "上传",
+                            style: .Destructive)
+                            { (action: UIAlertAction) -> Void in
+                                self.sendCharAndImageToServer()
+                            }
+                        )
+                        presentViewController(alert, animated: true, completion: nil)
 
+                    } else {
+                        Settings.popupCustomizedAlert(self, message: "请告诉Alyssa你写了什么字")
+                    }
+                } else {
+                    Settings.popupCustomizedAlert(self, message: "你还没有写下字")
+                }
+            } else {
+                Settings.popupCustomizedAlert(self, message: "你还没有创建字体")
+            }
+        } else {
+            Settings.popupCustomizedAlert(self, message: "你还没有登录")
+        }
+    }
+    
+    func sendCharAndImageToServer() {
+        
+        let params = NSMutableDictionary()
+        
+        params["email"] = UserProfile.userEmailAddress!
+        params["password"] = UserProfile.userPassword!
+        params["charname"] = currentChar!
+        params["fontname"] = UserProfile.activeFontName!
+        
         let rect = view.convertRect(gridView.frame, toView: imageContainerView)
         let imageToSend = clipImageForRect(rect, inView: imageContainerView)
         if imageToSend != nil {
-            UIImageWriteToSavedPhotosAlbum(imageToSend!, nil, nil, nil)
-            Settings.popupCustomizedAlert(self, message: "成功保存图片")
+            let imageData = UIImageJPEGRepresentation(imageToSend!, 1.0)
+            let base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
+
+            params["image"] = [ "content_type": "image/jpeg", "filename":"test.jpg", "file_data": base64String]
+            
+            let message = "无网络连接"
+            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APICreateGlyph, params: params, retrivedJSONHandler: handleServerResponse)
         }
     }
+    
+    func handleServerResponse (json: NSDictionary?) {
+        if let parseJSON = json {
+            if let success = parseJSON["success"] as? Bool {
+                print("upload char success ",  success)
+                if let message = parseJSON["message"] as? String {
+                    print("upload char message: ", message)
+                    
+                    if success {
+                        Settings.popupCustomizedAlert(self, message: "字图成功添加到字体")
+                    } else {
+                        Settings.popupCustomizedAlert(self, message: message)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK - handle all kinds of gestures
     @IBAction func rotateChar(sender: UIRotationGestureRecognizer) {
         if charImage != nil {

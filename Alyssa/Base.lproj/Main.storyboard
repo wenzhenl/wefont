@@ -987,10 +987,10 @@ the use of this software, even if advised of the possibility of such damage.</st
             </objects>
             <point key="canvasLocation" x="-2479" y="-1409"/>
         </scene>
-        <!--Reset Password View Controller-->
+        <!--重置密码-->
         <scene sceneID="qCn-0L-JM5">
             <objects>
-                <viewController id="7c5-LW-MP4" customClass="ResetPasswordViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="重置密码" id="7c5-LW-MP4" customClass="ResetPasswordViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BOl-4f-33k"/>
                         <viewControllerLayoutGuide type="bottom" id="Feo-Br-btY"/>
@@ -1085,10 +1085,10 @@ the use of this software, even if advised of the possibility of such damage.</st
             </objects>
             <point key="canvasLocation" x="-892" y="-1450"/>
         </scene>
-        <!--Register View Controller-->
+        <!--注册-->
         <scene sceneID="e2G-UW-pGM">
             <objects>
-                <viewController id="jxL-GO-A8Q" customClass="RegisterViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="注册" id="jxL-GO-A8Q" customClass="RegisterViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rW9-Lb-9mc"/>
                         <viewControllerLayoutGuide type="bottom" id="1FM-vb-0FD"/>
@@ -1340,10 +1340,10 @@ the use of this software, even if advised of the possibility of such damage.</st
             </objects>
             <point key="canvasLocation" x="-2082" y="1557"/>
         </scene>
-        <!--Recover Password View Controller-->
+        <!--获取验证码-->
         <scene sceneID="DXV-gF-FTs">
             <objects>
-                <viewController id="vd1-lX-zAv" customClass="RecoverPasswordViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="获取验证码" id="vd1-lX-zAv" customClass="RecoverPasswordViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Bp-5A-9hH"/>
                         <viewControllerLayoutGuide type="bottom" id="D0U-cJ-fpW"/>
