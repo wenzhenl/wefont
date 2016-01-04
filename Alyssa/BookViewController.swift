@@ -36,6 +36,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForBookTitleCell) as! BookTitleTableViewCell
+        cell.selectionStyle = .None
         cell.bookTitleLabel.text = books[indexPath.row]
         return cell
     }

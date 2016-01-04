@@ -126,22 +126,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let success = parseJSON["success"] as? Bool {
                 print("Success: \(success)")
                 
-                if success {
-                    
-                    if let fontString = parseJSON["font"] as? String {
-                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
-                            if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
-                                self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                if let message = parseJSON["message"] as? String {
+                    print("load font ", message)
+                    if success {
+                        
+                        if let fontString = parseJSON["font"] as? String {
+                            if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                                print("successfully parsed font data")
+                                
+                                if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
+                                    self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                                }
+                            } else {
+                                print("Failed convert base64 string to NSData")
                             }
                         } else {
-                            print("Failed convert base64 string to NSData")
+                            print("cannot convert data to String")
                         }
-                    } else {
-                        print("cannot convert data to String")
                     }
+                } else {
+                    print("already the latest font")
                 }
-            } else {
-                print("already the latest font")
             }
         } else {
             print("Cannot fetch data")
