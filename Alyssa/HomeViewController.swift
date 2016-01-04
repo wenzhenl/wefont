@@ -83,12 +83,15 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         if let parseJSON = json {
             if let success = parseJSON["success"] as? Bool {
                 print("success: ", success)
-                if success == true {
-                    UserProfile.activeFontName = UserProfile.newFontName
-                    UserProfile.newFontReadyTosend = false
-                    Settings.popupCustomizedAlert(self, message: "成功添加新字体")
-                } else {
-                    Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
+                if let message = parseJSON["message"] as? String {
+                    print(message)
+                    if success == true {
+                        UserProfile.activeFontName = UserProfile.newFontName
+                        UserProfile.newFontReadyTosend = false
+                        Settings.popupCustomizedAlert(self, message: "成功添加新字体")
+                    } else {
+                        Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
+                    }
                 }
             }
 

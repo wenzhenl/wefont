@@ -94,6 +94,14 @@ class UserProfile {
         }
     }
     
+    static func updateFontLastModifiedTimeOf (fontName: String, newTime: Double) {
+        if fontsLastModifiedTime != nil {
+            fontsLastModifiedTime![fontName] = newTime
+        } else {
+            fontsLastModifiedTime = [fontName : newTime]
+        }
+    }
+    
     static var fontsNumOfFinishedChars: [String: Int]? {
         get {
             return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsFinishedCharsInDefaultUser) as! [String: Int]?

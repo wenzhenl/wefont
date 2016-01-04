@@ -95,6 +95,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         if let activeFont = parseJSON["active_font"] as? String {
                             print("active font ", activeFont)
                             UserProfile.activeFontName = activeFont
+                            
+                            Settings.fetchLatestFont(self, retrivedJSONHandler: handleRetrivedFontData)
                         } else {
                             print("no active font")
                         }
@@ -121,6 +123,48 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    func handleRetrivedFontData(json: NSDictionary?) {
+        if let parseJSON = json {
+            // Okay, the parsedJSON is here, let's check if the font is still fresh
+            if let success = parseJSON["success"] as? Bool {
+                print("Success: \(success)")
+                
+                if success {
+                    
+                    if let fontString = parseJSON["font"] as? String {
+                        if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
+                            if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
+                                self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                            }
+                        } else {
+                            print("Failed convert base64 string to NSData")
+                        }
+                    } else {
+                        print("cannot convert data to String")
+                    }
+                }
+            } else {
+                Settings.popupCustomizedAlert(self, message: "当前字体已经是最新版本")
+            }
+        } else {
+            print("Cannot fetch data")
+        }
+    }
+    
+    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
+        if let fontFileURL = UserProfile.fontFileURL {
+            
+            if !fontData.writeToURL(fontFileURL, atomically: true) {
+                print("Failed to save font", fontFileURL.absoluteString)
+            } else {
+                print("Successfully saved font ", fontFileURL.absoluteString)
+                UserProfile.updateFontLastModifiedTimeOf(UserProfile.activeFontName!, newTime: lastModifiedTime)
+                Settings.updateFont(fontFileURL)
+                Settings.popupCustomizedAlert(self, message: "成功更新到最新版本")
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
