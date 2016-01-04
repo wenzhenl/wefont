@@ -153,6 +153,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
+        if textField == self.nickNameTextField {
+            joinAlyssa()
+        }
+        
         return true
     }
 }
