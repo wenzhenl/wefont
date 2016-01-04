@@ -58,7 +58,7 @@ class Settings {
     static let ServerIP = "http://52.69.172.155/"
     static let APIUserSignup = "alyssa_user_signup.php"
     static let APIUserLogin = "alyssa_user_login.php"
-    static let APIFetchingLatestFont = "fetch_latest_font.php"
+    static let APIFetchingLatestFont = "alyssa_fetch_latest_font.php"
     static let APICreateNewFont = "alyssa_create_font.php"
     
     // MARK - Keys for UIDefaultUser
@@ -214,6 +214,27 @@ class Settings {
         customizedAlert.modalTransitionStyle = .FlipHorizontal
         customizedAlert.modalPresentationStyle = .OverFullScreen
         viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+    }
+    
+    static func fetchLatestFont(viewController : UIViewController, retrivedJSONHandler: (NSDictionary?) -> Void) {
+        if UserProfile.userEmailAddress != nil && UserProfile.userPassword != nil {
+            if UserProfile.activeFontName != nil {
+                let params = NSMutableDictionary()
+                
+                params["email"] = UserProfile.userEmailAddress!
+                params["password"] = UserProfile.userPassword!
+                params["fontname"] = UserProfile.activeFontName!
+                if let lastModifiedTime = UserProfile.getFontLastModifiedTimeOf(UserProfile.activeFontName!) {
+                    params["last_modified_time"] = lastModifiedTime
+                }
+                
+                let errInfoForNetwork = "无网络连接"
+                
+                fetchDataFromServer(viewController, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: retrivedJSONHandler)
+            } else {
+                Settings.popupCustomizedAlert(viewController, message: "你还没有创建任何字体")
+            }
+        }
     }
     
     static func updateFont(fontFileURL: NSURL) {
