@@ -141,7 +141,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if UserProfile.userEmailAddress != nil {
             if UserProfile.activeFontName != nil {
                 if charImage != nil {
-                    if currentChar != nil {
+                    if !Settings.isEmpty(currentChar) {
                         let alert = UIAlertController(title: nil, message:"确定上传 " + currentChar! + " ?", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
                         alert.addAction(UIAlertAction(
