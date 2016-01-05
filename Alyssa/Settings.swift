@@ -87,6 +87,7 @@ class Settings {
     static let keyForActiveFontInDefaultUser = "keyForActiveFont"
     static let keyForFontsLastModifiedTimeInDefaultUser = "keyForFontLastModifiedTime"
     static let keyForFontsFinishedCharsInDefaultUser = "keyForFontFinishedChars"
+    static let keyForHasSavedFontInDefaultUser = "keyForHasSavedFont"
     
     // home view related
     static let keyForCurrentLevelInDefaultUser = "keyForCurrentLevel"
@@ -258,6 +259,7 @@ class Settings {
                 if !CTFontManagerRegisterGraphicsFont(font!, &error) {
                     print("Failed to register font, error", error)
                 } else {
+                    UserProfile.hasSavedFont = true
                     print("Successfully registered font", fontFileURL.absoluteString)
                 }
             } else {

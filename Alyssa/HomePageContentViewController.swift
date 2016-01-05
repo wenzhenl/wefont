@@ -40,7 +40,7 @@ class HomePageContentViewController: UIViewController, UICollectionViewDelegateF
         cell.backgroundColor = UIColor(red: redColor, green: greenColor, blue: blueColor, alpha: 0.7)
         
         cell.singleCharLabel.text = String(self.stringConsistingOfChars[self.stringConsistingOfChars.startIndex.advancedBy(indexPath.row)])
-        if UserProfile.fontFileURL != nil {
+        if UserProfile.fontFileURL != nil && UserProfile.hasSavedFont {
             cell.singleCharLabel.font = UIFont(name: UserProfile.activeFontName!, size: 30)
         } else {
             cell.singleCharLabel.font = UIFont(name: (cell.singleCharLabel.font?.fontName)!, size: 20)

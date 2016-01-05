@@ -122,8 +122,19 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     
     func updateFont() {
         if checkInputs() {
-            Settings.fetchLatestFont(self, retrivedJSONHandler: handleRetrivedFontData)
-            Settings.popupCustomizedAlert(self, message: "正在下载你的最新字体")
+            
+            let alert = UIAlertController(title: "更新字体", message:"本次操作会消耗不少流量，确定继续？", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(
+                title: "继续",
+                style: .Destructive)
+                { (action: UIAlertAction) -> Void in
+                    Settings.fetchLatestFont(self, retrivedJSONHandler: self.handleRetrivedFontData)
+                    Settings.popupCustomizedAlert(self, message: "正在下载你的最新字体")
+
+                }
+            )
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
     
@@ -195,14 +206,23 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
     func emailFont() {
         if checkInputs() {
-            let params = NSMutableDictionary()
-            
-            params["email"] = UserProfile.userEmailAddress!
-            params["password"] = UserProfile.userPassword!
-            params["fontname"] = UserProfile.activeFontName!
-            
-            let message = "无网络连接"
-            Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIEmailFontToUser, params: params, retrivedJSONHandler: handleEmailFontResponse)
+            let alert = UIAlertController(title: "发送字体", message:"你的邮箱地址是 " + UserProfile.userEmailAddress!, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(
+                title: "确定",
+                style: .Destructive)
+                { (action: UIAlertAction) -> Void in
+                    let params = NSMutableDictionary()
+                    
+                    params["email"] = UserProfile.userEmailAddress!
+                    params["password"] = UserProfile.userPassword!
+                    params["fontname"] = UserProfile.activeFontName!
+                    
+                    let message = "无网络连接"
+                    Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIEmailFontToUser, params: params, retrivedJSONHandler: self.handleEmailFontResponse)
+                }
+            )
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
     

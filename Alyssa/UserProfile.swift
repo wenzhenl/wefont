@@ -66,6 +66,15 @@ class UserProfile {
         }
     }
     
+    static var hasSavedFont: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSavedFontInDefaultUser)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSavedFontInDefaultUser)
+        }
+    }
+
     static var fontFileURL: NSURL? {
         if self.activeFontName != nil {
             if let docsDir = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
