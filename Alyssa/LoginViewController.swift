@@ -139,8 +139,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                             if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
                                 print("successfully parsed font data")
                                 
-                                if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
+                                if let lastModifiedTime = parseJSON["last_modified_time"] as? String {
                                     self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
+                                } else {
+                                    print("cannot parse last modified time")
                                 }
                             } else {
                                 print("Failed convert base64 string to NSData")
@@ -166,7 +168,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
+    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: String) {
         if let fontFileURL = UserProfile.fontFileURL {
             
             if !fontData.writeToURL(fontFileURL, atomically: true) {

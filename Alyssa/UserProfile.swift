@@ -76,9 +76,9 @@ class UserProfile {
         return nil
     }
     
-    static var fontsLastModifiedTime: [String: Double]? {
+    static var fontsLastModifiedTime: [String: String]? {
         get {
-            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) as! [String: Double]?
+            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsLastModifiedTimeInDefaultUser) as! [String: String]?
         }
         
         set {
@@ -86,7 +86,7 @@ class UserProfile {
         }
     }
     
-    static func getFontLastModifiedTimeOf (fontName : String) -> Double? {
+    static func getFontLastModifiedTimeOf (fontName : String) -> String? {
         if fontsLastModifiedTime != nil {
             return fontsLastModifiedTime![fontName]
         } else {
@@ -94,7 +94,7 @@ class UserProfile {
         }
     }
     
-    static func updateFontLastModifiedTimeOf (fontName: String, newTime: Double) {
+    static func updateFontLastModifiedTimeOf (fontName: String, newTime: String) {
         if fontsLastModifiedTime != nil {
             fontsLastModifiedTime![fontName] = newTime
         } else {

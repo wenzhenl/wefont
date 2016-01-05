@@ -141,9 +141,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                             if let fontData = NSData(base64EncodedString: fontString, options: NSDataBase64DecodingOptions(rawValue: 0)) {
                                 print("successfully parsed font data")
                                 
-                                if let lastModifiedTime = parseJSON["last_modified_time"] as? Double {
+                                if let lastModifiedTime = parseJSON["last_modified_time"] as? String {
                                     self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
                                     Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
+                                } else {
+                                    print("cannot parse last modified time")
                                 }
                             } else {
                                 print("Failed convert base64 string to NSData")
@@ -161,7 +163,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
-    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: Double) {
+    func saveFontDataToFileSystem(fontData: NSData, lastModifiedTime: String) {
         if let fontFileURL = UserProfile.fontFileURL {
             
             if !fontData.writeToURL(fontFileURL, atomically: true) {
@@ -184,7 +186,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         } else if Settings.isEmpty(UserProfile.userPassword) {
             Settings.popupCustomizedAlert(self, message: "密码不能为空")
         } else if Settings.isEmpty(UserProfile.activeFontName) {
-            Settings.popupCustomizedAlert(self, message: "字体名不能为空")
+            Settings.popupCustomizedAlert(self, message: "你还没有创建字体")
         } else {
             return true
         }
