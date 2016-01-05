@@ -142,17 +142,20 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             if UserProfile.activeFontName != nil {
                 if charImage != nil {
                     if !Settings.isEmpty(currentChar) {
-                        let alert = UIAlertController(title: nil, message:"确定上传 " + currentChar! + " ?", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-                        alert.addAction(UIAlertAction(
-                            title: "上传",
-                            style: .Destructive)
-                            { (action: UIAlertAction) -> Void in
-                                self.sendCharAndImageToServer()
-                            }
-                        )
-                        presentViewController(alert, animated: true, completion: nil)
-
+                        if currentChar!.characters.count == 1 {
+                            let alert = UIAlertController(title: nil, message:"确定上传 " + currentChar! + " ?", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+                            alert.addAction(UIAlertAction(
+                                title: "上传",
+                                style: .Destructive)
+                                { (action: UIAlertAction) -> Void in
+                                    self.sendCharAndImageToServer()
+                                }
+                            )
+                            presentViewController(alert, animated: true, completion: nil)
+                        } else {
+                            Settings.popupCustomizedAlert(self, message: "每次只能上传一个字")
+                        }
                     } else {
                         Settings.popupCustomizedAlert(self, message: "请告诉Alyssa你写了什么字")
                     }
@@ -273,7 +276,6 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     @IBAction func deleteCharImage(sender: UILongPressGestureRecognizer) {
         if charImage != nil {
             let alert = UIAlertController(title: nil, message:"确定删除字图", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(
                 title: "删除",
                 style: .Destructive)
@@ -284,6 +286,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                     self.eraserBarButtonItem.enabled = false
                 }
             )
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         }
     }
