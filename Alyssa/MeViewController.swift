@@ -130,7 +130,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                 style: .Destructive)
                 { (action: UIAlertAction) -> Void in
                     Settings.fetchLatestFont(self, retrivedJSONHandler: self.handleRetrivedFontData)
-                    Settings.popupCustomizedAlert(self, message: "正在下载你的最新字体")
+                    Settings.popupCustomizedAlert(self, message: "正在请求你的最新字体")
 
                 }
             )
@@ -164,6 +164,9 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                         } else {
                             print("cannot convert data to String")
                         }
+                    } else {
+                        print("seems the font is latest")
+                        Settings.popupCustomizedAlert(self, message: "当前字体已经是最新的")
                     }
                 } else {
                     print("already the latest font")

@@ -99,7 +99,7 @@ class Settings {
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
     static let WidthOfCharGridView = CGFloat(200.0)
-    static let AspectRatioOfCharGridView = CGFloat(0.75)
+    static let AspectRatioOfCharGridView = CGFloat(36.0/53.0)
     static let VerticalOffsetOfCharGridView = CGFloat(150)
     
     static let WidthOfCustomizedAlertView = CGFloat(230.0)
