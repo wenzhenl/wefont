@@ -61,9 +61,9 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if textField == self.versionTextField {
-            createFont()
-        }
+//        if textField == self.versionTextField {
+//            createFont()
+//        }
         return true
     }
     
