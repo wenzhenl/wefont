@@ -220,6 +220,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                     
                     let message = "无网络连接"
                     Settings.fetchDataFromServer(self, errMsgForNetwork: message, destinationURL: Settings.APIEmailFontToUser, params: params, retrivedJSONHandler: self.handleEmailFontResponse)
+                    Settings.popupCustomizedAlert(self, message: "已经成功发送请求")
                 }
             )
             presentViewController(alert, animated: true, completion: nil)
