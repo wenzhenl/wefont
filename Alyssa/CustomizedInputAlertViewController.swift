@@ -21,7 +21,7 @@ class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate 
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        UserProfile.requestedBookName = inputTextField.text
+        UserProfile.requestedBookName = inputTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         textField.resignFirstResponder()
         

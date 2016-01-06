@@ -32,7 +32,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var newPassword : String? {
         get {
-            return newPasswordTextField.text
+            return newPasswordTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             newPasswordTextField.text = newValue
@@ -41,7 +41,7 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var confirmedNewPassword : String? {
         get {
-            return confirmedNewPasswordTextField.text
+            return confirmedNewPasswordTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             confirmedNewPasswordTextField.text = newValue

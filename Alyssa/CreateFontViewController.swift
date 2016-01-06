@@ -19,7 +19,7 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
 
     var fontName: String? {
         get {
-            return fontNameTextField.text
+            return fontNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             fontNameTextField.text = newValue
@@ -28,7 +28,7 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     
     var copyright: String? {
         get {
-            return copyrightTextField.text
+            return copyrightTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             copyrightTextField.text = newValue
@@ -37,7 +37,7 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
     
     var version: String? {
         get {
-            return versionTextField.text
+            return versionTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             versionTextField.text = newValue

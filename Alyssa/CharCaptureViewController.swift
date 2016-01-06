@@ -28,7 +28,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     var currentChar: String? {
         get {
-            return currentCharTextField.text
+            return currentCharTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             currentCharTextField.text = newValue

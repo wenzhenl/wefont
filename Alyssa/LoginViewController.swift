@@ -35,7 +35,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var email : String? {
         get {
-            return emailTextField.text
+            return emailTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             emailTextField.text = newValue
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var password : String? {
         get {
-            return passwordTextField.text
+            return passwordTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             passwordTextField.text = newValue

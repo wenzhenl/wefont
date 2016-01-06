@@ -42,7 +42,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var nickname : String? {
         get {
-            return nickNameTextField.text
+            return nickNameTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             nickNameTextField.text = newValue
@@ -51,7 +51,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var email : String? {
         get {
-            return emailTextField.text
+            return emailTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             emailTextField.text = newValue
@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var password : String? {
         get {
-            return passwordTextField.text
+            return passwordTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             passwordTextField.text = newValue
@@ -69,7 +69,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     var confirmedPassword : String? {
         get {
-            return confirmedPasswordTextField.text
+            return confirmedPasswordTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             confirmedPasswordTextField.text = newValue

@@ -30,7 +30,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var email : String? {
         get {
-            return emailTextField.text
+            return emailTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             emailTextField.text = newValue
@@ -39,7 +39,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
     
     var validationCode : String? {
         get {
-            return validationCodeTextField.text
+            return validationCodeTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
         set {
             validationCodeTextField.text = newValue
