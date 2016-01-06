@@ -29,6 +29,7 @@
 		0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */; };
 		0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */; };
 		0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */; };
+		0A4286221C3CE0C800936A46 /* 手写练习区.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A4286211C3CE0C700936A46 /* 手写练习区.txt */; };
 		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
 		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
 		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
@@ -93,6 +94,7 @@
 		0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageContentViewController.swift; sourceTree = "<group>"; };
 		0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCharCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A4286211C3CE0C700936A46 /* 手写练习区.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "手写练习区.txt"; sourceTree = "<group>"; };
 		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				0A2CF39A1C3140500057C38E /* 追忆逝水年华.txt */,
 				0A2CF3981C313E6A0057C38E /* 枫桥夜泊.txt */,
 				0A2CF3961C3127BB0057C38E /* 小王子.txt */,
+				0A4286211C3CE0C700936A46 /* 手写练习区.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				0A2CF39D1C3141870057C38E /* 洛丽塔.txt in Resources */,
 				0A2CF3991C313E6A0057C38E /* 枫桥夜泊.txt in Resources */,
 				0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */,
+				0A4286221C3CE0C800936A46 /* 手写练习区.txt in Resources */,
 				0A67F0481C2BF51100526E1B /* Assets.xcassets in Resources */,
 				0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */,
 			);

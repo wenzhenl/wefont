@@ -99,8 +99,8 @@ class Settings {
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
     static let WidthOfCharGridView = CGFloat(200.0)
-    static let AspectRatioOfCharGridView = CGFloat(36.0/53.0)
-    static let VerticalOffsetOfCharGridView = CGFloat(150)
+    static let AspectRatioOfCharGridView = CGFloat(1.0)
+    static let VerticalOffsetOfCharGridView = CGFloat(200)
     
     static let WidthOfCustomizedAlertView = CGFloat(230.0)
     static let HeightOfCustomizedAlertView = CGFloat(50.0)
@@ -109,7 +109,7 @@ class Settings {
     static let VerticalOffsetOfCharUnderscore = CGFloat(7.0)
     
     // MARK - System default books
-    static let defaultSampleBooks = ["枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
+    static let defaultSampleBooks = ["手写练习区","枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
     static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS\r\n"
     

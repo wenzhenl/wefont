@@ -25,7 +25,7 @@ class BookPageContentViewController: UIViewController {
             bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
         
-        bookContentView.editable = false
+        bookContentView.editable = true
         bookContentView.text = chapterContent
     }
     
