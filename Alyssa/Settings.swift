@@ -315,4 +315,88 @@ class Settings {
         }
         return splitedStrings
     }
+    
+    
+    // MARK - ERROR CODE MAPPING
+    
+    static let ErrMsgForErrCode : [String: String] = [
+        // General Error
+        "0001" : "囧，服务器开小差了", // parsing DB ini file failed
+        "0002" : "囧，服务器开小差了", // mysqli DB connection error
+        "0003" : "囧，服务器开小差了", // unable to set charset = utf8 on DB connection
+        "0004" : "囧，服务器开小差了", // failed to execute DB query
+        "0005" : "用户不存在", // user email not exist
+        "0006" : "密码错误", // user password incorrect
+        "0007" : "囧，服务器开小差了", //  DB data inconsistent
+        
+        // API 1
+        // alyssa_user_signup.php
+        "0101" : "囧，服务器开小差了", // JSON object error
+        "0102" : "用户邮箱已经存在", // user email exists already
+        "0103" : "囧，服务器开小差了", //mkdir error
+        
+        // API 2
+        // alyssa_user_login.php
+        "0201" : "囧，服务器开小差了", // JSON object error
+        
+        // API 3
+        // alyssa_request_validation_code.php
+        "0301" : "囧，服务器开小差了", // JSON object error
+        "0302" : "用户不存在", // provided email not found in DB
+        "0303" : "囧，无法发送验证码", // failed to send vc to user email
+        
+        // API 4
+        // alyssa_request_validation_code.php
+        "0401" : "囧，服务器开小差了", // JSON object error
+        "0402" : "用户不存在", //provided email not found in DB
+        "0403" : "验证码不正确", // validation code incorrect
+        "0404" : "验证码已过期", // validation code expired
+        
+        // API 5
+        // alyssa_user_reset_password.php
+        "0501" : "囧，服务器开小差了", // JSON object error
+        "0502" : "用户不存在", // provided email not found in DB
+        "0503" : "验证码不正确", // validation code incorrect
+        "0504" : "验证码已过期", // validation code expired
+        
+        // API 6
+        // alyssa_create_font.php
+        "0601" : "囧，服务器开小差了", // JSON object error
+        "0602" : "字体已经存在", // same fontname already exists
+        "0603" : "无法创建字体", // failed to create the font file
+        "0604" : "无法创建字体", //failed to create the font directory
+        
+        // API 7
+        // alyssa_create_glyph.php
+        "0701" : "囧，服务器开小差了", // JSON object error
+        "0702" : "字体不存在", // fontname not found or is inactive
+        "0703" : "传送图片格式不对", // glyph image is not a JPEG image
+        "0704" : "囧，服务器开小差了", // failed to write glyph image to disk
+        "0705" : "无法添加字图", // fails to add glyph into font
+        
+        // API 8
+        // alyssa_fetch_latest_font.php
+        "0801" : "囧，服务器开小差了", // JSON object error
+        "0802" : "字体不存在", // fontname not found
+        "0803" : "囧，无法下载字体", // failed to load font from disk
+        
+        // API 9
+        // alyssa_email_font.php
+        "0901" : "囧，服务器开小差了", // JSON object error
+        "0902" : "字体不存在", // fontname not found
+        "0903" : "无法发送字体", // failed to sent font to user email
+        
+        // API 10
+        // alyssa_switch_active_font.php
+        "1001" : "囧，服务器开小差了", // JSON object error
+        "1002" : "字体不存在", // fontname not found
+        
+        // API 11
+        // alyssa_update_user_email.php
+        
+        // API 12
+        // alyssa_fetch_book.php
+        "1201" : "囧，服务器开小差了", // JSON object error
+        "1202" : "找不到你要的图书" // fails to load book from disk
+    ]
 }
