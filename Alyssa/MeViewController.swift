@@ -153,10 +153,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                                 
                                 if let lastModifiedTime = parseJSON["last_modified_time"] as? String {
                                     self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
-                                    
-                                    self.dismissViewControllerAnimated(true) {
-                                        Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
-                                    }
+                                    Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
                                 } else {
                                     print("cannot parse last modified time")
                                 }
@@ -168,15 +165,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                         }
                     } else {
                         print("seems the font is latest")
-                        dismissViewControllerAnimated(true) {
-                            Settings.popupCustomizedAlert(self, message: "当前字体已经是最新的")
-                        }
+                        Settings.popupCustomizedAlert(self, message: "当前字体已经是最新的")
                     }
                 } else {
                     print("cannot parse message")
-                    dismissViewControllerAnimated(true) {
-                        Settings.popupCustomizedAlert(self, message: Settings.errMsgServerDown)
-                    }
+                    Settings.popupCustomizedAlert(self, message: Settings.errMsgServerDown)
                 }
             }
         } else {
@@ -245,19 +238,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                     print("Email font message: ", message)
                     
                     if success {
-                        print("success, but alert not popup")
-                        if self.presentedViewController != nil {
-                            dismissViewControllerAnimated(true) {
-                                Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
-                            }
-                        } else {
-                            Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
-                        }
+                        print("Email font success")
+                        Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
                     } else {
-                        print("not success, but alert not popup")
-                        dismissViewControllerAnimated(true) {
-                            Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
-                        }
+                        print("Email font not success")
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }
@@ -272,6 +257,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         UserProfile.userNickname = nil
         UserProfile.userPassword = nil
         UserProfile.activeFontName = nil
+        UserProfile.fontsLastModifiedTime = nil
         
         let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
         

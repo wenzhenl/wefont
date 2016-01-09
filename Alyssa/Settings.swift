@@ -213,13 +213,28 @@ class Settings {
         customizedAlert.message = message
         customizedAlert.modalTransitionStyle = .FlipHorizontal
         customizedAlert.modalPresentationStyle = .OverFullScreen
-        viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+        if viewController.presentedViewController != nil {
+            viewController.dismissViewControllerAnimated(true) {
+               
+                viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+                
+                let delay = 2.0 * Double(NSEC_PER_SEC)
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+                dispatch_after(time, dispatch_get_main_queue(), {
+                    viewController.dismissViewControllerAnimated(true, completion: nil)
+                })
+            }
+        } else {
+            
+            viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+            
+            let delay = 2.0 * Double(NSEC_PER_SEC)
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+            dispatch_after(time, dispatch_get_main_queue(), {
+                viewController.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
         
-        let delay = 2.0 * Double(NSEC_PER_SEC)
-        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-        dispatch_after(time, dispatch_get_main_queue(), {
-            viewController.dismissViewControllerAnimated(true, completion: nil)
-        })
     }
     
     static func popupCustomizedAlertNotDissmissed (viewController: UIViewController, message: String) {
@@ -227,7 +242,14 @@ class Settings {
         customizedAlert.message = message
         customizedAlert.modalTransitionStyle = .FlipHorizontal
         customizedAlert.modalPresentationStyle = .OverFullScreen
-        viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+        
+        if viewController.presentedViewController != nil {
+            viewController.dismissViewControllerAnimated(true) {
+                viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+            }
+        } else {
+            viewController.presentViewController(customizedAlert, animated: true, completion: nil)
+        }
     }
     
     static func fetchLatestFont(viewController : UIViewController, retrivedJSONHandler: (NSDictionary?) -> Void) {
