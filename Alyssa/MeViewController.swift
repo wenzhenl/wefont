@@ -245,11 +245,16 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                     print("Email font message: ", message)
                     
                     if success {
-                        dismissViewControllerAnimated(true) {
-                            print("success, but alert not popup")
+                        print("success, but alert not popup")
+                        if self.presentedViewController != nil {
+                            dismissViewControllerAnimated(true) {
+                                Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
+                            }
+                        } else {
                             Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
                         }
                     } else {
+                        print("not success, but alert not popup")
                         dismissViewControllerAnimated(true) {
                             Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                         }
