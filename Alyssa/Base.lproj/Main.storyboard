@@ -277,7 +277,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="25C-yL-0ph"/>
-                                    <barButtonItem image="lock-locked" id="Vfh-rg-HAA">
+                                    <barButtonItem image="eraser" id="Vfh-rg-HAA">
                                         <connections>
                                             <action selector="changeEraserEnableState:" destination="6zZ-Ky-MIL" id="HiL-dN-4dH"/>
                                         </connections>
@@ -302,7 +302,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="xqf-Xb-9lS">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="xqf-Xb-9lS">
                                         <rect key="frame" x="328" y="0.0" width="234" height="41"/>
                                         <connections>
                                             <action selector="brushSizeChanged:" destination="6zZ-Ky-MIL" eventType="valueChanged" id="5BD-Rj-wYC"/>
@@ -409,7 +409,7 @@
                                 <action selector="undoErase:" destination="6zZ-Ky-MIL" id="baN-YC-fTe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="upload" id="GQs-cv-nWX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="GQs-cv-nWX">
                             <connections>
                                 <action selector="uploadChar:" destination="6zZ-Ky-MIL" id="eqe-nR-KLi"/>
                             </connections>
@@ -1747,16 +1747,15 @@ the use of this software, even if advised of the possibility of such damage.</st
         <image name="book" width="24" height="24"/>
         <image name="book-selected" width="24" height="24"/>
         <image name="camera-photo" width="24" height="24"/>
+        <image name="eraser" width="25" height="25"/>
         <image name="fountain-pen-head" width="24" height="24"/>
         <image name="fountain-pen-head-selected" width="24" height="24"/>
         <image name="home" width="24" height="24"/>
         <image name="home-selected" width="24" height="24"/>
         <image name="iTunesArtwork" width="512" height="512"/>
         <image name="image" width="24" height="24"/>
-        <image name="lock-locked" width="24" height="24"/>
         <image name="next" width="22" height="22"/>
         <image name="previous" width="22" height="22"/>
-        <image name="upload" width="22" height="22"/>
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>
     </resources>

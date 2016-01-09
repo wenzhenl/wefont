@@ -119,6 +119,7 @@ class Settings {
     
     // MARK - eraser brush size
     static let minBrushSize = Float(10.0)
+    static let midBrushSize = Float(20.0)
     static let maxBrushSize = Float(40.0)
     
     
@@ -237,6 +238,7 @@ class Settings {
                     params["last_modified_time"] = lastModifiedTime
                 }
                 
+                print("fetching data from server")
                 let errInfoForNetwork = "无网络连接"
                 
                 fetchDataFromServer(viewController, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchingLatestFont, params: params, retrivedJSONHandler: retrivedJSONHandler)

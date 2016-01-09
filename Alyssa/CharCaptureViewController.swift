@@ -307,14 +307,14 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             if eraserDidSelected {
                 charImageViewOldTransform = charImageView.transform
                 charImageView.transform = CGAffineTransformIdentity
-                eraserBarButtonItem.image = UIImage(named: "lock-locked-selected")
+                eraserBarButtonItem.image = UIImage(named: "eraser-selected")
                 brushWidth = CGFloat(brushSizeSlider.value)
                 undoBarButtonItem.title = "撤销"
                 self.title = "去污"
             } else {
                 charImageView.transform = charImageViewOldTransform
-                eraserBarButtonItem.image = UIImage(named: "lock-locked")
-                brushSizeSlider.value = Settings.minBrushSize
+                eraserBarButtonItem.image = UIImage(named: "eraser")
+                brushSizeSlider.value = Settings.midBrushSize
                 undoBarButtonItem.title = ""
                 self.title = "取字"
             }
