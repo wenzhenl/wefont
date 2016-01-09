@@ -10,6 +10,7 @@ import UIKit
 
 class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var inputTextField: UITextField! {
         didSet {
             inputTextField.delegate = self
@@ -18,19 +19,28 @@ class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        containerView.layer.cornerRadius = 4
+        containerView.backgroundColor = Settings.ColorOfStamp
+    }
+    
+    @IBAction func cancle() {
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func confirm() {
+        UserProfile.requestedBookName = inputTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        NSNotificationCenter.defaultCenter().postNotificationName("RequestNewBookViewControllerDismissed", object: nil, userInfo: nil)
+        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        UserProfile.requestedBookName = inputTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         textField.resignFirstResponder()
         
         print("return has been pressed")
         
-        NSNotificationCenter.defaultCenter().postNotificationName("RequestNewBookViewControllerDismissed", object: nil, userInfo: nil)
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
-        
-        return true
+             return true
     }
     
 }

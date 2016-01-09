@@ -15,21 +15,23 @@ class BookPageContentViewController: UIViewController {
     var pageIndex: Int!
     
     var chapterContent: String!
+    
+    var editable: Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if UserProfile.fontFileURL != nil && UserProfile.hasSavedFont {
-            bookContentView.font = UIFont(name: UserProfile.activeFontName!, size: 30)
+            bookContentView.font = UIFont(name: UserProfile.activeFontName!, size: 27)
         } else {
             bookContentView.font = UIFont(name: (bookContentView.font?.fontName)!, size: 20)
         }
         
-        bookContentView.editable = true
+        bookContentView.editable = editable
         bookContentView.text = chapterContent
     }
     
     override func viewWillLayoutSubviews() {
-        bookContentView.setContentOffset(CGPointZero, animated: false)
+        bookContentView.setContentOffset(CGPointZero, animated: true)
     }
 }

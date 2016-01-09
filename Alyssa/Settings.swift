@@ -109,7 +109,7 @@ class Settings {
     static let VerticalOffsetOfCharUnderscore = CGFloat(7.0)
     
     // MARK - System default books
-    static let defaultSampleBooks = ["手写练习区","枫桥夜泊","追忆逝水年华","洛丽塔","小王子","gb2312"]
+    static let defaultSampleBooks = ["手写练习区","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"
     static let BookContentSeparationString = "THISISASEPARATIONSTRINGUSEDTOSEPARATECONTENTOFBOOKINTOCHAPTERS\r\n"
     

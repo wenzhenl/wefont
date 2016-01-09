@@ -77,6 +77,11 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
         let vc: BookPageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForBookPageContentViewController) as! BookPageContentViewController
         vc.chapterContent = chapters[index]
         vc.pageIndex = index
+        if bookTitle == Settings.defaultSampleBooks[0] {
+            vc.editable = true
+        } else {
+            vc.editable = false
+        }
         return vc
     }
     

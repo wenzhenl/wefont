@@ -12,9 +12,6 @@
 		0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */; };
 		0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38E1C30A9010057C38E /* UserProfile.swift */; };
 		0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF3961C3127BB0057C38E /* 小王子.txt */; };
-		0A2CF3991C313E6A0057C38E /* 枫桥夜泊.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF3981C313E6A0057C38E /* 枫桥夜泊.txt */; };
-		0A2CF39B1C3140500057C38E /* 追忆逝水年华.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39A1C3140500057C38E /* 追忆逝水年华.txt */; };
-		0A2CF39D1C3141870057C38E /* 洛丽塔.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39C1C3141870057C38E /* 洛丽塔.txt */; };
 		0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39E1C3142810057C38E /* gb2312.txt */; };
 		0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */; };
 		0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A21C3210330057C38E /* FieldContainerView.swift */; };
@@ -77,9 +74,6 @@
 		0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		0A2CF38E1C30A9010057C38E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0A2CF3961C3127BB0057C38E /* 小王子.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "小王子.txt"; sourceTree = "<group>"; };
-		0A2CF3981C313E6A0057C38E /* 枫桥夜泊.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "枫桥夜泊.txt"; sourceTree = "<group>"; };
-		0A2CF39A1C3140500057C38E /* 追忆逝水年华.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "追忆逝水年华.txt"; sourceTree = "<group>"; };
-		0A2CF39C1C3141870057C38E /* 洛丽塔.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "洛丽塔.txt"; sourceTree = "<group>"; };
 		0A2CF39E1C3142810057C38E /* gb2312.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gb2312.txt; sourceTree = "<group>"; };
 		0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0A2CF3A21C3210330057C38E /* FieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldContainerView.swift; sourceTree = "<group>"; };
@@ -157,9 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				0A2CF39E1C3142810057C38E /* gb2312.txt */,
-				0A2CF39C1C3141870057C38E /* 洛丽塔.txt */,
-				0A2CF39A1C3140500057C38E /* 追忆逝水年华.txt */,
-				0A2CF3981C313E6A0057C38E /* 枫桥夜泊.txt */,
 				0A2CF3961C3127BB0057C38E /* 小王子.txt */,
 				0A4286211C3CE0C700936A46 /* 手写练习区.txt */,
 			);
@@ -366,9 +357,6 @@
 			files = (
 				0A67F04B1C2BF51100526E1B /* LaunchScreen.storyboard in Resources */,
 				0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */,
-				0A2CF39B1C3140500057C38E /* 追忆逝水年华.txt in Resources */,
-				0A2CF39D1C3141870057C38E /* 洛丽塔.txt in Resources */,
-				0A2CF3991C313E6A0057C38E /* 枫桥夜泊.txt in Resources */,
 				0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */,
 				0A4286221C3CE0C800936A46 /* 手写练习区.txt in Resources */,
 				0A67F0481C2BF51100526E1B /* Assets.xcassets in Resources */,
