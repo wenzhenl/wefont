@@ -50,6 +50,10 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         self.addChildViewController(self.pageViewController)
         self.view.addSubview(self.pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
+        
+        if let fontname = UserProfile.activeFontName {
+            self.navigationItem.title = fontname
+        }
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {
@@ -86,9 +90,24 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
                 if let message = parseJSON["message"] as? String {
                     print(message)
                     if success == true {
+                        
+                        if UserProfile.newFontName != nil {
+                            if UserProfile.fontsNumOfFinishedChars != nil {
+                                UserProfile.fontsNumOfFinishedChars![UserProfile.newFontName!] = 0
+                            } else {
+                                UserProfile.fontsNumOfFinishedChars = [UserProfile.newFontName! : 0]
+                            }
+                        }
+                        
                         UserProfile.activeFontName = UserProfile.newFontName
                         UserProfile.newFontReadyTosend = false
                         Settings.popupCustomizedAlert(self, message: "成功添加新字体")
+                        if let fontname = UserProfile.activeFontName {
+                            self.navigationItem.title = fontname
+                        }
+                        
+                        UserProfile.hasSavedFont = false
+                        
                     } else {
                         Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
                     }

@@ -114,7 +114,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 appDelegate.window?.makeKeyAndVisible()
                             }
                         }
-                       
+                        
+                        if let allFontInfo = parseJSON["all_fonts_info"] as? NSDictionary {
+                            UserProfile.fontsNumOfFinishedChars = allFontInfo as? [String: Int]
+                        }
                     } else {
                         dismissViewControllerAnimated(true) {
                             Settings.popupCustomizedAlert(self, message: message)

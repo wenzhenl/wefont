@@ -28,7 +28,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 2
+            return 3
         } else if section == 2 {
             return 2
         } else {
@@ -49,7 +49,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleButtonTableCell) as! SingleButtonTableViewCell
             if indexPath.row == 0 {
-                cell.button.setTitle("更新字体", forState: .Normal)
+                cell.button.setTitle("下载最新字体", forState: .Normal)
                 cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
                 cell.button.addTarget(self, action: "updateFont", forControlEvents: .TouchUpInside)
             }
@@ -58,7 +58,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                 cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
                 cell.button.addTarget(self, action: "emailFont", forControlEvents: .TouchUpInside)
             }
-            
+            else if indexPath.row == 2 {
+                cell.button.setTitle("切换字体", forState: .Normal)
+                cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
+                cell.button.addTarget(self, action: "switchFont", forControlEvents: .TouchUpInside)
+            }
             return cell
         }
         
@@ -118,6 +122,9 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         } else {
             return 50
         }
+    }
+    
+    func switchFont() {
     }
     
     func updateFont() {
@@ -247,6 +254,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                     
                     if success {
                         dismissViewControllerAnimated(true) {
+                            print("success, but alert not popup")
                             Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
                         }
                     } else {
