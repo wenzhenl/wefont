@@ -203,7 +203,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                     if success {
                         Settings.popupCustomizedAlert(self, message: "字图成功添加到字体")
                     } else {
-                        Settings.popupCustomizedAlert(self, message: message)
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }

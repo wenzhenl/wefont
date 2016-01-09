@@ -399,4 +399,13 @@ class Settings {
         "1201" : "囧，服务器开小差了", // JSON object error
         "1202" : "找不到你要的图书" // fails to load book from disk
     ]
+    
+    static func decodeErrorCode(errorCode: String?) -> String {
+        if let errorCode = errorCode {
+            if let errorInfo = ErrMsgForErrCode[errorCode] {
+                return errorInfo
+            }
+        }
+        return "囧，未知错误"
+    }
 }

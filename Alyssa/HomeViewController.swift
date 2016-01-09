@@ -101,7 +101,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
                         UserProfile.hasSavedFont = false
                         
                     } else {
-                        Settings.popupCustomizedAlert(self, message: "不好意思，服务器出错了")
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }

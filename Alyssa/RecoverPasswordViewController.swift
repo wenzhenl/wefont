@@ -97,7 +97,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
                     if success {
                         Settings.popupCustomizedAlert(self, message: "验证码已经发送到邮箱")
                     } else {
-                        Settings.popupCustomizedAlert(self, message: message)
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }
@@ -136,7 +136,7 @@ class RecoverPasswordViewController: UIViewController, UITextFieldDelegate {
                     if success {
                         performSegueWithIdentifier(Settings.IdentifierForSegueToNextStepResetPassword, sender: self)
                     } else {
-                        Settings.popupCustomizedAlert(self, message: message)
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }

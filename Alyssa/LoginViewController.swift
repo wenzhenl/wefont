@@ -116,7 +116,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         }
                     } else {
                         dismissViewControllerAnimated(true) {
-                            Settings.popupCustomizedAlert(self, message: message)
+                            Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                         }
                     }
                 }

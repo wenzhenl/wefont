@@ -144,7 +144,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         appDelegate.window?.rootViewController = initialViewController
                         appDelegate.window?.makeKeyAndVisible()
                     } else {
-                        Settings.popupCustomizedAlert(self, message: message)
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 }
             }

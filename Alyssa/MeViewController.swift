@@ -251,7 +251,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                         }
                     } else {
                         dismissViewControllerAnimated(true) {
-                            Settings.popupCustomizedAlert(self, message: message)
+                            Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                         }
                     }
                 }
