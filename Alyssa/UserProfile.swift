@@ -111,16 +111,6 @@ class UserProfile {
         }
     }
     
-    static var fontsNumOfFinishedChars: [String: Int]? {
-        get {
-            return NSUserDefaults.standardUserDefaults().dictionaryForKey(Settings.keyForFontsFinishedCharsInDefaultUser) as! [String: Int]?
-        }
-        
-        set {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: Settings.keyForFontsFinishedCharsInDefaultUser)
-        }
-    }
-    
     // MARK - Home view related
     static var currentLevel: Int! {
         get {

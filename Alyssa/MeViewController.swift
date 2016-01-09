@@ -28,7 +28,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         if section == 0 {
             return 1
         } else if section == 1 {
-            return 3
+            return 2
         } else if section == 2 {
             return 2
         } else {
@@ -57,11 +57,6 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                 cell.button.setTitle("发送字体到邮箱", forState: .Normal)
                 cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
                 cell.button.addTarget(self, action: "emailFont", forControlEvents: .TouchUpInside)
-            }
-            else if indexPath.row == 2 {
-                cell.button.setTitle("切换字体", forState: .Normal)
-                cell.button.setTitleColor(Settings.ColorOfStamp, forState: .Normal)
-                cell.button.addTarget(self, action: "switchFont", forControlEvents: .TouchUpInside)
             }
             return cell
         }
@@ -122,9 +117,6 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         } else {
             return 50
         }
-    }
-    
-    func switchFont() {
     }
     
     func updateFont() {
@@ -270,6 +262,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     func logout() {
         
         UserProfile.hasLoggedIn = false
+        UserProfile.hasSavedFont = false
         UserProfile.userEmailAddress = nil
         UserProfile.userNickname = nil
         UserProfile.userPassword = nil

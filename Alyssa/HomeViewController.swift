@@ -91,14 +91,6 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
                     print(message)
                     if success == true {
                         
-                        if UserProfile.newFontName != nil {
-                            if UserProfile.fontsNumOfFinishedChars != nil {
-                                UserProfile.fontsNumOfFinishedChars![UserProfile.newFontName!] = 0
-                            } else {
-                                UserProfile.fontsNumOfFinishedChars = [UserProfile.newFontName! : 0]
-                            }
-                        }
-                        
                         UserProfile.activeFontName = UserProfile.newFontName
                         UserProfile.newFontReadyTosend = false
                         Settings.popupCustomizedAlert(self, message: "成功添加新字体")
