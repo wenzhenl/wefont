@@ -32,6 +32,6 @@ class BookPageContentViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        bookContentView.setContentOffset(CGPointZero, animated: true)
+        bookContentView.setContentOffset(CGPointZero, animated: false)
     }
 }

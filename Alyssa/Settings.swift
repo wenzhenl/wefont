@@ -195,8 +195,9 @@ class Settings {
                         print(err!.localizedDescription)
                         let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding)
                         print("Error could not parse JSON: '\(jsonStr)'")
-                        
-                        popupCustomizedAlert(viewController, message: "囧：服务器开小差了")
+                        viewController.dismissViewControllerAnimated(true) {
+                            popupCustomizedAlert(viewController, message: "囧：服务器开小差了")
+                        }
                     } else {
                         retrivedJSONHandler(json)
                     }
