@@ -36,7 +36,13 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let customizedAlertInput = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForAlertInputViewController) as! CustomizedInputAlertViewController
         customizedAlertInput.modalPresentationStyle = .OverFullScreen
-        self.presentViewController(customizedAlertInput, animated: true, completion: nil)
+        if self.presentedViewController != nil {
+            self.dismissViewControllerAnimated(true) {
+                self.presentViewController(customizedAlertInput, animated: true, completion: nil)
+            }
+        } else {
+            self.presentViewController(customizedAlertInput, animated: true, completion: nil)
+        }
     }
     
     func requestBookFromServer (notification: NSNotification) {
@@ -47,7 +53,7 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
             let params = NSMutableDictionary()
             
             params["book_title"] = UserProfile.requestedBookName!
-            
+            print(UserProfile.requestedBookName!)
             let errInfoForNetwork = "无网络连接"
             Settings.fetchDataFromServer(self, errMsgForNetwork: errInfoForNetwork, destinationURL: Settings.APIFetchBook, params: params, retrivedJSONHandler: handleRetrivedBookData)
         }
@@ -79,6 +85,9 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
                         } else {
                             print("cannot convert data to String")
                         }
+                    } else {
+                        print("fetch book not success")
+                        Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
                 } else {
                     print("cannot find the data")

@@ -20,7 +20,7 @@ class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        containerView.layer.cornerRadius = 4
+        containerView.layer.cornerRadius = 8
         containerView.backgroundColor = Settings.ColorOfStamp
     }
     
@@ -30,8 +30,9 @@ class CustomizedInputAlertViewController: UIViewController, UITextFieldDelegate 
     
     @IBAction func confirm() {
         UserProfile.requestedBookName = inputTextField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        NSNotificationCenter.defaultCenter().postNotificationName("RequestNewBookViewControllerDismissed", object: nil, userInfo: nil)
-        self.presentingViewController!.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismissViewControllerAnimated(true) {
+            NSNotificationCenter.defaultCenter().postNotificationName("RequestNewBookViewControllerDismissed", object: nil, userInfo: nil)
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
