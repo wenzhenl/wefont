@@ -124,6 +124,9 @@ class Settings {
     
     
     
+    // MARK - error info when request data from server
+    static let errMsgServerDown = "囧，服务器开小差了"
+    
     // MARK - Common functions used by all viewcontroller
     
     // MARK - input validation

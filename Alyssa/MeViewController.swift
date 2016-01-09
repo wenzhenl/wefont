@@ -154,7 +154,10 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                                 
                                 if let lastModifiedTime = parseJSON["last_modified_time"] as? String {
                                     self.saveFontDataToFileSystem(fontData, lastModifiedTime: lastModifiedTime)
-                                    Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
+                                    
+                                    self.dismissViewControllerAnimated(true) {
+                                        Settings.popupCustomizedAlert(self, message: "请重启APP查看最新字体")
+                                    }
                                 } else {
                                     print("cannot parse last modified time")
                                 }
@@ -166,10 +169,15 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                         }
                     } else {
                         print("seems the font is latest")
-                        Settings.popupCustomizedAlert(self, message: "当前字体已经是最新的")
+                        dismissViewControllerAnimated(true) {
+                            Settings.popupCustomizedAlert(self, message: "当前字体已经是最新的")
+                        }
                     }
                 } else {
-                    print("already the latest font")
+                    print("cannot parse message")
+                    dismissViewControllerAnimated(true) {
+                        Settings.popupCustomizedAlert(self, message: Settings.errMsgServerDown)
+                    }
                 }
             }
         } else {
@@ -238,9 +246,13 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
                     print("Email font message: ", message)
                     
                     if success {
-                        Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
+                        dismissViewControllerAnimated(true) {
+                            Settings.popupCustomizedAlert(self, message: "字体已发送到邮箱，请查收")
+                        }
                     } else {
-                        Settings.popupCustomizedAlert(self, message: message)
+                        dismissViewControllerAnimated(true) {
+                            Settings.popupCustomizedAlert(self, message: message)
+                        }
                     }
                 }
             }
