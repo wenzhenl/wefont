@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */; };
 		0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */; };
-		0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */; };
+		0A2CF38D1C2FBFCD0057C38E /* NetworkAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */; };
 		0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38E1C30A9010057C38E /* UserProfile.swift */; };
 		0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF3961C3127BB0057C38E /* 小王子.txt */; };
 		0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39E1C3142810057C38E /* gb2312.txt */; };
@@ -71,7 +71,7 @@
 /* Begin PBXFileReference section */
 		0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTitleTableViewCell.swift; sourceTree = "<group>"; };
 		0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
-		0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAvailability.swift; sourceTree = "<group>"; };
 		0A2CF38E1C30A9010057C38E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0A2CF3961C3127BB0057C38E /* 小王子.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "小王子.txt"; sourceTree = "<group>"; };
 		0A2CF39E1C3142810057C38E /* gb2312.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gb2312.txt; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */,
 				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
 				0A67F0741C2C249300526E1B /* Settings.swift */,
-				0A2CF38C1C2FBFCD0057C38E /* Reachability.swift */,
+				0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */,
 				0ABB55DC1C3655E300E5CC62 /* OpenCV.h */,
 				0ABB55DA1C36555700E5CC62 /* OpenCV.mm */,
 				0A67F0441C2BF51100526E1B /* Main.storyboard */,
@@ -407,7 +407,7 @@
 				0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */,
 				0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */,
 				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
-				0A2CF38D1C2FBFCD0057C38E /* Reachability.swift in Sources */,
+				0A2CF38D1C2FBFCD0057C38E /* NetworkAvailability.swift in Sources */,
 				0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */,
 				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
 				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,

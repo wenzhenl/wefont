@@ -154,7 +154,7 @@ class Settings {
     // MARK - interaction with the server
     static func fetchDataFromServer(viewController: UIViewController, errMsgForNetwork: String, destinationURL: String, params: NSDictionary, retrivedJSONHandler: (NSDictionary?) -> Void) {
         
-        if !Reachability.isConnectedToNetwork() {
+        if !NetworkAvailability.isConnectedToNetwork() {
             
             // Notify users there's error with network
             popupCustomizedAlert(viewController, message: errMsgForNetwork)
