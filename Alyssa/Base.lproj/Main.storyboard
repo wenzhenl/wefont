@@ -343,19 +343,42 @@
                                     <constraint firstAttribute="height" constant="50" id="Svj-fo-guE"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="74J-DN-2tj">
-                                <rect key="frame" x="20" y="540" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="5i3-xG-3DQ"/>
-                                    <constraint firstAttribute="width" constant="50" id="Elr-TE-TNw"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用Alyssa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10A-Pf-TJN">
                                 <rect key="frame" x="241" y="114" width="118" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iul-bv-o0j">
+                                <rect key="frame" x="200" y="520" width="200" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsA-Gj-cRO">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                        <state key="normal" title="进入Alyssa">
+                                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="enterAlyssa" destination="N70-dW-MwC" eventType="touchUpInside" id="J72-jJ-eXN"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fsA-Gj-cRO" firstAttribute="centerY" secondItem="iul-bv-o0j" secondAttribute="centerY" id="TNL-s3-beJ"/>
+                                    <constraint firstItem="fsA-Gj-cRO" firstAttribute="height" secondItem="iul-bv-o0j" secondAttribute="height" id="Vq3-h9-1YO"/>
+                                    <constraint firstAttribute="width" constant="200" id="ca6-rX-Fph"/>
+                                    <constraint firstItem="fsA-Gj-cRO" firstAttribute="width" secondItem="iul-bv-o0j" secondAttribute="width" id="d2F-tE-02F"/>
+                                    <constraint firstAttribute="height" constant="40" id="je0-9X-b7i"/>
+                                    <constraint firstItem="fsA-Gj-cRO" firstAttribute="centerX" secondItem="iul-bv-o0j" secondAttribute="centerX" id="yPX-Cm-XKN"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="74J-DN-2tj">
+                                <rect key="frame" x="167" y="325" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5i3-xG-3DQ"/>
+                                    <constraint firstAttribute="width" constant="50" id="Elr-TE-TNw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -369,11 +392,14 @@
                             <constraint firstItem="P4Z-c2-wBX" firstAttribute="leading" secondItem="6Sr-rN-WEn" secondAttribute="trailing" id="Hax-SU-0Y8"/>
                             <constraint firstItem="Nra-rB-lnE" firstAttribute="centerX" secondItem="8O4-6D-J1N" secondAttribute="centerX" id="I05-ZW-LhB"/>
                             <constraint firstItem="6Sr-rN-WEn" firstAttribute="centerY" secondItem="P4Z-c2-wBX" secondAttribute="centerY" id="J3e-sH-25O"/>
+                            <constraint firstItem="iul-bv-o0j" firstAttribute="centerX" secondItem="NCb-hf-FGg" secondAttribute="centerX" id="K5Q-rM-MDq"/>
+                            <constraint firstItem="74J-DN-2tj" firstAttribute="centerY" secondItem="OF5-8y-WSK" secondAttribute="centerY" id="KVG-1Z-6D4"/>
                             <constraint firstItem="a87-cc-AmE" firstAttribute="centerX" secondItem="Nra-rB-lnE" secondAttribute="centerX" id="LrD-Gc-Q3w"/>
                             <constraint firstItem="fgE-5Y-CTQ" firstAttribute="centerY" secondItem="a87-cc-AmE" secondAttribute="centerY" id="SpL-Nl-2XS"/>
                             <constraint firstItem="Nra-rB-lnE" firstAttribute="centerY" secondItem="EUR-Xy-ps0" secondAttribute="centerY" id="TJX-QJ-sPX"/>
                             <constraint firstItem="8O4-6D-J1N" firstAttribute="centerY" secondItem="NCb-hf-FGg" secondAttribute="centerY" id="Wtp-eC-T4Y"/>
                             <constraint firstItem="6Sr-rN-WEn" firstAttribute="centerY" secondItem="OF5-8y-WSK" secondAttribute="centerY" id="XyO-6c-dv5"/>
+                            <constraint firstItem="5EN-yZ-ODO" firstAttribute="top" secondItem="iul-bv-o0j" secondAttribute="bottom" constant="40" id="ZS4-3I-Nyx"/>
                             <constraint firstItem="a87-cc-AmE" firstAttribute="centerY" secondItem="ufb-5z-iLW" secondAttribute="centerY" id="aay-MO-sHD"/>
                             <constraint firstItem="a87-cc-AmE" firstAttribute="leading" secondItem="fgE-5Y-CTQ" secondAttribute="trailing" id="bJh-ME-N6T"/>
                             <constraint firstItem="6Sr-rN-WEn" firstAttribute="leading" secondItem="OF5-8y-WSK" secondAttribute="trailing" id="bO6-FI-YRv"/>
@@ -388,12 +414,15 @@
                             <constraint firstItem="8O4-6D-J1N" firstAttribute="centerY" secondItem="4ez-H9-T5Q" secondAttribute="centerY" id="kfh-6V-amF"/>
                             <constraint firstItem="Vzz-bN-f2D" firstAttribute="centerY" secondItem="Nra-rB-lnE" secondAttribute="centerY" id="mGj-Na-Bm3"/>
                             <constraint firstItem="Nra-rB-lnE" firstAttribute="leading" secondItem="Vzz-bN-f2D" secondAttribute="trailing" id="og6-fW-XyD"/>
+                            <constraint firstItem="OF5-8y-WSK" firstAttribute="leading" secondItem="74J-DN-2tj" secondAttribute="trailing" constant="8" id="vAU-yM-y3n"/>
                             <constraint firstItem="EUR-Xy-ps0" firstAttribute="leading" secondItem="Nra-rB-lnE" secondAttribute="trailing" id="xyW-i6-APB"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="LrD-Gc-Q3w"/>
                                 <exclude reference="crg-R7-qEn"/>
+                                <exclude reference="dgb-qd-0tb"/>
+                                <exclude reference="hLh-f6-XzS"/>
                             </mask>
                         </variation>
                     </view>

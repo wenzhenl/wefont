@@ -22,6 +22,16 @@ class WelcomeViewController: UIViewController {
     }
     
 
+    @IBAction func enterAlyssa() {
+        
+        UserProfile.hasSeenTutorial = true
+        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
+        appDelegate.window?.rootViewController = initialViewController
+        appDelegate.window?.makeKeyAndVisible()
+    }
+
     /*
     // MARK: - Navigation
 
