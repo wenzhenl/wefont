@@ -57,7 +57,7 @@ class Settings {
     static let ColorOfAlertView = UIColor(red: 234.0 / 255.0, green: 69.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
 
     // MARK - Server and API names
-    static let ServerIP = "http://52.69.172.155/Alyssa/"
+    static let ServerIP = "http://ohalyssa.com/Alyssa/"
     static let APIUserSignup = "alyssa_user_signup.php"
     static let APIUserLogin = "alyssa_user_login.php"
     static let APIUserRequestValidationCode = "alyssa_request_validation_code.php"
