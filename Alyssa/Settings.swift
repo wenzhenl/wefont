@@ -38,6 +38,7 @@ class Settings {
     static let IdentifierForBookPageContentViewController = "This is a book page content view"
     static let IdentifierForCustomizedAlertViewController = "Customized Alert View Controller"
     static let IdentifierForAlertInputViewController = "InputAlertForBookName"
+    static let IdentifierForWelcomeViewController = "WelcomeInfoFromQianqian"
     
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)

@@ -38,6 +38,7 @@
 		0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0701C2C1C3600526E1B /* BookViewController.swift */; };
 		0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0721C2C1C5800526E1B /* MeViewController.swift */; };
 		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
+		0A78FA4E1C4255910095ED30 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */; };
 		0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */; };
 		0A9357CD1C38FC16008DCA75 /* SingleLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */; };
 		0A9357CF1C38FDA1008DCA75 /* AboutAlyssaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */; };
@@ -106,6 +107,7 @@
 		0A67F0701C2C1C3600526E1B /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		0A67F0721C2C1C5800526E1B /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		0A67F0741C2C249300526E1B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
 		0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAlyssaViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				0A67F0401C2BF51100526E1B /* AppDelegate.swift */,
+				0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */,
 				0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */,
 				0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */,
 				0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */,
@@ -391,6 +394,7 @@
 				0ABB55E61C37CD1300E5CC62 /* ThreeFieldContainerView.swift in Sources */,
 				0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */,
 				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
+				0A78FA4E1C4255910095ED30 /* WelcomeViewController.swift in Sources */,
 				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
 				0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */,
 				0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */,

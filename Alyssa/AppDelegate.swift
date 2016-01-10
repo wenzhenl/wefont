@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var initialViewController: UIViewController?
         if !UserProfile.hasSeenTutorial {
-            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTutorialViewController)
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForWelcomeViewController)
         }
         else {
             application.statusBarStyle = .LightContent
