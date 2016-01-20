@@ -67,6 +67,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func login() {
         if checkInputs() {
+            
+            emailTextField.resignFirstResponder()
+            passwordTextField.resignFirstResponder()
+            
             let params = NSMutableDictionary()
             
             params["email"] = email!
@@ -212,4 +216,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
+    
+    @IBAction func cancel(sender: UIBarButtonItem) {
+        
+        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

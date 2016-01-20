@@ -40,8 +40,8 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForUserInfoTableCell) as! UserInfoTableViewCell
-            cell.nickname = UserProfile.userNickname
-            cell.email = UserProfile.userEmailAddress
+            cell.nickname = UserProfile.userNickname ?? "未登录"
+            cell.email = UserProfile.userEmailAddress ?? "example@example.com"
             cell.selectionStyle = .None
             return cell
         }
@@ -64,7 +64,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier(Settings.IdentifierForSingleLabelTableCell) as! SingleLabelTableViewCell
             if indexPath.row == 0 {
-                cell.singleLabel.text = "关于Alyssa"
+                cell.singleLabel.text = "关于美字精灵"
                 cell.selectionStyle = .None
             }
             else if indexPath.row == 1 {
@@ -88,6 +88,10 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         }
         else if indexPath.section == 2 && indexPath.row == 1 {
             performSegueWithIdentifier(Settings.IdentifierForSegueToAcknowledgePage, sender: self)
+        } else if indexPath.section == 0 && indexPath.row == 0 {
+            if !UserProfile.hasLoggedIn {
+                performSegueWithIdentifier(Settings.IdentifierForSegueFromMeToLogin, sender: self)
+            }
         }
     }
     
@@ -193,6 +197,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
     func checkInputs() -> Bool  {
         
+        if !UserProfile.hasLoggedIn {
+            Settings.popupCustomizedAlert(self, message: "你还没有登录")
+            return false
+        }
+        
         if Settings.isEmpty(UserProfile.userEmailAddress) {
             Settings.popupCustomizedAlert(self, message: "邮箱不能为空")
         } else if !Settings.isValidEmail(UserProfile.userEmailAddress!) {
@@ -251,18 +260,18 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
 
     func logout() {
         
-        UserProfile.hasLoggedIn = false
-        UserProfile.hasSavedFont = false
-        UserProfile.userEmailAddress = nil
-        UserProfile.userNickname = nil
-        UserProfile.userPassword = nil
-        UserProfile.activeFontName = nil
-        UserProfile.fontsLastModifiedTime = nil
-        
-        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-        
-        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
-        appDelegate.window?.rootViewController = initialViewController
-        appDelegate.window?.makeKeyAndVisible()
+        if !UserProfile.hasLoggedIn {
+            Settings.popupCustomizedAlert(self, message: "你还没有登录")
+        } else {
+            UserProfile.hasLoggedIn = false
+            UserProfile.hasSavedFont = false
+            UserProfile.userEmailAddress = nil
+            UserProfile.userNickname = nil
+            UserProfile.userPassword = nil
+            UserProfile.activeFontName = nil
+            UserProfile.fontsLastModifiedTime = nil
+            
+            tableView.reloadData()
+        }
     }
 }

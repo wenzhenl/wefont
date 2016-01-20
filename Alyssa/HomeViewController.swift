@@ -57,11 +57,15 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {
-        let center = NSNotificationCenter.defaultCenter()
-        
-        center.addObserver(self, selector: "sendNewFontInfoToServer:", name: "CreateViewControllerDismissed", object: nil )
-        
-        performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
+        if UserProfile.hasLoggedIn {
+            let center = NSNotificationCenter.defaultCenter()
+            
+            center.addObserver(self, selector: "sendNewFontInfoToServer:", name: "CreateViewControllerDismissed", object: nil )
+            
+            performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
+        } else {
+            performSegueWithIdentifier(Settings.IdentifierForSegueToLogin, sender: self)
+        }
     }
     
     func sendNewFontInfoToServer(notification: NSNotification) {

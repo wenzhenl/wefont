@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Alyssa-->
+        <!--美字精灵-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,7 +47,7 @@
                             <constraint firstItem="T8g-va-Tc6" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="hpL-YO-MIZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Alyssa" id="BPt-io-6LU">
+                    <navigationItem key="navigationItem" title="美字精灵" id="BPt-io-6LU">
                         <barButtonItem key="rightBarButtonItem" title="新建" id="rTL-Sh-22l">
                             <connections>
                                 <action selector="addNewFont:" destination="BYZ-38-t0r" id="uWg-vK-UMR"/>
@@ -57,6 +57,7 @@
                     <connections>
                         <outlet property="titleBarButtonItem" destination="Dzq-Ka-Ldl" id="rMd-m2-kfq"/>
                         <segue destination="DzA-3o-vKc" kind="presentation" identifier="Present Create Font" id="m06-JW-ng9"/>
+                        <segue destination="WG0-6Z-vML" kind="presentation" identifier="Please login first" id="wUF-H7-EBu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -343,18 +344,12 @@
                                     <constraint firstAttribute="height" constant="50" id="Svj-fo-guE"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用Alyssa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10A-Pf-TJN">
-                                <rect key="frame" x="241" y="114" width="118" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iul-bv-o0j">
                                 <rect key="frame" x="200" y="520" width="200" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fsA-Gj-cRO">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
-                                        <state key="normal" title="进入Alyssa">
+                                        <state key="normal" title="开始体验美字精灵">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -379,6 +374,12 @@
                                     <constraint firstAttribute="width" constant="50" id="Elr-TE-TNw"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用美字精灵" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10A-Pf-TJN">
+                                <rect key="frame" x="232" y="114" width="136" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -617,6 +618,7 @@
                         <outlet property="toolbar" destination="GND-te-Z5n" id="QtX-Du-xa2"/>
                         <outlet property="undoBarButtonItem" destination="289-8u-0mh" id="b0G-H8-N4x"/>
                         <outlet property="uploadBarButtonItem" destination="GQs-cv-nWX" id="azD-11-gwV"/>
+                        <segue destination="WG0-6Z-vML" kind="presentation" identifier="From char capture to login" id="tgl-Ll-AdD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -984,6 +986,7 @@
                         <outlet property="tableView" destination="xlT-YA-gvc" id="t1l-PK-7L9"/>
                         <segue destination="fPe-L9-2w7" kind="show" identifier="Go To See About Alyssa" id="SNs-ic-pP5"/>
                         <segue destination="m5f-6w-CAn" kind="show" identifier="Go to see acknowledge page" id="QZw-EY-5nr"/>
+                        <segue destination="WG0-6Z-vML" kind="presentation" identifier="From ME capture to login" id="aA1-HG-tPc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fb-5d-ks5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1046,7 +1049,7 @@ the use of this software, even if advised of the possibility of such damage.</st
             </objects>
             <point key="canvasLocation" x="2584" y="1020"/>
         </scene>
-        <!--关于Alyssa-->
+        <!--关于美字精灵-->
         <scene sceneID="cLU-Az-orV">
             <objects>
                 <viewController id="fPe-L9-2w7" customClass="AboutAlyssaViewController" customModule="Alyssa" customModuleProvider="target" sceneMemberID="viewController">
@@ -1119,7 +1122,7 @@ the use of this software, even if advised of the possibility of such damage.</st
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="关于Alyssa" id="Mo6-je-Qx6"/>
+                    <navigationItem key="navigationItem" title="关于美字精灵" id="Mo6-je-Qx6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cv-Qc-Tx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1204,13 +1207,13 @@ the use of this software, even if advised of the possibility of such damage.</st
                                 <rect key="frame" x="20" y="335" width="560" height="30"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3YB-ej-RoM">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="165" height="30"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tc1-Af-IIp">
-                                        <rect key="frame" x="385" y="0.0" width="175" height="30"/>
+                                        <rect key="frame" x="395" y="0.0" width="165" height="30"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAL-i4-WuJ">
-                                        <rect key="frame" x="297" y="0.0" width="80" height="30"/>
+                                        <rect key="frame" x="297" y="0.0" width="90" height="30"/>
                                         <state key="normal" title="找回密码">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1219,12 +1222,12 @@ the use of this software, even if advised of the possibility of such damage.</st
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVh-ts-6IQ">
-                                        <rect key="frame" x="183" y="0.0" width="80" height="30"/>
+                                        <rect key="frame" x="173" y="0.0" width="90" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="N73-Ry-b7U"/>
-                                            <constraint firstAttribute="width" constant="80" id="hpb-og-8An"/>
+                                            <constraint firstAttribute="width" constant="90" id="hpb-og-8An"/>
                                         </constraints>
-                                        <state key="normal" title="加入Alyssa">
+                                        <state key="normal" title="加入美字精灵">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
@@ -1296,7 +1299,13 @@ the use of this software, even if advised of the possibility of such damage.</st
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="登录" id="MpX-7m-mKM"/>
+                    <navigationItem key="navigationItem" title="登录" id="MpX-7m-mKM">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eu9-cp-Wpw">
+                            <connections>
+                                <action selector="cancel:" destination="fAj-KI-nC3" id="3ac-dg-Dup"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailTextField" destination="ARn-A7-dtt" id="JA7-6H-AD3"/>
                         <outlet property="iconImageView" destination="Ten-GO-IBT" id="qEg-xN-jlT"/>
@@ -1482,7 +1491,7 @@ the use of this software, even if advised of the possibility of such damage.</st
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYZ-ci-54w">
                                         <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="加入Alyssa">
+                                        <state key="normal" title="加入美字精灵">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2050,4 +2059,7 @@ the use of this software, even if advised of the possibility of such damage.</st
         <image name="user" width="24" height="24"/>
         <image name="user-selected" width="24" height="24"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wUF-H7-EBu"/>
+    </inferredMetricsTieBreakers>
 </document>

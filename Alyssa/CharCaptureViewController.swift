@@ -138,35 +138,39 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     
     @IBAction func uploadChar(sender: UIBarButtonItem) {
       
-        if UserProfile.userEmailAddress != nil {
-            if UserProfile.activeFontName != nil {
-                if charImage != nil {
-                    if !Settings.isEmpty(currentChar) {
-                        if currentChar!.characters.count == 1 {
-                            let alert = UIAlertController(title: nil, message:"确定上传 " + currentChar! + " ?", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
-                            alert.addAction(UIAlertAction(
-                                title: "上传",
-                                style: .Destructive)
-                                { (action: UIAlertAction) -> Void in
-                                    self.sendCharAndImageToServer()
-                                }
-                            )
-                            presentViewController(alert, animated: true, completion: nil)
+        if UserProfile.hasLoggedIn {
+            if UserProfile.userEmailAddress != nil {
+                if UserProfile.activeFontName != nil {
+                    if charImage != nil {
+                        if !Settings.isEmpty(currentChar) {
+                            if currentChar!.characters.count == 1 {
+                                let alert = UIAlertController(title: "上传手写字", message:"你的手写字将会被上传到后台服务器被加工成为字体，你确定要上传 " + currentChar! + " 么?", preferredStyle: UIAlertControllerStyle.Alert)
+                                alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+                                alert.addAction(UIAlertAction(
+                                    title: "上传",
+                                    style: .Destructive)
+                                    { (action: UIAlertAction) -> Void in
+                                        self.sendCharAndImageToServer()
+                                    }
+                                )
+                                presentViewController(alert, animated: true, completion: nil)
+                            } else {
+                                Settings.popupCustomizedAlert(self, message: "每次只能上传一个字")
+                            }
                         } else {
-                            Settings.popupCustomizedAlert(self, message: "每次只能上传一个字")
+                            Settings.popupCustomizedAlert(self, message: "请告诉Alyssa你写了什么字")
                         }
                     } else {
-                        Settings.popupCustomizedAlert(self, message: "请告诉Alyssa你写了什么字")
+                        Settings.popupCustomizedAlert(self, message: "你还没有写下字")
                     }
                 } else {
-                    Settings.popupCustomizedAlert(self, message: "你还没有写下字")
+                    Settings.popupCustomizedAlert(self, message: "你还没有创建字体")
                 }
             } else {
-                Settings.popupCustomizedAlert(self, message: "你还没有创建字体")
+                Settings.popupCustomizedAlert(self, message: "你还没有登录")
             }
         } else {
-            Settings.popupCustomizedAlert(self, message: "你还没有登录")
+            performSegueWithIdentifier(Settings.IdentifierForSegueFromCharCaptureToLogin, sender: self)
         }
     }
     

@@ -29,10 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if UserProfile.activeFontName != nil {
                     Settings.updateFont(UserProfile.fontFileURL!)
                 }
-                initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
-            } else {
-                initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
             }
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
         }
     
         self.window?.rootViewController = initialViewController

@@ -27,6 +27,9 @@ class Settings {
     static let IdentifierForSegueToAboutAlyssa = "Go To See About Alyssa"
     static let IdentifierForSegueToAcknowledgePage = "Go to see acknowledge page"
     static let IdentifierForSegueToNextStepResetPassword = "Next step to reset password"
+    static let IdentifierForSegueToLogin = "Please login first"
+    static let IdentifierForSegueFromCharCaptureToLogin = "From char capture to login"
+    static let IdentifierForSegueFromMeToLogin = "From ME capture to login"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"
