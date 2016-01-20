@@ -263,15 +263,24 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         if !UserProfile.hasLoggedIn {
             Settings.popupCustomizedAlert(self, message: "你还没有登录")
         } else {
-            UserProfile.hasLoggedIn = false
-            UserProfile.hasSavedFont = false
-            UserProfile.userEmailAddress = nil
-            UserProfile.userNickname = nil
-            UserProfile.userPassword = nil
-            UserProfile.activeFontName = nil
-            UserProfile.fontsLastModifiedTime = nil
-            
-            tableView.reloadData()
+            let alert = UIAlertController(title: "美字精灵", message:"确定退出登录么?", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            alert.addAction(UIAlertAction(
+                title: "确定",
+                style: .Default)
+                { (action: UIAlertAction) -> Void in
+                    UserProfile.hasLoggedIn = false
+                    UserProfile.hasSavedFont = false
+                    UserProfile.userEmailAddress = nil
+                    UserProfile.userNickname = nil
+                    UserProfile.userPassword = nil
+                    UserProfile.activeFontName = nil
+                    UserProfile.fontsLastModifiedTime = nil
+                    
+                    self.tableView.reloadData()
+                }
+            )
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
 }

@@ -144,7 +144,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                     if charImage != nil {
                         if !Settings.isEmpty(currentChar) {
                             if currentChar!.characters.count == 1 {
-                                let alert = UIAlertController(title: "上传手写字", message:"你的手写字将会被上传到后台服务器被加工成为字体，你确定要上传 " + currentChar! + " 么?", preferredStyle: UIAlertControllerStyle.Alert)
+                                let alert = UIAlertController(title: "上传手写字", message:"你的手写字将会被上传到后台服务器加工成为字体，你确定要上传 " + currentChar! + " 么?", preferredStyle: UIAlertControllerStyle.Alert)
                                 alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
                                 alert.addAction(UIAlertAction(
                                     title: "上传",
@@ -158,7 +158,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                                 Settings.popupCustomizedAlert(self, message: "每次只能上传一个字")
                             }
                         } else {
-                            Settings.popupCustomizedAlert(self, message: "请告诉Alyssa你写了什么字")
+                            Settings.popupCustomizedAlert(self, message: "请输入你写的字")
                         }
                     } else {
                         Settings.popupCustomizedAlert(self, message: "你还没有写下字")
