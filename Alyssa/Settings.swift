@@ -109,6 +109,8 @@ class Settings {
     
     static let VerticalOffsetOfCharUnderscore = CGFloat(7.0)
     
+//    static let minimumWidthOfCharGrid = CGFloat(30)
+    
     // MARK - System default books
     static let defaultSampleBooks = ["手写练习区","小王子","gb2312"]
     static let bookNameOfGB2312 = "gb2312"

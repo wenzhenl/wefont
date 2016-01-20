@@ -13,6 +13,7 @@ class CharGridView: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor.clearColor()
         userInteractionEnabled = true
+        contentMode = .Redraw
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,6 +23,7 @@ class CharGridView: UIView {
     override func drawRect(rect: CGRect) {
         let path = UIBezierPath()
         UIColor.blueColor().set()
+        path.lineWidth = 1
         let topLeft = CGPoint(x: self.bounds.minX, y: self.bounds.minY)
         let topRight = CGPoint(x: self.bounds.maxX, y: self.bounds.minY)
         let bottomLeft = CGPoint(x: self.bounds.minX, y: self.bounds.maxY)
