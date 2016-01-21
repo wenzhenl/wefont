@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import EasyTipView
 
-class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, EasyTipViewDelegate {
 
     @IBOutlet weak var undoBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var uploadBarButtonItem: UIBarButtonItem!
@@ -118,7 +119,19 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         gridView = CharGridView(frame: CGRectMake(self.view.frame.midX - gridWidth / 2, self.view.frame.minY + Settings.VerticalOffsetOfCharGridView, gridWidth, gridHeight))
         self.view.addSubview(gridView)
         self.view.bringSubviewToFront(gridView)
+        
+        if !UserProfile.hasSeenCharGridViewTip {
+            EasyTipView.showAnimated(true, forView: self.gridView, withinSuperview: self.view,
+                text: "请调整田字框到合适大小，只有田字框内的图形会被加入字体。你可以任意调整字的结构，对于大多数字在可能的情况下尽量填满田字框。\r\n点击关闭提示。", delegate: self)
+            UserProfile.hasSeenCharGridViewTip = true
+        }
     }
+    
+    // MARK - easy tip view delegate functions
+    func easyTipViewDidDismiss(tipView: EasyTipView) {
+        print("\(tipView) did dismiss!")
+    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)

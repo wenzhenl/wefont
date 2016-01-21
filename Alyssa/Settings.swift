@@ -81,6 +81,9 @@ class Settings {
     // user app interaction
     static let keyForHasLoggedInInDefaultUser = "keyForHasLoggedIn"
     static let keyForHasSeenTutorialInDefaultUser = "keyForHasSeenTutorial"
+    static let keyForHasSeenTipForCreateFont = "keyForHasSeenTipForCreateFont"
+    static let keyForHasSeenTipForCharGridView = "keyForHasSeenTipForCharGridView"
+    static let keyForHasSeenTipForRestartApp = "keyForHasSeenTipForRestartApp"
     
     // user account related
     static let keyForNicknameInDefaultUser = "keyForUserNickname"

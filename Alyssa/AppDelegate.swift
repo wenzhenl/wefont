@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyTipView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +41,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.pageIndicatorTintColor = UIColor.lightGrayColor()
         pageController.currentPageIndicatorTintColor = Settings.ColorOfStamp
         pageController.backgroundColor = UIColor.whiteColor()
+        
+        // MARK - easy tip configuration
+        var preferences = EasyTipView.Preferences()
+        
+        preferences.drawing.font = UIFont(name: "Futura-Medium", size: 13)!
+        preferences.drawing.foregroundColor = UIColor.whiteColor()
+        preferences.drawing.backgroundColor = UIColor(hue:0.46, saturation:0.99, brightness:0.6, alpha:1)
+        preferences.drawing.arrowPosition = EasyTipView.ArrowPosition.Top
+        preferences.drawing.textAlignment = .Left
+        EasyTipView.globalPreferences = preferences
+
         return true
     }
 

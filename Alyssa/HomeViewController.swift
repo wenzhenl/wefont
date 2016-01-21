@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import EasyTipView
 
-class HomeViewController: UIViewController, UIPageViewControllerDataSource {
+class HomeViewController: UIViewController, UIPageViewControllerDataSource, EasyTipViewDelegate {
 
     var pageViewController: UIPageViewController!
     
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         }
     }
     
+    @IBOutlet weak var createFontButtonItem: UIBarButtonItem!
     @IBOutlet weak var titleBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -54,6 +56,17 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource {
         if let fontname = UserProfile.activeFontName {
             self.navigationItem.title = fontname
         }
+        
+        if !UserProfile.hasSeenFontCreationTip {
+            EasyTipView.showAnimated(true, forItem: self.createFontButtonItem, withinSuperview: self.navigationController?.view,
+                text: "请首先创建字体，然后点击字名或者直接进入取字功能添加字到字体。\r\n点击关闭提示。")
+            UserProfile.hasSeenFontCreationTip = true
+        }
+    }
+
+    // MARK - easy tip view delegate functions
+    func easyTipViewDidDismiss(tipView: EasyTipView) {
+        print("\(tipView) did dismiss!")
     }
 
     @IBAction func addNewFont(sender: UIBarButtonItem) {

@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import EasyTipView
 
-class MeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, EasyTipViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var titleNavigationItem: UINavigationItem!
+    
+    @IBOutlet weak var updateFontBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +23,18 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         self.navigationController!.navigationBar.barTintColor = Settings.ColorOfStamp
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
+        if !UserProfile.hasSeenRestartAPPTip {
+            EasyTipView.showAnimated(true, forItem: self.updateFontBarButtonItem, withinSuperview: self.navigationController?.view,
+                text: "更新字体后你需要重启美字精灵才可以看到最新效果。重启的方式是双击Home键，将美字精灵向上滑出。\r\n点击关闭提示。", delegate: self)
+            UserProfile.hasSeenRestartAPPTip = true
+        }
     }
+    
+    // MARK - easy tip view delegate functions
+    func easyTipViewDidDismiss(tipView: EasyTipView) {
+        print("\(tipView) did dismiss!")
+    }
+
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
@@ -123,7 +139,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         }
     }
     
-    func updateFont() {
+    @IBAction func updateFont() {
         if checkInputs() {
             
             let alert = UIAlertController(title: "更新字体", message:"本次操作会消耗不少流量，确定继续？", preferredStyle: UIAlertControllerStyle.Alert)

@@ -56,6 +56,33 @@ class UserProfile {
         }
     }
     
+    static var hasSeenFontCreationTip: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTipForCreateFont)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTipForCreateFont)
+        }
+    }
+
+    static var hasSeenCharGridViewTip: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTipForCharGridView)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTipForCharGridView)
+        }
+    }
+    
+    static var hasSeenRestartAPPTip: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTipForRestartApp)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTipForRestartApp)
+        }
+    }
+    
     // MARK - user font info
     static var activeFontName: String? {
         get {

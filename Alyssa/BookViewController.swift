@@ -12,12 +12,17 @@ class BookViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     @IBOutlet weak var bookTitleTableView: UITableView!
     
+    @IBOutlet weak var addNewBookButtonItem: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationController!.navigationBar.barTintColor = Settings.ColorOfStamp
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
+        
+        // The add new book function will be implemented in next release
+        self.addNewBookButtonItem.enabled = false
     }
     
     var books: [String] {

@@ -55,6 +55,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createFontButtonItem" destination="rTL-Sh-22l" id="8Gk-9O-ujC"/>
                         <outlet property="titleBarButtonItem" destination="Dzq-Ka-Ldl" id="rMd-m2-kfq"/>
                         <segue destination="DzA-3o-vKc" kind="presentation" identifier="Present Create Font" id="m06-JW-ng9"/>
                         <segue destination="WG0-6Z-vML" kind="presentation" identifier="Please login first" id="wUF-H7-EBu"/>
@@ -234,13 +235,14 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="阅读" id="5Uv-Mo-6b8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="u52-d5-E4p">
+                        <barButtonItem key="rightBarButtonItem" id="u52-d5-E4p">
                             <connections>
                                 <action selector="requestNewBook:" destination="diV-0c-rto" id="Zl8-5Z-6Sm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewBookButtonItem" destination="u52-d5-E4p" id="XAO-xz-nz7"/>
                         <outlet property="bookTitleTableView" destination="oO5-df-o8M" id="NPy-hv-pG4"/>
                     </connections>
                 </viewController>
@@ -981,9 +983,17 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="我的" id="OTN-ba-1kZ"/>
+                    <navigationItem key="navigationItem" title="我的" id="OTN-ba-1kZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="ujQ-C9-gQT">
+                            <connections>
+                                <action selector="updateFont" destination="8vI-Cz-rDa" id="xN5-Hk-tvt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="xlT-YA-gvc" id="t1l-PK-7L9"/>
+                        <outlet property="titleNavigationItem" destination="OTN-ba-1kZ" id="GsR-wc-4rU"/>
+                        <outlet property="updateFontBarButtonItem" destination="ujQ-C9-gQT" id="fmr-ER-CmS"/>
                         <segue destination="fPe-L9-2w7" kind="show" identifier="Go To See About Alyssa" id="SNs-ic-pP5"/>
                         <segue destination="m5f-6w-CAn" kind="show" identifier="Go to see acknowledge page" id="QZw-EY-5nr"/>
                         <segue destination="WG0-6Z-vML" kind="presentation" identifier="From ME capture to login" id="aA1-HG-tPc"/>
@@ -1013,11 +1023,15 @@
 特别感谢豆瓣网友 马孔多
 特别感谢豆瓣网友 望城
 
-Alyssa uses free icons from the following website:
+美字精灵感谢以下网站提供的免费图标
 https://icons8.com/
 http://www.streamlineicons.com/free-icons.html
 
-Alyssa uses the following open source libraries:
+美字精灵使用makeappicon制作app图标
+http://makeappicon.com/
+
+美字精灵使用以下开源项目:
+
 License Agreement
 For Open Source Computer Vision Library
 (3-clause BSD License)
@@ -1028,7 +1042,25 @@ Redistribution and use in source and binary forms, with or without modification,
  Neither the names of the copyright holders nor the names of the contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 This software is provided by the copyright holders and contributors “as is” and any express or implied warranties, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose are disclaimed. In no event shall copyright holders or contributors be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of
-the use of this software, even if advised of the possibility of such damage.</mutableString>
+the use of this software, even if advised of the possibility of such damage.
+
+The MIT License (MIT)
+Copyright (c) 2015 Teodor Patraş
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
