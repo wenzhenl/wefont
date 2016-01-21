@@ -140,7 +140,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     @IBAction func updateFont() {
-        if checkInputs() {
+        
+        if !UserProfile.hasLoggedIn {
+            performSegueWithIdentifier(Settings.IdentifierForSegueFromMeToLogin, sender: self)
+        }
+        else if checkInputs() {
             
             let alert = UIAlertController(title: "更新字体", message:"本次操作会消耗不少流量，确定继续？", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
@@ -233,7 +237,11 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
     }
 
     func emailFont() {
-        if checkInputs() {
+        
+        if !UserProfile.hasLoggedIn {
+            performSegueWithIdentifier(Settings.IdentifierForSegueFromMeToLogin, sender: self)
+        }
+        else if checkInputs() {
             let alert = UIAlertController(title: "发送字体", message:"你的邮箱地址是 " + UserProfile.userEmailAddress!, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
             alert.addAction(UIAlertAction(

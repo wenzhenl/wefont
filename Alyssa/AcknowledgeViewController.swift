@@ -15,6 +15,7 @@ class AcknowledgeViewController: UIViewController {
         super.viewDidLoad()
 
         textView.editable = false
+        self.automaticallyAdjustsScrollViewInsets = false
     }
 
     override func didReceiveMemoryWarning() {
