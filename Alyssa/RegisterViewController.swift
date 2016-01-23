@@ -138,11 +138,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         UserProfile.userPassword = password!
                         UserProfile.hasLoggedIn = true
                         
-                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                        UIApplication.sharedApplication().statusBarStyle = .LightContent
-                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForTabViewController)
-                        appDelegate.window?.rootViewController = initialViewController
-                        appDelegate.window?.makeKeyAndVisible()
+                        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+
                     } else {
                         Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }
