@@ -25,7 +25,7 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         self.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
         if !UserProfile.hasSeenRestartAPPTip {
             EasyTipView.showAnimated(true, forItem: self.updateFontBarButtonItem, withinSuperview: self.navigationController?.view,
-                text: "更新字体后你需要重启美字精灵才可以看到最新效果。重启的方式是双击Home键，将美字精灵向上滑出。\r\n点击关闭提示。", delegate: self)
+                text: "更新字体后你需要重启美字精灵才可以看到最新效果。重启的方式是双击Home键将美字精灵向上滑出\r\n\r\n点击关闭提示。", delegate: self)
             UserProfile.hasSeenRestartAPPTip = true
         }
     }

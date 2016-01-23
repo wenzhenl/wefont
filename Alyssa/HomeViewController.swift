@@ -59,7 +59,8 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource, Easy
         
         if !UserProfile.hasSeenFontCreationTip {
             EasyTipView.showAnimated(true, forItem: self.createFontButtonItem, withinSuperview: self.navigationController?.view,
-                text: "请首先创建字体，然后点击字名或者直接进入取字功能添加字到字体。\r\n点击关闭提示。")
+                text: "请首先创建字体，然后点击字名或者直接进入取字功能添加字到字体 \r\n\r\n点击关闭提示。", delegate: self)
+            
             UserProfile.hasSeenFontCreationTip = true
         }
     }

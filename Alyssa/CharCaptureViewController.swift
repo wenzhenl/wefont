@@ -122,7 +122,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         
         if !UserProfile.hasSeenCharGridViewTip {
             EasyTipView.showAnimated(true, forView: self.gridView, withinSuperview: self.view,
-                text: "请调整田字框到合适大小，只有田字框内的图形会被加入字体。你可以任意调整字的结构，对于大多数字在可能的情况下尽量填满田字框。\r\n点击关闭提示。", delegate: self)
+                text: "请调整田字框到合适大小，只有田字框内的图形会被加入字体。你可以任意调整字的结构，对于大多数字在可能的情况下尽量填满田字框\r\n\r\n点击关闭提示。", delegate: self)
             UserProfile.hasSeenCharGridViewTip = true
         }
     }
@@ -138,6 +138,8 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if let activeChar = UserProfile.activeChar {
             currentChar = activeChar
         }
+        
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -293,7 +295,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     @IBAction func deleteCharImage(sender: UILongPressGestureRecognizer) {
         if charImage != nil {
             let alert = UIAlertController(title: nil, message:"确定删除字图", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(
+            let deleteAction = UIAlertAction(
                 title: "删除",
                 style: .Destructive)
                 { (action: UIAlertAction) -> Void in
@@ -302,8 +304,11 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
                     self.uploadBarButtonItem.enabled = false
                     self.eraserBarButtonItem.enabled = false
                 }
-            )
-            alert.addAction(UIAlertAction(title: "取消", style: .Cancel, handler: nil))
+            let cancelAction = UIAlertAction(title: "取消", style: .Default, handler: nil)
+            
+            alert.addAction(deleteAction)
+            alert.addAction(cancelAction)
+
             presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -318,6 +323,13 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     var footprintsOfCharImage: [UIImage] = []
     
     @IBAction func changeEraserEnableState(sender: UIBarButtonItem) {
+        
+        if !UserProfile.hasSeenUndoErasingTip {
+            EasyTipView.showAnimated(true, forItem: self.undoBarButtonItem, withinSuperview: self.navigationController?.view,
+                text: "可以随时撤销擦除操作\r\n\r\n点击关闭提示。", delegate: self)
+            UserProfile.hasSeenUndoErasingTip = true
+        }
+        
         if charImage != nil {
             eraserDidSelected = !eraserDidSelected
             
@@ -356,6 +368,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             picker.sourceType = .PhotoLibrary
             picker.allowsEditing = false
             picker.delegate = self
+            
+            UIApplication.sharedApplication().statusBarStyle = .Default
+            
             presentViewController(picker, animated: true, completion: nil)
         }
     }
@@ -388,6 +403,12 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             gridView.userInteractionEnabled = false
         }
         dismissViewControllerAnimated(true, completion: nil)
+        
+        if !UserProfile.hasSeenEditingModeTip {
+            EasyTipView.showAnimated(true, forItem: self.eraserBarButtonItem, withinSuperview: self.view,
+                text: "点击橡皮檫进入去污模式。再次点击恢复正常模式。\r\n\r\n点击关闭提示。", delegate: self)
+            UserProfile.hasSeenEditingModeTip = true
+        }
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

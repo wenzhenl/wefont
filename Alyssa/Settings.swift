@@ -84,6 +84,8 @@ class Settings {
     static let keyForHasSeenTipForCreateFont = "keyForHasSeenTipForCreateFont"
     static let keyForHasSeenTipForCharGridView = "keyForHasSeenTipForCharGridView"
     static let keyForHasSeenTipForRestartApp = "keyForHasSeenTipForRestartApp"
+    static let keyForHasSeenTipForEditingMode = "keyForHasSeenTipForEditingMode"
+    static let keyForHasSeenTipForUndoErasing = "keyForHasSeenTipForUndoErasing"
     
     // user account related
     static let keyForNicknameInDefaultUser = "keyForUserNickname"

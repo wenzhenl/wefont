@@ -83,6 +83,24 @@ class UserProfile {
         }
     }
     
+    static var hasSeenEditingModeTip: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTipForEditingMode)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTipForEditingMode)
+        }
+    }
+    
+    static var hasSeenUndoErasingTip: Bool {
+        get {
+            return NSUserDefaults.standardUserDefaults().boolForKey(Settings.keyForHasSeenTipForUndoErasing)
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForHasSeenTipForUndoErasing)
+        }
+    }
+
     // MARK - user font info
     static var activeFontName: String? {
         get {
