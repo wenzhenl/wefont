@@ -35,6 +35,10 @@ class MeViewController: UIViewController, UITableViewDataSource, UITableViewDele
         print("\(tipView) did dismiss!")
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.reloadData()
+    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 4
