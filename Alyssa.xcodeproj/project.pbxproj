@@ -159,10 +159,10 @@
 		0A2CF3951C31277C0057C38E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0A2CF39E1C3142810057C38E /* gb2312.txt */,
+				0A4286211C3CE0C700936A46 /* 手写练习区.txt */,
 				0AC87DD41C558BEA0017C475 /* 唐诗精选.txt */,
 				0A2CF3961C3127BB0057C38E /* 小王子.txt */,
-				0A4286211C3CE0C700936A46 /* 手写练习区.txt */,
+				0A2CF39E1C3142810057C38E /* gb2312.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
