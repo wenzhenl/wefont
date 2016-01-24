@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookPageContentViewController: UIViewController {
+class BookPageContentViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var bookContentView: UITextView!
     
@@ -21,6 +21,8 @@ class BookPageContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bookContentView.delegate = self
+        
         if UserProfile.fontFileURL != nil && UserProfile.hasSavedFont {
             bookContentView.font = UIFont(name: UserProfile.activeFontName!, size: 27)
         } else {
@@ -28,6 +30,11 @@ class BookPageContentViewController: UIViewController {
         }
         
         bookContentView.editable = editable
+        
+        if bookContentView.editable {
+            bookContentView.becomeFirstResponder()
+        }
+        
         bookContentView.text = chapterContent
     }
     
