@@ -77,11 +77,17 @@ class BookContentViewController: UIViewController, UIPageViewControllerDataSourc
         let vc: BookPageContentViewController = self.storyboard?.instantiateViewControllerWithIdentifier(Settings.IdentifierForBookPageContentViewController) as! BookPageContentViewController
         vc.chapterContent = chapters[index]
         vc.pageIndex = index
-        if bookTitle == Settings.defaultSampleBooks[0] {
+        
+        if bookTitle == "手写练习区" {
             vc.editable = true
         } else {
             vc.editable = false
         }
+        
+        if bookTitle == "唐诗精选" {
+            vc.textAlignment = NSTextAlignment.Center
+        }
+        
         return vc
     }
     
