@@ -47,9 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if DeviceType.IS_IPHONE_4_OR_LESS {
             Settings.NumOfCharactersPerPage = 16
             Settings.NumOfCharactersPerLevel = 80
+            Settings.VerticalOffsetOfCharGridView = 150
         }
         else if DeviceType.IS_IPHONE_5 {
-            
+            Settings.VerticalOffsetOfCharGridView = 180
         }
         else if DeviceType.IS_IPHONE_6 {
             

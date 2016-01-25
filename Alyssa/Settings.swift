@@ -130,7 +130,7 @@ class Settings {
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
     static let WidthOfCharGridView = CGFloat(130.0)
     static let AspectRatioOfCharGridView = CGFloat(1.0)
-    static let VerticalOffsetOfCharGridView = CGFloat(200)
+    static var VerticalOffsetOfCharGridView = CGFloat(200)
     
     static let WidthOfCustomizedAlertView = CGFloat(230.0)
     static let HeightOfCustomizedAlertView = CGFloat(50.0)
