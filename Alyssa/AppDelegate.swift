@@ -42,6 +42,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         pageController.currentPageIndicatorTintColor = Settings.ColorOfStamp
         pageController.backgroundColor = UIColor.whiteColor()
         
+        
+        // MARK - configure home page based on device type
+        if DeviceType.IS_IPHONE_4_OR_LESS {
+            Settings.NumOfCharactersPerPage = 16
+            Settings.NumOfCharactersPerLevel = 80
+        }
+        else if DeviceType.IS_IPHONE_5 {
+            
+        }
+        else if DeviceType.IS_IPHONE_6 {
+            
+        }
+        else if DeviceType.IS_IPHONE_6P {
+            Settings.NumOfCharactersPerPage = 42
+            Settings.NumOfCharactersPerLevel = 210
+        }
+        else if DeviceType.IS_IPAD {
+            
+        }
+        
+        
         // MARK - easy tip configuration
         var preferences = EasyTipView.Preferences()
         
