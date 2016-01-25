@@ -143,7 +143,13 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+       
         textField.resignFirstResponder()
+
+        if charImage != nil && !Settings.isEmpty(currentChar) {
+            uploadChar()
+        }
+        
         return true
     }
     
@@ -151,7 +157,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         UserProfile.activeChar = currentChar
     }
     
-    @IBAction func uploadChar(sender: UIBarButtonItem) {
+    @IBAction func uploadChar() {
       
         if UserProfile.hasLoggedIn {
             if UserProfile.userEmailAddress != nil {

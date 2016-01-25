@@ -598,7 +598,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="GQs-cv-nWX">
                             <connections>
-                                <action selector="uploadChar:" destination="6zZ-Ky-MIL" id="eqe-nR-KLi"/>
+                                <action selector="uploadChar" destination="6zZ-Ky-MIL" id="M0H-mM-wfU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1018,7 +1018,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="U06-eq-3QS">
                                 <rect key="frame" x="20" y="72" width="560" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">特别感谢豆瓣网友 床前明月光
+                                <string key="text">特别感谢豆瓣网友 床前明月光
 特别感谢豆瓣网友 倩倩_同学
 特别感谢豆瓣网友 马孔多
 特别感谢豆瓣网友 望城
@@ -1062,7 +1062,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</mutableString>
+SOFTWARE.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2094,6 +2094,6 @@ SOFTWARE.</mutableString>
         <image name="user-selected" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wUF-H7-EBu"/>
+        <segue reference="tgl-Ll-AdD"/>
     </inferredMetricsTieBreakers>
 </document>
