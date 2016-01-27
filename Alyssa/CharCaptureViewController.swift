@@ -290,6 +290,7 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             } else {
                 let translation = sender.translationInView(view)
                 self.gridView.center = CGPointMake(gridView.center.x, gridView.center.y + translation.y / Settings.GestureScaleForMovingHandwritting)
+                Settings.WidthOfCharGridView = self.gridView.frame.width
                 sender.setTranslation(CGPointZero, inView: view)
             }
         default: break

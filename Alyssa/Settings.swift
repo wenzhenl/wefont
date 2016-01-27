@@ -122,13 +122,30 @@ class Settings {
     // home view related
     static let keyForCurrentLevelInDefaultUser = "keyForCurrentLevel"
     
+    // char capture related
+    static let keyForGridViewWidthInDefaultUser = "keyForGridViewWidth"
+    
     // book related
     static let keyForUserAddedBooksInDefault = "keyForUserAddedBooks"
     static let keyForCurrentChapterForBooksInDefault = "keyForCurrentChapterOfAllBooks"
     
     // MARK - UI related parameters
     static let widthOfCurrentCharTextFieldNeedingUpdateInStoryboardIfChanged = 40
-    static let WidthOfCharGridView = CGFloat(130.0)
+    
+    static var WidthOfCharGridView: CGFloat {
+        get {
+            let width = NSUserDefaults.standardUserDefaults().doubleForKey(Settings.keyForGridViewWidthInDefaultUser)
+            if width == 0 {
+                return CGFloat(130.0)
+            } else {
+                return CGFloat(width)
+            }
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setValue(newValue, forKey: Settings.keyForGridViewWidthInDefaultUser)
+        }
+    }
+    
     static let AspectRatioOfCharGridView = CGFloat(1.0)
     static var VerticalOffsetOfCharGridView = CGFloat(200)
     
