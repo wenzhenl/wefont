@@ -138,8 +138,6 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         if let activeChar = UserProfile.activeChar {
             currentChar = activeChar
         }
-        
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -374,9 +372,9 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
             picker.sourceType = .PhotoLibrary
             picker.allowsEditing = false
             picker.delegate = self
-            
-            UIApplication.sharedApplication().statusBarStyle = .Default
-            
+            picker.navigationBar.barTintColor = Settings.ColorOfStamp
+            picker.navigationBar.tintColor = UIColor.whiteColor()
+            picker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont.systemFontOfSize(20)]
             presentViewController(picker, animated: true, completion: nil)
         }
     }
