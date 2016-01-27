@@ -380,19 +380,6 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
     }
     
-    @IBAction func takePhoto(sender: UIBarButtonItem) {
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            let picker = UIImagePickerController()
-            picker.sourceType = .Camera
-            picker.delegate = self
-            picker.allowsEditing = true
-            picker.cameraFlashMode = .Off
-            picker.showsCameraControls = true
-            
-            presentViewController(picker, animated: true, completion: nil)
-        }
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
         var image = info[UIImagePickerControllerEditedImage] as? UIImage
         if image == nil {

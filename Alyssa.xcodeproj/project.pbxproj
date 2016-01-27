@@ -21,6 +21,7 @@
 		0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */; };
 		0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */; };
 		0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */; };
+		0A34843C1C59896E005DD443 /* WritingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */; };
 		0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */; };
 		0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */; };
 		0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */; };
@@ -86,6 +87,7 @@
 		0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleButtonTableViewCell.swift; sourceTree = "<group>"; };
 		0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedInputAlertViewController.swift; sourceTree = "<group>"; };
+		0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingPanelViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCharContainerView.swift; sourceTree = "<group>"; };
 		0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */,
 				0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */,
 				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
+				0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */,
 				0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */,
 				0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */,
 				0A67F0701C2C1C3600526E1B /* BookViewController.swift */,
@@ -482,6 +485,7 @@
 				0A2CF3A91C32431B0057C38E /* RecoverPasswordViewController.swift in Sources */,
 				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
 				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
+				0A34843C1C59896E005DD443 /* WritingPanelViewController.swift in Sources */,
 				0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */,
 				0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */,
 				0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */,
