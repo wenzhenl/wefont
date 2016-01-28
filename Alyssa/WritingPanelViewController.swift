@@ -39,26 +39,38 @@ class WritingPanelViewController: UIViewController {
 
     // MARK - implement removing noise function
     private var lastPoint = CGPoint.zero
+    private var currentPoint = CGPoint.zero
+    private var prevPoint1 = CGPoint.zero
+    private var prevPoint2 = CGPoint.zero
+
     private var red: CGFloat = 0.0
     private var green: CGFloat = 0.0
     private var blue: CGFloat = 0.0
-    private var brushWidth: CGFloat = 20.0
+    private var brushWidth: CGFloat = 25.0
     private var opacity: CGFloat = 1.0
     private var swiped = false
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       
-        swiped = false
+        
         if let touch = touches.first {
+            
+            prevPoint1 = touch.previousLocationInView(tempImageView)
+            
+            prevPoint2 = touch.previousLocationInView(tempImageView)
+
             lastPoint = touch.locationInView(tempImageView)
         }
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        swiped = true
+
         if let touch = touches.first {
-            let currentPoint = touch.locationInView(tempImageView)
-            drawLineFrom(lastPoint, toPoint: currentPoint)
+            currentPoint = touch.locationInView(tempImageView)
+            
+            prevPoint2 = prevPoint1
+            prevPoint1 = touch.previousLocationInView(tempImageView)
+            
+            drawCurve()
             
             lastPoint = currentPoint
         }
@@ -75,15 +87,22 @@ class WritingPanelViewController: UIViewController {
         tempImageView.image = nil
     }
     
-    func drawLineFrom(fromPoint: CGPoint, toPoint: CGPoint) {
+    
+    func drawCurve() {
         UIGraphicsBeginImageContextWithOptions(tempImageView.frame.size, false, 0.0)
         let context = UIGraphicsGetCurrentContext()
         
         tempImageView.image?.drawInRect(CGRect(x: 0, y: 0, width: tempImageView.frame.size.width, height: tempImageView.frame.size.height))
-        // 2
-        CGContextMoveToPoint(context, fromPoint.x, fromPoint.y)
-        CGContextAddLineToPoint(context, toPoint.x, toPoint.y)
         
+        
+        let mid1 = CGPointMake((prevPoint1.x + prevPoint2.x)*0.5, (prevPoint1.y + prevPoint2.y)*0.5)
+        
+        let mid2 = CGPointMake((currentPoint.x + prevPoint1.x)*0.5, (currentPoint.y + prevPoint1.y)*0.5)
+        
+
+        // 2
+        CGContextMoveToPoint(context, mid1.x, mid1.y)
+        CGContextAddQuadCurveToPoint(context, prevPoint1.x, prevPoint1.y, mid2.x, mid2.y)
         // 3
         CGContextSetLineCap(context, .Round)
         CGContextSetLineWidth(context, brushWidth)
@@ -94,26 +113,11 @@ class WritingPanelViewController: UIViewController {
         CGContextStrokePath(context)
         
         // 5
-        let xx = (toPoint.x - fromPoint.x) * (toPoint.x - fromPoint.x)
-        let yy = (toPoint.y - fromPoint.y) * (toPoint.y - fromPoint.y)
-        let lineLength = sqrt(xx + yy)
-        let dx = (toPoint.x - fromPoint.x) / lineLength
-        let dy = (toPoint.y - fromPoint.y) / lineLength
-        
-        CGContextBeginPath(context)
-        CGContextMoveToPoint(context, toPoint.x + brushWidth / 2.0 * dy, toPoint.y - brushWidth / 2 * dx)
-        CGContextAddLineToPoint(context, toPoint.x + 10 * dx, toPoint.y + 10 * dy)
-       
-        CGContextMoveToPoint(context, toPoint.x - brushWidth / 2.0 * dy, toPoint.y + brushWidth / 2 * dx)
-        CGContextClosePath(context)
-        CGContextFillPath(context)
-        
-        // 6
         tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
         tempImageView.alpha = opacity
         UIGraphicsEndImageContext()
     }
-    
+
     func getImageRectForImageView(imageView: UIImageView) -> CGRect {
         let resVi = imageView.image!.size.width / imageView.image!.size.height
         let resPl = imageView.bounds.size.width / imageView.bounds.size.height

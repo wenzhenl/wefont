@@ -1236,7 +1236,7 @@ SOFTWARE.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cv-Qc-Tx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3451" y="-286"/>
+            <point key="canvasLocation" x="3555" y="82"/>
         </scene>
         <!--登录-->
         <scene sceneID="GzM-xv-N1U">
