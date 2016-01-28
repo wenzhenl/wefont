@@ -380,6 +380,23 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         }
     }
     
+    @IBAction func writeChar(sender: UIBarButtonItem) {
+        let center = NSNotificationCenter.defaultCenter()
+        
+        center.addObserver(self, selector: "finishedWritingChar:", name: Settings.NameOfNotificationFinishWritingChar, object: nil )
+        
+        performSegueWithIdentifier(Settings.IdentifierForSegueToWriteChar, sender: self)
+    }
+    
+    func finishedWritingChar(notification: NSNotification) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Settings.NameOfNotificationFinishWritingChar, object: nil)
+        
+        if let writtenCharImage = UserProfile.activeCharImage {
+            charImage = writtenCharImage
+        }
+    }
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: AnyObject]) {
         var image = info[UIImagePickerControllerEditedImage] as? UIImage
         if image == nil {

@@ -460,7 +460,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="V75-1H-d7z"/>
                                     <barButtonItem systemItem="compose" id="awF-Ga-F5t">
                                         <connections>
-                                            <segue destination="Kqi-au-hVh" kind="presentation" id="XFb-8C-Tau"/>
+                                            <action selector="writeChar:" destination="6zZ-Ky-MIL" id="9d4-14-Bmq"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="25C-yL-0ph"/>
@@ -621,6 +621,7 @@
                         <outlet property="undoBarButtonItem" destination="289-8u-0mh" id="b0G-H8-N4x"/>
                         <outlet property="uploadBarButtonItem" destination="GQs-cv-nWX" id="azD-11-gwV"/>
                         <segue destination="WG0-6Z-vML" kind="presentation" identifier="From char capture to login" id="tgl-Ll-AdD"/>
+                        <segue destination="Kqi-au-hVh" kind="presentation" identifier="let me write a char" id="PXU-WE-9QS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oyU-20-hvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -670,9 +671,17 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WQO-3v-Nq0">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="trash" id="JdM-y8-KO7"/>
+                                    <barButtonItem systemItem="trash" id="JdM-y8-KO7">
+                                        <connections>
+                                            <action selector="trashCharImage:" destination="zUq-tj-wfB" id="hmC-ry-u2w"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xKG-DM-VgF"/>
-                                    <barButtonItem title="完成" id="HEl-wU-xKa"/>
+                                    <barButtonItem title="完成" id="HEl-wU-xKa">
+                                        <connections>
+                                            <action selector="finishedWritingChar" destination="zUq-tj-wfB" id="f3I-vu-FbF"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ohq-yM-9xH"/>
                                     <barButtonItem id="rcg-mj-iit"/>
                                 </items>

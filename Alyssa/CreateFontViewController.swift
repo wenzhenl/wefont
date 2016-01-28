@@ -88,7 +88,7 @@ class CreateFontViewController: UIViewController, UITextFieldDelegate {
             UserProfile.newFontName = fontName
             UserProfile.copyright = copyright
             UserProfile.version = version
-            NSNotificationCenter.defaultCenter().postNotificationName("CreateViewControllerDismissed", object: nil, userInfo: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(Settings.NameOfNotificationReadyCreateNewFont, object: nil, userInfo: nil)
             self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         }
     }

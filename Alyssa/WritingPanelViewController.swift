@@ -24,12 +24,25 @@ class WritingPanelViewController: UIViewController {
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func trashCharImage(sender: UIBarButtonItem) {
+        self.charImageView.image = nil
+        self.tempImageView.image = nil
+    }
+    
+    @IBAction func finishedWritingChar() {
+        if charImageView.image != nil {
+            UserProfile.activeCharImage = charImageView.image
+            NSNotificationCenter.defaultCenter().postNotificationName(Settings.NameOfNotificationFinishWritingChar, object: nil, userInfo: nil)
+            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
     // MARK - implement removing noise function
     private var lastPoint = CGPoint.zero
     private var red: CGFloat = 0.0
     private var green: CGFloat = 0.0
     private var blue: CGFloat = 0.0
-    private var brushWidth: CGFloat = 9.0
+    private var brushWidth: CGFloat = 20.0
     private var opacity: CGFloat = 1.0
     private var swiped = false
     

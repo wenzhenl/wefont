@@ -74,7 +74,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource, Easy
         if UserProfile.hasLoggedIn {
             let center = NSNotificationCenter.defaultCenter()
             
-            center.addObserver(self, selector: "sendNewFontInfoToServer:", name: "CreateViewControllerDismissed", object: nil )
+            center.addObserver(self, selector: "sendNewFontInfoToServer:", name: Settings.NameOfNotificationReadyCreateNewFont, object: nil )
             
             performSegueWithIdentifier(Settings.IdentifierForSegueToCreateFont, sender: self)
         } else {
@@ -84,7 +84,7 @@ class HomeViewController: UIViewController, UIPageViewControllerDataSource, Easy
     
     func sendNewFontInfoToServer(notification: NSNotification) {
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CreateViewControllerDismissed", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: Settings.NameOfNotificationReadyCreateNewFont, object: nil)
         
         if UserProfile.newFontReadyTosend {
             let params = NSMutableDictionary()

@@ -51,6 +51,7 @@ class Settings {
     static let IdentifierForSegueToLogin = "Please login first"
     static let IdentifierForSegueFromCharCaptureToLogin = "From char capture to login"
     static let IdentifierForSegueFromMeToLogin = "From ME capture to login"
+    static let IdentifierForSegueToWriteChar = "let me write a char"
     
     // MARK - Identifiers for storyboards
     static let IdentifierForTabViewController = "Tab Bar Controller"
@@ -63,6 +64,10 @@ class Settings {
     static let IdentifierForCustomizedAlertViewController = "Customized Alert View Controller"
     static let IdentifierForAlertInputViewController = "InputAlertForBookName"
     static let IdentifierForWelcomeViewController = "WelcomeInfoFromQianqian"
+    
+    // MARK - name of notifications
+    static let NameOfNotificationFinishWritingChar = "IHaveFinishedWriteTHEChar"
+    static let NameOfNotificationReadyCreateNewFont = "IHavefinishtheformofcreatenewfont"
     
     // MARK - parameters for gestures
     static let GestureScaleForMovingHandwritting = CGFloat(2.0)

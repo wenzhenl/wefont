@@ -168,6 +168,7 @@ class UserProfile {
     
     // MARK - char capture view related
     static var activeChar: String?
+    static var activeCharImage: UIImage?
     
     // MARK - User added books
     static var userAddedBooks: [String]? {
