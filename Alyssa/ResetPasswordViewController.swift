@@ -107,11 +107,8 @@ class ResetPasswordViewController: UIViewController, UITextFieldDelegate {
                     if success {
                         Settings.popupCustomizedAlert(self, message: "密码修改成功")
                         
-                        let appDelegate = UIApplication.sharedApplication().delegate! as! AppDelegate
-                        UIApplication.sharedApplication().statusBarStyle = .LightContent
-                        let initialViewController = self.storyboard!.instantiateViewControllerWithIdentifier(Settings.IdentifierForLoginViewController)
-                        appDelegate.window?.rootViewController = initialViewController
-                        appDelegate.window?.makeKeyAndVisible()
+                        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                    
                     } else {
                         Settings.popupCustomizedAlert(self, message: Settings.decodeErrorCode(message))
                     }

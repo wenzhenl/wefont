@@ -22,7 +22,7 @@ class CharGridView: UIView {
     
     override func drawRect(rect: CGRect) {
         let path = UIBezierPath()
-        UIColor.blueColor().set()
+        Settings.ColorOfStamp.set()
         path.lineWidth = 1
         let topLeft = CGPoint(x: self.bounds.minX, y: self.bounds.minY)
         let topRight = CGPoint(x: self.bounds.maxX, y: self.bounds.minY)
