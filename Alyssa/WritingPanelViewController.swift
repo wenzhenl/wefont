@@ -85,7 +85,7 @@ class WritingPanelViewController: UIViewController {
         CGContextAddLineToPoint(context, toPoint.x, toPoint.y)
         
         // 3
-        CGContextSetLineCap(context, .Square)
+        CGContextSetLineCap(context, .Round)
         CGContextSetLineWidth(context, brushWidth)
         CGContextSetRGBStrokeColor(context, red, green, blue, 1.0)
         CGContextSetBlendMode(context, .Normal)
@@ -94,6 +94,21 @@ class WritingPanelViewController: UIViewController {
         CGContextStrokePath(context)
         
         // 5
+        let xx = (toPoint.x - fromPoint.x) * (toPoint.x - fromPoint.x)
+        let yy = (toPoint.y - fromPoint.y) * (toPoint.y - fromPoint.y)
+        let lineLength = sqrt(xx + yy)
+        let dx = (toPoint.x - fromPoint.x) / lineLength
+        let dy = (toPoint.y - fromPoint.y) / lineLength
+        
+        CGContextBeginPath(context)
+        CGContextMoveToPoint(context, toPoint.x + brushWidth / 2.0 * dy, toPoint.y - brushWidth / 2 * dx)
+        CGContextAddLineToPoint(context, toPoint.x + 10 * dx, toPoint.y + 10 * dy)
+       
+        CGContextMoveToPoint(context, toPoint.x - brushWidth / 2.0 * dy, toPoint.y + brushWidth / 2 * dx)
+        CGContextClosePath(context)
+        CGContextFillPath(context)
+        
+        // 6
         tempImageView.image = UIGraphicsGetImageFromCurrentImageContext()
         tempImageView.alpha = opacity
         UIGraphicsEndImageContext()

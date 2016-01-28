@@ -394,6 +394,12 @@ class CharCaptureViewController: UIViewController, UITextFieldDelegate, UIImageP
         
         if let writtenCharImage = UserProfile.activeCharImage {
             charImage = writtenCharImage
+            if charImage != nil {
+                footprintsOfCharImage = [charImage!]
+                uploadBarButtonItem.enabled = true
+                eraserBarButtonItem.enabled = true
+                gridView.userInteractionEnabled = false
+            }
         }
     }
 
