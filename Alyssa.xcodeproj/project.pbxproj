@@ -1,0 +1,786 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */; };
+		0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */; };
+		0A2CF38D1C2FBFCD0057C38E /* NetworkAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */; };
+		0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF38E1C30A9010057C38E /* UserProfile.swift */; };
+		0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF3961C3127BB0057C38E /* 小王子.txt */; };
+		0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A2CF39E1C3142810057C38E /* gb2312.txt */; };
+		0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */; };
+		0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A21C3210330057C38E /* FieldContainerView.swift */; };
+		0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */; };
+		0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */; };
+		0A2CF3A91C32431B0057C38E /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */; };
+		0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */; };
+		0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */; };
+		0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */; };
+		0A34843C1C59896E005DD443 /* WritingPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */; };
+		0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */; };
+		0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */; };
+		0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */; };
+		0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */; };
+		0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */; };
+		0A4286221C3CE0C800936A46 /* 手写练习区.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0A4286211C3CE0C700936A46 /* 手写练习区.txt */; };
+		0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0401C2BF51100526E1B /* AppDelegate.swift */; };
+		0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0421C2BF51100526E1B /* HomeViewController.swift */; };
+		0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0441C2BF51100526E1B /* Main.storyboard */; };
+		0A67F0481C2BF51100526E1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0471C2BF51100526E1B /* Assets.xcassets */; };
+		0A67F04B1C2BF51100526E1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */; };
+		0A67F0561C2BF51100526E1B /* AlyssaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0551C2BF51100526E1B /* AlyssaTests.swift */; };
+		0A67F0611C2BF51100526E1B /* AlyssaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0601C2BF51100526E1B /* AlyssaUITests.swift */; };
+		0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */; };
+		0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0701C2C1C3600526E1B /* BookViewController.swift */; };
+		0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0721C2C1C5800526E1B /* MeViewController.swift */; };
+		0A67F0751C2C249300526E1B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67F0741C2C249300526E1B /* Settings.swift */; };
+		0A78FA4E1C4255910095ED30 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */; };
+		0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */; };
+		0A9357CD1C38FC16008DCA75 /* SingleLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */; };
+		0A9357CF1C38FDA1008DCA75 /* AboutAlyssaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */; };
+		0A9357D11C391197008DCA75 /* AcknowledgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */; };
+		0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABB55D71C3654FE00E5CC62 /* opencv2.framework */; };
+		0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DA1C36555700E5CC62 /* OpenCV.mm */; };
+		0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */; };
+		0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */; };
+		0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */; };
+		0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */; };
+		0ABB55E61C37CD1300E5CC62 /* ThreeFieldContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */; };
+		0AC87DD51C558BEA0017C475 /* 唐诗精选.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0AC87DD41C558BEA0017C475 /* 唐诗精选.txt */; };
+		515684F16C466CC288EEA8EA /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A54E72994F1BB3161F25C6BB /* Pods.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A67F0521C2BF51100526E1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A67F0351C2BF51100526E1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A67F03C1C2BF51100526E1B;
+			remoteInfo = Alyssa;
+		};
+		0A67F05D1C2BF51100526E1B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A67F0351C2BF51100526E1B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A67F03C1C2BF51100526E1B;
+			remoteInfo = Alyssa;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTitleTableViewCell.swift; sourceTree = "<group>"; };
+		0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
+		0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkAvailability.swift; sourceTree = "<group>"; };
+		0A2CF38E1C30A9010057C38E /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		0A2CF3961C3127BB0057C38E /* 小王子.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "小王子.txt"; sourceTree = "<group>"; };
+		0A2CF39E1C3142810057C38E /* gb2312.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = gb2312.txt; sourceTree = "<group>"; };
+		0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0A2CF3A21C3210330057C38E /* FieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldContainerView.swift; sourceTree = "<group>"; };
+		0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTextFieldContainerView.swift; sourceTree = "<group>"; };
+		0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
+		0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleButtonTableViewCell.swift; sourceTree = "<group>"; };
+		0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedInputAlertViewController.swift; sourceTree = "<group>"; };
+		0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingPanelViewController.swift; sourceTree = "<group>"; };
+		0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentCharContainerView.swift; sourceTree = "<group>"; };
+		0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentViewController.swift; sourceTree = "<group>"; };
+		0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePageContentViewController.swift; sourceTree = "<group>"; };
+		0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCharCollectionViewCell.swift; sourceTree = "<group>"; };
+		0A4286211C3CE0C700936A46 /* 手写练习区.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "手写练习区.txt"; sourceTree = "<group>"; };
+		0A67F03D1C2BF51100526E1B /* Alyssa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alyssa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A67F0401C2BF51100526E1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0A67F0421C2BF51100526E1B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0A67F0451C2BF51100526E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0A67F0471C2BF51100526E1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A67F04A1C2BF51100526E1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0A67F04C1C2BF51100526E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A67F0511C2BF51100526E1B /* AlyssaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlyssaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A67F0551C2BF51100526E1B /* AlyssaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlyssaTests.swift; sourceTree = "<group>"; };
+		0A67F0571C2BF51100526E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A67F05C1C2BF51100526E1B /* AlyssaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlyssaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A67F0601C2BF51100526E1B /* AlyssaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlyssaUITests.swift; sourceTree = "<group>"; };
+		0A67F0621C2BF51100526E1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharCaptureViewController.swift; sourceTree = "<group>"; };
+		0A67F0701C2C1C3600526E1B /* BookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		0A67F0721C2C1C5800526E1B /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		0A67F0741C2C249300526E1B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLabelTableViewCell.swift; sourceTree = "<group>"; };
+		0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutAlyssaViewController.swift; sourceTree = "<group>"; };
+		0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgeViewController.swift; sourceTree = "<group>"; };
+		0ABB55D71C3654FE00E5CC62 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Alyssa-Bridging-Header.h"; sourceTree = "<group>"; };
+		0ABB55DA1C36555700E5CC62 /* OpenCV.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCV.mm; sourceTree = "<group>"; };
+		0ABB55DC1C3655E300E5CC62 /* OpenCV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCV.h; sourceTree = "<group>"; };
+		0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookPageContentViewController.swift; sourceTree = "<group>"; };
+		0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharGridView.swift; sourceTree = "<group>"; };
+		0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizedAlertViewController.swift; sourceTree = "<group>"; };
+		0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateFontViewController.swift; sourceTree = "<group>"; };
+		0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeFieldContainerView.swift; sourceTree = "<group>"; };
+		0AC87DD41C558BEA0017C475 /* 唐诗精选.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "唐诗精选.txt"; sourceTree = "<group>"; };
+		54A9AA43DD74E3488382BC4B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		80CC4635739F93E1E84EF2AB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A54E72994F1BB3161F25C6BB /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A67F03A1C2BF51100526E1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ABB55D81C3654FE00E5CC62 /* opencv2.framework in Frameworks */,
+				515684F16C466CC288EEA8EA /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F04E1C2BF51100526E1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F0591C2BF51100526E1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A2CF3951C31277C0057C38E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0A4286211C3CE0C700936A46 /* 手写练习区.txt */,
+				0AC87DD41C558BEA0017C475 /* 唐诗精选.txt */,
+				0A2CF3961C3127BB0057C38E /* 小王子.txt */,
+				0A2CF39E1C3142810057C38E /* gb2312.txt */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		0A67F0341C2BF51100526E1B = {
+			isa = PBXGroup;
+			children = (
+				0A67F03F1C2BF51100526E1B /* Alyssa */,
+				0A67F0541C2BF51100526E1B /* AlyssaTests */,
+				0A67F05F1C2BF51100526E1B /* AlyssaUITests */,
+				0A67F03E1C2BF51100526E1B /* Products */,
+				0ABB55D61C3654B600E5CC62 /* Framework */,
+				A8AC72229A0C535F99C66EF2 /* Pods */,
+				27ABC864FAD6FA3A413738DB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0A67F03E1C2BF51100526E1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A67F03D1C2BF51100526E1B /* Alyssa.app */,
+				0A67F0511C2BF51100526E1B /* AlyssaTests.xctest */,
+				0A67F05C1C2BF51100526E1B /* AlyssaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A67F03F1C2BF51100526E1B /* Alyssa */ = {
+			isa = PBXGroup;
+			children = (
+				0A67F0401C2BF51100526E1B /* AppDelegate.swift */,
+				0A78FA4D1C4255910095ED30 /* WelcomeViewController.swift */,
+				0A3B4BA51C3350C100DB2571 /* TutorialViewController.swift */,
+				0A3B4BA71C33535000DB2571 /* TutorialContentViewController.swift */,
+				0A2CF3A41C3223E60057C38E /* RegisterViewController.swift */,
+				0A2CF3A61C322A6C0057C38E /* RegisterTextFieldContainerView.swift */,
+				0A2CF3A21C3210330057C38E /* FieldContainerView.swift */,
+				0A2CF3A01C31F5ED0057C38E /* LoginViewController.swift */,
+				0A2CF3AA1C324DC20057C38E /* ResetPasswordViewController.swift */,
+				0A2CF3A81C32431B0057C38E /* RecoverPasswordViewController.swift */,
+				0A67F0421C2BF51100526E1B /* HomeViewController.swift */,
+				0A3B4BA91C3371CC00DB2571 /* HomePageContentViewController.swift */,
+				0ABB55E31C37C2B500E5CC62 /* CreateFontViewController.swift */,
+				0ABB55E51C37CD1300E5CC62 /* ThreeFieldContainerView.swift */,
+				0A3B4BAB1C33738400DB2571 /* SingleCharCollectionViewCell.swift */,
+				0A67F06E1C2C1B9100526E1B /* CharCaptureViewController.swift */,
+				0A34843B1C59896E005DD443 /* WritingPanelViewController.swift */,
+				0ABB55DF1C373C1E00E5CC62 /* CharGridView.swift */,
+				0A3B4BA31C33246300DB2571 /* CurrentCharContainerView.swift */,
+				0A67F0701C2C1C3600526E1B /* BookViewController.swift */,
+				0A2CF38A1C2FB4DD0057C38E /* BookContentViewController.swift */,
+				0ABB55DD1C371EF100E5CC62 /* BookPageContentViewController.swift */,
+				0A2CF3841C2FA5C30057C38E /* BookTitleTableViewCell.swift */,
+				0A67F0721C2C1C5800526E1B /* MeViewController.swift */,
+				0A9357CA1C38F992008DCA75 /* UserInfoTableViewCell.swift */,
+				0A9357CC1C38FC16008DCA75 /* SingleLabelTableViewCell.swift */,
+				0A2CF3AC1C3265A70057C38E /* SingleButtonTableViewCell.swift */,
+				0A9357CE1C38FDA1008DCA75 /* AboutAlyssaViewController.swift */,
+				0A9357D01C391197008DCA75 /* AcknowledgeViewController.swift */,
+				0ABB55E11C37651D00E5CC62 /* CustomizedAlertViewController.swift */,
+				0A2F4AB11C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift */,
+				0A2CF38E1C30A9010057C38E /* UserProfile.swift */,
+				0A67F0741C2C249300526E1B /* Settings.swift */,
+				0A2CF38C1C2FBFCD0057C38E /* NetworkAvailability.swift */,
+				0ABB55DC1C3655E300E5CC62 /* OpenCV.h */,
+				0ABB55DA1C36555700E5CC62 /* OpenCV.mm */,
+				0A67F0441C2BF51100526E1B /* Main.storyboard */,
+				0A67F0471C2BF51100526E1B /* Assets.xcassets */,
+				0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */,
+				0A67F04C1C2BF51100526E1B /* Info.plist */,
+				0ABB55D91C36555600E5CC62 /* Alyssa-Bridging-Header.h */,
+				0A2CF3951C31277C0057C38E /* Resources */,
+			);
+			path = Alyssa;
+			sourceTree = "<group>";
+		};
+		0A67F0541C2BF51100526E1B /* AlyssaTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A67F0551C2BF51100526E1B /* AlyssaTests.swift */,
+				0A67F0571C2BF51100526E1B /* Info.plist */,
+			);
+			path = AlyssaTests;
+			sourceTree = "<group>";
+		};
+		0A67F05F1C2BF51100526E1B /* AlyssaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0A67F0601C2BF51100526E1B /* AlyssaUITests.swift */,
+				0A67F0621C2BF51100526E1B /* Info.plist */,
+			);
+			path = AlyssaUITests;
+			sourceTree = "<group>";
+		};
+		0ABB55D61C3654B600E5CC62 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				0ABB55D71C3654FE00E5CC62 /* opencv2.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		27ABC864FAD6FA3A413738DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A54E72994F1BB3161F25C6BB /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8AC72229A0C535F99C66EF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80CC4635739F93E1E84EF2AB /* Pods.debug.xcconfig */,
+				54A9AA43DD74E3488382BC4B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A67F03C1C2BF51100526E1B /* Alyssa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A67F0651C2BF51100526E1B /* Build configuration list for PBXNativeTarget "Alyssa" */;
+			buildPhases = (
+				B50E2274F89EE97B27BBA5B5 /* Check Pods Manifest.lock */,
+				0A67F0391C2BF51100526E1B /* Sources */,
+				0A67F03A1C2BF51100526E1B /* Frameworks */,
+				0A67F03B1C2BF51100526E1B /* Resources */,
+				3E779B0FF4DE066D493899C7 /* Embed Pods Frameworks */,
+				43D6C4215C53A2CE2DFE192D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Alyssa;
+			productName = Alyssa;
+			productReference = 0A67F03D1C2BF51100526E1B /* Alyssa.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A67F0501C2BF51100526E1B /* AlyssaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A67F0681C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaTests" */;
+			buildPhases = (
+				0A67F04D1C2BF51100526E1B /* Sources */,
+				0A67F04E1C2BF51100526E1B /* Frameworks */,
+				0A67F04F1C2BF51100526E1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A67F0531C2BF51100526E1B /* PBXTargetDependency */,
+			);
+			name = AlyssaTests;
+			productName = AlyssaTests;
+			productReference = 0A67F0511C2BF51100526E1B /* AlyssaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A67F05B1C2BF51100526E1B /* AlyssaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A67F06B1C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaUITests" */;
+			buildPhases = (
+				0A67F0581C2BF51100526E1B /* Sources */,
+				0A67F0591C2BF51100526E1B /* Frameworks */,
+				0A67F05A1C2BF51100526E1B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A67F05E1C2BF51100526E1B /* PBXTargetDependency */,
+			);
+			name = AlyssaUITests;
+			productName = AlyssaUITests;
+			productReference = 0A67F05C1C2BF51100526E1B /* AlyssaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A67F0351C2BF51100526E1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Wenzheng Li";
+				TargetAttributes = {
+					0A67F03C1C2BF51100526E1B = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 7Y7WGEG363;
+					};
+					0A67F0501C2BF51100526E1B = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 0A67F03C1C2BF51100526E1B;
+					};
+					0A67F05B1C2BF51100526E1B = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = 0A67F03C1C2BF51100526E1B;
+					};
+				};
+			};
+			buildConfigurationList = 0A67F0381C2BF51100526E1B /* Build configuration list for PBXProject "Alyssa" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A67F0341C2BF51100526E1B;
+			productRefGroup = 0A67F03E1C2BF51100526E1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A67F03C1C2BF51100526E1B /* Alyssa */,
+				0A67F0501C2BF51100526E1B /* AlyssaTests */,
+				0A67F05B1C2BF51100526E1B /* AlyssaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A67F03B1C2BF51100526E1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A67F04B1C2BF51100526E1B /* LaunchScreen.storyboard in Resources */,
+				0A2CF39F1C3142810057C38E /* gb2312.txt in Resources */,
+				0A2CF3971C3127BB0057C38E /* 小王子.txt in Resources */,
+				0A4286221C3CE0C800936A46 /* 手写练习区.txt in Resources */,
+				0A67F0481C2BF51100526E1B /* Assets.xcassets in Resources */,
+				0A67F0461C2BF51100526E1B /* Main.storyboard in Resources */,
+				0AC87DD51C558BEA0017C475 /* 唐诗精选.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F04F1C2BF51100526E1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F05A1C2BF51100526E1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E779B0FF4DE066D493899C7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43D6C4215C53A2CE2DFE192D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B50E2274F89EE97B27BBA5B5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A67F0391C2BF51100526E1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A3B4BA81C33535000DB2571 /* TutorialContentViewController.swift in Sources */,
+				0A67F0751C2C249300526E1B /* Settings.swift in Sources */,
+				0ABB55E61C37CD1300E5CC62 /* ThreeFieldContainerView.swift in Sources */,
+				0ABB55E21C37651D00E5CC62 /* CustomizedAlertViewController.swift in Sources */,
+				0A3B4BAC1C33738400DB2571 /* SingleCharCollectionViewCell.swift in Sources */,
+				0A78FA4E1C4255910095ED30 /* WelcomeViewController.swift in Sources */,
+				0A67F0731C2C1C5800526E1B /* MeViewController.swift in Sources */,
+				0A2F4AB21C3AAD2200B68C53 /* CustomizedInputAlertViewController.swift in Sources */,
+				0A2CF38F1C30A9020057C38E /* UserProfile.swift in Sources */,
+				0A2CF3AB1C324DC20057C38E /* ResetPasswordViewController.swift in Sources */,
+				0A3B4BA41C33246300DB2571 /* CurrentCharContainerView.swift in Sources */,
+				0A2CF3A91C32431B0057C38E /* RecoverPasswordViewController.swift in Sources */,
+				0A67F0431C2BF51100526E1B /* HomeViewController.swift in Sources */,
+				0A2CF3851C2FA5C30057C38E /* BookTitleTableViewCell.swift in Sources */,
+				0A34843C1C59896E005DD443 /* WritingPanelViewController.swift in Sources */,
+				0A3B4BA61C3350C100DB2571 /* TutorialViewController.swift in Sources */,
+				0ABB55E41C37C2B500E5CC62 /* CreateFontViewController.swift in Sources */,
+				0A9357CB1C38F993008DCA75 /* UserInfoTableViewCell.swift in Sources */,
+				0A2CF3A31C3210330057C38E /* FieldContainerView.swift in Sources */,
+				0A9357CD1C38FC16008DCA75 /* SingleLabelTableViewCell.swift in Sources */,
+				0A67F0711C2C1C3600526E1B /* BookViewController.swift in Sources */,
+				0A2CF3AD1C3265A70057C38E /* SingleButtonTableViewCell.swift in Sources */,
+				0A2CF3A71C322A6C0057C38E /* RegisterTextFieldContainerView.swift in Sources */,
+				0A2CF38D1C2FBFCD0057C38E /* NetworkAvailability.swift in Sources */,
+				0ABB55DE1C371EF100E5CC62 /* BookPageContentViewController.swift in Sources */,
+				0A67F06F1C2C1B9100526E1B /* CharCaptureViewController.swift in Sources */,
+				0ABB55DB1C36555700E5CC62 /* OpenCV.mm in Sources */,
+				0A9357CF1C38FDA1008DCA75 /* AboutAlyssaViewController.swift in Sources */,
+				0A67F0411C2BF51100526E1B /* AppDelegate.swift in Sources */,
+				0A2CF3A51C3223E60057C38E /* RegisterViewController.swift in Sources */,
+				0ABB55E01C373C1E00E5CC62 /* CharGridView.swift in Sources */,
+				0A3B4BAA1C3371CC00DB2571 /* HomePageContentViewController.swift in Sources */,
+				0A9357D11C391197008DCA75 /* AcknowledgeViewController.swift in Sources */,
+				0A2CF38B1C2FB4DD0057C38E /* BookContentViewController.swift in Sources */,
+				0A2CF3A11C31F5EE0057C38E /* LoginViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F04D1C2BF51100526E1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A67F0561C2BF51100526E1B /* AlyssaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A67F0581C2BF51100526E1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A67F0611C2BF51100526E1B /* AlyssaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0A67F0531C2BF51100526E1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A67F03C1C2BF51100526E1B /* Alyssa */;
+			targetProxy = 0A67F0521C2BF51100526E1B /* PBXContainerItemProxy */;
+		};
+		0A67F05E1C2BF51100526E1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A67F03C1C2BF51100526E1B /* Alyssa */;
+			targetProxy = 0A67F05D1C2BF51100526E1B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0A67F0441C2BF51100526E1B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A67F0451C2BF51100526E1B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0A67F0491C2BF51100526E1B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A67F04A1C2BF51100526E1B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0A67F0631C2BF51100526E1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A67F0641C2BF51100526E1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0A67F0661C2BF51100526E1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80CC4635739F93E1E84EF2AB /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Alyssa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaFont;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Alyssa/Alyssa-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		0A67F0671C2BF51100526E1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54A9AA43DD74E3488382BC4B /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = Alyssa/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaFont;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Alyssa/Alyssa-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		0A67F0691C2BF51100526E1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AlyssaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alyssa.app/Alyssa";
+			};
+			name = Debug;
+		};
+		0A67F06A1C2BF51100526E1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = AlyssaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Alyssa.app/Alyssa";
+			};
+			name = Release;
+		};
+		0A67F06C1C2BF51100526E1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AlyssaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Alyssa;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		0A67F06D1C2BF51100526E1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AlyssaUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leeyukuang.AlyssaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Alyssa;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A67F0381C2BF51100526E1B /* Build configuration list for PBXProject "Alyssa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A67F0631C2BF51100526E1B /* Debug */,
+				0A67F0641C2BF51100526E1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A67F0651C2BF51100526E1B /* Build configuration list for PBXNativeTarget "Alyssa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A67F0661C2BF51100526E1B /* Debug */,
+				0A67F0671C2BF51100526E1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A67F0681C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A67F0691C2BF51100526E1B /* Debug */,
+				0A67F06A1C2BF51100526E1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A67F06B1C2BF51100526E1B /* Build configuration list for PBXNativeTarget "AlyssaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A67F06C1C2BF51100526E1B /* Debug */,
+				0A67F06D1C2BF51100526E1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0A67F0351C2BF51100526E1B /* Project object */;
+}
