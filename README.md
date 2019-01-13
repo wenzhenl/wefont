@@ -1,6 +1,6 @@
-ZIMO (FontMagic)
+WeFont
 ================
-Personal Chinese font generator
+Personal Chinese handwritten font generator
 
 This system can convert user's hand writing of Chinese characters into a font
 (typically a ttf file) which implements the GB2312 codec.
@@ -43,7 +43,7 @@ An additional function of the website will be added later. The website will be a
 let user modify their fonts via a webpage, like reposition some characters or remove 
 stains and so on. There will also be a webpage for each user to display their writing.
 
-ZIMOAPP
+WeFont APP
 ================
 We also have a more convinent way for users to update their fonts. They can just download
 our zimo app (which will be first supported on IOS devices) and update their font whenever,
