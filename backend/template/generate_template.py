@@ -58,7 +58,7 @@ def draw_qrcode(qrstr, qrname):
     qr.add_data(qrstr)
 
     # Generate the QRCode itself
-    qr.make() 
+    qr.make()
 
     # im contains a PIL.Image.Image object
     im = qr.make_image()
@@ -66,7 +66,7 @@ def draw_qrcode(qrstr, qrname):
     # To save it
     im.save(qrname)
 
-   
+
 def fill_one_page(pdf, chars, total_num, page_num):
 
     qrstr = str(cell_size) + " "
@@ -82,25 +82,25 @@ def fill_one_page(pdf, chars, total_num, page_num):
     pdf.cell(cell_size,cell_size,"",0,0,'C')
 
     # draw a finder pattern on the top left
-    pdf.image('config/finder.png', margin_left + inner, 
+    pdf.image('config/finder.png', margin_left + inner,
               margin_top + inner, cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a finder pattern on the bottom right
-    pdf.image('config/finder.png', margin_left + (num_of_cols -1) * cell_size + inner, 
-              margin_top + (num_of_rows - 1) * cell_size + inner, 
+    pdf.image('config/finder.png', margin_left + (num_of_cols -1) * cell_size + inner,
+              margin_top + (num_of_rows - 1) * cell_size + inner,
               cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a black square at the bottom left
-    pdf.image('config/finder.png', margin_left + inner, 
-              margin_top + (num_of_rows - 1) * cell_size + inner, 
+    pdf.image('config/finder.png', margin_left + inner,
+              margin_top + (num_of_rows - 1) * cell_size + inner,
               cell_size - 2 * inner, cell_size - 2 * inner)
 
 
     # draw a qrcode graph on the top right
-    pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + inner, 
+    pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + inner,
               margin_top + inner,
               2 * cell_size - inner, 2 * cell_size - inner)
-    
+
     os.remove(qrname)
 
     pdf.set_fill_color(255,255,255)
@@ -173,9 +173,9 @@ def fill_one_page(pdf, chars, total_num, page_num):
 #******************* COMMAND LINE OPTIONS *******************************#
 parser = argparse.ArgumentParser(description="generate template based on gb2312")
 parser.add_argument("filename", help="input file containing the characters")
-parser.add_argument("-s", "--cellsize", type=int, 
+parser.add_argument("-s", "--cellsize", type=int,
                     help="the size of cell, default is 20")
-parser.add_argument("-f", "--font", 
+parser.add_argument("-f", "--font",
                     help="the Chinese font used, default is fireflysung")
 parser.add_argument("-o", "--output",
                     help="output pdf file name")
@@ -197,18 +197,18 @@ if args.font:
     font_name = args.font[:args.font.find(".")]
     font_filename = args.font
     if args.verbose:
-        print "Font: ", font_name
+        print("Font: ", font_name)
 
 if args.output:
     output_file = args.output
 else:
     output_file = str(cell_size) + "_" + str(cell_size) + "_template.pdf"
 if args.verbose:
-    print ">>>Begin processing file ", args.filename 
-    print  "cell_size: ", cell_size
-    print "num_of_cols: ", num_of_cols
-    print "num_of_rows: ", num_of_rows
-    print "chars_per_page: ", num_of_chars_per_page
+    print(">>>Begin processing file ", args.filename)
+    print("cell_size: ", cell_size)
+    print("num_of_cols: ", num_of_cols)
+    print("num_of_rows: ", num_of_rows)
+    print("chars_per_page: ", num_of_chars_per_page)
 #******************** END COMMAND LINE OPTIONS **************************#
 
 # open the input file
@@ -243,9 +243,9 @@ for line in f:
     # page is full now
     if cnt == num_of_chars_per_page:
         fill_one_page(pdf, chars_of_this_page, total_num, page_num)
-        
+
         if args.verbose:
-            print "Finished processing page: ", page_num
+            print ("Finished processing page: ", page_num)
 
         total_num += num_of_chars_per_page
         page_num += 1
@@ -259,4 +259,4 @@ if len(chars_of_this_page):
 pdf.output(output_file, 'F')
 
 if args.verbose:
-    print ">>>Finish processing file ", args.filename 
+    print(">>>Finish processing file ", args.filename)
