@@ -132,7 +132,7 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.set_font(font_name,'',8)
         sx = x2 - subx
         sy = y2 - suby
-        pdf.text(sx, sy, str(total_num))
+        pdf.text(sx, sy, str(int(total_num)))
         # restore font size
         pdf.set_font(font_name,'',14)
 
