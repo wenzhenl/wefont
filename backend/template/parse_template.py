@@ -14,7 +14,7 @@ import cv2
 from matplotlib import pyplot as plt
 import math
 import sys
-import zbar
+from pyzbar.pyzbar import decode
 import argparse
 
 # GLOBAL PARAMETERS
@@ -46,31 +46,8 @@ def get_glyph_name(char):
 # ////// DECODE A QRCODE //////////////
 # //////////////////////////////////////////////
 def decode_qrcode( qrcode ):
-    # create a reader
-    scanner = zbar.ImageScanner()
-
-    # configure the reader
-    scanner.parse_config('enable')
-
-    # obtain image data
-    height, width = qrcode.shape
-    raw = qrcode.tostring()
-
-    # wrap image data
-    image = zbar.Image(width, height, 'Y800', raw)
-
-    # scan the image for barcodes
-    scanner.scan(image)
-
-    # extract results
-    for symbol in image:
-        qrdata = symbol.data
-    qrdata = qrdata.decode("utf-8")
-
-    # clean up
-    del(image)
-
-    return qrdata
+    decoded_obj = decode(qrcode)[0]
+    return decoded_obj.data.decode()
 
 #//////////////////////////////////////////////
 #////// CHECK RATIO IS 1:1:3:1:1 //////////////
@@ -302,7 +279,7 @@ def handle_possible_center( state_count, i, j, centers, img):
                 esitimate_module_size = state_count_total / 7.0
                 found = False
                 poss_center = (center_i, center_j, esitimate_module_size,1)
-                for x in xrange(len(centers)):
+                for x in range(len(centers)):
                     old_center = centers[x]
                     if about_equals(old_center, poss_center):
                         found = True
@@ -323,14 +300,14 @@ def draw_color_lines( x1, y1, x2, y2, img):
         x2 = img.shape[1]
     if y2 > img.shape[0]:
         y2 = img.shape[0]
-    for v in xrange(y1, y2):
+    for v in range(y1, y2):
         img[v, x1] = [255, 0, 0]
         img[v, x1+1] = [255, 0, 0]
         img[v, x1-1] = [255, 0, 0]
         img[v, x2] = [255, 0, 0]
         img[v, x2+1] = [255, 0, 0]
         img[v, x2-1] = [255, 0, 0]
-    for v in xrange(x1, x2):
+    for v in range(x1, x2):
         img[y1, v] = [255, 0, 0]
         img[y1+1, v] = [255, 0, 0]
         img[y1-1, v] = [255, 0, 0]
@@ -347,8 +324,8 @@ def clear_finder( i, j, ms, img ):
     end_i = int(i + ms * 4)
     start_j = int(j - ms * 4)
     end_j = int(j + ms * 4)
-    for x in xrange(start_i, end_i):
-        for y in xrange(start_j, end_j):
+    for x in range(start_i, end_i):
+        for y in range(start_j, end_j):
             img[x,y] = 255
 
 
@@ -416,7 +393,7 @@ def rotate_image( possible_centers, img ):
         # return False
 
     page_finders = [top_left, bottom_left, bottom_right]
-    for i in xrange(3):
+    for i in range(3):
         possible_centers[i] = page_finders[i]
 
     ms = sum([page_finders[0][2], page_finders[1][2], page_finders[2][2]]) / 3.0 * 7
@@ -429,7 +406,7 @@ def rotate_image( possible_centers, img ):
     new_cols = int(new_cols + 3 * ms)
     img = cv2.warpAffine(img, M, (new_cols, new_rows))
 
-    for i in xrange(len(possible_centers)):
+    for i in range(len(possible_centers)):
         x = np.array([possible_centers[i][1], possible_centers[i][0], 1])
         y = np.dot(M, x)
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
@@ -443,10 +420,10 @@ def detect_all_finders( img, possible_centers ):
     state_count = [0] * 5
     current_state = 0
     rows, cols = img.shape[:2]
-    for i in xrange(i_skip - 1, rows, i_skip):
+    for i in range(i_skip - 1, rows, i_skip):
         state_count = [0] * 5
         current_state = 0
-        for j in xrange(cols):
+        for j in range(cols):
             if img[i,j] < thres:
                 if current_state & 1 == 1:
                     current_state += 1
