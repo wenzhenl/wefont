@@ -18,6 +18,15 @@ current font.
 The system will consist of two parts, the WEBSITE and a mobile APP to support
 updating via mobile devices.
 
+INSTALL
+=======
+Prefer conda, 
+` conda install -c conda-forge qrcode `
+`conda install -c conda-forge fpdf`
+`pip install pillow `
+`brew install potrace`
+
+
 WEBSITE
 ============
 User needs to download a font template to fill in the Chinese characters. There are
