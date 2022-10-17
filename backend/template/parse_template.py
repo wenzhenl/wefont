@@ -492,7 +492,7 @@ def detect_all_finders( img, possible_centers ):
 def parse_template( img, verbose ):
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
 
-    
+
     possible_centers = []
     detect_all_finders(img, possible_centers)
 
@@ -526,13 +526,13 @@ def parse_template( img, verbose ):
             raise Exception("CANNOT DECODE QRCODE")
     preset_cell_size = int(qrdata[:qrdata.find(" ")])
     if verbose:
-        print "cell size: ", preset_cell_size
+        print("cell size: ", preset_cell_size)
     qrdata = qrdata[qrdata.find(" ") + 1:]
     chars = []
     for char in qrdata:
         chars.append(char)
     if verbose:
-        print "num of chars: ", len(chars) 
+        print("num of chars: ", len(chars))
 
     if verbose:
         color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
@@ -575,7 +575,7 @@ def parse_template( img, verbose ):
         char_img = img[y1:y2, x1:x2]
         glyname = get_glyph_name(char)
         if verbose:
-            print glyname,'(',char,')'
+            print(glyname,'(',char,')')
         char_img = cv2.equalizeHist(char_img)
         cv2.imwrite(glyname + '.png', char_img)
 
