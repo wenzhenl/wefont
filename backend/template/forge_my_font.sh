@@ -11,10 +11,10 @@ done
 
 for i in uni*.bmp
 do
-  potrace -s $i 
+  potrace -s $i
   rm $i
 done
 ls *.svg > chars.txt
-python generate_font.py chars.txt
+/opt/homebrew/bin/python3 generate_font.py chars.txt
 rm chars.txt
 rm *.svg

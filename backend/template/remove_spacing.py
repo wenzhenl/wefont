@@ -19,7 +19,7 @@ else:
     isDebug = 0
 
 if isDebug:
-    print im.size
+    print(im.size)
 
 # PARAMETERS SECTION 1
 ratio = 0.95 # the percentage of white points to be regarded as white line
@@ -68,13 +68,13 @@ if len(white_rows) > 0:
     white_bar_rows.append((start, last_row, last_row-start+1))
 
 if isDebug:
-    print '*****************row statistics***************'
+    print('*****************row statistics***************')
     for x in white_bar_rows:
-        print x
+        print (x)
 
-    print '*****************column statistics***************'
+    print ('*****************column statistics***************')
     for x in white_bar_cols:
-        print x
+        print (x)
 
 # PARAMETERS SECTION 2
 white_len = 1
@@ -82,7 +82,7 @@ white_len = 1
 #  select those valid white row bar
 valid_white_bar_rows = []
 for x in white_bar_rows:
-    if(x[2] > white_len): # length of white bar 
+    if(x[2] > white_len): # length of white bar
         valid_white_bar_rows.append(x)
 
 # the top white row bar to remove must start from 0, namely the toppest line
@@ -102,7 +102,7 @@ elif valid_white_bar_rows[0][0] != 0 and valid_white_bar_rows[-1][1] != im.size[
 #  select those valid white col bar
 valid_white_bar_cols = []
 for x in white_bar_cols:
-    if(x[2] > white_len): # length of white bar 
+    if(x[2] > white_len): # length of white bar
         valid_white_bar_cols.append(x)
 
 # the left white col bar to remove must start from 0, namely the leftest line
@@ -145,7 +145,7 @@ region = im.crop(box)
 region.save('%s.bmp' % f, 'bmp')
 
 if isDebug:
-    print f
+    print (f)
 
 
 if(isDebug == 1):
