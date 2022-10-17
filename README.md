@@ -21,11 +21,18 @@ updating via mobile devices.
 INSTALL
 =======
 Prefer conda, 
-` conda install -c conda-forge qrcode `
-`conda install -c conda-forge fpdf`
 `pip install pillow `
 `brew install potrace`
+`brew install fontforge`
+`brew install zbar`
 
+```
+ImportError: Unable to find zbar shared library
+
+
+$ mkdir ~/lib
+$ ln -s $(brew --prefix zbar)/lib/libzbar.dylib ~/lib/libzbar.dylib
+```
 
 WEBSITE
 ============
