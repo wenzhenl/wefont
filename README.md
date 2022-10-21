@@ -39,15 +39,15 @@
 ### 模板
 如果你目标宏大，想得到完整字体，你需要写6763个汉字，模板可以直接在 `template` 下面下载。同时也提供常用一千字模板，二千字模板等等。
 
-你也可以定制自己的模板，你的目标可以是先覆盖一本你最爱的的书，比如 `X.txt`
+你也可以定制自己的模板，你的目标可以是先覆盖一本你最爱的的书，比如 `红楼梦.txt`
 ```
-  sed 's/\(.\)/\1\n/g' some.txt | sort | uniq -c | sort -nr | awk '{print $2}' > X_chars.txt
+  sed 's/\(.\)/\1\n/g' 红楼梦.txt | sort | uniq -c | sort -nr | awk '{print $2}' > 红楼梦字集.txt
 ```
 
 就可以得到这本书里面所有的不同单字，按照出现频率排列。用这个文件就可以产生自己的模板。
 ```
   cd src
-  python generate_template.py X_chars.txt
+  python generate_template.py 红楼梦字集.txt
 ```
 就可以得到一个pdf模板文件。
 你也可以调整模板字格大小，字体，输出文件名。
