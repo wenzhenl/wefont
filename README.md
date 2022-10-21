@@ -1,6 +1,5 @@
-<img src="logo.jpeg" alt="logo" width="100"/>
-
 # 美字精灵🧚‍♀️
+<img src="logo.jpeg" alt="logo" width="50"/>
 
 中文个人手写字体制作工具
 
