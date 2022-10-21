@@ -41,6 +41,7 @@
 
 就可以得到这本书里面所有的不同单字，按照出现频率排列。用这个文件就可以产生自己的模板。
 ```
+  cd src
   python generate_template.py X_chars.txt
 ```
 就可以得到一个pdf模板文件。
@@ -77,5 +78,6 @@ options:
 ### 产生字体
 这一步可以一键完成
 ```
+  cd src
   ./forge_my_font.sh 字体名 扫描文件1.jpg 扫描文件2.jpg 扫描文件3.jpg ... 
 ```
