@@ -1,6 +1,17 @@
-ZIMO (FontMagic)
-================
-Personal Chinese font generator
+# 美字精灵🧚‍♀️
+
+中文个人手写字体制作工具
+
+## 目标用户
+希望制作自己手写字体的爱好者
+
+## 流程及工具
+* 下载模版
+* 打印模版 （需要打印机）
+* 填充模板 （需要笔）
+* 扫描模板 （需要扫描仪）
+* 产生字体  （需要安装使用本工具）
+
 
 This system can convert user's hand writing of Chinese characters into a font
 (typically a ttf file) which implements the GB2312 codec.
