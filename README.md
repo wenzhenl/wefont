@@ -97,4 +97,4 @@ options:
 > 像极了十六岁那年的烟花  
 
 ## 卖家秀
-![alt text](./卖家秀.png)
+![alt text](./show.png)
