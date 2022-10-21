@@ -1,6 +1,7 @@
 #!/bin/bash
 
 OUTPUT=$1
+shift
 
 for f in "$@"
 do
