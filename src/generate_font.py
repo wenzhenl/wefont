@@ -16,7 +16,7 @@ f2= open(sys.argv[1], 'r')
 
 font = fontforge.font()
 
-family_name = "Leeyukuang"
+family_name = sys.argv[2]
 font.familyname = family_name
 font.familyname = family_name
 font.fullname = family_name
@@ -26,7 +26,7 @@ for line in f2:
     line = line.rstrip()
     glyph = font.createMappedChar(int(dic[line[3:-4]], 16))
     glyph.importOutlines(line)
-font.generate('Lee.ttf')
+font.generate(family_name + '.ttf')
 # lower = string.lowercase
 # for i in lower:
 #     glyph = font.createMappedChar(ord(i))

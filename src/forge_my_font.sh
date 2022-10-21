@@ -1,7 +1,11 @@
 #!/bin/bash
 
-INPUT=$1
-python parse_template.py $INPUT
+OUTPUT=$1
+
+for f in "$@"
+do
+    python parse_template.py $f
+done
 
 for i in uni*.png
 do
@@ -15,6 +19,6 @@ do
   rm $i
 done
 ls *.svg > chars.txt
-/opt/homebrew/bin/python3 generate_font.py chars.txt
+/opt/homebrew/bin/python3 generate_font.py chars.txt $OUTPUT
 rm chars.txt
 rm *.svg
