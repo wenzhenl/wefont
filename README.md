@@ -23,7 +23,6 @@
   brew install fontforge
   brew install potrace
   brew install zbar
-  pip install pillow
 ```
   Python packages 建议使用 [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 安装
 ```
