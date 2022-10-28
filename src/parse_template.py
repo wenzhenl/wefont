@@ -8,7 +8,6 @@ __author__ = "Wenzheng Li"
 # /// TEMPLATE TAKEN WITH CAMERA ////////////////////////
 #////////////////////////////////////////////////////////
 
-
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
@@ -26,7 +25,7 @@ MIN_SKIP = 6
 # ////// GET GLYPH NAME //////////////
 # //////////////////////////////////////////////
 def get_glyph_name(char):
-    d = {} # dict unicode => glyph name
+    d = {}  # dict unicode => glyph name
     with open("config/glyphlist.txt", 'r') as glyphlist:
         for line in glyphlist:
             li = line.rstrip()
@@ -36,7 +35,7 @@ def get_glyph_name(char):
                 # print name, unicd
 
     unicd = "{:04x}".format(ord(char))
-    if(unicd in d):
+    if (unicd in d):
         return d[unicd]
     else:
         return "uni" + unicd
@@ -45,14 +44,15 @@ def get_glyph_name(char):
 # //////////////////////////////////////////////
 # ////// DECODE A QRCODE //////////////
 # //////////////////////////////////////////////
-def decode_qrcode( qrcode ):
+def decode_qrcode(qrcode):
     decoded_obj = decode(qrcode)[0]
     return decoded_obj.data.decode()
+
 
 #//////////////////////////////////////////////
 #////// CHECK RATIO IS 1:1:3:1:1 //////////////
 #//////////////////////////////////////////////
-def check_ratio( state_count ):
+def check_ratio(state_count):
 
     total_finder_size = 0
     for i in range(5):
@@ -79,7 +79,8 @@ def check_ratio( state_count ):
 # ////////////////////////////////////////////////
 # ////////// CHECK VERTICAL MEETS 1:1:3:1:1 /////
 # //////////////////////////////////////////////
-def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, img ):
+def cross_check_vertical(start_i, center_j, max_count, ori_state_count_total,
+                         img):
 
     state_count = [0] * 5
     i = start_i
@@ -106,19 +107,22 @@ def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, i
         i += 1
     if i == img.shape[0]:
         return float('nan')
-    while i < img.shape[0] and img[i, center_j] >= thres and state_count[3] < max_count:
+    while i < img.shape[0] and img[
+            i, center_j] >= thres and state_count[3] < max_count:
         state_count[3] += 1
         i += 1
     if i == img.shape[0] or state_count[3] >= max_count:
         return float('nan')
-    while i < img.shape[0] and img[i, center_j] < thres and state_count[4] < max_count:
+    while i < img.shape[0] and img[
+            i, center_j] < thres and state_count[4] < max_count:
         state_count[4] += 1
         i += 1
     if state_count[4] >= max_count:
         return float('nan')
 
     state_count_total = sum(state_count)
-    if 5 * abs(state_count_total - ori_state_count_total) >= 2 * ori_state_count_total:
+    if 5 * abs(state_count_total -
+               ori_state_count_total) >= 2 * ori_state_count_total:
         return float('nan')
     if check_ratio(state_count) == True:
         return center_from_end(state_count, i)
@@ -130,7 +134,9 @@ def cross_check_vertical( start_i, center_j, max_count, ori_state_count_total, i
 # ////////// CHECK HORIZONTAL MEETS 1:1:3:1:1 /////
 # //////////////////////////////////////////////
 
-def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, img ) :
+
+def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total,
+                           img):
     state_count = [0] * 5
     cols = img.shape[1]
     j = start_j
@@ -156,7 +162,8 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
         j += 1
     if j == cols:
         return float('nan')
-    while j < cols and img[center_i, j] >= thres and state_count[3] < max_count:
+    while j < cols and img[center_i,
+                           j] >= thres and state_count[3] < max_count:
         state_count[3] += 1
         j += 1
     if j == cols or state_count[3] >= max_count:
@@ -168,7 +175,8 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
         return float('nan')
 
     state_count_total = sum(state_count)
-    if 5 * abs(state_count_total - ori_state_count_total) >= ori_state_count_total:
+    if 5 * abs(state_count_total -
+               ori_state_count_total) >= ori_state_count_total:
         return float('nan')
     if check_ratio(state_count) == True:
         return center_from_end(state_count, j)
@@ -179,11 +187,13 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total, 
 # ////////////////////////////////////////////////
 # ////////// CHECK DIAGONAL MEETS 1:1:3:1:1 /////
 # //////////////////////////////////////////////
-def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, img ) :
+def cross_check_diagonal(start_i, center_j, max_count, ori_state_count_total,
+                         img):
 
     state_count = [0] * 5
     i = 0
-    while start_i >= i and center_j >= i and img[start_i-i, center_j-i] < thres:
+    while start_i >= i and center_j >= i and img[start_i - i,
+                                                 center_j - i] < thres:
         state_count[2] += 1
         i += 1
     if start_i < i or center_j < i:
@@ -214,7 +224,8 @@ def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, i
             img[start_i + i, center_j + i] >= thres and state_count[3] < max_count:
         state_count[3] += 1
         i += 1
-    if start_i + i >= max_i or center_j + i >= max_j or state_count[3] >= max_count:
+    if start_i + i >= max_i or center_j + i >= max_j or state_count[
+            3] >= max_count:
         return False
     while start_i + i < max_i and center_j + i < max_j and \
             img[start_i + i, center_j + i] < thres and \
@@ -235,7 +246,7 @@ def cross_check_diagonal( start_i, center_j, max_count, ori_state_count_total, i
 # ////////////////////////////////////////////////
 # ////////// FIND THE CENTER POSITION /////
 # //////////////////////////////////////////////
-def center_from_end( state_count, end ):
+def center_from_end(state_count, end):
     return end - state_count[4] - state_count[3] - state_count[2] * 0.5
 
 
@@ -243,7 +254,7 @@ def center_from_end( state_count, end ):
 # ////////// CHECK WHETHER TWO FINDER ARE ABOUT EQUAL /////
 # //////////////////////////////////////////////
 # x is already in possible_centers
-def about_equals( x, y ):
+def about_equals(x, y):
     th = min(x[2], y[2])
     if abs(x[0] - y[0]) <= th and abs(x[1] - y[1]) <= th:
         if abs(x[2] - y[2]) < 1.0 or abs(x[2] - y[2]) <= th:
@@ -254,31 +265,33 @@ def about_equals( x, y ):
 # ////////////////////////////////////////////////
 # ////////// COMBINE NEW CENTER TO POSSIBLE CENTERS ////
 # //////////////////////////////////////////////
-def combine_estimate( x,y ):
+def combine_estimate(x, y):
     count = x[3] + 1
     i = (x[3] * x[0] + y[0]) * 1.0 / count
     j = (x[3] * x[1] + y[1]) * 1.0 / count
     ms = (x[3] * x[2] + y[2]) * 1.0 / count
-    return (i,j,ms,count)
+    return (i, j, ms, count)
+
 
 # ////////////////////////////////////////////////
 # ////////// HANDLE A POSSIBLE CENTER /////
 # //////////////////////////////////////////////
-def handle_possible_center( state_count, i, j, centers, img):
+def handle_possible_center(state_count, i, j, centers, img):
     state_count_total = sum(state_count)
     center_j = center_from_end(state_count, j)
     center_i = cross_check_vertical(i, int(center_j), state_count[2],
                                     state_count_total, img)
     if not math.isnan(center_i):
-        center_j = cross_check_horizontal(int(center_i), int(center_j), state_count[2],
-                                           state_count_total, img)
+        center_j = cross_check_horizontal(int(center_i), int(center_j),
+                                          state_count[2], state_count_total,
+                                          img)
         if not math.isnan(center_j):
             if cross_check_diagonal(int(center_i), int(center_j),
                                     state_count[2], state_count_total, img):
 
                 esitimate_module_size = state_count_total / 7.0
                 found = False
-                poss_center = (center_i, center_j, esitimate_module_size,1)
+                poss_center = (center_i, center_j, esitimate_module_size, 1)
                 for x in range(len(centers)):
                     old_center = centers[x]
                     if about_equals(old_center, poss_center):
@@ -294,7 +307,7 @@ def handle_possible_center( state_count, i, j, centers, img):
 # ////////////////////////////////////////////////
 # ////////// VISUALIZE THE RESULTS /////
 # //////////////////////////////////////////////
-def draw_color_lines( x1, y1, x2, y2, img):
+def draw_color_lines(x1, y1, x2, y2, img):
     # draw a square around the cell
     if x2 > img.shape[1]:
         x2 = img.shape[1]
@@ -302,46 +315,47 @@ def draw_color_lines( x1, y1, x2, y2, img):
         y2 = img.shape[0]
     for v in range(y1, y2):
         img[v, x1] = [255, 0, 0]
-        img[v, x1+1] = [255, 0, 0]
-        img[v, x1-1] = [255, 0, 0]
+        img[v, x1 + 1] = [255, 0, 0]
+        img[v, x1 - 1] = [255, 0, 0]
         img[v, x2] = [255, 0, 0]
-        img[v, x2+1] = [255, 0, 0]
-        img[v, x2-1] = [255, 0, 0]
+        img[v, x2 + 1] = [255, 0, 0]
+        img[v, x2 - 1] = [255, 0, 0]
     for v in range(x1, x2):
         img[y1, v] = [255, 0, 0]
-        img[y1+1, v] = [255, 0, 0]
-        img[y1-1, v] = [255, 0, 0]
-        img[y2+1, v] = [255, 0, 0]
-        img[y2-1, v] = [255, 0, 0]
+        img[y1 + 1, v] = [255, 0, 0]
+        img[y1 - 1, v] = [255, 0, 0]
+        img[y2 + 1, v] = [255, 0, 0]
+        img[y2 - 1, v] = [255, 0, 0]
         img[y2, v] = [255, 0, 0]
 
 
 # ////////////////////////////////////////////////
 # ////////// CLEAR THE FINDERS /////
 # //////////////////////////////////////////////
-def clear_finder( i, j, ms, img ):
+def clear_finder(i, j, ms, img):
     start_i = int(i - ms * 4)
     end_i = int(i + ms * 4)
     start_j = int(j - ms * 4)
     end_j = int(j + ms * 4)
     for x in range(start_i, end_i):
         for y in range(start_j, end_j):
-            img[x,y] = 255
+            img[x, y] = 255
 
 
 # ////////////////////////////////////////////////
 # ////////// COMPARE TWO POINTS /////
 # //////////////////////////////////////////////
-def points_cmp (p1, p2):
-    if abs(p1[0] -p2[0]) < 5 * p1[2]:
+def points_cmp(p1, p2):
+    if abs(p1[0] - p2[0]) < 5 * p1[2]:
         return cmp(p1[1], p2[1])
     else:
         return cmp(p1[0], p2[0])
 
+
 # ////////////////////////////////////////////////
 # ////////// ROTATE IMAGE and TRANSFORM THE COORDINATES/////
 # //////////////////////////////////////////////
-def rotate_image( possible_centers, img ):
+def rotate_image(possible_centers, img):
 
     page_finders = possible_centers[:3]
     pts = np.float32([[page_finders[0][1],page_finders[0][0]],\
@@ -390,17 +404,19 @@ def rotate_image( possible_centers, img ):
             top_left = page_finders[2]
             bottom_right = page_finders[1]
     # else:
-        # return False
+    # return False
 
     page_finders = [top_left, bottom_left, bottom_right]
     for i in range(3):
         possible_centers[i] = page_finders[i]
 
-    ms = sum([page_finders[0][2], page_finders[1][2], page_finders[2][2]]) / 3.0 * 7
+    ms = sum([page_finders[0][2], page_finders[1][2], page_finders[2][2]
+              ]) / 3.0 * 7
     pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
                        [page_finders[1][1],page_finders[1][0]],\
                        [page_finders[2][1],page_finders[2][0]]])
-    pts2 = np.float32([[ms,ms],[ms, new_rows + ms],[new_cols + ms, new_rows + ms]])
+    pts2 = np.float32([[ms, ms], [ms, new_rows + ms],
+                       [new_cols + ms, new_rows + ms]])
     M = cv2.getAffineTransform(pts1, pts2)
     new_rows = int(new_rows + 3 * ms)
     new_cols = int(new_cols + 3 * ms)
@@ -412,10 +428,11 @@ def rotate_image( possible_centers, img ):
         possible_centers[i] = (y[1], y[0], possible_centers[i][2])
     return img
 
+
 # ////////////////////////////////////////////////
 # ////////// DETECT ALL FINDERS IN AN IMAGE /////
 # //////////////////////////////////////////////
-def detect_all_finders( img, possible_centers ):
+def detect_all_finders(img, possible_centers):
     i_skip = MIN_SKIP
     state_count = [0] * 5
     current_state = 0
@@ -424,16 +441,16 @@ def detect_all_finders( img, possible_centers ):
         state_count = [0] * 5
         current_state = 0
         for j in range(cols):
-            if img[i,j] < thres:
+            if img[i, j] < thres:
                 if current_state & 1 == 1:
                     current_state += 1
                 state_count[current_state] += 1
-            else: # white pixel
+            else:  # white pixel
                 if current_state & 1 == 0:
                     if current_state == 4:
                         if check_ratio(state_count):
-                            confirmed = handle_possible_center(state_count, i, j,
-                                                               possible_centers, img)
+                            confirmed = handle_possible_center(
+                                state_count, i, j, possible_centers, img)
                             if confirmed:
                                 state_count = [0] * 5
                                 current_state = 0
@@ -459,16 +476,14 @@ def detect_all_finders( img, possible_centers ):
                     state_count[current_state] += 1
 
         if check_ratio(state_count) == True:
-            handle_possible_center(state_count, i, cols,
-                                   possible_centers, img)
+            handle_possible_center(state_count, i, cols, possible_centers, img)
 
 
 # ////////////////////////////////////////////////
 # ////////// PARSE TEMPLATE /////////////////////
 # //////////////////////////////////////////////
-def parse_template( img, verbose ):
+def parse_template(img, verbose):
     ret, img = cv2.threshold(img, thres, 255, cv2.THRESH_BINARY)
-
 
     possible_centers = []
     detect_all_finders(img, possible_centers)
@@ -477,14 +492,16 @@ def parse_template( img, verbose ):
         raise Exception("CANNOT DETECT PAGE FINDERS")
 
     # put three page finders in the begining
-    possible_centers = sorted(possible_centers, key=lambda tup: tup[2], reverse=True)
+    possible_centers = sorted(possible_centers,
+                              key=lambda tup: tup[2],
+                              reverse=True)
     # keep only page finders
     possible_centers = possible_centers[:3]
     # img will transform to correct position, possible_centers will be top left,
     # top right and bottom left
     img = rotate_image(possible_centers, img)
     if verbose:
-        plt.imshow(img, cmap='gray', interpolation = 'bicubic')
+        plt.imshow(img, cmap='gray', interpolation='bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
 
@@ -497,7 +514,11 @@ def parse_template( img, verbose ):
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
     if not qrdata:
-        bigger_qrcode = cv2.resize(qrcode, None, fx=2, fy=2, interpolation = cv2.INTER_CUBIC)
+        bigger_qrcode = cv2.resize(qrcode,
+                                   None,
+                                   fx=2,
+                                   fy=2,
+                                   interpolation=cv2.INTER_CUBIC)
         qrdata = decode_qrcode(bigger_qrcode)
         if not qrdata:
             raise Exception("CANNOT DECODE QRCODE")
@@ -534,7 +555,6 @@ def parse_template( img, verbose ):
     cell_height = p1_p2 / (num_of_rows - 1.0)
     cell_width = p2_p3 / (num_of_cols - 1.0)
 
-
     line_num = 1
     processed_chars_num = 0
 
@@ -552,7 +572,7 @@ def parse_template( img, verbose ):
         char_img = img[y1:y2, x1:x2]
         glyname = get_glyph_name(char)
         if verbose:
-            print(glyname,'(',char,')')
+            print(glyname, '(', char, ')')
         char_img = cv2.equalizeHist(char_img)
         cv2.imwrite(glyname + '.png', char_img)
 
@@ -561,7 +581,7 @@ def parse_template( img, verbose ):
 
         processed_chars_num += 1
 
-        if line_num == 1 and  processed_chars_num == cols_of_first_row:
+        if line_num == 1 and processed_chars_num == cols_of_first_row:
             line_num = line_num + 1
             processed_chars_num = 0
         elif line_num == 2 and processed_chars_num == cols_of_second_row:
@@ -575,17 +595,20 @@ def parse_template( img, verbose ):
             processed_chars_num = 0
 
     if verbose:
-        plt.imshow(color_img, cmap='gray', interpolation = 'bicubic')
+        plt.imshow(color_img, cmap='gray', interpolation='bicubic')
         plt.xticks([]), plt.yticks([])
         plt.show()
         cv2.imwrite('result.png', color_img)
+
 
 if __name__ == "__main__":
     #******************* COMMAND LINE OPTIONS *******************************#
     parser = argparse.ArgumentParser(description="parse template and output \
             single character using unicode name")
     parser.add_argument("filename", help="input template image")
-    parser.add_argument("-v", "--verbose", action="store_true",
+    parser.add_argument("-v",
+                        "--verbose",
+                        action="store_true",
                         help="print more info")
     args = parser.parse_args()
     img = cv2.imread(args.filename, cv2.IMREAD_GRAYSCALE)
