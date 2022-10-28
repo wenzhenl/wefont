@@ -12,6 +12,8 @@ from fpdf import FPDF
 from qrcode import *
 import argparse
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 # GLOBAL VARIABLES
 cell_size = 20
