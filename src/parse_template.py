@@ -66,11 +66,11 @@ def check_ratio(state_count):
     module_size = total_finder_size / 7.0
     max_variance = module_size / 2.0
 
-    if abs(module_size - state_count[0]) < max_variance and \
-       abs(module_size - state_count[1]) < max_variance and \
-       abs(3 * module_size - state_count[2]) < 3 * max_variance and \
-       abs(module_size - state_count[3]) < max_variance and \
-       abs(module_size - state_count[4]) < max_variance:
+    if (abs(module_size - state_count[0]) < max_variance
+            and abs(module_size - state_count[1]) < max_variance
+            and abs(3 * module_size - state_count[2]) < 3 * max_variance
+            and abs(module_size - state_count[3]) < max_variance
+            and abs(module_size - state_count[4]) < max_variance):
         return True
 
     return False
@@ -113,8 +113,8 @@ def cross_check_vertical(start_i, center_j, max_count, ori_state_count_total,
         i += 1
     if i == img.shape[0] or state_count[3] >= max_count:
         return float('nan')
-    while i < img.shape[0] and img[
-            i, center_j] < thres and state_count[4] < max_count:
+    while (i < img.shape[0] and img[i, center_j] < thres
+           and state_count[4] < max_count):
         state_count[4] += 1
         i += 1
     if state_count[4] >= max_count:
@@ -162,8 +162,8 @@ def cross_check_horizontal(center_i, start_j, max_count, ori_state_count_total,
         j += 1
     if j == cols:
         return float('nan')
-    while j < cols and img[center_i,
-                           j] >= thres and state_count[3] < max_count:
+    while (j < cols and img[center_i, j] >= thres
+           and state_count[3] < max_count):
         state_count[3] += 1
         j += 1
     if j == cols or state_count[3] >= max_count:
@@ -192,20 +192,22 @@ def cross_check_diagonal(start_i, center_j, max_count, ori_state_count_total,
 
     state_count = [0] * 5
     i = 0
-    while start_i >= i and center_j >= i and img[start_i - i,
-                                                 center_j - i] < thres:
+    while (start_i >= i and center_j >= i
+           and img[start_i - i, center_j - i] < thres):
         state_count[2] += 1
         i += 1
     if start_i < i or center_j < i:
         return False
-    while start_i >= i and center_j >= i and img[start_i - i, center_j - i] >= \
-          thres and state_count[1] <= max_count:
+    while (start_i >= i and center_j >= i
+           and img[start_i - i, center_j - i] >= thres
+           and state_count[1] <= max_count):
         state_count[1] += 1
         i += 1
     if start_i < i or center_j < i or state_count[1] > max_count:
         return False
-    while start_i >= i and center_j >= i and img[start_i - i, center_j - i] < \
-          thres and state_count[0] <= max_count:
+    while (start_i >= i and center_j >= i
+           and img[start_i - i, center_j - i] < thres
+           and state_count[0] <= max_count):
         state_count[0] += 1
         i += 1
     if state_count[0] > max_count:
@@ -214,30 +216,31 @@ def cross_check_diagonal(start_i, center_j, max_count, ori_state_count_total,
     max_j = img.shape[1]
 
     i = 1
-    while start_i + i < max_i and center_j + i < max_j and \
-            img[start_i + i, center_j + i] < thres:
+    while (start_i + i < max_i and center_j + i < max_j
+           and img[start_i + i, center_j + i] < thres):
         state_count[2] += 1
         i += 1
     if start_i + i >= max_i or center_j + i >= max_j:
         return False
-    while start_i + i < max_i and center_j + i < max_j and \
-            img[start_i + i, center_j + i] >= thres and state_count[3] < max_count:
+    while (start_i + i < max_i and center_j + i < max_j
+           and img[start_i + i, center_j + i] >= thres
+           and state_count[3] < max_count):
         state_count[3] += 1
         i += 1
-    if start_i + i >= max_i or center_j + i >= max_j or state_count[
-            3] >= max_count:
+    if (start_i + i >= max_i or center_j + i >= max_j
+            or state_count[3] >= max_count):
         return False
-    while start_i + i < max_i and center_j + i < max_j and \
-            img[start_i + i, center_j + i] < thres and \
-            state_count[4] < max_count:
+    while (start_i + i < max_i and center_j + i < max_j
+           and img[start_i + i, center_j + i] < thres
+           and state_count[4] < max_count):
         state_count[4] += 1
         i += 1
     if state_count[4] >= max_count:
         return False
 
     state_count_total = sum(state_count)
-    if abs(state_count_total - ori_state_count_total) < 2 * ori_state_count_total and \
-       check_ratio(state_count) == True:
+    if (abs(state_count_total - ori_state_count_total) <
+            2 * ori_state_count_total and check_ratio(state_count) == True):
         return True
     else:
         return False
@@ -358,9 +361,9 @@ def points_cmp(p1, p2):
 def rotate_image(possible_centers, img):
 
     page_finders = possible_centers[:3]
-    pts = np.float32([[page_finders[0][1],page_finders[0][0]],\
-                       [page_finders[1][1],page_finders[1][0]],\
-                       [page_finders[2][1],page_finders[2][0]]])
+    pts = np.float32([[page_finders[0][1], page_finders[0][0]],
+                      [page_finders[1][1], page_finders[1][0]],
+                      [page_finders[2][1], page_finders[2][0]]])
 
     p1_p2 = np.linalg.norm(pts[0] - pts[1])
     p1_p3 = np.linalg.norm(pts[0] - pts[2])
@@ -412,9 +415,9 @@ def rotate_image(possible_centers, img):
 
     ms = sum([page_finders[0][2], page_finders[1][2], page_finders[2][2]
               ]) / 3.0 * 7
-    pts1 = np.float32([[page_finders[0][1],page_finders[0][0]],\
-                       [page_finders[1][1],page_finders[1][0]],\
-                       [page_finders[2][1],page_finders[2][0]]])
+    pts1 = np.float32([[page_finders[0][1], page_finders[0][0]],
+                       [page_finders[1][1], page_finders[1][0]],
+                       [page_finders[2][1], page_finders[2][0]]])
     pts2 = np.float32([[ms, ms], [ms, new_rows + ms],
                        [new_cols + ms, new_rows + ms]])
     M = cv2.getAffineTransform(pts1, pts2)
@@ -546,9 +549,9 @@ def parse_template(img, verbose):
     cols_of_last_row = num_of_cols - 2
 
     # detemine cell size in the image
-    pts = np.float32([[possible_centers[0][1],possible_centers[0][0]],\
-                       [possible_centers[1][1],possible_centers[1][0]],\
-                       [possible_centers[2][1],possible_centers[2][0]]])
+    pts = np.float32([[possible_centers[0][1], possible_centers[0][0]],
+                      [possible_centers[1][1], possible_centers[1][0]],
+                      [possible_centers[2][1], possible_centers[2][0]]])
 
     p1_p2 = np.linalg.norm(pts[0] - pts[1])
     p2_p3 = np.linalg.norm(pts[1] - pts[2])
@@ -603,8 +606,9 @@ def parse_template(img, verbose):
 
 if __name__ == "__main__":
     #******************* COMMAND LINE OPTIONS *******************************#
-    parser = argparse.ArgumentParser(description="parse template and output \
-            single character using unicode name")
+    parser = argparse.ArgumentParser(
+        description=
+        "parse template and output single character using unicode name")
     parser.add_argument("filename", help="input template image")
     parser.add_argument("-v",
                         "--verbose",
