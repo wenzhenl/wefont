@@ -18,7 +18,7 @@
 （如果你不想安装，你可以点 [这里](https://github.com/wenzhenl/wefont/issues/new) 提一个issue，留下自己的邮箱，我可以帮你生成。之后计划建立一个网站）
 
 ## 安装 [MAC版]
-安装 [brew](https://docs.brew.sh/Installation) , 然后
+安装 [Homebrew](https://docs.brew.sh/Installation) , 然后
 ```
   brew install fontforge
   brew install potrace
