@@ -542,8 +542,8 @@ def parse_template(img, verbose):
     # NOTE THE PARAMETERS SHOULD BE CONSISTENT WITH generate_template.py
     length = 180
     width = 260
-    num_of_cols = length / preset_cell_size
-    num_of_rows = width / preset_cell_size
+    num_of_cols = length // preset_cell_size
+    num_of_rows = width // preset_cell_size
     cols_of_first_row = num_of_cols - 3
     cols_of_second_row = num_of_cols - 2
     cols_of_last_row = num_of_cols - 2
