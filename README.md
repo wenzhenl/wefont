@@ -80,7 +80,7 @@ options:
 ```
    convert -verbose -density 150 -quality 100 扫描文件.pdf input-%02d.jpg
 ```
-需要安装 `ImageMagic`
+可能需要安装 `ImageMagic`
 
 ### 产生字体
 这一步可以一键完成
