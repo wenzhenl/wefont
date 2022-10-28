@@ -67,7 +67,7 @@ def draw_qrcode(qrstr, qrname):
     im.save(qrname)
 
 
-def fill_one_page(pdf, chars, total_num, page_num):
+def fill_one_page(pdf, chars, total_num, page_num, draw_sub=False):
 
     qrstr = str(cell_size) + " "
     for char in chars:
@@ -126,14 +126,15 @@ def fill_one_page(pdf, chars, total_num, page_num):
         pdf.line(x1, y2, x2, y2)
         pdf.line(x2, y1, x2, y2)
 
-        # draw the sub #
-        # reset font size to smaller
-        pdf.set_font(font_name, '', 8)
-        sx = x2 - subx
-        sy = y2 - suby
-        pdf.text(sx, sy, str(int(total_num)))
-        # restore font size
-        pdf.set_font(font_name, '', 14)
+        if draw_sub:
+            # draw the sub #
+            # reset font size to smaller
+            pdf.set_font(font_name, '', 8)
+            sx = x2 - subx
+            sy = y2 - suby
+            pdf.text(sx, sy, str(total_num))
+            # restore font size
+            pdf.set_font(font_name, '', 14)
 
         processed_chars_num = processed_chars_num + 1
 
@@ -173,22 +174,26 @@ def fill_one_page(pdf, chars, total_num, page_num):
 parser = argparse.ArgumentParser(
     description="generate template based on gb2312")
 parser.add_argument("filename", help="input file containing the characters")
-parser.add_argument("-s",
-                    "--cellsize",
+parser.add_argument("-cs",
+                    "--cell_size",
                     type=int,
                     help="the size of cell, default is 20")
 parser.add_argument("-f",
                     "--font",
                     help="the Chinese font used, default is fireflysung")
 parser.add_argument("-o", "--output", help="output pdf file name")
+parser.add_argument("-rs",
+                    "--remove_subscript",
+                    action="store_true",
+                    help="remove the subscript number of cell")
 parser.add_argument("-v",
                     "--verbose",
                     action="store_true",
                     help="print more info")
 args = parser.parse_args()
 
-if args.cellsize:
-    cell_size = args.cellsize
+if args.cell_size:
+    cell_size = args.cell_size
     num_of_cols = length // cell_size
     num_of_rows = width // cell_size
     cols_of_first_row = num_of_cols - 3
@@ -206,6 +211,9 @@ if args.output:
     output_file = args.output
 else:
     output_file = str(cell_size) + "_" + str(cell_size) + "_template.pdf"
+
+draw_sub = not args.remove_subscript
+
 if args.verbose:
     print(">>>Begin processing file ", args.filename)
     print("cell_size: ", cell_size)
@@ -220,7 +228,7 @@ f = open(args.filename, 'r')
 # global setting
 pdf = FPDF()
 pdf.set_author('Leeyukuang')
-pdf.set_title('gb2312 Chinese font set template cellsize ' + str(cell_size))
+pdf.set_title('gb2312 Chinese font set template cell size ' + str(cell_size))
 
 pdf.set_margins(margin_left, margin_top)
 pdf.add_page()
@@ -245,7 +253,7 @@ for line in f:
 
     # page is full now
     if cnt == num_of_chars_per_page:
-        fill_one_page(pdf, chars_of_this_page, total_num, page_num)
+        fill_one_page(pdf, chars_of_this_page, total_num, page_num, draw_sub)
 
         if args.verbose:
             print("Finished processing page: ", page_num)
@@ -257,7 +265,7 @@ for line in f:
 
 # handle those chars not enough for entire page
 if len(chars_of_this_page):
-    fill_one_page(pdf, chars_of_this_page, total_num, page_num)
+    fill_one_page(pdf, chars_of_this_page, total_num, page_num, draw_sub)
 
 pdf.output(output_file, 'F')
 
