@@ -4,15 +4,14 @@ import sys
 import fontforge
 import string
 
-f= open("config/unicode_to_gb2312.txt", 'r')
+f = open("config/unicode_to_gb2312.txt", 'r')
 
 dic = {}
 for line in f:
     line = line.rstrip()
     dic[line[10:14].lower()] = line[2:6].lower()
 
-
-f2= open(sys.argv[1], 'r')
+f2 = open(sys.argv[1], 'r')
 
 font = fontforge.font()
 
