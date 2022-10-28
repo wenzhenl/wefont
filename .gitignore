@@ -2,4 +2,5 @@ opencv2.framework
 src/config/fireflysung.cw127.pkl
 src/config/fireflysung.pkl
 src/*.pdf
+src/*.ttf
 .DS_Store

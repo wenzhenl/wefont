@@ -20,6 +20,6 @@ do
   rm $i
 done
 ls *.svg > chars.txt
-/opt/homebrew/bin/python3 generate_font.py chars.txt $OUTPUT
+$(brew --prefix)/bin/python3 generate_font.py chars.txt $OUTPUT
 rm chars.txt
 rm *.svg
