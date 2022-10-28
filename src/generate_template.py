@@ -36,8 +36,8 @@ suby = 2
 # NOTE THE VALS 180, 260 HERE MAYBE SYSTEM DEPENDENT
 length = 180
 width = 260
-num_of_cols = length / cell_size
-num_of_rows = width / cell_size
+num_of_cols = length // cell_size
+num_of_rows = width // cell_size
 cols_of_first_row = num_of_cols - 3
 cols_of_second_row = num_of_cols - 2
 cols_of_last_row = num_of_cols - 2
@@ -185,8 +185,8 @@ args = parser.parse_args()
 
 if args.cellsize:
     cell_size = args.cellsize
-    num_of_cols = length / cell_size
-    num_of_rows = width / cell_size
+    num_of_cols = length // cell_size
+    num_of_rows = width // cell_size
     cols_of_first_row = num_of_cols - 3
     cols_of_second_row = num_of_cols -2
     cols_of_last_row = num_of_cols -2
