@@ -78,15 +78,16 @@ def fill_one_page(pdf, chars, total_num, page_num):
     draw_qrcode(qrstr, qrname)
 
     # first cell is solid black location indicator
-    pdf.set_fill_color(0,0,0)
-    pdf.cell(cell_size,cell_size,"",0,0,'C')
+    pdf.set_fill_color(0, 0, 0)
+    pdf.cell(cell_size, cell_size, "", 0, 0, 'C')
 
     # draw a finder pattern on the top left
-    pdf.image('config/finder.png', margin_left + inner,
-              margin_top + inner, cell_size - 2 * inner, cell_size - 2 * inner)
+    pdf.image('config/finder.png', margin_left + inner, margin_top + inner,
+              cell_size - 2 * inner, cell_size - 2 * inner)
 
     # draw a finder pattern on the bottom right
-    pdf.image('config/finder.png', margin_left + (num_of_cols -1) * cell_size + inner,
+    pdf.image('config/finder.png',
+              margin_left + (num_of_cols - 1) * cell_size + inner,
               margin_top + (num_of_rows - 1) * cell_size + inner,
               cell_size - 2 * inner, cell_size - 2 * inner)
 
@@ -95,15 +96,13 @@ def fill_one_page(pdf, chars, total_num, page_num):
               margin_top + (num_of_rows - 1) * cell_size + inner,
               cell_size - 2 * inner, cell_size - 2 * inner)
 
-
     # draw a qrcode graph on the top right
     pdf.image(qrname, margin_left + (num_of_cols - 2) * cell_size + inner,
-              margin_top + inner,
-              2 * cell_size - inner, 2 * cell_size - inner)
+              margin_top + inner, 2 * cell_size - inner, 2 * cell_size - inner)
 
     os.remove(qrname)
 
-    pdf.set_fill_color(255,255,255)
+    pdf.set_fill_color(255, 255, 255)
 
     line_num = 1
     processed_chars_num = 0
@@ -111,7 +110,7 @@ def fill_one_page(pdf, chars, total_num, page_num):
 
         total_num = total_num + 1
 
-        pdf.cell(cell_size,cell_size,char,0,0,'C')
+        pdf.cell(cell_size, cell_size, char, 0, 0, 'C')
 
         factor = 0
         if line_num == 1:
@@ -129,16 +128,16 @@ def fill_one_page(pdf, chars, total_num, page_num):
 
         # draw the sub #
         # reset font size to smaller
-        pdf.set_font(font_name,'',8)
+        pdf.set_font(font_name, '', 8)
         sx = x2 - subx
         sy = y2 - suby
         pdf.text(sx, sy, str(int(total_num)))
         # restore font size
-        pdf.set_font(font_name,'',14)
+        pdf.set_font(font_name, '', 14)
 
         processed_chars_num = processed_chars_num + 1
 
-        if line_num == 1 and  processed_chars_num == cols_of_first_row:
+        if line_num == 1 and processed_chars_num == cols_of_first_row:
             pdf.ln()
             line_num = line_num + 1
             processed_chars_num = 0
@@ -150,7 +149,7 @@ def fill_one_page(pdf, chars, total_num, page_num):
             pdf.ln()
             line_num = line_num + 1
             processed_chars_num = 1
-            pdf.cell(cell_size,cell_size,'',0,0,'C')
+            pdf.cell(cell_size, cell_size, '', 0, 0, 'C')
         elif processed_chars_num == num_of_cols:
             pdf.ln()
             line_num = line_num + 1
@@ -158,28 +157,33 @@ def fill_one_page(pdf, chars, total_num, page_num):
 
     page_num = page_num + 1
     # draw page_num num
-    pdf.set_font(font_name,'',10)
+    pdf.set_font(font_name, '', 10)
     px = margin_left + num_of_cols * cell_size
-    py = margin_top + num_of_rows * cell_size  + 4
+    py = margin_top + num_of_rows * cell_size + 4
     pdf.text(px, py, str(page_num))
-    pdf.set_font(font_name,'',14)
+    pdf.set_font(font_name, '', 14)
 
     # draw end of page location indicator
-    pdf.set_fill_color(0,0,0)
-    pdf.cell(cell_size,cell_size,"",0,0,'C')
+    pdf.set_fill_color(0, 0, 0)
+    pdf.cell(cell_size, cell_size, "", 0, 0, 'C')
     pdf.ln()
 
 
 #******************* COMMAND LINE OPTIONS *******************************#
-parser = argparse.ArgumentParser(description="generate template based on gb2312")
+parser = argparse.ArgumentParser(
+    description="generate template based on gb2312")
 parser.add_argument("filename", help="input file containing the characters")
-parser.add_argument("-s", "--cellsize", type=int,
+parser.add_argument("-s",
+                    "--cellsize",
+                    type=int,
                     help="the size of cell, default is 20")
-parser.add_argument("-f", "--font",
+parser.add_argument("-f",
+                    "--font",
                     help="the Chinese font used, default is fireflysung")
-parser.add_argument("-o", "--output",
-                    help="output pdf file name")
-parser.add_argument("-v", "--verbose", action="store_true",
+parser.add_argument("-o", "--output", help="output pdf file name")
+parser.add_argument("-v",
+                    "--verbose",
+                    action="store_true",
                     help="print more info")
 args = parser.parse_args()
 
@@ -188,10 +192,9 @@ if args.cellsize:
     num_of_cols = length // cell_size
     num_of_rows = width // cell_size
     cols_of_first_row = num_of_cols - 3
-    cols_of_second_row = num_of_cols -2
-    cols_of_last_row = num_of_cols -2
+    cols_of_second_row = num_of_cols - 2
+    cols_of_last_row = num_of_cols - 2
     num_of_chars_per_page = num_of_cols * num_of_rows - 7
-
 
 if args.font:
     font_name = args.font[:args.font.find(".")]
@@ -215,15 +218,15 @@ if args.verbose:
 f = open(args.filename, 'r')
 
 # global setting
-pdf=FPDF()
+pdf = FPDF()
 pdf.set_author('Leeyukuang')
 pdf.set_title('gb2312 Chinese font set template cellsize ' + str(cell_size))
 
 pdf.set_margins(margin_left, margin_top)
 pdf.add_page()
 
-pdf.set_draw_color(230,225,225);
-pdf.set_text_color(200,200,200);
+pdf.set_draw_color(230, 225, 225)
+pdf.set_text_color(200, 200, 200)
 pdf.add_font(font_name, '', font_filename, uni=True)
 pdf.set_font(font_name, '', 14)
 
@@ -245,7 +248,7 @@ for line in f:
         fill_one_page(pdf, chars_of_this_page, total_num, page_num)
 
         if args.verbose:
-            print ("Finished processing page: ", page_num)
+            print("Finished processing page: ", page_num)
 
         total_num += num_of_chars_per_page
         page_num += 1
