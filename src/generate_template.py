@@ -16,9 +16,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # GLOBAL VARIABLES
-cell_size = 20
-font_name = "fireflysung"
-font_filename = "config/fireflysung.ttf"
+DEFAULT_CELL_SIZE = 20
+DEFAULT_FONT_SIZE = 14
 
 # set margins
 margin_left = 15
@@ -32,15 +31,8 @@ subx = 6
 suby = 2
 
 # NOTE THE VALS 180, 260 HERE MAYBE SYSTEM DEPENDENT
-length = 180
-width = 260
-num_of_cols = length // cell_size
-num_of_rows = width // cell_size
-cols_of_first_row = num_of_cols - 3
-cols_of_second_row = num_of_cols - 2
-cols_of_last_row = num_of_cols - 2
-num_of_chars_per_page = num_of_cols * num_of_rows - 7
-
+PAPER_LENGTH = 180
+PAPER_WIDTH = 260
 
 def id_generator(size):
     import string
@@ -175,10 +167,16 @@ parser.add_argument("filename", help="input file containing the characters")
 parser.add_argument("-cs",
                     "--cell_size",
                     type=int,
+                    default=DEFAULT_CELL_SIZE,
                     help="the size of cell, default is 20")
 parser.add_argument("-f",
                     "--font",
+                    default="config/fireflysung.ttf",
                     help="the Chinese font used, default is fireflysung")
+parser.add_argument("-fs",
+                    "--font_size",
+                    type=int,
+                    help="the font size, default is based on cell size")
 parser.add_argument("-o", "--output", help="output pdf file name")
 parser.add_argument("-rs",
                     "--remove_subscript",
@@ -190,20 +188,20 @@ parser.add_argument("-v",
                     help="print more info")
 args = parser.parse_args()
 
-if args.cell_size:
-    cell_size = args.cell_size
-    num_of_cols = length // cell_size
-    num_of_rows = width // cell_size
-    cols_of_first_row = num_of_cols - 3
-    cols_of_second_row = num_of_cols - 2
-    cols_of_last_row = num_of_cols - 2
-    num_of_chars_per_page = num_of_cols * num_of_rows - 7
+cell_size = args.cell_size
+num_of_cols = PAPER_LENGTH // cell_size
+num_of_rows = PAPER_WIDTH // cell_size
+cols_of_first_row = num_of_cols - 3
+cols_of_second_row = num_of_cols - 2
+cols_of_last_row = num_of_cols - 2
+num_of_chars_per_page = num_of_cols * num_of_rows - 7
 
-if args.font:
-    font_name = args.font[:args.font.find(".")]
-    font_filename = args.font
-    if args.verbose:
-        print("Font: ", font_name)
+font_filename = args.font
+font_name = os.path.splitext(os.path.basename(font_filename))[0]
+if args.font_size:
+    font_size = args.font_size
+else:
+    font_size = int(DEFAULT_CELL_SIZE / cell_size * DEFAULT_FONT_SIZE)
 
 if args.output:
     output_file = args.output
@@ -214,10 +212,14 @@ draw_sub = not args.remove_subscript
 
 if args.verbose:
     print(">>>Begin processing file ", args.filename)
-    print("cell_size: ", cell_size)
-    print("num_of_cols: ", num_of_cols)
-    print("num_of_rows: ", num_of_rows)
-    print("chars_per_page: ", num_of_chars_per_page)
+    print("cell size: ", cell_size)
+    print("num of cols: ", num_of_cols)
+    print("num of rows: ", num_of_rows)
+    print("chars per page: ", num_of_chars_per_page)
+    print("font file name", font_filename)
+    print("font name", font_name)
+    print("font size", font_size)
+    print("output file name", output_file)
 #******************** END COMMAND LINE OPTIONS **************************#
 
 # open the input file
