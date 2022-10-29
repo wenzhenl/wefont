@@ -27,10 +27,6 @@ margin_top = 10
 # set the margin of the inner cell
 inner = 3
 
-# set the margin of small qrcode of each char
-qr_space = inner * 0.5
-qr_width = inner
-
 # set the position of the sub #
 subx = 6
 suby = 2
