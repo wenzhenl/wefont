@@ -55,7 +55,7 @@
 
 ```
 (wefont) ➜  src git:(master) python generate_template.py -h
-usage: generate_template.py [-h] [-cs CELL_SIZE] [-f FONT] [-o OUTPUT] [-rs] [-v] filename
+usage: generate_template.py [-h] [-cs CELL_SIZE] [-f FONT] [-fs FONT_SIZE] [-o OUTPUT] [-rs] [-v] filename
 
 generate template based on gb2312
 
@@ -67,6 +67,8 @@ options:
   -cs CELL_SIZE, --cell_size CELL_SIZE
                         the size of cell, default is 20
   -f FONT, --font FONT  the Chinese font used, default is fireflysung
+  -fs FONT_SIZE, --font_size FONT_SIZE
+                        the font size, default is based on cell size
   -o OUTPUT, --output OUTPUT
                         output pdf file name
   -rs, --remove_subscript
