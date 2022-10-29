@@ -237,7 +237,9 @@ def main():
         #******************** END COMMAND LINE OPTIONS **************************#
 
     # open the input file
-    f = open(args.filename, 'r')
+    with open(args.filename, 'r') as file:
+        lines = file.read().splitlines()
+    chars_of_template = "".join(lines)
 
     # global setting
     pdf = FPDF()
@@ -258,8 +260,7 @@ def main():
     total_num = 0
     page_num = 0
 
-    for line in f:
-        char = line.rstrip()
+    for char in chars_of_template:
 
         cnt += 1
         # collect chars from input file until a page is full
