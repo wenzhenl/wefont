@@ -17,7 +17,6 @@ font = fontforge.font()
 
 family_name = sys.argv[2]
 font.familyname = family_name
-font.familyname = family_name
 font.fullname = family_name
 font.fontname = family_name
 font.encoding = "gb2312"
