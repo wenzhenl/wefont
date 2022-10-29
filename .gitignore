@@ -3,4 +3,5 @@ src/config/fireflysung.cw127.pkl
 src/config/fireflysung.pkl
 src/*.pdf
 src/*.ttf
+src/*.jpg
 .DS_Store
