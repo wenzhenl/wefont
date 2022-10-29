@@ -18,18 +18,18 @@
 ## 安装 [MAC版]
 安装 [Homebrew](https://docs.brew.sh/Installation) , 然后
 ```
-  brew install fontforge
-  brew install potrace
-  brew install zbar
+brew install fontforge
+brew install potrace
+brew install zbar
 ```
   Python packages 建议使用 [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 安装
 ```
-  conda env create -f environment.yml
+conda env create -f environment.yml
 ```
 之后你可能会遇到错误 `ImportError: Unable to find zbar shared library`，你需要以下workaround
 ```
-  mkdir ~/lib
-  ln -s $(brew --prefix zbar)/lib/libzbar.dylib ~/lib/libzbar.dylib
+mkdir ~/lib
+ln -s $(brew --prefix zbar)/lib/libzbar.dylib ~/lib/libzbar.dylib
 ```
 
 ## 使用说明
@@ -38,13 +38,13 @@
 
 你也可以定制自己的模板，你的目标可以是先覆盖一本你最爱的的书，比如 `红楼梦.txt`
 ```
-  sed 's/\(.\)/\1\n/g' 红楼梦.txt | sort | uniq -c | sort -nr | awk '{print $2}' > 红楼梦字集.txt
+sed 's/\(.\)/\1\n/g' 红楼梦.txt | sort | uniq -c | sort -nr | awk '{print $2}' > 红楼梦字集.txt
 ```
 
 就可以得到这本书里面所有的不同单字，按照出现频率排列。用这个文件就可以产生自己的模板。
 ```
-  cd src
-  python generate_template.py 红楼梦字集.txt
+cd src
+python generate_template.py 红楼梦字集.txt
 ```
 就可以得到一个pdf模板文件。
 你也可以调整模板字格大小，字体，输出文件名。
@@ -78,15 +78,15 @@ options:
 书写建议使用色彩比较重的笔，扫描后如果输出的是 `pdf`，需要转化为 `jpg`
 
 ```
-   convert -verbose -density 150 -quality 100 扫描文件.pdf input-%02d.jpg
+convert -verbose -density 150 -quality 100 扫描文件.pdf input-%02d.jpg
 ```
 可能需要安装 `ImageMagic`
 
 ### 产生字体
 这一步可以一键完成
 ```
-  cd src
-  ./forge_my_font.sh 字体名 扫描文件1.jpg 扫描文件2.jpg 扫描文件3.jpg ... 
+cd src
+./forge_my_font.sh 字体名 扫描文件1.jpg 扫描文件2.jpg 扫描文件3.jpg ... 
 ```
 
 ## 先导尝试
