@@ -107,7 +107,7 @@ cd src
 如果模板中有字写错了，可以先不用管它，正常先生成字体，然后打补丁。打补丁的方式是先把错字集中写到一个文件中，比如"错字集.txt", 然后使用
 ```
 cd src
-python generate_template.py 红楼梦字集.txt
+python generate_template.py 错字集.txt
 ```
 生成模板，书写，扫描，得到jpg文件
 ```
