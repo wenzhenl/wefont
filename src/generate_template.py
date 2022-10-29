@@ -59,7 +59,12 @@ def draw_qrcode(qrstr, qrname):
     im.save(qrname)
 
 
-def fill_one_page(pdf, chars, total_num, page_num, cell_size, draw_sub=False):
+def fill_one_page(pdf, chars, total_num, page_num, cell_size, num_of_cols,
+                  num_of_rows, font_name, font_size, draw_sub):
+
+    cols_of_first_row = num_of_cols - 3
+    cols_of_second_row = num_of_cols - 2
+    cols_of_last_row = num_of_cols - 2
 
     qrstr = str(cell_size) + " "
     for char in chars:
@@ -105,7 +110,7 @@ def fill_one_page(pdf, chars, total_num, page_num, cell_size, draw_sub=False):
 
     line_num = 1
     processed_chars_num = 0
-    for char in chars_of_this_page:
+    for char in chars:
 
         total_num = total_num + 1
 
@@ -203,9 +208,6 @@ def main():
     cell_size = args.cell_size
     num_of_cols = PAPER_LENGTH // cell_size
     num_of_rows = PAPER_WIDTH // cell_size
-    cols_of_first_row = num_of_cols - 3
-    cols_of_second_row = num_of_cols - 2
-    cols_of_last_row = num_of_cols - 2
     num_of_chars_per_page = num_of_cols * num_of_rows - 7
 
     font_filename = args.font
@@ -267,7 +269,8 @@ def main():
         # page is full now
         if cnt == num_of_chars_per_page:
             fill_one_page(pdf, chars_of_this_page, total_num, page_num,
-                          cell_size, draw_sub)
+                          cell_size, num_of_cols, num_of_rows, font_name,
+                          font_size, draw_sub)
 
             if args.verbose:
                 print("Finished processing page: ", page_num)
@@ -280,7 +283,7 @@ def main():
     # handle those chars not enough for entire page
     if len(chars_of_this_page):
         fill_one_page(pdf, chars_of_this_page, total_num, page_num, cell_size,
-                      draw_sub)
+                      num_of_cols, num_of_rows, font_name, font_size, draw_sub)
 
     pdf.output(output_file, 'F')
 
