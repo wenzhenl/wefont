@@ -11,6 +11,7 @@ __author__ = "Wenzheng Li"
 from fpdf import FPDF
 from qrcode import *
 from collections import Counter
+import json
 import argparse
 import os
 import warnings
@@ -67,9 +68,13 @@ def fill_one_page(pdf, chars, total_num, page_num, cell_size, num_of_cols,
     cols_of_second_row = num_of_cols - 2
     cols_of_last_row = num_of_cols - 2
 
-    qrstr = str(cell_size) + " "
-    for char in chars:
-        qrstr += char
+    qr_data = {}
+    qr_data["version"] = "1.0"
+    qr_data["data"] = {}
+    qr_data["data"]["cell_size"] = cell_size
+    qr_data["data"]["text"] = "".join(chars)
+
+    qrstr = json.dumps(qr_data)
 
     qrname = id_generator(10) + ".png"
 
