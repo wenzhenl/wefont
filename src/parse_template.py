@@ -46,8 +46,10 @@ def get_glyph_name(char):
 # ////// DECODE A QRCODE //////////////
 # //////////////////////////////////////////////
 def decode_qrcode(qrcode):
-    decoded_obj = decode(qrcode)[0]
-    return decoded_obj.data.decode()
+    decoded_obj = decode(qrcode)
+    if decoded_obj:
+        return decoded_obj[0].data.decode()
+    return ""
 
 
 #//////////////////////////////////////////////
@@ -518,6 +520,8 @@ def parse_template(img, verbose):
     qrcode = img[y1:y2, x1:x2]
     qrdata = decode_qrcode(qrcode)
     if not qrdata:
+        if verbose:
+            print("Trying bigger qrcode")
         bigger_qrcode = cv2.resize(qrcode,
                                    None,
                                    fx=2,
