@@ -240,13 +240,26 @@ def main():
     # open the input file
     with open(args.filename, 'r') as file:
         lines = file.read().splitlines()
-    chars_of_template = "".join([c for line in lines for c in ''.join(line.split())])
+    chars_of_template = "".join(
+        [c for line in lines for c in ''.join(line.split())])
     frequency_of_chars = Counter(chars_of_template)
     if len(frequency_of_chars) < len(chars_of_template):
         for char in frequency_of_chars:
             if frequency_of_chars[char] > 1:
                 print(f"{char} appears {frequency_of_chars[char]} times")
         raise Exception("Duplicate characters detected in template")
+
+    with open("config/gb2312.txt", 'r') as file:
+        lines = file.read().splitlines()
+    chars_of_entire_gb2312 = "".join(
+        [c for line in lines for c in ''.join(line.split())])
+    if not set(chars_of_template) <= set(chars_of_entire_gb2312):
+        print(
+            f"{set(chars_of_template) - set(chars_of_entire_gb2312)} are found which are not within gb2312"
+        )
+        raise Exception(
+            "Chars not belong to gb2312 found. Currently we only support gb2312 set"
+        )
 
     # global setting
     pdf = FPDF()
