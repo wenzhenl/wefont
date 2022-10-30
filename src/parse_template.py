@@ -11,6 +11,7 @@ __author__ = "Wenzheng Li"
 import numpy as np
 import cv2
 from matplotlib import pyplot as plt
+import json
 import math
 import sys
 from pyzbar.pyzbar import decode
@@ -525,17 +526,14 @@ def parse_template(img, verbose):
         qrdata = decode_qrcode(bigger_qrcode)
         if not qrdata:
             raise Exception("CANNOT DECODE QRCODE")
-    preset_cell_size = int(qrdata[:qrdata.find(" ")])
+    qrdata = json.loads(qrdata)
+    template_version = qrdata["version"]
+    preset_cell_size = int(qrdata["data"]["cell_size"])
+    chars = qrdata["data"]["text"]
     if verbose:
+        print("template version: ", template_version)
         print("cell size: ", preset_cell_size)
-    qrdata = qrdata[qrdata.find(" ") + 1:]
-    chars = []
-    for char in qrdata:
-        chars.append(char)
-    if verbose:
         print("num of chars: ", len(chars))
-
-    if verbose:
         color_img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
 
     # set num of chars each line based on cell size
