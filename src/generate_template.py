@@ -240,7 +240,7 @@ def main():
     # open the input file
     with open(args.filename, 'r') as file:
         lines = file.read().splitlines()
-    chars_of_template = "".join([c for line in lines for c in line if c])
+    chars_of_template = "".join([c for line in lines for c in ''.join(line.split())])
     frequency_of_chars = Counter(chars_of_template)
     if len(frequency_of_chars) < len(chars_of_template):
         for char in frequency_of_chars:
