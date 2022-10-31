@@ -124,4 +124,5 @@ cd src
 **答：** 目前发现截图的图片无法被正确处理，QR code无法被识别，所以请目前不要使用截图。
 
 ## 卖家秀
+![alt text](./template_show.jpg)
 ![alt text](./show.jpg)
