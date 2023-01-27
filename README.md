@@ -15,7 +15,8 @@
 * 扫描模板 （最好是使用扫描仪，手机扫描其实也还行）
 * 产生字体  （需要安装使用本工具）  
 
-## 安装 [MAC版]
+## 安装
+### [MAC版]
 安装 [Homebrew](https://docs.brew.sh/Installation) , 然后
 ```
 brew install fontforge
@@ -30,6 +31,46 @@ conda env create -f environment.yml
 ```
 mkdir ~/lib
 ln -s $(brew --prefix zbar)/lib/libzbar.dylib ~/lib/libzbar.dylib
+```
+
+### [Linux版]
+按照 http://designwithfontforge.com/en-US/Installing_Fontforge.html 安装FontForge
+```
+apt-get install software-properties-common
+add-apt-repository ppa:fontforge/fontforge
+apt-get update
+apt-get install fontforge
+```
+我第二步没成功，但也不影响，可以跳过。
+
+我们需要它的Python模块，要注意这个模块目前在Linux上只支持python2.7版本
+
+```
+apt-get python-fontforge
+```
+这步成功后，安装`Potrace`
+```
+apt install potrace
+```
+然后安装之后opencv需要的
+```
+apt install libgl1-mesa-glx
+```
+
+然后我们开始安装Python package，同样推荐使用 [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) 安装。如果你的内存允许，你可以直接一步到位
+```
+conda env create -f environment.yml
+```
+如果你跟我一样内存不足的话，也可以一个个安装
+```
+conda create --name wefont python=3.9
+conda activate wefont
+conda install -c conda-forge pyzbar
+conda install numpy
+conda install -c conda-forge opencv
+conda install -c conda-forge matplotlib
+conda install -c conda-forge fpdf
+conda install -c conda-forge qrcode
 ```
 
 ## 使用说明
